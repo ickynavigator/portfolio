@@ -1,4 +1,7 @@
-name: checks
+name: Checks
+
+on:
+  push:
 
 jobs:
   checks:
