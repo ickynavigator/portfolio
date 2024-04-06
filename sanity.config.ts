@@ -1,4 +1,5 @@
 import { visionTool } from '@sanity/vision';
+import { codeInput } from '@sanity/code-input';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { schema } from './src/sanity/schema';
@@ -33,5 +34,6 @@ export default defineConfig({
           ]),
     }),
     visionTool({ defaultApiVersion: apiVersion }),
+    codeInput(),
   ],
 });

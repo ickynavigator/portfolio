@@ -20,7 +20,6 @@ export default defineType({
         { title: 'H5', value: 'h5' as const },
         { title: 'H6', value: 'h6' as const },
         { title: 'Quote', value: 'blockquote' as const },
-        { title: 'Unstyled', value: 'unstyled' as const },
       ],
       lists: [
         { title: 'Bullet', value: 'bullet' as const },
@@ -34,26 +33,16 @@ export default defineType({
           { title: 'Underline', value: 'underline' as const },
           { title: 'Strike', value: 'strike-through' as const },
         ],
-        annotations: [
-          {
-            title: 'URL',
-            name: 'link',
-            type: 'object',
-            fields: [
-              {
-                title: 'URL',
-                name: 'href',
-                type: 'url',
-              },
-            ],
-          },
-        ],
       },
     }),
 
     defineArrayMember({
       type: 'image',
       options: { hotspot: true },
+    }),
+
+    defineArrayMember({
+      type: 'code',
     }),
   ],
 });
