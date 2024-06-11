@@ -11,7 +11,12 @@
     "lint": "biome check",
     "lint:fix": "npm run lint --write",
     "typecheck": "tsc --noEmit",
-    "checks": "npm run lint && npm run typecheck && npm run test"
+    "checks": "npm run lint && npm run typecheck && npm run test",
+    "typegen": "npm run typegen:extract && npm run typegen:generate && npm run typegen:lint",
+    "typegen:extract": "sanity schema extract --enforce-required-fields --path ./sanity.schema.json",
+    "typegen:generate": "sanity typegen generate",
+    "typegen:lint": "biome check --write ./sanity.types.ts ./sanity.schema.json",
+    "postinstall": "npm run typegen"
   },
   "dependencies": {
     "@mantine/core": "^7.10.1",
