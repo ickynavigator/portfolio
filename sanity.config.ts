@@ -1,9 +1,9 @@
-import { visionTool } from '@sanity/vision';
 import { codeInput } from '@sanity/code-input';
+import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
-import { schema } from './src/sanity/schema';
 import env from '~/env';
+import { schema } from './src/sanity/schema';
 
 const {
   NEXT_PUBLIC_SANITY_API_VERSION: apiVersion,
@@ -29,7 +29,7 @@ export default defineConfig({
               .title('Personal info')
               .child(S.document().schemaType('personalInfo').documentId('personalInfo')),
             ...S.documentTypeListItems().filter(
-              (listItem) => !['configuration', 'personalInfo'].includes(`${listItem.getId()}`)
+              (listItem) => !['configuration', 'personalInfo'].includes(`${listItem.getId()}`),
             ),
           ]),
     }),
