@@ -12,7 +12,7 @@ const env = createEnv({
   shared: {
     VERCEL_URL: z.string().min(1).default('localhost:3000'),
   },
-  extends: [vercel],
+  extends: [vercel()],
   experimental__runtimeEnv: {
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
