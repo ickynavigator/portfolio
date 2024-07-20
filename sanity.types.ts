@@ -165,7 +165,7 @@ export type Category = {
 
 export type Slug = {
   _type: 'slug';
-  current?: string;
+  current: string;
   source?: string;
 };
 
@@ -315,4 +315,24 @@ export type Code = {
   code?: string;
   highlightedLines?: Array<number>;
 };
+
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | Geopoint
+  | Post
+  | SocialLink
+  | BlockContent
+  | Category
+  | Slug
+  | PersonalInfo
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | Configuration
+  | Code;
 export declare const internalGroqTypeReferenceTo: unique symbol;
