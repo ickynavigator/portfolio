@@ -8,5 +8,12 @@
     "quickfix.biome": "always",
     "source.organizeImports.biome": "always",
     "source.organizeImports": "always"
-  }
+  },
+  "cssVariables.lookupFiles": [
+    "**/*.css",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.less",
+    "node_modules/@mantine/core/styles.css"
+  ]
 }
