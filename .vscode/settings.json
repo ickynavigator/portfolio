@@ -6,6 +6,7 @@
   },
   "editor.codeActionsOnSave": {
     "quickfix.biome": "always",
-    "source.organizeImports.biome": "always"
+    "source.organizeImports.biome": "always",
+    "source.organizeImports": "always"
   }
 }
