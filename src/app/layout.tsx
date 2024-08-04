@@ -4,7 +4,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import React from 'react';
-import { theme } from '~/mantine/theme';
+import { theme } from '~/lib/mantine/theme';
 
 interface RootLayoutProps {
   children: React.ReactNode;
