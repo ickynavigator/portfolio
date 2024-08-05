@@ -1,0 +1,8 @@
+.wrapper {
+  background-color: var(--custom-panel-bg);
+
+  border-top: none;
+
+  border-bottom-left-radius: var(--mantine-radius-lg);
+  border-bottom-right-radius: var(--mantine-radius-lg);
+}

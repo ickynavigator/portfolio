@@ -1,0 +1,18 @@
+.badge {
+  border-color: var(--text-color);
+  color: var(--text-color);
+}
+
+.paper {
+  background-color: var(--custom-panel-bg);
+}
+
+.iconWrapper {
+  &:hover > .icon {
+    transform: translateY(rem(-12px));
+  }
+}
+
+.icon {
+  transition: transform 0.2s ease-in-out;
+}
