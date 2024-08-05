@@ -1,13 +1,13 @@
 import { Anchor, Badge, Center, Group, Paper, Stack, Text, ThemeIcon, rem } from '@mantine/core';
 import {
-  Icon,
+  type Icon,
   IconBrandFacebook,
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandX,
   IconCode,
   IconMail,
-  IconProps,
+  type IconProps,
 } from '@tabler/icons-react';
 import React from 'react';
 import Copy from '~/app/(root)/_components/copy';
