@@ -5,6 +5,9 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 export default withBundleAnalyzer({
+  images: {
+    remotePatterns: [{ protocol: 'https', hostname: 'cdn.sanity.io' }],
+  },
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
