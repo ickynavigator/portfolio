@@ -6,15 +6,14 @@ import { sanity } from '~/lib/sanity/env.preset';
 const env = createEnv({
   client: {
     NEXT_PUBLIC_SANITY_API_VERSION: z.string().default('2024-04-03'),
+    NEXT_PUBLIC_SITE_URL: z.string().min(1).default('localhost:3000'),
   },
   server: {},
-  shared: {
-    VERCEL_URL: z.string().min(1).default('localhost:3000'),
-  },
+  shared: {},
   extends: [vercel(), sanity()],
   experimental__runtimeEnv: {
     NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
-    VERCEL_URL: process.env.VERCEL_URL,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
   },
 });
 
