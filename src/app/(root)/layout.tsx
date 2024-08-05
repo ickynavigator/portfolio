@@ -1,5 +1,6 @@
 import { Container } from '@mantine/core';
 import React from 'react';
+import DraftMode from '~/app/(root)/_components/draftMode';
 import Footer from '~/app/(root)/_components/footer';
 import Header from '~/app/(root)/_components/header';
 
@@ -16,6 +17,7 @@ export default function Layout(props: LayoutProps) {
 
       {children}
 
+      <DraftMode />
       <Footer />
     </Container>
   );
