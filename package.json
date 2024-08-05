@@ -20,8 +20,8 @@
     "postinstall": "bun run typegen"
   },
   "dependencies": {
-    "@mantine/core": "7.11.2",
-    "@mantine/hooks": "7.11.2",
+    "@mantine/core": "7.12.0",
+    "@mantine/hooks": "7.12.0",
     "@next/bundle-analyzer": "14.2.5",
     "@sanity/code-input": "^4.1.4",
     "@sanity/vision": "3.52.4",
