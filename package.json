@@ -8,15 +8,16 @@
     "start": "next start",
     "analyze": "ANALYZE=true next build",
     "test": "echo \"Warning: no test specified\"",
+    "test:ci": "bun run test",
     "lint": "biome check",
-    "lint:fix": "npm run lint --write",
+    "lint:ci": "bun run lint",
+    "lint:fix": "bun run lint --write",
     "typecheck": "tsc --noEmit",
-    "checks": "npm run lint && npm run typecheck && npm run test",
-    "typegen": "npm run typegen:extract && npm run typegen:generate && npm run typegen:lint",
+    "typegen": "bun run typegen:extract && bun run typegen:generate && bun run typegen:lint",
     "typegen:extract": "sanity schema extract --enforce-required-fields --path ./sanity.schema.json",
     "typegen:generate": "sanity typegen generate",
     "typegen:lint": "biome check --write ./sanity.types.ts ./sanity.schema.json",
-    "postinstall": "npm run typegen"
+    "postinstall": "bun run typegen"
   },
   "dependencies": {
     "@mantine/core": "7.11.2",
