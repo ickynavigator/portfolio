@@ -12,9 +12,12 @@ export const resolve: Resolve = {
         locations: [
           {
             title: doc?.title || 'Untitled',
-            href: `/posts/${doc?.slug}`,
+            href: `/blog/${doc?.slug}`,
           },
-          { title: 'Home', href: `/` },
+          {
+            title: 'Blog List',
+            href: '/blog',
+          },
         ],
       }),
     }),
