@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
-    "test": " echo \"Warning: no test specified\"",
+    "test": "echo \"Warning: no test specified\"",
     "lint": "biome check",
     "lint:fix": "npm run lint --write",
     "typecheck": "tsc --noEmit",
