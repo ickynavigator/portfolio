@@ -30,7 +30,7 @@ export default defineConfig({
             ),
           ]),
     }),
-    visionTool({ defaultApiVersion: env.NEXT_PUBLIC_SANITY_DATASET }),
+    visionTool({ defaultApiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION }),
     presentationTool({
       resolve,
       previewUrl: {
