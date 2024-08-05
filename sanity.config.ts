@@ -3,7 +3,7 @@ import { visionTool } from '@sanity/vision';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import env from '~/env';
-import { schema } from './src/sanity/schema';
+import { schema } from '~/lib/sanity/schema';
 
 const {
   NEXT_PUBLIC_SANITY_API_VERSION: apiVersion,
