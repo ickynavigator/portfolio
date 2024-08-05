@@ -5,16 +5,10 @@ import { structureTool } from 'sanity/structure';
 import env from '~/env';
 import { schema } from '~/lib/sanity/schema';
 
-const {
-  NEXT_PUBLIC_SANITY_API_VERSION: apiVersion,
-  NEXT_PUBLIC_SANITY_DATASET: dataset,
-  NEXT_PUBLIC_SANITY_PROJECT_ID: projectId,
-} = env;
-
 export default defineConfig({
   basePath: '/studio',
-  projectId,
-  dataset,
+  projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: env.NEXT_PUBLIC_SANITY_DATASET,
   schema,
   plugins: [
     structureTool({
@@ -33,7 +27,7 @@ export default defineConfig({
             ),
           ]),
     }),
-    visionTool({ defaultApiVersion: apiVersion }),
+    visionTool({ defaultApiVersion: env.NEXT_PUBLIC_SANITY_DATASET }),
     codeInput(),
   ],
 });
