@@ -6,6 +6,7 @@ import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import React from 'react';
+import DraftMode from '~/components/draftMode';
 import { theme } from '~/lib/mantine/theme';
 
 interface RootLayoutProps {
@@ -21,7 +22,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
 
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          {children}
+          <DraftMode />
+        </MantineProvider>
+
         <Analytics />
         <SpeedInsights />
       </body>
