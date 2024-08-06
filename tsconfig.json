@@ -25,6 +25,9 @@
     "paths": {
       "~/*": [
         "./src/*"
+      ],
+      "~/t/sanity": [
+        "./sanity.types.ts"
       ]
     },
     "noUncheckedIndexedAccess": true,
