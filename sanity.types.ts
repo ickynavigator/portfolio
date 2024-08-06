@@ -338,7 +338,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/lib/sanity/queries.ts
 // Variable: PAGINATED_POSTS_QUERY
-// Query: {    "data": *[_type == "post" && defined(slug.current)] | order(publishedAt desc),    // "pagination": {    //     "page": select(    //         $offset >= count(*[_type == "post" && defined(slug.current)] | order(publishedAt desc)) => -1,    //         round($offset / $limit) + 1    //     ),    //     "per_page": round($limit),    //     "page_count": count(*[_type == "post" && defined(slug.current)] | order(publishedAt desc)),    //     "total_count": count(*[_type == "post" && defined(slug.current)] | order(publishedAt desc)),    // }}
+// Query: {    "data": *[_type == "post" && defined(slug.current)] | order(postedAt desc),    // TODO: Implement pagination    // "pagination": {    //     "page": select(    //         $offset >= count(*[_type == "post" && defined(slug.current)] | order(postedAt desc)) => -1,    //         round($offset / $limit) + 1    //     ),    //     "per_page": round($limit),    //     "page_count": count(*[_type == "post" && defined(slug.current)] | order(postedAt desc)),    //     "total_count": count(*[_type == "post" && defined(slug.current)] | order(postedAt desc)),    // }}
 export type PAGINATED_POSTS_QUERYResult = {
   data: Array<{
     _id: string;
