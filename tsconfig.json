@@ -32,6 +32,7 @@
     },
     "noUncheckedIndexedAccess": true,
     "moduleDetection": "force",
+    "allowSyntheticDefaultImports": true,
     "verbatimModuleSyntax": true
   },
   "include": [
