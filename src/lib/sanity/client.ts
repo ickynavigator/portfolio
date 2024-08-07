@@ -2,6 +2,7 @@ import type { QueryOptions, QueryParams } from 'next-sanity';
 import { createClient } from 'next-sanity';
 import { draftMode } from 'next/headers';
 import env from '~/env';
+import { TAGS } from '~/lib/constants';
 
 export function getClient() {
   const client = createClient({
@@ -40,6 +41,12 @@ export async function sanityFetch<QueryResponse>(opts: SanityFetchOptions) {
     return revalidate;
   };
 
+  const getDynamicTags = () => {
+    if (isDraftMode) return [];
+
+    return [TAGS.ALL, ...tags];
+  };
+
   const getDraftModeOptions = () => {
     if (!isDraftMode) return {};
 
@@ -54,7 +61,7 @@ export async function sanityFetch<QueryResponse>(opts: SanityFetchOptions) {
     ...getDraftModeOptions(),
     next: {
       revalidate: getDynamicRevalidate(),
-      tags,
+      tags: getDynamicTags(),
     },
   });
 }
