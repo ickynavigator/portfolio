@@ -1,3 +1,4 @@
+// install newer mantine styles in the ~/app/(root)/layout.tsx file instead
 import '@mantine/core/styles.css';
 
 import '~/app/globals.css';
