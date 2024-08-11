@@ -1,3 +1,5 @@
+import '@mantine/code-highlight/styles.css';
+
 import { Container } from '@mantine/core';
 import React from 'react';
 import Footer from '~/app/(root)/_components/footer';
