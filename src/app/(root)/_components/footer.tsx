@@ -1,4 +1,15 @@
-import { Anchor, Badge, Center, Group, Paper, Stack, Text, ThemeIcon, rem } from '@mantine/core';
+import {
+  Anchor,
+  Badge,
+  Center,
+  Container,
+  Group,
+  Paper,
+  Stack,
+  Text,
+  ThemeIcon,
+  rem,
+} from '@mantine/core';
 import {
   type Icon,
   IconBrandFacebook,
@@ -73,41 +84,40 @@ function getColor(linkList: (typeof links)[number]) {
 
 export default function Footer() {
   return (
-    <Stack component="footer" mx={{ sm: 'xl' }} className={syne.className}>
-      <>
-        <Paper withBorder py="xl" px={{ xs: rem(80) }} radius="md" className={classes.paper}>
-          <Center>
-            <Stack align="center" gap="xl">
-              <Stack gap="xs" align="center">
-                <Badge variant="outline" size="lg" className={classes.badge}>
-                  Get In Touch
-                </Badge>
-
-                <Text fz="h1" fw="bolder" ta="center" lh={1}>
-                  Got a web project that needs a superhero?
-                </Text>
+    <Container>
+      <Stack component="footer" mx={{ sm: 'xl' }} className={syne.className}>
+        <>
+          <Paper withBorder py="xl" px={{ xs: rem(80) }} radius="md" className={classes.paper}>
+            <Center>
+              <Stack align="center" gap="xl">
+                <Stack gap="xs" align="center">
+                  <Badge variant="outline" size="lg" className={classes.badge}>
+                    Get In Touch
+                  </Badge>
+                  <Text fz="h1" fw="bolder" ta="center" lh={1}>
+                    Got a web project that needs a superhero?
+                  </Text>
+                </Stack>
+                <Group gap="xs">
+                  {links.map((link) => (
+                    <Anchor
+                      key={link.label}
+                      className={classes.iconWrapper}
+                      href={link.href}
+                      target="_blank"
+                    >
+                      <ThemeIcon className={classes.icon} radius="xl" size="md" {...getColor(link)}>
+                        <link.icon style={{ width: rem(18), height: rem(18) }} />
+                      </ThemeIcon>
+                    </Anchor>
+                  ))}
+                </Group>
               </Stack>
-
-              <Group gap="xs">
-                {links.map((link) => (
-                  <Anchor
-                    key={link.label}
-                    className={classes.iconWrapper}
-                    href={link.href}
-                    target="_blank"
-                  >
-                    <ThemeIcon className={classes.icon} radius="xl" size="md" {...getColor(link)}>
-                      <link.icon style={{ width: rem(18), height: rem(18) }} />
-                    </ThemeIcon>
-                  </Anchor>
-                ))}
-              </Group>
-            </Stack>
-          </Center>
-        </Paper>
-      </>
-
-      <Copy />
-    </Stack>
+            </Center>
+          </Paper>
+        </>
+        <Copy />
+      </Stack>
+    </Container>
   );
 }
