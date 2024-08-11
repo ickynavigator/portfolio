@@ -6,6 +6,14 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'hidden',
+      title: 'Hide Post',
+      type: 'boolean',
+      initialValue: false,
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
