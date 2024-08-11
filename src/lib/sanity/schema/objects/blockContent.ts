@@ -43,6 +43,10 @@ export default defineType({
 
     defineArrayMember({
       type: 'code',
+      options: {
+        withFilename: true,
+        language: 'typescript',
+      },
     }),
   ],
 });
