@@ -224,6 +224,13 @@
           "type": "string"
         }
       },
+      "hidden": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": false
+      },
       "title": {
         "type": "objectAttribute",
         "value": {
@@ -296,6 +303,13 @@
           "type": "string"
         },
         "optional": false
+      },
+      "note": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       },
       "image": {
         "type": "objectAttribute",

@@ -52,6 +52,7 @@ export type Post = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  hidden: boolean;
   title: string;
   slug: Slug;
   postedAt: string;
@@ -63,6 +64,7 @@ export type Post = {
     [internalGroqTypeReferenceTo]?: 'category';
   }>;
   description: string;
+  note?: string;
   image: {
     asset?: {
       _ref: string;
@@ -346,6 +348,7 @@ export type PAGINATED_POSTS_QUERYResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
+    hidden: boolean;
     title: string;
     slug: Slug;
     postedAt: string;
@@ -357,6 +360,7 @@ export type PAGINATED_POSTS_QUERYResult = {
       [internalGroqTypeReferenceTo]?: 'category';
     }>;
     description: string;
+    note?: string;
     image: {
       asset?: {
         _ref: string;
@@ -413,6 +417,7 @@ export type POST_QUERYResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  hidden: boolean;
   title: string;
   slug: Slug;
   postedAt: string;
@@ -424,6 +429,7 @@ export type POST_QUERYResult = {
     [internalGroqTypeReferenceTo]?: 'category';
   }>;
   description: string;
+  note?: string;
   image: {
     asset?: {
       _ref: string;
