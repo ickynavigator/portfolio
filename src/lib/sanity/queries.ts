@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity';
 
 // @sanity-typegen-ignore
-export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current)] | order(postedAt desc)`;
+export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc)`;
 
 export const PAGINATED_POSTS_QUERY = groq`{
     "data": ${POSTS_QUERY},
@@ -9,7 +9,7 @@ export const PAGINATED_POSTS_QUERY = groq`{
     // "pagination": {
     //     "page": select(
     //         $offset >= count(${POSTS_QUERY}) => -1,
-    //         round($offset / $limit) + 1
+    //         round($offset / $limit) + 1 
     //     ),
     //     "per_page": round($limit),
     //     "page_count": count(${POSTS_QUERY}),
