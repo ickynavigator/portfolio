@@ -1,0 +1,12 @@
+.bouncing-section {
+  & [class~='mantine-Button-section'][data-position='right'] {
+    transition: transform 150ms ease;
+  }
+
+  &:hover [class~='mantine-Button-section'][data-position='right'] {
+    transform: translate(
+      var(--translate-size),
+      calc(var(--translate-size) * -1)
+    );
+  }
+}
