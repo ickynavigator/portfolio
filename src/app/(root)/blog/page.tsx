@@ -29,51 +29,6 @@ import type { PAGINATED_POSTS_QUERYResult } from '~/t/sanity';
 export type PostProps = {
   post: PAGINATED_POSTS_QUERYResult['data'][number];
 };
-function PostItem(props: PostProps) {
-  const { post } = props;
-
-  return (
-    <Stack>
-      <Image
-        src={urlFor(post.image?.asset?._ref)?.auto('format').url()}
-        alt={post.title}
-        radius="md"
-      />
-
-      <Group justify="space-between" align="flex-end" wrap="nowrap">
-        <Box>
-          <Text fw="bold" lineClamp={1} ff={syne.style.fontFamily}>
-            {post.title}
-          </Text>
-
-          <Group gap={rem(4)} ff={dmSans.style.fontFamily} fz="sm" c="dimmed">
-            <Text inherit>{dayjs(post.postedAt).format('DD/MMM/YYYY')}</Text>
-            <Text inherit>&#x2022;</Text>
-            <Text inherit>3 min read</Text>
-          </Group>
-        </Box>
-
-        <Anchor component={Link} href={`/blog/${post.slug.current}`}>
-          <Button
-            fz="xs"
-            ff={robotoMono.style.fontFamily}
-            size="compact-xs"
-            variant="outline"
-            justify="space-between"
-            rightSection={<IconArrowUpRight style={{ width: rem(14), height: rem(16) }} />}
-            className={classes['bouncing-section']}
-            __vars={{
-              '--translate-size': '2px',
-            }}
-          >
-            More
-          </Button>
-        </Anchor>
-      </Group>
-    </Stack>
-  );
-}
-
 function HeroPost(props: PostProps) {
   const { post } = props;
   const image = urlFor(post.image?.asset?._ref);
@@ -148,7 +103,44 @@ export default async function Page() {
       <Grid my="xl">
         {restPosts.map((post) => (
           <GridCol span={{ base: 12, xs: 6 }} key={post._id}>
-            <PostItem post={post} />
+            <Stack>
+              <Image
+                src={urlFor(post.image?.asset?._ref)?.auto('format').url()}
+                alt={post.title}
+                radius="md"
+              />
+
+              <Group justify="space-between" align="flex-end" wrap="nowrap">
+                <Box>
+                  <Text fw="bold" lineClamp={1} ff={syne.style.fontFamily}>
+                    {post.title}
+                  </Text>
+
+                  <Group gap={rem(4)} ff={dmSans.style.fontFamily} fz="sm" c="dimmed">
+                    <Text inherit>{dayjs(post.postedAt).format('DD/MMM/YYYY')}</Text>
+                    <Text inherit>&#x2022;</Text>
+                    <Text inherit>3 min read</Text>
+                  </Group>
+                </Box>
+
+                <Anchor component={Link} href={`/blog/${post.slug.current}`}>
+                  <Button
+                    fz="xs"
+                    ff={robotoMono.style.fontFamily}
+                    size="compact-xs"
+                    variant="outline"
+                    justify="space-between"
+                    rightSection={<IconArrowUpRight style={{ width: rem(14), height: rem(16) }} />}
+                    className={classes['bouncing-section']}
+                    __vars={{
+                      '--translate-size': '2px',
+                    }}
+                  >
+                    More
+                  </Button>
+                </Anchor>
+              </Group>
+            </Stack>
           </GridCol>
         ))}
       </Grid>
