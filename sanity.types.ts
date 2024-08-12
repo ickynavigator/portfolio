@@ -410,7 +410,7 @@ export type PAGINATED_POSTS_QUERYResult = {
   }>;
 };
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]
+// Query: *[_type == "post" && slug.current == $slug && hidden != true][0]
 export type POST_QUERYResult = {
   _id: string;
   _type: 'post';

@@ -17,4 +17,4 @@ export const PAGINATED_POSTS_QUERY = groq`{
     // }
 }`;
 
-export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]`;
+export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug && hidden != true][0]`;
