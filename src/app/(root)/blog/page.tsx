@@ -21,6 +21,7 @@ import Link from 'next/link';
 import classes from '~/app/(root)/blog/_page.module.css';
 import { dayjs } from '~/lib/date';
 import { dmSans, robotoMono, syne } from '~/lib/font';
+import { getReadingTime } from '~/lib/general';
 import { sanityFetch } from '~/lib/sanity/client';
 import { urlFor } from '~/lib/sanity/image';
 import { PAGINATED_POSTS_QUERY } from '~/lib/sanity/queries';
@@ -49,7 +50,7 @@ function HeroPost(props: PostProps) {
             <Group gap={rem(4)} ff={dmSans.style.fontFamily} fz="sm">
               <Text inherit>{dayjs(post.postedAt).format('DD/MMM/YYYY')}</Text>
               <Text inherit>&#x2022;</Text>
-              <Text inherit>3 min read</Text>
+              <Text inherit>{getReadingTime(post.wordCount)} read</Text>
             </Group>
           </Box>
 
@@ -119,7 +120,7 @@ export default async function Page() {
                   <Group gap={rem(4)} ff={dmSans.style.fontFamily} fz="sm" c="dimmed">
                     <Text inherit>{dayjs(post.postedAt).format('DD/MMM/YYYY')}</Text>
                     <Text inherit>&#x2022;</Text>
-                    <Text inherit>3 min read</Text>
+                    <Text inherit>{getReadingTime(post.wordCount)} read</Text>
                   </Group>
                 </Box>
 
