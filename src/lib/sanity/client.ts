@@ -9,7 +9,7 @@ export function getClient() {
     projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     dataset: env.NEXT_PUBLIC_SANITY_DATASET,
     apiVersion: env.NEXT_PUBLIC_SANITY_API_VERSION,
-    useCdn: env.VERCEL_ENV !== 'production',
+    useCdn: env.NODE_ENV !== 'production',
     stega: {
       enabled: env.VERCEL_ENV === 'preview',
       studioUrl: '/studio',
