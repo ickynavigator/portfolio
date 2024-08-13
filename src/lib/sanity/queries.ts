@@ -1,7 +1,7 @@
 import { groq } from 'next-sanity';
 
 // @sanity-typegen-ignore
-export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc)`;
+export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) { _id, title, slug, postedAt, image, "wordCount": length(pt::text(body)) }`;
 
 export const PAGINATED_POSTS_QUERY = groq`{
     "data": ${POSTS_QUERY},
