@@ -99,7 +99,7 @@
 	},
 	"javascript": {
 		"formatter": {
-			"trailingCommas": "all",
+			"trailingCommas": "es5",
 			"semicolons": "always",
 			"arrowParentheses": "always",
 			"quoteStyle": "single"
