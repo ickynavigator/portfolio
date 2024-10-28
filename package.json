@@ -30,6 +30,9 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@cloudflare/workers-types": "^4.20241022.0",
+    "@sanity/code-input": "^4.1.4",
+    "@sanity/vision": "^3.62.2",
+    "vite": "^5.4.10",
     "wrangler": "^3.83.0"
   }
 }
