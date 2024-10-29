@@ -14,12 +14,13 @@ const env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "hybrid",
 
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
     },
+    imageService: "passthrough",
   }),
 
   integrations: [
