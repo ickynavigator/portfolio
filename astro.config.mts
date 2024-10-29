@@ -1,20 +1,19 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { defineConfig, envField } from 'astro/config';
-import { loadEnv } from 'vite';
-
-import cloudflare from '@astrojs/cloudflare';
-import react from '@astrojs/react';
-import sanity from '@sanity/astro';
+import path from "path";
+import { fileURLToPath } from "url";
+import cloudflare from "@astrojs/cloudflare";
+import react from "@astrojs/react";
+import sanity from "@sanity/astro";
+import { defineConfig, envField } from "astro/config";
+import { loadEnv } from "vite";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), '');
+const env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: "server",
 
   adapter: cloudflare({
     platformProxy: {
@@ -27,7 +26,7 @@ export default defineConfig({
       dataset: env.SANITY_API_DATASET!,
       projectId: env.SANITY_API_PROJECT_ID!,
       useCdn: false,
-      studioBasePath: '/admin',
+      studioBasePath: "/admin",
     }),
     react(),
   ],
@@ -35,7 +34,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '~': path.resolve(__dirname, './src/'),
+        "~": path.resolve(__dirname, "./src/"),
       },
     },
   },
@@ -44,15 +43,15 @@ export default defineConfig({
     env: {
       schema: {
         SANITY_API_PROJECT_ID: envField.string({
-          context: 'client',
-          access: 'public',
+          context: "client",
+          access: "public",
           optional: false,
         }),
         SANITY_API_DATASET: envField.string({
-          context: 'client',
-          access: 'public',
+          context: "client",
+          access: "public",
           optional: true,
-          default: 'production',
+          default: "production",
         }),
       },
     },
