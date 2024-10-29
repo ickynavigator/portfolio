@@ -1,3 +1,5 @@
+// @ts-check
+
 /** @type {import('prettier').Config & import("@ianvs/prettier-plugin-sort-imports").PluginConfig} */
 export default {
   tabWidth: 2,
