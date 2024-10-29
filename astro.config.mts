@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
+import tailwind from "@astrojs/tailwind";
 import sanity from "@sanity/astro";
 import { defineConfig, envField } from "astro/config";
 import { loadEnv } from "vite";
@@ -29,6 +30,9 @@ export default defineConfig({
       studioBasePath: "/admin",
     }),
     react(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
   ],
 
   vite: {
