@@ -1,5 +1,5 @@
 /** @type {import('prettier').Config & import("@ianvs/prettier-plugin-sort-imports").PluginConfig} */
-const config = {
+export default {
   tabWidth: 2,
   printWidth: 80,
   jsxSingleQuote: false,
@@ -12,6 +12,7 @@ const config = {
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss",
+    "prettier-plugin-astro",
   ],
 
   // #region @ianvs/prettier-plugin-sort-imports
@@ -19,6 +20,13 @@ const config = {
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   importOrderTypeScriptVersion: "5.0.0",
   // #endregion @ianvs/prettier-plugin-sort-imports
-};
 
-export default config;
+  overrides: [
+    {
+      files: "*.astro",
+      options: {
+        parser: "astro",
+      },
+    },
+  ],
+};
