@@ -11,7 +11,11 @@
     "deploy": "astro build && wrangler pages deploy",
     "cf-typegen": "wrangler types",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\""
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "sa-typegen": "$npm_execpath run sa-typegen:extract && $npm_execpath run sa-typegen:generate && $npm_execpath run sa-typegen:lint",
+    "sa-typegen:extract": "sanity schema extract --enforce-required-fields --path ./sanity.schema.json",
+    "sa-typegen:generate": "sanity typegen generate",
+    "sa-typegen:lint": "eslint --fix ./sanity.types.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -26,6 +30,7 @@
     "astro": "^4.16.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "groq": "^3.62.3",
     "lucide-react": "^0.454.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

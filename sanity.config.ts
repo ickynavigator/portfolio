@@ -1,6 +1,5 @@
 import { codeInput } from "@sanity/code-input";
 import { visionTool } from "@sanity/vision";
-import { SANITY_API_DATASET, SANITY_API_PROJECT_ID } from "astro:env/client";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 
@@ -15,8 +14,8 @@ import personalInfo from "~/lib/sanity/schema/documents/personalInfo";
 export default defineConfig({
   name: "portfolio",
   title: "Portfolio",
-  dataset: SANITY_API_DATASET,
-  projectId: SANITY_API_PROJECT_ID,
+  dataset: process.env.SANITY_API_DATASET!,
+  projectId: process.env.SANITY_API_PROJECT_ID!,
   plugins: [
     structureTool({
       structure: (S) =>
