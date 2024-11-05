@@ -1,0 +1,18 @@
+---
+import { loadQuery } from "~/lib/sanity/load-query";
+import { PAGINATED_POSTS_QUERY } from "~/lib/sanity/queries";
+
+const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
+---
+
+<ul>
+  {
+    result.data.map((post) => (
+      <li>
+        <h2>{post.title}</h2>
+        <p>{post.title}</p>
+        <a href={`/blog/${post.slug.current}`}>Go to</a>
+      </li>
+    ))
+  }
+</ul>

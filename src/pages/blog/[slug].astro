@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import { loadQuery } from "~/lib/sanity/load-query";
+import { POST_QUERY, POST_SLUGS_QUERY } from "~/lib/sanity/queries";
+
+export const getStaticPaths = (async () => {
+  const { result } = await loadQuery({ query: POST_SLUGS_QUERY });
+
+  return result.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+const { result } = await loadQuery({ query: POST_QUERY, params: { slug } });
+
+if (!result) {
+  return Astro.redirect("/404");
+}
+---
+
+<h1>{slug}</h1>
+<p>{result.title}</p>
