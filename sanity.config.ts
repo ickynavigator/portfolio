@@ -20,7 +20,7 @@ const _getEnv = () => {
   }
 };
 
-// --log-override:empty-import-meta=silent
+// TODO: --log-override:empty-import-meta=silent
 const env = getEnv(_getEnv());
 
 export default defineConfig({
