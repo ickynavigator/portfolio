@@ -4,13 +4,16 @@ import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import sanity from "@sanity/astro";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
+
+import { getEnv } from "./src/lib/env";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
+const _env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
+const env = getEnv(_env);
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,8 +28,8 @@ export default defineConfig({
 
   integrations: [
     sanity({
-      dataset: env.SANITY_API_DATASET!,
-      projectId: env.SANITY_API_PROJECT_ID!,
+      dataset: env.PUBLIC_SANITY_API_DATASET,
+      projectId: env.PUBLIC_SANITY_API_PROJECT_ID,
       useCdn: false,
       studioBasePath: "/admin",
     }),
@@ -40,24 +43,6 @@ export default defineConfig({
     resolve: {
       alias: {
         "~": path.resolve(__dirname, "./src/"),
-      },
-    },
-  },
-
-  experimental: {
-    env: {
-      schema: {
-        SANITY_API_PROJECT_ID: envField.string({
-          context: "client",
-          access: "public",
-          optional: false,
-        }),
-        SANITY_API_DATASET: envField.string({
-          context: "client",
-          access: "public",
-          optional: true,
-          default: "production",
-        }),
       },
     },
   },

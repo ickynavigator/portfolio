@@ -35,6 +35,9 @@ importers:
       '@sanity/visual-editing':
         specifier: ^2.4.2
         version: 2.4.2(@sanity/client@6.22.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@t3-oss/env-core':
+        specifier: ^0.11.1
+        version: 0.11.1(typescript@5.6.3)(zod@3.23.8)
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -80,6 +83,9 @@ importers:
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20241022.0
@@ -2185,6 +2191,15 @@ packages:
 
   '@shikijs/vscode-textmate@9.3.0':
     resolution: {integrity: sha512-jn7/7ky30idSkd/O5yDBfAnVt+JJpepofP/POZ1iMOxK59cOfqIgg/Dj0eFsjOTMw+4ycJN0uhZH/Eb0bs/EUA==}
+
+  '@t3-oss/env-core@0.11.1':
+    resolution: {integrity: sha512-MaxOwEoG1ntCFoKJsS7nqwgcxLW1SJw238AJwfJeaz3P/8GtkxXZsPPolsz1AdYvUTbe3XvqZ/VCdfjt+3zmKw==}
+    peerDependencies:
+      typescript: '>=5.0.0'
+      zod: ^3.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   '@tanstack/react-table@8.20.5':
     resolution: {integrity: sha512-WEHopKw3znbUZ61s9i0+i9g8drmDo6asTWbrQh8Us63DAk/M0FkmIqERew6P71HI75ksZ2Pxyuf4vvKh9rAkiA==}
@@ -8853,6 +8868,12 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@shikijs/vscode-textmate@9.3.0': {}
+
+  '@t3-oss/env-core@0.11.1(typescript@5.6.3)(zod@3.23.8)':
+    dependencies:
+      zod: 3.23.8
+    optionalDependencies:
+      typescript: 5.6.3
 
   '@tanstack/react-table@8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:

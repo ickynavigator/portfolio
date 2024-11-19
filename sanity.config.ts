@@ -7,15 +7,27 @@ import {
   CONFIGURATION_CONFIG_ID,
   PERSONAL_INFO_CONFIG_ID,
 } from "~/lib/constants";
+import { getEnv } from "~/lib/env";
 import { schema } from "~/lib/sanity/schema";
 import configuration from "~/lib/sanity/schema/documents/configuration";
 import personalInfo from "~/lib/sanity/schema/documents/personalInfo";
 
+const _getEnv = () => {
+  try {
+    return process.env;
+  } catch {
+    return import.meta.env;
+  }
+};
+
+// --log-override:empty-import-meta=silent
+const env = getEnv(_getEnv());
+
 export default defineConfig({
   name: "portfolio",
   title: "Portfolio",
-  dataset: process.env.SANITY_API_DATASET!,
-  projectId: process.env.SANITY_API_PROJECT_ID!,
+  dataset: env.PUBLIC_SANITY_API_DATASET,
+  projectId: env.PUBLIC_SANITY_API_PROJECT_ID,
   plugins: [
     structureTool({
       structure: (S) =>
