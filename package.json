@@ -12,8 +12,8 @@
     "cf-typegen": "wrangler types",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
-    "sa-typegen": "$npm_execpath run sa-typegen:extract && $npm_execpath run sa-typegen:generate && $npm_execpath run sa-typegen:lint",
-    "sa-typegen:extract": "sanity schema extract --enforce-required-fields --path ./sanity.schema.json",
+    "sa-typegen": "$npm_execpath run sa-schema:extract && $npm_execpath run sa-typegen:generate && $npm_execpath run sa-typegen:lint",
+    "sa-schema:extract": "sanity schema extract --enforce-required-fields --path ./sanity.schema.json",
     "sa-typegen:generate": "sanity typegen generate",
     "sa-typegen:lint": "eslint --fix ./sanity.types.ts"
   },
