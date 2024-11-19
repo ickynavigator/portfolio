@@ -31,7 +31,7 @@ export default defineConfig({
       dataset: env.PUBLIC_SANITY_API_DATASET,
       projectId: env.PUBLIC_SANITY_API_PROJECT_ID,
       useCdn: false,
-      studioBasePath: "/admin",
+      studioBasePath: "/studio",
     }),
     react(),
     tailwind({
