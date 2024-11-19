@@ -1,0 +1,15 @@
+---
+import SanityImage from "~/components/SanityImage.astro";
+import type { SanityImageAsset } from "~/t/sanity";
+
+interface Props {
+  node: {
+    asset: SanityImageAsset;
+    alt: string;
+  };
+}
+
+const { node } = Astro.props;
+---
+
+<SanityImage node={node} alt={node.alt} />;

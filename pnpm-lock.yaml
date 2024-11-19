@@ -20,12 +20,18 @@ importers:
       '@astrojs/tailwind':
         specifier: ^5.1.2
         version: 5.1.2(astro@4.16.8(@types/node@22.8.6)(rollup@4.24.3)(typescript@5.6.3))(tailwindcss@3.4.14)
+      '@portabletext/types':
+        specifier: ^2.0.13
+        version: 2.0.13
       '@sanity/astro':
         specifier: ^3.1.6
         version: 3.1.6(@sanity/client@6.22.2)(@sanity/visual-editing@2.4.2(@sanity/client@6.22.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@4.16.8(@types/node@22.8.6)(rollup@4.24.3)(typescript@5.6.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.62.3(@types/node@22.8.6)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))
       '@sanity/client':
         specifier: ^6.22.2
         version: 6.22.2(debug@4.3.7)
+      '@sanity/image-url':
+        specifier: ^1.1.0
+        version: 1.1.0
       '@sanity/visual-editing':
         specifier: ^2.4.2
         version: 2.4.2(@sanity/client@6.22.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -38,6 +44,9 @@ importers:
       astro:
         specifier: ^4.16.8
         version: 4.16.8(@types/node@22.8.6)(rollup@4.24.3)(typescript@5.6.3)
+      astro-portabletext:
+        specifier: ^0.10.1
+        version: 0.10.1
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1691,6 +1700,10 @@ packages:
     resolution: {integrity: sha512-KRNEUAd6eOxE9y591qC0sE24ZG2q27OHXe0dsPclj4IoEzf8aEuDcHR64wfFtB0aHq9Wdx3pIinmhZZcl35/vg==}
     engines: {node: ^14.13.1 || >=16.0.0}
 
+  '@portabletext/toolkit@2.0.16':
+    resolution: {integrity: sha512-aBvnD8MscoAlEIuZBn0Aksd+oCuoMGFOT3CtHIgRBaac0Vu4YnnMUF45xo/B/T5vmwWcnDXoJEJdn+SKDg1m+A==}
+    engines: {node: ^14.13.1 || >=16.0.0}
+
   '@portabletext/types@2.0.13':
     resolution: {integrity: sha512-5xk5MSyQU9CrDho3Rsguj38jhijhD36Mk8S6mZo3huv6PM+t4M/5kJN2KFIxgvt4ONpvOEs1pVIZAV0cL0Vi+Q==}
     engines: {node: ^14.13.1 || >=16.0.0 || >=18.0.0}
@@ -2592,6 +2605,9 @@ packages:
     resolution: {integrity: sha512-N/iam0PAFrRT9azYZqscP1HowQhC77Dwlp912P0/72k+kwUVgO3m73F26XXukHYoZBsrHgrUrfsWBxuCH3kEUg==}
     peerDependencies:
       astro: ^4.12.0
+
+  astro-portabletext@0.10.1:
+    resolution: {integrity: sha512-AwuUxYzOO7Xzlo+UvCmtiERoeYzub3Aj3dEV672Ro/hNZIIRqbsHpCveq5OoaCkjjWso53D+DxxbBmqBPPIJAQ==}
 
   astro@4.16.8:
     resolution: {integrity: sha512-BRWFP0UQ8gkOr90KQW7oooedtgCk/j91pyv1WQUmgZwMUZk/v0HJRiddAZgvGCECOnmZFc9ZqRZnBsAMUgApNQ==}
@@ -8181,6 +8197,10 @@ snapshots:
     dependencies:
       '@portabletext/types': 2.0.13
 
+  '@portabletext/toolkit@2.0.16':
+    dependencies:
+      '@portabletext/types': 2.0.13
+
   '@portabletext/types@2.0.13': {}
 
   '@rexxars/react-json-inspector@8.0.1(react@18.3.1)':
@@ -9399,6 +9419,11 @@ snapshots:
       astro: 4.16.8(@types/node@22.8.6)(rollup@4.24.3)(typescript@5.6.3)
       pathe: 1.1.2
       recast: 0.23.9
+
+  astro-portabletext@0.10.1:
+    dependencies:
+      '@portabletext/toolkit': 2.0.16
+      '@portabletext/types': 2.0.13
 
   astro@4.16.8(@types/node@22.8.6)(rollup@4.24.3)(typescript@5.6.3):
     dependencies:
