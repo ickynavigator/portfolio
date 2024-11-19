@@ -10,7 +10,6 @@ export const getEnv = (runtimeEnv: RuntimeEnv) => {
       PUBLIC_SANITY_API_DATASET: z.string().min(1).default("production"),
     },
     server: {
-      SANITY_API_READ_TOKEN: z.string().min(1),
       SANITY_API_WRITE_TOKEN: z.string().min(1),
     },
     shared: {},
