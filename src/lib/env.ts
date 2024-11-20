@@ -12,6 +12,7 @@ export const getEnv = (runtimeEnv: RuntimeEnv) => {
     shared: {
       PUBLIC_SANITY_API_PROJECT_ID: z.string().min(1),
       PUBLIC_SANITY_API_DATASET: z.string().min(1).default("production"),
+      PUBLIC_SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
     },
     runtimeEnv: runtimeEnv,
     emptyStringAsUndefined: true,

@@ -56,7 +56,10 @@ export default defineConfig({
             ),
           ]),
     }),
-    visionTool(),
+    visionTool({
+      defaultApiVersion: env.PUBLIC_SANITY_API_VERSION,
+      defaultDataset: env.PUBLIC_SANITY_API_DATASET,
+    }),
     codeInput(),
   ],
   schema,

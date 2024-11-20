@@ -30,6 +30,7 @@ export default defineConfig({
     sanity({
       dataset: env.PUBLIC_SANITY_API_DATASET,
       projectId: env.PUBLIC_SANITY_API_PROJECT_ID,
+      apiVersion: env.PUBLIC_SANITY_API_VERSION,
       useCdn: false,
       studioBasePath: "/studio",
     }),
