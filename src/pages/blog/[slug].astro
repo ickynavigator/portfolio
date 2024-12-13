@@ -1,6 +1,9 @@
 ---
 import type { GetStaticPaths } from "astro";
 
+import PortableText from "~/components/PortableText/PortableText.astro";
+import SanityImage from "~/components/SanityImage.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { POST_QUERY, POST_SLUGS_QUERY } from "~/lib/sanity/queries";
 
@@ -20,5 +23,14 @@ if (!result) {
 }
 ---
 
-<h1>{slug}</h1>
-<p>{result.title}</p>
+<MainLayout>
+  <div class="p-4 mx-8">
+    <h1>{slug}</h1>
+
+    <p>{result.title}</p>
+
+    <SanityImage node={result.image} alt="Header" />
+
+    <PortableText data={result.body} />
+  </div>
+</MainLayout>
