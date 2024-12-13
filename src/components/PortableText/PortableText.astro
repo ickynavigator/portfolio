@@ -1,8 +1,12 @@
 ---
 import { PortableText as PortableTextInternal } from "astro-portabletext";
 
+import BlockQuote from "~/components/PortableText/Block/BlockQuote.PortableText.astro";
+import Heading from "~/components/PortableText/Block/Heading.PortableText.astro";
+import Normal from "~/components/PortableText/Block/Normal.PortableText.astro";
 import PortableTextCode from "~/components/PortableText/Code.PortableText.astro";
 import PortableTextImage from "~/components/PortableText/Image.PortableText.astro";
+import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
 import type { BlockContent } from "~/t/sanity";
 
 interface Props {
@@ -18,6 +22,19 @@ const { data } = Astro.props;
     type: {
       image: PortableTextImage,
       code: PortableTextCode,
+    },
+    block: {
+      normal: Normal,
+      blockquote: BlockQuote,
+      h1: Heading,
+      h2: Heading,
+      h3: Heading,
+      h4: Heading,
+      h5: Heading,
+      h6: Heading,
+    },
+    mark: {
+      link: Link,
     },
   }}
 />

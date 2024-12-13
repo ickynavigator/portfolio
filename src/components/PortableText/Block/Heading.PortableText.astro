@@ -1,0 +1,50 @@
+---
+type Props = {
+  node: {
+    style: string;
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: string;
+      _key?: string;
+    }>;
+  };
+};
+
+const { node } = Astro.props;
+const Tag = node.style;
+
+const ACCEPTED_STYLES = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
+const getValidHeader = (s: unknown): s is (typeof ACCEPTED_STYLES)[number] =>
+  (ACCEPTED_STYLES as readonly unknown[]).includes(s);
+
+const getContentForSlug = () => {
+  return Astro.props.node?.children
+    ?.reduce((acc, curr) => (acc += curr?.text), "")
+    .replace(/\s/g, "-")
+    .toLocaleLowerCase();
+};
+
+if (!getValidHeader(Tag)) {
+  throw new Error(`Invalid header style: ${Tag}`);
+}
+
+const headerSlug = getContentForSlug();
+---
+
+<Tag
+  data-order={Tag.slice(1)}
+  class="group/heading mb-3 mt-1 font-bold leading-none tracking-tight data-[order=1]:text-5xl data-[order=2]:text-4xl data-[order=3]:text-3xl data-[order=4]:text-2xl data-[order=5]:text-xl data-[order=6]:text-lg"
+>
+  <slot />
+
+  <a
+    id={headerSlug}
+    href={`#${headerSlug}`}
+    aria-label={headerSlug}
+    rel="noopener noreferrer"
+    target="_self"
+    class="absolute left-5 opacity-0 group-hover/heading:opacity-100 transition-opacity text-muted-foreground text-[3cqi]"
+    >#</a
+  >
+</Tag>

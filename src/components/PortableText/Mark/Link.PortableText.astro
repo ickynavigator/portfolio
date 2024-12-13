@@ -1,0 +1,24 @@
+---
+interface Props {
+  node: {
+    markDef: {
+      href: string;
+      _type: "link";
+      _key: string;
+    };
+  };
+}
+
+const {
+  node: {
+    markDef: { href },
+  },
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class="text-primary font-semibold underline transition decoration-2 decoration-primary-foreground hover:decoration-primary"
+>
+  <slot />
+</a>
