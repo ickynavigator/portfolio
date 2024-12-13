@@ -89,14 +89,14 @@ const language = "ts";
           --bg-color: var(--color-line-highlight);
         }
       }
+    }
 
-      .has-focused {
-        .line {
-          filter: blur(0.095rem);
-        }
+    &.has-focused:not(:hover) {
+      .line {
+        @apply blur-[0.095rem] transition-all;
 
-        .focused {
-          filter: blur(0);
+        &.focused {
+          @apply blur-none;
         }
       }
     }
