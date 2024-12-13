@@ -1,10 +1,17 @@
 ---
 import { urlForImage } from "~/lib/sanity/urlForImage";
-import type { SanityImageAsset } from "~/t/sanity";
+import type { internalGroqTypeReferenceTo, SanityImageAsset } from "~/t/sanity";
+
+interface SanityImageRef {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+}
 
 interface Props {
   node: {
-    asset?: SanityImageAsset;
+    asset?: SanityImageAsset | SanityImageRef;
   };
   alt: string;
 }
