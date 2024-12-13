@@ -18,27 +18,37 @@ interface Props {
   highlightedLines?: string | undefined;
 }
 
-const { code, inline } = Astro.props;
+const { code, inline, title } = Astro.props;
 const language = "ts";
 const showLineNumbers = true;
 ---
 
-<CustomCode
-  code={code}
-  inline={inline}
-  lang={language}
-  data-show-line-numbers={showLineNumbers.toString()}
-  style="--linecount: 3"
-  themes={{ light: "github-light", dark: "github-dark" }}
-  transformers={[
-    transformerNotationDiff(),
-    transformerNotationHighlight(),
-    transformerNotationWordHighlight(),
-    transformerNotationFocus(),
-    transformerNotationErrorLevel(),
-    transformerRemoveNotationEscape(),
-  ]}
-/>
+<div class="rounded-md border-2 overflow-clip">
+  <div class="bg-secondary py-1 px-2 flex justify-between text-sm">
+    <span class="font-semibold">{title ?? "Random Code"}</span>
+
+    <span>
+      {language}
+    </span>
+  </div>
+
+  <CustomCode
+    code={code}
+    inline={inline}
+    lang={language}
+    data-show-line-numbers={showLineNumbers.toString()}
+    style="--linecount: 3"
+    themes={{ light: "github-light", dark: "github-dark" }}
+    transformers={[
+      transformerNotationDiff(),
+      transformerNotationHighlight(),
+      transformerNotationWordHighlight(),
+      transformerNotationFocus(),
+      transformerNotationErrorLevel(),
+      transformerRemoveNotationEscape(),
+    ]}
+  />
+</div>
 
 <style>
   :root {
@@ -50,8 +60,6 @@ const showLineNumbers = true;
   }
 
   pre {
-    @apply rounded-md;
-
     code {
       @apply block px-2 py-1 text-base leading-tight;
 
