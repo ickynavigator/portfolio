@@ -1,0 +1,26 @@
+---
+import CodeBlock from "~/components/CodeBlock.astro";
+
+interface CodeType {
+  code: string;
+  language: string;
+  filename?: string | undefined;
+  _type: "code";
+  _key: string;
+}
+
+interface Props {
+  node: CodeType;
+  index: number;
+  isInline: boolean;
+}
+
+const { node, isInline } = Astro.props;
+---
+
+<CodeBlock
+  code={node.code}
+  language={node.language}
+  inline={isInline}
+  title={node.filename}
+/>

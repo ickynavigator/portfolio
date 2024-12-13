@@ -35,6 +35,9 @@ importers:
       '@sanity/visual-editing':
         specifier: ^2.10.2
         version: 2.10.2(@sanity/client@6.22.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@shikijs/transformers':
+        specifier: ^1.23.1
+        version: 1.24.0
       '@t3-oss/env-core':
         specifier: ^0.11.1
         version: 0.11.1(typescript@5.7.2)(zod@3.23.8)
@@ -2216,6 +2219,9 @@ packages:
 
   '@shikijs/engine-oniguruma@1.24.0':
     resolution: {integrity: sha512-Eua0qNOL73Y82lGA4GF5P+G2+VXX9XnuUxkiUuwcxQPH4wom+tE39kZpBFXfUuwNYxHSkrSxpB1p4kyRW0moSg==}
+
+  '@shikijs/transformers@1.24.0':
+    resolution: {integrity: sha512-Qf/hby+PRPkoHncjYnJf5svK1aCsOUtQhuLzKPnmeXJtuUZCmbH0pTpdNtXe9tgln/RHlyRJnv7q46HHS1sO0Q==}
 
   '@shikijs/types@1.24.0':
     resolution: {integrity: sha512-aptbEuq1Pk88DMlCe+FzXNnBZ17LCiLIGWAeCWhoFDzia5Q5Krx3DgnULLiouSdd6+LUM39XwXGppqYE0Ghtug==}
@@ -8959,6 +8965,10 @@ snapshots:
     dependencies:
       '@shikijs/types': 1.24.0
       '@shikijs/vscode-textmate': 9.3.0
+
+  '@shikijs/transformers@1.24.0':
+    dependencies:
+      shiki: 1.24.0
 
   '@shikijs/types@1.24.0':
     dependencies:

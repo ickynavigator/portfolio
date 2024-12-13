@@ -1,6 +1,7 @@
 ---
 import { PortableText as PortableTextInternal } from "astro-portabletext";
 
+import PortableTextCode from "~/components/PortableText/Code.PortableText.astro";
 import PortableTextImage from "~/components/PortableText/Image.PortableText.astro";
 import type { BlockContent } from "~/t/sanity";
 
@@ -16,6 +17,7 @@ const { data } = Astro.props;
   components={{
     type: {
       image: PortableTextImage,
+      code: PortableTextCode,
     },
   }}
 />
