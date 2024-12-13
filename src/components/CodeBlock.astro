@@ -26,7 +26,6 @@ const language = "ts";
   code={code}
   inline={inline}
   lang={language}
-  defaultColor="dark"
   themes={{ light: "github-light", dark: "github-dark" }}
   transformers={[
     transformerNotationDiff(),
@@ -38,7 +37,7 @@ const language = "ts";
   ]}
 />
 
-<style is:global>
+<style>
   :root {
     --color-line-add: #00550055;
     --color-line-remove: #88000055;
@@ -51,53 +50,55 @@ const language = "ts";
   }
 
   pre {
-    @apply rounded-md pl-[var(--spacing)];
-  }
+    @apply rounded-md border-[var(--shiki-dark)] pl-[var(--spacing)];
 
-  pre code {
-    @apply block border-0 border-l-[1px] border-solid border-[#738a9466] px-2 py-1 text-base leading-tight;
+    code {
+      @apply block border-0 border-l-[1px] border-solid border-[#738a9466] px-2 py-1 text-base leading-tight;
 
-    counter-reset: step;
-    counter-increment: step 0;
-  }
+      counter-reset: step;
+      counter-increment: step 0;
 
-  pre code .line {
-    @apply relative bg-[var(--bg-color)];
-  }
+      .line {
+        @apply relative bg-[var(--bg-color)];
 
-  pre code .line::before {
-    @apply absolute -left-[var(--spacing)] bg-[var(--bg-color)] text-right text-sm content-[counter(step)];
+        &::before {
+          @apply absolute -left-[var(--spacing)] text-right text-sm content-[counter(step)];
 
-    counter-increment: step;
-  }
+          counter-increment: step;
+        }
 
-  pre code .line.diff {
-    /* @apply mx-[-104px] my-0 inline-block w-screen px-[6.5rem] py-0; */
-    /* @apply mx-[-104px] my-0 inline-block w-screen py-0; */
-  }
+        &.diff {
+          /* @apply mx-[-104px] my-0 inline-block w-screen px-[6.5rem] py-0; */
+          /* @apply mx-[-104px] my-0 inline-block w-screen py-0; */
 
-  pre code .line.diff::before {
-    /* @apply mx-[-104px] my-0 inline-block w-screen px-[6.5rem] py-0; */
-    /* @apply absolute left-10; */
-  }
+          &::before {
+            /* @apply mx-[-104px] my-0 inline-block w-screen px-[6.5rem] py-0; */
+            /* @apply absolute left-10; */
+          }
 
-  pre code .line.diff.add {
-    --bg-color: var(--color-line-add);
-  }
+          &.add {
+            --bg-color: var(--color-line-add);
+          }
 
-  pre code .line.diff.remove {
-    --bg-color: var(--color-line-remove);
-  }
+          &.remove {
+            --bg-color: var(--color-line-remove);
+          }
+        }
 
-  pre code .line.highlighted {
-    --bg-color: var(--color-line-highlight);
-  }
+        &.highlighted {
+          --bg-color: var(--color-line-highlight);
+        }
+      }
 
-  .has-focused .line {
-    filter: blur(0.095rem);
-  }
+      .has-focused {
+        .line {
+          filter: blur(0.095rem);
+        }
 
-  .has-focused .focused {
-    filter: blur(0);
+        .focused {
+          filter: blur(0);
+        }
+      }
+    }
   }
 </style>
