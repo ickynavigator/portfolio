@@ -24,7 +24,7 @@ const showLineNumbers = true;
 ---
 
 <div class="rounded-md border-2 overflow-clip">
-  <div class="bg-secondary py-1 px-2 flex justify-between text-sm">
+  <div class="bg-secondary py-1 px-2 flex justify-between text-sm border-b-2">
     <span class="font-semibold">{title ?? "Random Code"}</span>
 
     <span>
@@ -52,19 +52,21 @@ const showLineNumbers = true;
 
 <style>
   :root {
-    --color-line-add: #00550055;
-    --color-line-remove: #88000055;
-    --color-line-highlight: #f0f0f044;
+    --color-line-add: #10b98124;
+    --color-line-remove: #f43f5e24;
+    --color-line-highlight: #8e96aa24;
+    --color-line-warning: #eab30824;
+    --color-line-error: #f43f5e24;
 
     --bg-color: initial;
   }
 
   pre {
     code {
-      @apply block px-2 py-1 text-base leading-tight;
+      @apply block pt-1 text-base leading-tight;
 
       .line {
-        @apply bg-[var(--bg-color)];
+        @apply box-border inline-block min-h-5 w-full bg-[var(--bg-color)] px-2 align-top;
 
         &.diff {
           &.add {
@@ -78,6 +80,14 @@ const showLineNumbers = true;
 
         &.highlighted {
           --bg-color: var(--color-line-highlight);
+
+          &.warning {
+            --bg-color: var(--color-line-warning);
+          }
+
+          &.error {
+            --bg-color: var(--color-line-error);
+          }
         }
       }
     }
@@ -94,6 +104,7 @@ const showLineNumbers = true;
 
     &[data-show-line-numbers="true"] {
       --spacing: calc((var(--linecount) + 1) * 0.72rem);
+
       @apply pl-[var(--spacing)];
 
       code {
@@ -106,7 +117,7 @@ const showLineNumbers = true;
           @apply relative;
 
           &::before {
-            @apply absolute -left-[var(--spacing)] text-right text-sm content-[counter(step)];
+            @apply absolute -left-[100%] inline-block w-full bg-[var(--bg-color)] pr-2 text-right text-sm blur-none content-[counter(step)];
 
             counter-increment: step;
           }
