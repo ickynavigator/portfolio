@@ -61,15 +61,6 @@ export default defineType({
     }),
 
     defineField({
-      name: "note",
-      title: "Note",
-      type: "text",
-      description:
-        "This note will be displayed on the blog post page with block quotes.",
-      rows: 3,
-    }),
-
-    defineField({
       name: "image",
       title: "Main image",
       type: "image",
