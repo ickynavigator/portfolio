@@ -1,5 +1,42 @@
 ---
 import "~/styles/globals.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  ogType?: string;
+  image?: string;
+}
+
+const {
+  title = "",
+  description = "Obi Fortune's Portfolio. Built with Sanity, Astro, and Tailwind CSS.",
+  keywords: _keywords = [],
+  ogType = "website",
+  image = "/favicon.svg",
+} = Astro.props;
+
+const appURL = `${Astro.url.origin}${Astro.url.pathname}`;
+
+const keywords = [
+  "Astro",
+  "TypeScript",
+  "Sanity",
+  "Blog",
+  "Portfolio",
+  "Obi Fortune",
+  "Javascript",
+  "Tech",
+  "Technology",
+  "Programming",
+  "Web Development",
+  ..._keywords,
+].join(",");
+
+const getPageTitle = (title: string) => {
+  return title ? `${title} | Obi Fortune's Portfolio` : title;
+};
 ---
 
 <html lang="en">
@@ -8,7 +45,27 @@ import "~/styles/globals.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <meta name="creator" content="Obi Fortune" />
+
+    <title>{getPageTitle(title)}</title>
+
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={appURL} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="160" />
+    <meta property="og:image:height" content="160" />
+    <meta property="og:type" content={ogType} />
+
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:site" content={appURL} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@obifortunebleh" />
   </head>
 
   <body>

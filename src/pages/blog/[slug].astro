@@ -8,6 +8,7 @@ import MainLayout from "~/layouts/MainLayout.astro";
 import { formatDateWithLocalized } from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { POST_QUERY, POST_SLUGS_QUERY } from "~/lib/sanity/queries";
+import { urlForImage } from "~/lib/sanity/urlForImage";
 
 export const getStaticPaths = (async () => {
   const { result } = await loadQuery({ query: POST_SLUGS_QUERY });
@@ -25,7 +26,13 @@ if (!result) {
 }
 ---
 
-<MainLayout>
+<MainLayout
+  title={result.title}
+  description={result.description}
+  image={urlForImage(result.image).url()}
+  ogType="article"
+  keywords={result.derefTag.map((tag) => tag.title)}
+>
   <Container>
     <div>
       <SanityImage node={result.image} alt="Header" />
