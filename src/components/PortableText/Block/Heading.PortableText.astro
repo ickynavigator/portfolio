@@ -1,4 +1,6 @@
 ---
+import { Hash } from "lucide-react";
+
 import { getTextFromPortableTextNode } from "~/lib/utils";
 
 type Props = {
@@ -27,11 +29,13 @@ if (!getValidHeader(Tag)) {
 const headerSlug = getTextFromPortableTextNode(Astro.props.node?.children)
   .replace(/\s/g, "-")
   .toLocaleLowerCase();
+
+const order = Tag.slice(1);
 ---
 
 <Tag
-  data-order={Tag.slice(1)}
-  class="group/heading mb-3 mt-1 font-bold leading-none tracking-tight data-[order=1]:text-5xl data-[order=2]:text-4xl data-[order=3]:text-3xl data-[order=4]:text-2xl data-[order=5]:text-xl data-[order=6]:text-lg"
+  data-order={order}
+  class="relative group/heading mb-3 mt-1 font-bold leading-none tracking-tight data-[order=1]:text-5xl data-[order=2]:text-4xl data-[order=3]:text-3xl data-[order=4]:text-2xl data-[order=5]:text-xl data-[order=6]:text-lg"
 >
   <slot />
 
@@ -41,7 +45,8 @@ const headerSlug = getTextFromPortableTextNode(Astro.props.node?.children)
     aria-label={headerSlug}
     rel="noopener noreferrer"
     target="_self"
-    class="absolute left-5 opacity-0 group-hover/heading:opacity-100 transition-opacity text-muted-foreground text-[3cqi]"
-    >#</a
+    class="absolute top-1/2 transform -translate-y-1/2 opacity-100 group-hover/heading:opacity-100 transition-opacity text-muted-foreground text-[calc(80%)] group-data-[order=1]/heading:left-[-1.9rem] group-data-[order=2]/heading:left-[-1.45rem] group-data-[order=3]/heading:left-[-1.225rem] group-data-[order=4]/heading:left-[-1rem] group-data-[order=5]/heading:left-[-0.85rem] group-data-[order=6]/heading:left-[-0.775rem]"
   >
+    <Hash className="w-[1em] h-[.7em]" />
+  </a>
 </Tag>
