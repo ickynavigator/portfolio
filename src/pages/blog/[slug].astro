@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
 
+import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
 import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
@@ -25,11 +26,15 @@ if (!result) {
 ---
 
 <MainLayout>
-  <div class="p-4 mx-8">
+  <div>
     <SanityImage node={result.image} alt="Header" />
-    <p>{result.title}</p>
-    <p>{formatDateWithLocalized(result.postedAt)}</p>
-
-    <PortableText data={result.body} />
+    <div>
+      <p>{result.title}</p>
+      <p>{formatDateWithLocalized(result.postedAt)}</p>
+    </div>
   </div>
+
+  <Container as="article">
+    <PortableText data={result.body} />
+  </Container>
 </MainLayout>

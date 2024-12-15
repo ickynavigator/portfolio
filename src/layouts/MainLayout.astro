@@ -1,4 +1,6 @@
 ---
+import Container from "~/components/Container.astro";
+
 import "~/styles/globals.css";
 ---
 
@@ -12,6 +14,8 @@ import "~/styles/globals.css";
   </head>
 
   <body>
-    <slot />
+    <Container>
+      <slot />
+    </Container>
   </body>
 </html>
