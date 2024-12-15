@@ -34,6 +34,7 @@
     "astro-portabletext": "^0.10.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "groq": "^3.67.1",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
