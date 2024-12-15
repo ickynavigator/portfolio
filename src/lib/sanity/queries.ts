@@ -35,5 +35,8 @@ export const POST_SLUGS_QUERY = defineQuery(`
 `);
 
 export const POST_QUERY = defineQuery(`
-  *[_type == "post" && slug.current == $slug && hidden != true][0]
+  *[_type == "post" && slug.current == $slug && hidden != true][0] {
+    ...,
+    "derefTag": coalesce(tags[]->, []),
+  }
 `);
