@@ -38,7 +38,7 @@ const showLineNumbers = true;
     lang={language}
     data-show-line-numbers={showLineNumbers.toString()}
     style="--linecount: 2"
-    themes={{ light: "github-light", dark: "github-dark" }}
+    theme="dracula"
     transformers={[
       transformerNotationDiff(),
       transformerNotationHighlight(),
@@ -63,7 +63,7 @@ const showLineNumbers = true;
 
   pre {
     code {
-      @apply block pt-1 text-base leading-tight;
+      @apply block py-1 text-base leading-tight;
 
       .line {
         @apply box-border inline-block min-h-5 w-full bg-[var(--bg-color)] px-2 align-top;
