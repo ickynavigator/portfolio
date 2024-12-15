@@ -1,4 +1,6 @@
 ---
+import { getTextFromPortableTextNode } from "~/lib/utils";
+
 type Props = {
   node: {
     style: string;
@@ -18,18 +20,13 @@ const ACCEPTED_STYLES = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
 const getValidHeader = (s: unknown): s is (typeof ACCEPTED_STYLES)[number] =>
   (ACCEPTED_STYLES as readonly unknown[]).includes(s);
 
-const getContentForSlug = () => {
-  return Astro.props.node?.children
-    ?.reduce((acc, curr) => (acc += curr?.text), "")
-    .replace(/\s/g, "-")
-    .toLocaleLowerCase();
-};
-
 if (!getValidHeader(Tag)) {
   throw new Error(`Invalid header style: ${Tag}`);
 }
 
-const headerSlug = getContentForSlug();
+const headerSlug = getTextFromPortableTextNode(Astro.props.node?.children)
+  .replace(/\s/g, "-")
+  .toLocaleLowerCase();
 ---
 
 <Tag

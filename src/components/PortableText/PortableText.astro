@@ -2,6 +2,7 @@
 import { PortableText as PortableTextInternal } from "astro-portabletext";
 
 import BlockQuote from "~/components/PortableText/Block/BlockQuote.PortableText.astro";
+import HardBreak from "~/components/PortableText/Block/HardBreak.PortableText.astro";
 import Heading from "~/components/PortableText/Block/Heading.PortableText.astro";
 import Normal from "~/components/PortableText/Block/Normal.PortableText.astro";
 import PortableTextCode from "~/components/PortableText/Code.PortableText.astro";
@@ -36,5 +37,7 @@ const { data } = Astro.props;
     mark: {
       link: Link,
     },
+
+    hardBreak: HardBreak,
   }}
 />
