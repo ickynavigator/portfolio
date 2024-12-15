@@ -14,13 +14,12 @@ interface Props {
   language?: string;
   inline: boolean;
   title?: string | undefined;
-
-  highlightedLines?: string | undefined;
+  showLineNumbers?: boolean;
 }
 
-const { code, inline, title } = Astro.props;
+const { code, inline, title, showLineNumbers = false } = Astro.props;
+
 const language = "ts";
-const showLineNumbers = true;
 ---
 
 <div class="rounded-md border-2 overflow-clip">
