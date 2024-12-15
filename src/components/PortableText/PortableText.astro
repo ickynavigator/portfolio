@@ -10,6 +10,7 @@ import PortableTextImage from "~/components/PortableText/Image.PortableText.astr
 import ListItem from "~/components/PortableText/List/ListItem.PortableText.astro";
 import OrderedList from "~/components/PortableText/List/OrderedList.PortableText.astro";
 import UnorderedList from "~/components/PortableText/List/UnorderedList.PortableText.astro";
+import InlineCode from "~/components/PortableText/Mark/InlineCode.PortableText.astro";
 import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
 import type { BlockContent } from "~/t/sanity";
 
@@ -39,6 +40,11 @@ const { data } = Astro.props;
     },
     mark: {
       link: Link,
+      code: InlineCode,
+      // em,
+      // strong,
+      // underline,
+      // 'strike-through',
     },
 
     list: {
