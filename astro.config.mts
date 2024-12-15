@@ -17,7 +17,7 @@ const env = getEnv(_env);
 
 // https://astro.build/config
 export default defineConfig({
-  output: "hybrid",
+  output: "static",
 
   adapter: cloudflare({
     platformProxy: {

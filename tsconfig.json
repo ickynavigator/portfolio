@@ -13,6 +13,10 @@
             "@cloudflare/workers-types/2023-07-01"
         ]
     },
+    "include": [
+        ".astro/types.d.ts",
+        "**/*"
+    ],
     "exclude": [
         ".vscode",
         "dist",
