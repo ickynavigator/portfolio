@@ -65,3 +65,8 @@
     @apply bg-background text-foreground;
   }
 }
+@layer components {
+  .hover-link {
+    @apply font-semibold text-primary underline decoration-[hsla(var(--muted-foreground)/.5)] decoration-2 transition hover:decoration-primary;
+  }
+}
