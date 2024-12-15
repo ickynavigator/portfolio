@@ -26,15 +26,16 @@ if (!result) {
 ---
 
 <MainLayout>
-  <div>
-    <SanityImage node={result.image} alt="Header" />
+  <Container>
     <div>
-      <p>{result.title}</p>
-      <p>{formatDateWithLocalized(result.postedAt)}</p>
+      <SanityImage node={result.image} alt="Header" />
+      <div>
+        <p>{result.title}</p>
+        <p>{formatDateWithLocalized(result.postedAt)}</p>
+      </div>
     </div>
-  </div>
-
-  <Container as="article">
-    <PortableText data={result.body} />
+    <Container as="article">
+      <PortableText data={result.body} />
+    </Container>
   </Container>
 </MainLayout>
