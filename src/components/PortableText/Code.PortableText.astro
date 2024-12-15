@@ -15,12 +15,13 @@ interface Props {
   isInline: boolean;
 }
 
-const { node, isInline } = Astro.props;
+const { node } = Astro.props;
 ---
 
 <CodeBlock
   code={node.code}
   language={node.language}
-  inline={isInline}
+  inline={false}
   title={node.filename}
+  showLineNumbers={true}
 />
