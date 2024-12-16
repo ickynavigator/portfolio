@@ -10,7 +10,7 @@ interface Props {
 }
 
 const {
-  title = "",
+  title,
   description = "Obi Fortune's Portfolio. Built with Sanity, Astro, and Tailwind CSS.",
   keywords: _keywords = [],
   ogType = "website",
@@ -34,8 +34,10 @@ const keywords = [
   ..._keywords,
 ].join(",");
 
-const getPageTitle = (title: string) => {
-  return title ? `${title} | Obi Fortune's Portfolio` : title;
+const getPageTitle = (title?: string) => {
+  return title
+    ? `${title} | Obi Fortune's Portfolio`
+    : "Obi Fortune's Portfolio";
 };
 ---
 
