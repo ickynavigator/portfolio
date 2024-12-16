@@ -1,6 +1,7 @@
 ---
 import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 
+import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 import { formatDateWithLocalized, getReadingTime } from "~/lib/date";
@@ -12,18 +13,26 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
 
 <MainLayout title="Blog" description="Blog posts">
   <NavLayout>
-    <div class="grid gap-4 grid-cols-3">
+    <div class="grid auto-rows-fr gap-4 grid-cols-2 items-stretch">
       {
         result.data.map((post) => (
-          <article>
-            <div class="flex justify-between items-end">
+          <div class="overflow-hidden rounded-lg">
+            <a href={`/blog/${post.slug.current}`}>
+              <SanityImage
+                node={post.image}
+                alt={post.title}
+                class="object-cover object-center h-4/5 w-full transition hover:scale-110"
+              />
+            </a>
+
+            <div class="flex justify-between items-end mt-4">
               <div>
                 <h2 class="line-clamp-1">{post.title}</h2>
                 <div class="inline-flex text-center gap-2">
                   <span class="inline-flex items-center gap-1">
                     <Calendar className="inline w-[1em] h-[1em]" />
                     {formatDateWithLocalized(post.postedAt)}
-                  </span>{" "}
+                  </span>
                   &#xb7;
                   <span class="inline-flex items-center gap-1">
                     <Clock className="inline w-[1em] h-[1em]" />
@@ -42,7 +51,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                 </a>
               </div>
             </div>
-          </article>
+          </div>
         ))
       }
     </div>
