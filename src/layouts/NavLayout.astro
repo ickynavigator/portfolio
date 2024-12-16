@@ -1,0 +1,141 @@
+---
+import { Code2, Github, Linkedin, Mail, Twitter } from "lucide-react";
+
+import Container from "~/components/Container.astro";
+import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
+import { cn } from "~/lib/utils";
+
+const currentPage = Astro.url.pathname;
+
+const links = [
+  { href: "/about", text: "About" },
+  { href: "/projects", text: "Projects" },
+  { href: "/blog", text: "Blog" },
+  { href: "/resume", text: "Resume" },
+  { href: "/contact", text: "Contact" },
+];
+
+const socials = [
+  {
+    href: "https://twitter.com/obi_fortune",
+    text: "Twitter",
+    icon: Twitter,
+    color: "bg-[#010101]",
+  },
+  {
+    href: "https://github.com/ickynavigator",
+    text: "Github",
+    icon: Github,
+    color: "bg-[#24292F]",
+  },
+  {
+    href: "https://www.linkedin.com/in/obifortune",
+    text: "LinkedIn",
+    icon: Linkedin,
+    color: "bg-[#0077B5]",
+  },
+  {
+    href: "https://github.com/ickynavigator/portfolio",
+    text: "Code",
+    icon: Code2,
+    color: "bg-[#010101]",
+  },
+  {
+    href: "mailto:gabrielobi.of@gmail.com",
+    text: "Mail",
+    icon: Mail,
+    color: "bg-[#010101]",
+  },
+];
+---
+
+<Container>
+  <header class="rounded-b-xl border border-t-0 mb-8">
+    <nav class="flex justify-between items-center p-6">
+      <div>
+        <a href="/" class="font-bold">Obi Fortune</a>
+      </div>
+
+      <div class="flex space-x-4">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="hover-link data-[active-page='true']:decoration-primary"
+              data-active-page={currentPage === link.href ? "true" : "false"}
+            >
+              {link.text}
+            </a>
+          ))
+        }
+
+        <ThemeSwitcher />
+      </div>
+    </nav>
+  </header>
+
+  <slot />
+
+  <footer>
+    <div
+      class="border rounded px-20 py-10 flex flex-col justify-center items-center space-x-7 mb-10"
+    >
+      <span
+        class="border text-xs font-medium px-2.5 py-0.5 rounded-full uppercase"
+      >
+        Get in touch
+      </span>
+
+      <p class="text-center text-4xl font-medium mt-1">
+        Got a web project? Let's talk.
+      </p>
+
+      <div class="flex space-x-2 mt-6">
+        {
+          socials.map((social) => (
+            <a
+              target="_blank"
+              href={social.href}
+              title={social.text}
+              class="group/icon"
+            >
+              <div
+                class={cn(
+                  social.color,
+                  "rounded-full border p-1.5 transition group-hover/icon:-translate-y-2 text-secondary",
+                )}
+              >
+                <social.icon
+                  className="w-[1em] h-[1em]"
+                  aria-hidden="true"
+                  focusable="false"
+                />
+              </div>
+              <span class="sr-only">{social.text}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="text-xs uppercase">
+      <div>
+        <span>&copy; {new Date().getFullYear()};</span>
+
+        <span>
+          Designed by
+          <a class="hover-link" href="https://twitter.com/obifortunebleh"
+            >Tawakkalt</a
+          >;
+        </span>
+
+        <span>
+          Developed by
+          <a class="hover-link" href="https://twitter.com/obifortunebleh"
+            >Obi Fortune</a
+          >
+        </span>
+      </div>
+    </div>
+  </footer>
+</Container>

@@ -1,0 +1,23 @@
+---
+import { Moon, Sun } from "lucide-react";
+---
+
+<div>
+  <Sun className="light hidden" />
+
+  <Moon className="dark hidden" />
+</div>
+
+<style>
+  @media screen and (prefers-color-scheme: light) {
+    .light {
+      display: initial;
+    }
+  }
+
+  @media screen and (prefers-color-scheme: dark) {
+    .dark {
+      display: initial;
+    }
+  }
+</style>
