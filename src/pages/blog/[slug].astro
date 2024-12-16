@@ -5,6 +5,7 @@ import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
 import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
+import NavLayout from "~/layouts/NavLayout.astro";
 import { formatDateWithLocalized } from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { POST_QUERY, POST_SLUGS_QUERY } from "~/lib/sanity/queries";
@@ -33,16 +34,18 @@ if (!result) {
   ogType="article"
   keywords={result.derefTag.map((tag) => tag.title)}
 >
-  <Container>
-    <div>
-      <SanityImage node={result.image} alt="Header" />
+  <NavLayout>
+    <Container>
       <div>
-        <p>{result.title}</p>
-        <p>{formatDateWithLocalized(result.postedAt)}</p>
+        <SanityImage node={result.image} alt="Header" />
+        <div>
+          <p>{result.title}</p>
+          <p>{formatDateWithLocalized(result.postedAt)}</p>
+        </div>
       </div>
-    </div>
-    <Container as="article">
-      <PortableText data={result.body} />
+      <Container as="article">
+        <PortableText data={result.body} />
+      </Container>
     </Container>
-  </Container>
+  </NavLayout>
 </MainLayout>
