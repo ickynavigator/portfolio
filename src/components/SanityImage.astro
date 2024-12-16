@@ -1,4 +1,6 @@
 ---
+import type { HTMLAttributes } from "astro/types";
+
 import { urlForImage } from "~/lib/sanity/urlForImage";
 import type { internalGroqTypeReferenceTo, SanityImageAsset } from "~/t/sanity";
 
@@ -9,14 +11,14 @@ interface SanityImageRef {
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 }
 
-interface Props {
+interface Props extends HTMLAttributes<"img"> {
   node: {
     asset?: SanityImageAsset | SanityImageRef;
   };
   alt: string;
 }
 
-const { node, alt } = Astro.props;
+const { node, alt, ...attrs } = Astro.props;
 
 if (!node?.asset) return null;
 
@@ -26,5 +28,5 @@ const webpUrl = urlForImage(node.asset).format("webp").url();
 
 <picture>
   <source srcset={webpUrl} type="image/webp" />
-  <img class="responsive__img" src={url} alt={alt} />
+  <img {...attrs} src={url} alt={alt} />
 </picture>
