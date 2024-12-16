@@ -1,18 +1,24 @@
 ---
+import MainLayout from "~/layouts/MainLayout.astro";
+import NavLayout from "~/layouts/NavLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PAGINATED_POSTS_QUERY } from "~/lib/sanity/queries";
 
 const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
 ---
 
-<ul>
-  {
-    result.data.map((post) => (
-      <li>
-        <h2>{post.title}</h2>
-        <p>{post.title}</p>
-        <a href={`/blog/${post.slug.current}`}>Go to</a>
-      </li>
-    ))
-  }
-</ul>
+<MainLayout title="Blog" description="Blog posts">
+  <NavLayout>
+    <ul>
+      {
+        result.data.map((post) => (
+          <li>
+            <h2>{post.title}</h2>
+            <p>{post.title}</p>
+            <a href={`/blog/${post.slug.current}`}>Go to</a>
+          </li>
+        ))
+      }
+    </ul>
+  </NavLayout>
+</MainLayout>
