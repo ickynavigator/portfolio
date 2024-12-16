@@ -4,7 +4,7 @@ import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
-import { formatDateWithLocalized, getReadingTime } from "~/lib/date";
+import dayjs, { getReadingTime } from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PAGINATED_POSTS_QUERY } from "~/lib/sanity/queries";
 
@@ -13,15 +13,20 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
 
 <MainLayout title="Blog" description="Blog posts">
   <NavLayout>
-    <div class="grid auto-rows-fr gap-4 grid-cols-2 items-stretch">
+    <div
+      class="grid auto-rows-fr gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+    >
       {
         result.data.map((post) => (
-          <div class="overflow-hidden rounded-lg">
-            <a href={`/blog/${post.slug.current}`}>
+          <div>
+            <a
+              href={`/blog/${post.slug.current}`}
+              class="block overflow-hidden rounded-lg"
+            >
               <SanityImage
                 node={post.image}
                 alt={post.title}
-                class="object-cover object-center h-4/5 w-full transition hover:scale-110"
+                class="object-cover object-center transition hover:scale-110"
               />
             </a>
 
@@ -31,7 +36,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                 <div class="inline-flex text-center gap-2">
                   <span class="inline-flex items-center gap-1">
                     <Calendar className="inline w-[1em] h-[1em]" />
-                    {formatDateWithLocalized(post.postedAt)}
+                    {dayjs(post.postedAt).format("L")}
                   </span>
                   &#xb7;
                   <span class="inline-flex items-center gap-1">
