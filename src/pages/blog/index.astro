@@ -13,20 +13,18 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
 
 <MainLayout title="Blog" description="Blog posts">
   <NavLayout>
-    <div
-      class="grid auto-rows-fr gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
-    >
+    <div class="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
       {
         result.data.map((post) => (
           <div>
             <a
               href={`/blog/${post.slug.current}`}
-              class="block overflow-hidden rounded-lg"
+              class="block overflow-hidden rounded-lg aspect-video"
             >
               <SanityImage
                 node={post.image}
                 alt={post.title}
-                class="object-cover object-center transition hover:scale-110"
+                class="object-cover object-center w-full h-full transition-transform hover:scale-125"
               />
             </a>
 
