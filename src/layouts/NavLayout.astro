@@ -2,7 +2,7 @@
 import { Code2, Github, Linkedin, Mail, Twitter } from "lucide-react";
 
 import Container from "~/components/Container.astro";
-import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
+import NavLinks from "~/components/NavLinks.astro";
 import { cn } from "~/lib/utils";
 
 const currentPage = Astro.url.pathname;
@@ -50,13 +50,13 @@ const socials = [
 ---
 
 <Container data-vaul-drawer-wrapper>
-  <header class="rounded-b-xl border border-t-0 mb-8 bg-primary-foreground">
+  <header class="md:rounded-b-xl border border-t-0 mb-8 bg-primary-foreground">
     <nav class="flex justify-between items-center p-6">
       <div>
         <a href="/" class="font-bold">Obi Fortune</a>
       </div>
 
-      <div class="flex space-x-4 items-center">
+      <NavLinks>
         {
           links.map((link) => (
             <a
@@ -68,9 +68,7 @@ const socials = [
             </a>
           ))
         }
-
-        <ThemeSwitcher />
-      </div>
+      </NavLinks>
     </nav>
   </header>
 

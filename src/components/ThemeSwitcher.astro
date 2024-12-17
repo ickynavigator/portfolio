@@ -1,23 +1,14 @@
 ---
-import { Moon, Sun } from "lucide-react";
+import { Monitor, Moon, Sun } from "lucide-react";
+
+import Toggle from "~/components/Toggle.astro";
 ---
 
-<div class="flex items-center text-xl">
-  <Sun className="light hidden w-[1em] h-[1em]" />
-
-  <Moon className="dark hidden w-[1em] h-[1em]" />
-</div>
-
-<style>
-  @media screen and (prefers-color-scheme: light) {
-    .light {
-      display: initial;
-    }
-  }
-
-  @media screen and (prefers-color-scheme: dark) {
-    .dark {
-      display: initial;
-    }
-  }
-</style>
+<Toggle
+  name="theme"
+  options={[
+    { label: Sun, value: "light" },
+    { label: Monitor, value: "system" },
+    { label: Moon, value: "dark" },
+  ]}
+/>
