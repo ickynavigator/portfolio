@@ -12,3 +12,85 @@ import Toggle from "~/components/Toggle.astro";
     { label: Moon, value: "dark" },
   ]}
 />
+
+<script is:inline>
+  const updateTheme = (incomingTheme) => {
+    // prettier acts weird in script tags
+    // eslint-disable-next-line prettier/prettier
+    switch (incomingTheme) {
+      case "light": {
+        document.documentElement.classList.remove("dark");
+        break;
+      }
+      case "dark": {
+        document.documentElement.classList.add("dark");
+        break;
+      }
+      case "system": {
+        const isDark = window.matchMedia("(prefers-color-scheme: dark)");
+        document.documentElement.classList.toggle("dark", isDark.matches);
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  };
+
+  const THEME_KEY = "theme";
+  const storedTheme = localStorage.getItem(THEME_KEY);
+
+  let ignoreSystemTheme = storedTheme != null && storedTheme !== "system";
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
+      if (ignoreSystemTheme) return;
+      updateTheme("system");
+    });
+
+  document
+    .querySelectorAll("input#light,input#dark,input#system")
+    .forEach((node) => {
+      node.addEventListener("change", (event) => {
+        if (!(typeof event.target?.value === "string")) return;
+
+        const selectedTheme = event.target.value;
+
+        switch (selectedTheme) {
+          case "light":
+          case "dark": {
+            localStorage.setItem("theme", selectedTheme);
+
+            ignoreSystemTheme = true;
+
+            updateTheme(selectedTheme);
+            break;
+          }
+          case "system": {
+            localStorage.removeItem("theme");
+
+            ignoreSystemTheme = false;
+
+            updateTheme(selectedTheme);
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+      });
+    });
+
+  // INIT
+
+  updateTheme(storedTheme ?? "system");
+
+  document
+    .querySelectorAll("input#light,input#dark,input#system")
+    .forEach((node) => {
+      if (node.id == (storedTheme ?? "system")) {
+        node.checked = true;
+      }
+    });
+</script>
