@@ -1,0 +1,45 @@
+---
+import type { ReactNode } from "react";
+
+import { cn } from "~/lib/utils";
+
+interface Props {
+  options: {
+    label: (opts: { className: string }) => ReactNode;
+    value: string;
+    disabled?: boolean;
+  }[];
+  name: string;
+}
+
+const { options, name } = Astro.props;
+---
+
+<div class="inline-flex space-x-0.5 rounded-full border p-0.5">
+  {
+    options.map((option) => (
+      <div class="relative">
+        <input
+          type="radio"
+          name={name}
+          id={option.value}
+          value={option.value}
+          class="peer sr-only"
+          disabled={option?.disabled}
+        />
+
+        <label
+          for={option.value}
+          class={cn(
+            "flex size-8 cursor-pointer items-center justify-center rounded-full transition",
+            "hover:scale-110 hover:bg-secondary",
+            "peer-focus:ring-2",
+            "peer-checked:bg-secondary peer-checked:shadow-sm",
+          )}
+        >
+          {<option.label className="h-[1em] w-[1em]" />}
+        </label>
+      </div>
+    ))
+  }
+</div>
