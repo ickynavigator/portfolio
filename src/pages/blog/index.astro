@@ -1,6 +1,7 @@
 ---
 import { ArrowUpRight, Calendar, Clock } from "lucide-react";
 
+import Container from "~/components/Container.astro";
 import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
@@ -13,7 +14,10 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
 
 <MainLayout title="Blog" description="Blog posts">
   <NavLayout>
-    <div class="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+    <Container
+      class="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+      innerPage
+    >
       {
         result.data.map((post) => (
           <div>
@@ -57,6 +61,6 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
           </div>
         ))
       }
-    </div>
+    </Container>
   </NavLayout>
 </MainLayout>

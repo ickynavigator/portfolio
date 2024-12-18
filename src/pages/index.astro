@@ -1,10 +1,13 @@
 ---
+import Container from "~/components/Container.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 ---
 
 <MainLayout>
   <NavLayout>
-    <h1>Astro</h1>
+    <Container innerPage>
+      <h1>Astro</h1>
+    </Container>
   </NavLayout>
 </MainLayout>

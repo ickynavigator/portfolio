@@ -35,17 +35,16 @@ if (!result) {
   keywords={result.derefTag.map((tag) => tag.title)}
 >
   <NavLayout>
-    <Container>
+    <div>
+      <SanityImage node={result.image} alt="Header" />
       <div>
-        <SanityImage node={result.image} alt="Header" />
-        <div>
-          <p>{result.title}</p>
-          <p>{formatDateWithLocalized(result.postedAt)}</p>
-        </div>
+        <p>{result.title}</p>
+        <p>{formatDateWithLocalized(result.postedAt)}</p>
       </div>
-      <Container as="article">
-        <PortableText data={result.body} />
-      </Container>
+    </div>
+
+    <Container as="article" innerPage>
+      <PortableText data={result.body} />
     </Container>
   </NavLayout>
 </MainLayout>
