@@ -74,9 +74,9 @@ const socials = [
 
   <slot />
 
-  <footer class="mt-8">
+  <footer class="mt-8 mb-3 px-4 lg:px-0">
     <div
-      class="border rounded-xl px-20 py-10 flex flex-col justify-center items-center space-x-7 mb-10 bg-primary-foreground shadow"
+      class="border rounded-xl py-10 flex flex-col justify-center items-center gap-7 mb-10 bg-primary-foreground shadow"
     >
       <span
         class="border text-xs font-medium px-2.5 py-0.5 rounded-full uppercase"
@@ -84,11 +84,11 @@ const socials = [
         Get in touch
       </span>
 
-      <p class="text-center text-4xl font-medium mt-1">
+      <p class="text-center text-4xl font-medium px-4 md:px-20">
         Got a web project? Let's talk.
       </p>
 
-      <div class="flex space-x-2 mt-6">
+      <div class="flex gap-2 mt-6">
         {
           socials.map((social) => (
             <a
