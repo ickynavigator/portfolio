@@ -463,9 +463,9 @@ export type POST_QUERYResult = {
       }>
     | Array<never>;
 } | null;
-// Variable: CVReference
+// Variable: CV_REF_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->
-export type CVReferenceResult = {
+export type CV_REF_QUERYResult = {
   _id: string;
   _type: "sanity.fileAsset";
   _createdAt: string;
@@ -492,6 +492,6 @@ declare module "@sanity/client" {
     '\n    {\n        "data": \n    *[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n        _id,\n        title,\n        slug,\n        postedAt, \n        image,\n        "wordCount": length(pt::text(body))\n    }\n,\n    }\n': PAGINATED_POSTS_QUERYResult;
     '\n    *[_type == "post" && defined(slug.current) && hidden != true] {\n        "slug": slug.current\n    }\n': POST_SLUGS_QUERYResult;
     '\n    *[_type == "post" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "wordCount": length(pt::text(body)),\n        "derefTag": coalesce(tags[]->, []),\n    }\n': POST_QUERYResult;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CVReferenceResult;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CV_REF_QUERYResult;
   }
 }

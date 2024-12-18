@@ -44,6 +44,6 @@ export const POST_QUERY = defineQuery(`
     }
 `);
 
-export const CVReference = defineQuery(`
+export const CV_REF_QUERY = defineQuery(`
     *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].CV.file.asset->
 `);

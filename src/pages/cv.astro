@@ -3,9 +3,9 @@ import { buildFileUrl } from "@sanity/asset-utils";
 import { sanityClient } from "sanity:client";
 
 import { loadQuery } from "~/lib/sanity/load-query";
-import { CVReference } from "~/lib/sanity/queries";
+import { CV_REF_QUERY } from "~/lib/sanity/queries";
 
-const { result } = await loadQuery({ query: CVReference });
+const { result } = await loadQuery({ query: CV_REF_QUERY });
 const sanityConfig = sanityClient.config();
 
 if (
