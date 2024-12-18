@@ -1,5 +1,7 @@
 import { defineQuery } from "groq";
 
+import { PERSONAL_INFO_CONFIG_ID } from "../constants";
+
 // @sanity-typegen-ignore
 export const POSTS_QUERY = defineQuery(`
     *[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {
@@ -35,9 +37,13 @@ export const POST_SLUGS_QUERY = defineQuery(`
 `);
 
 export const POST_QUERY = defineQuery(`
-  *[_type == "post" && slug.current == $slug && hidden != true][0] {
-    ...,
-    "wordCount": length(pt::text(body)),
-    "derefTag": coalesce(tags[]->, []),
-  }
+    *[_type == "post" && slug.current == $slug && hidden != true][0] {
+        ...,
+        "wordCount": length(pt::text(body)),
+        "derefTag": coalesce(tags[]->, []),
+    }
+`);
+
+export const CVReference = defineQuery(`
+    *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].CV.file.asset->
 `);

@@ -1,0 +1,36 @@
+---
+import { buildFileUrl } from "@sanity/asset-utils";
+import { sanityClient } from "sanity:client";
+
+import { loadQuery } from "~/lib/sanity/load-query";
+import { CVReference } from "~/lib/sanity/queries";
+
+const { result } = await loadQuery({ query: CVReference });
+const sanityConfig = sanityClient.config();
+
+if (
+  result == null ||
+  result.assetId == null ||
+  result.url == null ||
+  result.extension == null ||
+  sanityConfig.projectId == null ||
+  sanityConfig.dataset == null
+) {
+  return new Response("No CV found", { status: 200 });
+}
+
+const url = buildFileUrl({
+  ...result,
+  assetId: result.assetId,
+  extension: result.extension,
+  projectId: sanityConfig.projectId,
+  dataset: sanityConfig.dataset,
+});
+
+return new Response(null, {
+  status: 302,
+  headers: {
+    Location: url,
+  },
+});
+---
