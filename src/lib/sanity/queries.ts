@@ -37,6 +37,7 @@ export const POST_SLUGS_QUERY = defineQuery(`
 export const POST_QUERY = defineQuery(`
   *[_type == "post" && slug.current == $slug && hidden != true][0] {
     ...,
+    "wordCount": length(pt::text(body)),
     "derefTag": coalesce(tags[]->, []),
   }
 `);

@@ -377,7 +377,7 @@ export type POST_SLUGS_QUERYResult = Array<{
   slug: string;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug && hidden != true][0] {    ...,    "derefTag": coalesce(tags[]->, []),  }
+// Query: *[_type == "post" && slug.current == $slug && hidden != true][0] {    ...,    "wordCount": length(pt::text(body)),    "derefTag": coalesce(tags[]->, []),  }
 export type POST_QUERYResult = {
   _id: string;
   _type: "post";
@@ -450,6 +450,7 @@ export type POST_QUERYResult = {
         _key: string;
       }
   >;
+  wordCount: number;
   derefTag:
     | Array<{
         _id: string;
@@ -467,6 +468,6 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '\n    {\n        "data": \n    *[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n        _id,\n        title,\n        slug,\n        postedAt, \n        image,\n        "wordCount": length(pt::text(body))\n    }\n,\n    }\n': PAGINATED_POSTS_QUERYResult;
     '\n    *[_type == "post" && defined(slug.current) && hidden != true] {\n        "slug": slug.current\n    }\n': POST_SLUGS_QUERYResult;
-    '\n  *[_type == "post" && slug.current == $slug && hidden != true][0] {\n    ...,\n    "derefTag": coalesce(tags[]->, []),\n  }\n': POST_QUERYResult;
+    '\n  *[_type == "post" && slug.current == $slug && hidden != true][0] {\n    ...,\n    "wordCount": length(pt::text(body)),\n    "derefTag": coalesce(tags[]->, []),\n  }\n': POST_QUERYResult;
   }
 }
