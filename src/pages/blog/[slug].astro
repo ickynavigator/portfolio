@@ -1,12 +1,13 @@
 ---
 import type { GetStaticPaths } from "astro";
+import { Calendar, Edit, Timer } from "lucide-react";
 
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
 import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
-import { formatDateWithLocalized } from "~/lib/date";
+import dayjs, { getReadingTime } from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { POST_QUERY, POST_SLUGS_QUERY } from "~/lib/sanity/queries";
 import { urlForImage } from "~/lib/sanity/urlForImage";
@@ -36,14 +37,60 @@ if (!result) {
 >
   <NavLayout>
     <div>
-      <SanityImage node={result.image} alt="Header" />
-      <div>
-        <p>{result.title}</p>
-        <p>{formatDateWithLocalized(result.postedAt)}</p>
-      </div>
+      <SanityImage node={result.image} alt="Header" class="md:rounded-md" />
     </div>
 
     <Container as="article" innerPage>
+      <div class="flex flex-col gap-4 mt-4">
+        <h1 class="relative font-bold leading-none tracking-tight text-5xl">
+          {result.title}
+        </h1>
+
+        <div
+          class="flex justify-between flex-col md:flex-row text-muted-foreground"
+        >
+          <div
+            class="inline-flex text-center gap-0 md:gap-4 flex-col md:flex-row"
+          >
+            <span
+              class="inline-flex items-center gap-1"
+              title={`Posted on ${dayjs(result.postedAt).format("LLLL")}`}
+            >
+              <Calendar className="inline w-[1em] h-[1em]" />
+              <time datetime={result.postedAt}
+                >{dayjs(result.postedAt).format("LL")}</time
+              >
+            </span>
+
+            {
+              result._updatedAt && (
+                <span
+                  class="inline-flex items-center gap-1"
+                  title={`Last updated on ${dayjs(result._updatedAt).format("LLLL")}`}
+                >
+                  <Edit className="inline w-[1em] h-[1em]" />
+
+                  <time datetime={result._updatedAt}>
+                    {dayjs(result._updatedAt).format("LL")}
+                  </time>
+                </span>
+              )
+            }
+          </div>
+
+          <span class="inline-flex items-center gap-1 line-clamp-1">
+            <Timer className="inline w-[1em] h-[1em]" />
+            {getReadingTime(result.wordCount)} read
+          </span>
+        </div>
+
+        <p>
+          {result.description}
+        </p>
+      </div>
+
+      <hr class="my-5 rounded h-1 border-0 bg-muted" />
+
       <PortableText data={result.body} />
     </Container>
   </NavLayout>

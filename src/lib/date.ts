@@ -7,10 +7,6 @@ dayjs.extend(duration);
 dayjs.extend(relativeTime);
 dayjs.extend(localizedFormat);
 
-export function formatDateWithLocalized(date: string) {
-  return dayjs(date).format("ll");
-}
-
 export function getReadingTime(
   textLength: number,
   wordsPerMinute = 200,
