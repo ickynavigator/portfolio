@@ -1,5 +1,5 @@
 ---
-import { ArrowUpRight, Calendar, Clock } from "lucide-react";
+import { ArrowUpRight, Calendar, Timer } from "lucide-react";
 
 import Container from "~/components/Container.astro";
 import SanityImage from "~/components/SanityImage.astro";
@@ -42,7 +42,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                   </span>
                   &#xb7;
                   <span class="inline-flex items-center gap-1">
-                    <Clock className="inline w-[1em] h-[1em]" />
+                    <Timer className="inline w-[1em] h-[1em]" />
                     {getReadingTime(post.wordCount)}
                   </span>
                 </div>
