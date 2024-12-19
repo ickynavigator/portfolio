@@ -70,4 +70,8 @@
   .hover-link {
     @apply font-semibold text-primary underline decoration-[hsla(var(--muted-foreground)/.5)] decoration-2 transition hover:decoration-primary;
   }
+
+  .relative-icon {
+    @apply h-[1em] w-[1em];
+  }
 }

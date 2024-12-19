@@ -37,12 +37,12 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                 <h2 class="line-clamp-1">{post.title}</h2>
                 <div class="inline-flex text-center gap-2">
                   <span class="inline-flex items-center gap-1">
-                    <Calendar className="inline w-[1em] h-[1em]" />
+                    <Calendar className="inline relative-icon" />
                     {dayjs(post.postedAt).format("L")}
                   </span>
                   &#xb7;
                   <span class="inline-flex items-center gap-1">
-                    <Timer className="inline w-[1em] h-[1em]" />
+                    <Timer className="inline relative-icon" />
                     {getReadingTime(post.wordCount)}
                   </span>
                 </div>
@@ -54,7 +54,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                   class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
                 >
                   <span class="text-xs">More</span>
-                  <ArrowUpRight className="inline w-[1em] h-[1em]" />
+                  <ArrowUpRight className="inline relative-icon" />
                 </a>
               </div>
             </div>

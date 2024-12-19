@@ -56,7 +56,7 @@ if (!result) {
               class="inline-flex items-center gap-1"
               title={`Posted on ${dayjs(result.postedAt).format("LLLL")}`}
             >
-              <Calendar className="inline w-[1em] h-[1em]" />
+              <Calendar className="inline relative-icon" />
               <time datetime={result.postedAt}
                 >{dayjs(result.postedAt).format("LL")}</time
               >
@@ -68,7 +68,7 @@ if (!result) {
                   class="inline-flex items-center gap-1"
                   title={`Last updated on ${dayjs(result._updatedAt).format("LLLL")}`}
                 >
-                  <Edit className="inline w-[1em] h-[1em]" />
+                  <Edit className="inline relative-icon" />
 
                   <time datetime={result._updatedAt}>
                     {dayjs(result._updatedAt).format("LL")}
@@ -79,7 +79,7 @@ if (!result) {
           </div>
 
           <span class="inline-flex items-center gap-1 line-clamp-1">
-            <Timer className="inline w-[1em] h-[1em]" />
+            <Timer className="inline relative-icon" />
             {getReadingTime(result.wordCount)} read
           </span>
         </div>
