@@ -16,9 +16,11 @@ if (
   sanityConfig.projectId == null ||
   sanityConfig.dataset == null
 ) {
-  return new Response("No CV found", { status: 200 });
+  return Astro.redirect("/404");
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - astro complains about the `url` variable being unused - related: https://github.com/withastro/language-tools/issues/476
 const url = buildFileUrl({
   ...result,
   assetId: result.assetId,
@@ -27,10 +29,5 @@ const url = buildFileUrl({
   dataset: sanityConfig.dataset,
 });
 
-return new Response(null, {
-  status: 302,
-  headers: {
-    Location: url,
-  },
-});
+return Astro.redirect(url, 302);
 ---
