@@ -1,13 +1,127 @@
 ---
+import { ArrowUpRight, FolderOpen, MoveDown } from "lucide-react";
+
 import Container from "~/components/Container.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { HOME_PAGE_QUERY } from "~/lib/sanity/queries";
+
+const { result } = await loadQuery({ query: HOME_PAGE_QUERY });
+
+if (!result) {
+  throw new Error("No data found for the home page");
+}
 ---
 
 <MainLayout>
   <NavLayout>
     <Container innerPage>
-      <h1>Astro</h1>
+      <div class="h-[90svh]">
+        <div class="flex flex-col justify-center h-full gap-5">
+          <h2
+            class="leading-none tracking-tight font-light text-8xl text-center"
+          >
+            {result.name}
+          </h2>
+
+          <h3
+            class="leading-none tracking-tight font-light text-6xl text-center"
+          >
+            {result.title}
+          </h3>
+
+          <p class="text-center text-muted-foreground">
+            {result.tagline}
+          </p>
+
+          <div class="flex justify-center mt-8">
+            <button
+              id="scroll-down"
+              class="gap-2 text-xl animate-bounce hover:[animation-play-state:paused] hover:border-primary hover:bg-secondary border rounded-full"
+            >
+              <MoveDown className="relative-icon stroke-1 m-3" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-32 pt-4" id="about">
+        <p class="text-3xl font-light">
+          {result.shortBio}
+        </p>
+
+        <a
+          href={`/about`}
+          class="border rounded-lg mt-2 py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
+        >
+          <span class="text-xs">Learn more about me</span>
+          <ArrowUpRight className="relative-icon inline" />
+        </a>
+      </div>
+
+      <span class="inline-flex items-center gap-2 mb-5 text-2xl">
+        <FolderOpen className="relative-icon" />
+        <h2 class="leading-none tracking-tight font-light">Selected Works</h2>
+      </span>
+
+      <ul class="divide-y border-t border-b mb-20">
+        {
+          result.selectedProjects?.map((project) => (
+            <li class="py-6 px-3 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+              <a href={`/projects/${project.slug}`} class="flex-1 min-w-fit">
+                <h3 class="hover-link leading-none tracking-tight text-lg truncate">
+                  {project.title}
+                </h3>
+              </a>
+
+              <div class="overflow-x-scroll max-w-full whitespace-nowrap ">
+                <div class="">
+                  {project.tags.map((tag) => (
+                    <a
+                      href={`/projects/${project.slug}?tag=${encodeURIComponent(tag.slug)}`}
+                      class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:border-primary inline-block"
+                    >
+                      {tag.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <span class="inline-flex items-center gap-2 mb-5 text-2xl">
+        <FolderOpen className="relative-icon" />
+        <h2 class="leading-none tracking-tight font-light">
+          Selected Blog Posts
+        </h2>
+      </span>
+
+      <ul class="divide-y border-t border-b mb-20">
+        {
+          result.selectedPosts.map((post) => (
+            <li class="p-3">
+              <a href={`/blog/${post.slug}`} class="flex flex-col gap-3 group">
+                <h3 class="hover-link leading-none tracking-tight text-lg group-hover:decoration-primary">
+                  {post.title}
+                </h3>
+
+                <p class="line-clamp-1 text-muted-foreground">
+                  {post.description}
+                </p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </Container>
   </NavLayout>
 </MainLayout>
+
+<script>
+  document.getElementById("scroll-down")?.addEventListener("click", () => {
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  });
+</script>
