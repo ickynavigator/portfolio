@@ -20,6 +20,20 @@ export default defineType({
     }),
 
     defineField({
+      name: "tagline",
+      title: "Tagline",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: "shortBio",
+      title: "Short Bio",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: "jobStatus",
       title: "Job Status",
       type: "object",
@@ -96,6 +110,14 @@ export default defineType({
       type: "array",
       of: [defineArrayMember({ type: "reference", to: { type: "category" } })],
       validation: (Rule) => Rule.unique(),
+    }),
+
+    defineField({
+      name: "selectedPosts",
+      title: "Selected Posts",
+      type: "array",
+      of: [defineArrayMember({ type: "reference", to: { type: "post" } })],
+      validation: (Rule) => Rule.max(3).unique(),
     }),
   ],
 });
