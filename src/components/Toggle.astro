@@ -37,6 +37,7 @@ const { options, name } = Astro.props;
             "peer-checked:bg-secondary peer-checked:shadow-sm",
           )}
         >
+          <span class="sr-only">{option.value}</span>
           {<option.label className="relative-icon" />}
         </label>
       </div>
