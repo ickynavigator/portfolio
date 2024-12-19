@@ -189,6 +189,8 @@ export type PersonalInfo = {
   _rev: string;
   name: string;
   title: string;
+  tagline: string;
+  shortBio: string;
   jobStatus?: {
     show: boolean;
     status: "open" | "inbetween" | "close";
@@ -228,6 +230,13 @@ export type PersonalInfo = {
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
+  }>;
+  selectedPosts?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "post";
   }>;
 };
 
@@ -486,6 +495,35 @@ export type CV_REF_QUERYResult = {
   url?: string;
   source?: SanityAssetSourceData;
 } | null;
+// Variable: HOME_PAGE_QUERY
+// Query: *[_type == "personalInfo" && _id == "personalInfo"] [0] {        name,        title,        tagline,        shortBio,        "selectedPosts": coalesce(            selectedPosts[]-> {                title,                description,                "slug": slug.current            },        []),        "selectedProjects": [{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]}],    }
+export type HOME_PAGE_QUERYResult = {
+  name: string;
+  title: string;
+  tagline: string;
+  shortBio: string;
+  selectedPosts:
+    | Array<{
+        title: string;
+        description: string;
+        slug: string;
+      }>
+    | Array<never>;
+  selectedProjects: Array<{
+    slug: "dummy";
+    title: "Project Name";
+    tags: Array<
+      | {
+          slug: "nextjs";
+          name: "Next Js";
+        }
+      | {
+          slug: "typescript";
+          name: "Typescript";
+        }
+    >;
+  }>;
+} | null;
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -493,5 +531,6 @@ declare module "@sanity/client" {
     '\n    *[_type == "post" && defined(slug.current) && hidden != true] {\n        "slug": slug.current\n    }\n': POST_SLUGS_QUERYResult;
     '\n    *[_type == "post" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "wordCount": length(pt::text(body)),\n        "derefTag": coalesce(tags[]->, []),\n    }\n': POST_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CV_REF_QUERYResult;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        name,\n        title,\n        tagline,\n        shortBio,\n        "selectedPosts": coalesce(\n            selectedPosts[]-> {\n                title,\n                description,\n                "slug": slug.current\n            },\n        []),\n        "selectedProjects": [{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]}],\n    }\n': HOME_PAGE_QUERYResult;
   }
 }

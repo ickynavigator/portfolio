@@ -47,3 +47,20 @@ export const POST_QUERY = defineQuery(`
 export const CV_REF_QUERY = defineQuery(`
     *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].CV.file.asset->
 `);
+
+export const HOME_PAGE_QUERY = defineQuery(`
+    *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0] {
+        name,
+        title,
+        tagline,
+        shortBio,
+        "selectedPosts": coalesce(
+            selectedPosts[]-> {
+                title,
+                description,
+                "slug": slug.current
+            },
+        []),
+        "selectedProjects": [{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]}],
+    }
+`);
