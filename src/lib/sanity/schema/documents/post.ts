@@ -68,13 +68,27 @@ export default defineType({
     }),
 
     defineField({
-      name: "image",
-      title: "Main image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      validation: (Rule) => Rule.required(),
+      name: "images",
+      title: "Post Images",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: "alt",
+              type: "string",
+              title: "Alternative text",
+              description: "Important for SEO and accessiblity.",
+              validation: (Rule) => Rule.required().min(3),
+            }),
+          ],
+          validation: (Rule) => Rule.required().assetRequired(),
+        }),
+      ],
+      initialValue: [],
+      validation: (Rule) => Rule.required().min(1),
     }),
 
     defineField({
@@ -88,10 +102,10 @@ export default defineType({
   preview: {
     select: {
       title: "title",
-      media: "image",
+      media: "images",
     },
     prepare(selection) {
-      return { ...selection };
+      return { ...selection, media: selection.media[0] };
     },
   },
 });

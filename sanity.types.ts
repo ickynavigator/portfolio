@@ -157,7 +157,7 @@ export type Post = {
     [internalGroqTypeReferenceTo]?: "category";
   }>;
   description: string;
-  image: {
+  images: Array<{
     asset?: {
       _ref: string;
       _type: "reference";
@@ -166,8 +166,10 @@ export type Post = {
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt: string;
     _type: "image";
-  };
+    _key: string;
+  }>;
   body: Array<
     | {
         children?: Array<{
@@ -451,7 +453,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/lib/sanity/queries.ts
 // Variable: PAGINATED_POSTS_QUERY
-// Query: {        "data":     *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {        _id,        title,        slug,        postedAt,         image,        "wordCount": length(pt::text(body))    },    }
+// Query: {        "data":     *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {        _id,        title,        slug,        postedAt,         "image": images[0],        "wordCount": length(pt::text(body))    },    }
 export type PAGINATED_POSTS_QUERYResult = {
   data: Array<{
     _id: string;
@@ -467,8 +469,10 @@ export type PAGINATED_POSTS_QUERYResult = {
       };
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
+      alt: string;
       _type: "image";
-    };
+      _key: string;
+    } | null;
     wordCount: number;
   }>;
 };
@@ -498,7 +502,7 @@ export type POST_QUERYResult = {
     [internalGroqTypeReferenceTo]?: "category";
   }>;
   description: string;
-  image: {
+  images: Array<{
     asset?: {
       _ref: string;
       _type: "reference";
@@ -507,8 +511,10 @@ export type POST_QUERYResult = {
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt: string;
     _type: "image";
-  };
+    _key: string;
+  }>;
   body: Array<
     | ({
         _key: string;
@@ -620,7 +626,7 @@ export type HOME_PAGE_QUERYResult = {
 
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n    {\n        "data": \n    *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {\n        _id,\n        title,\n        slug,\n        postedAt, \n        image,\n        "wordCount": length(pt::text(body))\n    }\n,\n    }\n': PAGINATED_POSTS_QUERYResult;
+    '\n    {\n        "data": \n    *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {\n        _id,\n        title,\n        slug,\n        postedAt, \n        "image": images[0],\n        "wordCount": length(pt::text(body))\n    }\n,\n    }\n': PAGINATED_POSTS_QUERYResult;
     '\n    *[_type == "post" && defined(slug.current) && hidden != true] {\n        "slug": slug.current\n    }\n': POST_SLUGS_QUERYResult;
     '\n    *[_type == "post" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "wordCount": length(pt::text(body)),\n        "derefTag": coalesce(tags[]->, []),\n    }\n': POST_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CV_REF_QUERYResult;

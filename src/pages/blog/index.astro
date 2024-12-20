@@ -25,11 +25,13 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
               href={`/blog/${post.slug.current}`}
               class="block overflow-hidden rounded-lg aspect-video"
             >
-              <SanityImage
-                node={post.image}
-                alt={post.title}
-                class="object-cover object-center w-full h-full transition-transform hover:scale-125"
-              />
+              {post.image && (
+                <SanityImage
+                  node={post.image}
+                  alt={post.image.alt}
+                  class="object-cover object-center w-full h-full transition-transform hover:scale-125"
+                />
+              )}
             </a>
 
             <div class="flex justify-between items-end mt-4">

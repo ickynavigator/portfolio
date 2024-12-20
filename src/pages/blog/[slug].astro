@@ -22,8 +22,9 @@ export const getStaticPaths = (async () => {
 
 const { slug } = Astro.params;
 const { result } = await loadQuery({ query: POST_QUERY, params: { slug } });
+const image = result?.images?.[0];
 
-if (!result) {
+if (!result || !image) {
   return Astro.redirect("/404");
 }
 ---
@@ -31,13 +32,13 @@ if (!result) {
 <MainLayout
   title={result.title}
   description={result.description}
-  image={urlForImage(result.image).url()}
+  image={urlForImage(image).url()}
   ogType="article"
   keywords={result.derefTag.map((tag) => tag.title)}
 >
   <NavLayout>
     <div>
-      <SanityImage node={result.image} alt="Header" class="md:rounded-md" />
+      <SanityImage node={image} alt={image.alt} class="md:rounded-md" />
     </div>
 
     <Container as="article" innerPage>

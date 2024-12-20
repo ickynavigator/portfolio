@@ -9,7 +9,7 @@ export const POSTS_QUERY = defineQuery(`
         title,
         slug,
         postedAt, 
-        image,
+        "image": images[0],
         "wordCount": length(pt::text(body))
     }
 `);
