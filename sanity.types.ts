@@ -124,6 +124,7 @@ export type Project = {
         };
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
+        alt: string;
         _type: "image";
         _key: string;
       }
@@ -206,6 +207,7 @@ export type Post = {
         };
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
+        alt: string;
         _type: "image";
         _key: string;
       }
@@ -249,6 +251,7 @@ export type BlockContent = Array<
       };
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
+      alt: string;
       _type: "image";
       _key: string;
     }
@@ -300,7 +303,7 @@ export type PersonalInfo = {
     lastupdatedAt?: string;
   };
   image: {
-    asset?: {
+    asset: {
       _ref: string;
       _type: "reference";
       _weak?: boolean;
@@ -308,6 +311,7 @@ export type PersonalInfo = {
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt: string;
     _type: "image";
   };
   bio: BlockContent;
@@ -554,6 +558,7 @@ export type POST_QUERYResult = {
         };
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
+        alt: string;
         _type: "image";
         _key: string;
       }

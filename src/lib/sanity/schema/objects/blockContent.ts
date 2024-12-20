@@ -39,6 +39,16 @@ export default defineType({
     defineArrayMember({
       type: "image",
       options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          type: "string",
+          title: "Alternative text",
+          description: "Important for SEO and accessiblity.",
+          validation: (Rule) => Rule.required().min(3),
+        }),
+      ],
+      validation: (Rule) => Rule.required().assetRequired(),
     }),
 
     defineArrayMember({
