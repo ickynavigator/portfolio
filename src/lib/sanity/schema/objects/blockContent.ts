@@ -1,4 +1,4 @@
-import { defineArrayMember, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
   title: "Block Content",
@@ -12,26 +12,26 @@ export default defineType({
         spellCheck: false,
       },
       styles: [
-        { title: "Normal", value: "normal" as const },
-        { title: "H1", value: "h1" as const },
-        { title: "H2", value: "h2" as const },
-        { title: "H3", value: "h3" as const },
-        { title: "H4", value: "h4" as const },
-        { title: "H5", value: "h5" as const },
-        { title: "H6", value: "h6" as const },
-        { title: "Quote", value: "blockquote" as const },
+        { title: "Normal", value: "normal" },
+        { title: "H1", value: "h1" },
+        { title: "H2", value: "h2" },
+        { title: "H3", value: "h3" },
+        { title: "H4", value: "h4" },
+        { title: "H5", value: "h5" },
+        { title: "H6", value: "h6" },
+        { title: "Quote", value: "blockquote" },
       ],
       lists: [
-        { title: "Bullet", value: "bullet" as const },
-        { title: "Numbered", value: "number" as const },
+        { title: "Bullet", value: "bullet" },
+        { title: "Numbered", value: "number" },
       ],
       marks: {
         decorators: [
-          { title: "Strong", value: "strong" as const },
-          { title: "Emphasis", value: "em" as const },
-          { title: "Code", value: "code" as const },
-          { title: "Underline", value: "underline" as const },
-          { title: "Strike", value: "strike-through" as const },
+          { title: "Strong", value: "strong" },
+          { title: "Emphasis", value: "em" },
+          { title: "Code", value: "code" },
+          { title: "Underline", value: "underline" },
+          { title: "Strike", value: "strike-through" },
         ],
       },
     }),
