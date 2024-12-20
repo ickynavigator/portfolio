@@ -14,6 +14,16 @@ export default defineType({
     }),
 
     defineField({
+      name: "archived",
+      title: "Archive Post",
+      description:
+        "This will prevent a post from showing up in the search/page list but it will still be available for people to access",
+      type: "boolean",
+      initialValue: false,
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: "title",
       title: "Title",
       type: "string",
@@ -44,10 +54,7 @@ export default defineType({
       title: "Tags",
       type: "array",
       of: [
-        defineArrayMember({
-          type: "reference",
-          to: [{ type: "category" as const }],
-        }),
+        defineArrayMember({ type: "reference", to: [{ type: "category" }] }),
       ],
       validation: (Rule) => Rule.unique(),
     }),

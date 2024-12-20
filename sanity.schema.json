@@ -231,6 +231,13 @@
         },
         "optional": false
       },
+      "archived": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": false
+      },
       "title": {
         "type": "objectAttribute",
         "value": {

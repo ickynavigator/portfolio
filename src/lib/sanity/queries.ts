@@ -4,7 +4,7 @@ import { PERSONAL_INFO_CONFIG_ID } from "../constants";
 
 // @sanity-typegen-ignore
 export const POSTS_QUERY = defineQuery(`
-    *[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {
+    *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {
         _id,
         title,
         slug,
