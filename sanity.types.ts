@@ -628,6 +628,29 @@ export type HOME_PAGE_QUERYResult = {
     >;
   }>;
 } | null;
+// Variable: PAGINATED_PROJECTS_QUERY
+// Query: {        "data":     *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_postedAt desc) {        _id,        _postedAt,        name,        slug,         "image": images[0]    },    }
+export type PAGINATED_PROJECTS_QUERYResult = {
+  data: Array<{
+    _id: string;
+    _postedAt: null;
+    name: string;
+    slug: Slug;
+    image: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt: string;
+      _type: "image";
+      _key: string;
+    } | null;
+  }>;
+};
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -636,5 +659,6 @@ declare module "@sanity/client" {
     '\n    *[_type == "post" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "wordCount": length(pt::text(body)),\n        "derefTag": coalesce(tags[]->, []),\n    }\n': POST_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CV_REF_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        name,\n        title,\n        tagline,\n        shortBio,\n        "selectedPosts": coalesce(\n            selectedPosts[]-> {\n                title,\n                description,\n                "slug": slug.current\n            },\n        []),\n        "selectedProjects": [{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]}],\n    }\n': HOME_PAGE_QUERYResult;
+    '\n    {\n        "data": \n    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_postedAt desc) {\n        _id,\n        _postedAt,\n        name,\n        slug, \n        "image": images[0]\n    }\n,\n    }\n': PAGINATED_PROJECTS_QUERYResult;
   }
 }

@@ -64,3 +64,20 @@ export const HOME_PAGE_QUERY = defineQuery(`
         "selectedProjects": [{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]}],
     }
 `);
+
+// @sanity-typegen-ignore
+export const PROJECTS_QUERY = defineQuery(`
+    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_postedAt desc) {
+        _id,
+        _postedAt,
+        name,
+        slug, 
+        "image": images[0]
+    }
+`);
+
+export const PAGINATED_PROJECTS_QUERY = defineQuery(`
+    {
+        "data": ${PROJECTS_QUERY},
+    }
+`);

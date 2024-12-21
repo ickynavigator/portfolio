@@ -1,0 +1,72 @@
+---
+import { ArrowUpRight, Calendar } from "lucide-react";
+
+import Container from "~/components/Container.astro";
+import SanityImage from "~/components/SanityImage.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
+import NavLayout from "~/layouts/NavLayout.astro";
+import dayjs from "~/lib/date";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { PAGINATED_PROJECTS_QUERY } from "~/lib/sanity/queries";
+
+const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
+---
+
+<MainLayout title="Project" description="Project list">
+  <NavLayout>
+    <Container innerPage>
+      <div class="mb-4">
+        <h2 class="leading-none tracking-tight font-light text-2xl">
+          Building experiences, one line of code at a time.
+        </h2>
+        <span class="leading-none tracking-tight font-light"
+          >Click. Explore.</span
+        >
+      </div>
+
+      <div class="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        {
+          result.data.map((project) => (
+            <div>
+              <a
+                href={`/project/${project.slug.current}`}
+                class="block overflow-hidden rounded-lg aspect-video"
+              >
+                {project.image && (
+                  <SanityImage
+                    node={project.image}
+                    alt={project.image.alt}
+                    class="object-cover object-center w-full h-full transition-transform hover:scale-125"
+                  />
+                )}
+              </a>
+
+              <div class="flex justify-between items-end mt-4">
+                <div>
+                  <h2 class="line-clamp-1">{project.name}</h2>
+
+                  <div class="inline-flex text-center gap-2">
+                    <span class="inline-flex items-center gap-1">
+                      <Calendar className="inline relative-icon" />
+                      {dayjs(project._postedAt).format("L")}
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <a
+                    href={`/project/${project.slug.current}`}
+                    class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
+                  >
+                    <span class="text-xs">More</span>
+                    <ArrowUpRight className="inline relative-icon" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </NavLayout>
+</MainLayout>
