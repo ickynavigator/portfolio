@@ -98,12 +98,18 @@ const language = "ts";
       }
     }
 
-    &.has-focused:not(:hover) {
+    &.has-focused {
       .line {
-        @apply blur-[0.095rem] transition-all;
+        @apply blur-none transition;
+      }
 
-        &.focused {
-          @apply blur-none;
+      &:not(:hover) {
+        .line {
+          @apply blur-[0.095rem];
+
+          &.focused {
+            @apply blur-none;
+          }
         }
       }
     }
