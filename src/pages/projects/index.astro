@@ -48,7 +48,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                   <div class="inline-flex text-center gap-2">
                     <span class="inline-flex items-center gap-1">
                       <Calendar className="inline relative-icon" />
-                      {dayjs(project._postedAt).format("L")}
+                      {dayjs(project._createdAt).format("L")}
                     </span>
                   </div>
                 </div>

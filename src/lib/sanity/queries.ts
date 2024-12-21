@@ -67,9 +67,9 @@ export const HOME_PAGE_QUERY = defineQuery(`
 
 // @sanity-typegen-ignore
 export const PROJECTS_QUERY = defineQuery(`
-    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_postedAt desc) {
+    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {
         _id,
-        _postedAt,
+        _createdAt,
         name,
         slug, 
         "image": images[0]
