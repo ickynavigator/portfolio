@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
+import { Highlight } from "~/lib/sanity/schema/objects/blockContent.components";
+
 export default defineType({
   title: "Block Content",
   name: "blockContent",
@@ -32,6 +34,7 @@ export default defineType({
           { title: "Code", value: "code" },
           { title: "Underline", value: "underline" },
           { title: "Strike", value: "strike-through" },
+          Highlight,
         ],
       },
     }),
