@@ -29,7 +29,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
           result.data.map((project) => (
             <div>
               <a
-                href={`/project/${project.slug.current}`}
+                href={`/projects/${project.slug.current}`}
                 class="block overflow-hidden rounded-lg aspect-video"
               >
                 {project.image && (
@@ -55,7 +55,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
 
                 <div>
                   <a
-                    href={`/project/${project.slug.current}`}
+                    href={`/projects/${project.slug.current}`}
                     class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
                   >
                     <span class="text-xs">More</span>
