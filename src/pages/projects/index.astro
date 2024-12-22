@@ -35,7 +35,6 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                 {project.image && (
                   <SanityImage
                     node={project.image}
-                    alt={project.image.alt}
                     class="object-cover object-center w-full h-full transition-transform hover:scale-125"
                   />
                 )}
