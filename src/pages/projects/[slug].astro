@@ -1,0 +1,83 @@
+---
+import type { GetStaticPaths } from "astro";
+import { ArrowUpRight } from "lucide-react";
+
+import Container from "~/components/Container.astro";
+import PortableText from "~/components/PortableText/PortableText.astro";
+import SanityImage from "~/components/SanityImage.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
+import NavLayout from "~/layouts/NavLayout.astro";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { PROJECT_QUERY, PROJECT_SLUGS_QUERY } from "~/lib/sanity/queries";
+import { urlForImage } from "~/lib/sanity/urlForImage";
+
+export const getStaticPaths = (async () => {
+  const { result } = await loadQuery({ query: PROJECT_SLUGS_QUERY });
+
+  return result.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params;
+const { result } = await loadQuery({ query: PROJECT_QUERY, params: { slug } });
+const image = result?.images?.[0];
+
+if (!result || !image) {
+  return Astro.redirect("/404");
+}
+---
+
+<MainLayout
+  title={result.name}
+  image={urlForImage(image).url()}
+  ogType="article"
+  keywords={result.derefTag.map((tag) => tag.title)}
+>
+  <NavLayout>
+    <div>
+      <SanityImage node={image} alt={image.alt} class="md:rounded-md" />
+    </div>
+
+    <Container as="article" innerPage>
+      <div class="flex flex-col gap-4 mt-4">
+        <div class="space-y-2">
+          <h1 class="leading-none tracking-tight font-light text-2xl">
+            {result.name}
+          </h1>
+          <h3
+            class="leading-none tracking-tight font-light text-muted-foreground"
+          >
+            Role: {result.role}
+          </h3>
+        </div>
+
+        <ul class="overflow-x-scroll max-w-full whitespace-nowrap">
+          {
+            result.derefTag.map((tag) => (
+              <li class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:bg-primary-foreground inline-block">
+                {tag.title}
+              </li>
+            ))
+          }
+        </ul>
+        <PortableText data={result.body} />
+        <ul>
+          {
+            result.visibleLinks.map((link) => (
+              <li>
+                <a
+                  href={link.url}
+                  class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
+                >
+                  <span class="text-xs">{link.display}</span>
+                  <ArrowUpRight className="inline relative-icon" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Container>
+  </NavLayout>
+</MainLayout>

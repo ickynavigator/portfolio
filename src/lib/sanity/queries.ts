@@ -81,3 +81,17 @@ export const PAGINATED_PROJECTS_QUERY = defineQuery(`
         "data": ${PROJECTS_QUERY},
     }
 `);
+
+export const PROJECT_SLUGS_QUERY = defineQuery(`
+    *[_type == "project" && defined(slug.current) && hidden != true] {
+        "slug": slug.current
+    }
+`);
+
+export const PROJECT_QUERY = defineQuery(`
+    *[_type == "project" && slug.current == $slug && hidden != true][0] {
+        ...,
+        "visibleLinks": links[@.hidden != true],
+        "derefTag": coalesce(tags[]->, []),
+    }
+`);
