@@ -1,5 +1,8 @@
 ---
 import "@fontsource-variable/dm-sans";
+
+import { ClientRouter } from "astro:transitions";
+
 import "~/styles/globals.css";
 
 interface Props {
@@ -69,6 +72,8 @@ const getPageTitle = (title?: string) => {
     <meta name="twitter:image" content={image} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@obifortunebleh" />
+
+    <ClientRouter />
   </head>
 
   <body>
