@@ -1,6 +1,7 @@
 // @ts-check
 
 import tailwindcssAnimatePlugin from "tailwindcss-animate";
+import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -54,6 +55,9 @@ export default {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
+      },
+      fontFamily: {
+        sans: ["DM Sans Variable", ...defaultTheme.fontFamily.sans],
       },
     },
   },
