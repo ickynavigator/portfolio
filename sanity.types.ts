@@ -853,6 +853,122 @@ export type PROJECT_QUERYResult = {
     slug: Slug;
   }>;
 } | null;
+// Variable: CAREERS_QUERY
+// Query: {        "careers":  *[_type == "career" && hidden != true] {            ...,            "visibleLinks": coalesce(links[@.hidden != true], []),            "derefTag": coalesce(tags[]->, []),        },        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt    }
+export type CAREERS_QUERYResult = {
+  careers: Array<{
+    _id: string;
+    _type: "career";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    hidden: boolean;
+    type:
+      | "Apprenticeship"
+      | "Contract"
+      | "Freelance"
+      | "Full-time"
+      | "Internship"
+      | "Part-time"
+      | "Self-Employed";
+    title: string;
+    description: Array<
+      | ({
+          _key: string;
+        } & Code)
+      | {
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?:
+            | "blockquote"
+            | "h1"
+            | "h2"
+            | "h3"
+            | "h4"
+            | "h5"
+            | "h6"
+            | "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }
+      | {
+          asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+          };
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          alt: string;
+          _type: "image";
+          _key: string;
+        }
+    >;
+    tags: Array<{
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      _key: string;
+      [internalGroqTypeReferenceTo]?: "category";
+    }>;
+    location: {
+      type: "Hybrid" | "On-site" | "Remote";
+      address: string;
+    };
+    company: {
+      name: string;
+      url: string;
+      logo: {
+        asset: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt: string;
+        _type: "image";
+      };
+    };
+    date: {
+      start: string;
+      end?: string;
+    };
+    links: Array<
+      {
+        _key: string;
+      } & EnhancedURL
+    >;
+    visibleLinks: Array<
+      {
+        _key: string;
+      } & EnhancedURL
+    >;
+    derefTag: Array<{
+      _id: string;
+      _type: "category";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      title: string;
+      slug: Slug;
+    }>;
+  }>;
+  cvUpdatedAt: string | null;
+};
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -864,5 +980,6 @@ declare module "@sanity/client" {
     '\n    {\n        "data": \n    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {\n        _id,\n        _createdAt,\n        name,\n        slug, \n        "image": images[0]\n    }\n,\n    }\n': PAGINATED_PROJECTS_QUERYResult;
     '\n    *[_type == "project" && defined(slug.current) && hidden != true] {\n        "slug": slug.current\n    }\n': PROJECT_SLUGS_QUERYResult;
     '\n    *[_type == "project" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "visibleLinks": links[@.hidden != true],\n        "derefTag": coalesce(tags[]->, []),\n    }\n': PROJECT_QUERYResult;
+    '\n    {\n        "careers":  *[_type == "career" && hidden != true] {\n            ...,\n            "visibleLinks": coalesce(links[@.hidden != true], []),\n            "derefTag": coalesce(tags[]->, []),\n        },\n        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt\n    }\n': CAREERS_QUERYResult;
   }
 }

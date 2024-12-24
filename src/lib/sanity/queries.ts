@@ -95,3 +95,14 @@ export const PROJECT_QUERY = defineQuery(`
         "derefTag": coalesce(tags[]->, []),
     }
 `);
+
+export const CAREERS_QUERY = defineQuery(`
+    {
+        "careers":  *[_type == "career" && hidden != true] {
+            ...,
+            "visibleLinks": coalesce(links[@.hidden != true], []),
+            "derefTag": coalesce(tags[]->, []),
+        },
+        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt
+    }
+`);

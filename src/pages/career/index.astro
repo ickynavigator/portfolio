@@ -1,0 +1,101 @@
+---
+import { ArrowUpRight, File } from "lucide-react";
+
+import Container from "~/components/Container.astro";
+import PortableText from "~/components/PortableText/PortableText.astro";
+import SanityImage from "~/components/SanityImage.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
+import NavLayout from "~/layouts/NavLayout.astro";
+import dayjs from "~/lib/date";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { CAREERS_QUERY } from "~/lib/sanity/queries";
+
+const { result } = await loadQuery({ query: CAREERS_QUERY });
+---
+
+<MainLayout title="Career">
+  <NavLayout>
+    <Container innerPage>
+      <div class="flex justify-between items-center gap-4">
+        <h1 class="leading-none tracking-tight font-bold text-xl">
+          Experience
+        </h1>
+
+        <a
+          href="/cv"
+          class="hover-link inline-flex items-center gap-1"
+          title={`CV Last Updated: ${dayjs(result.cvUpdatedAt).format("MMM DD, YYYY")}`}
+          ><File className="relative-icon" />View CV</a
+        >
+      </div>
+
+      <div class="divide-y">
+        {
+          result.careers.map((career) => (
+            <div class="flex flex-col gap-4 py-4">
+              <div class="flex gap-4 flex-col md:flex-row justify-start items-start md:items-center">
+                <div class="w-[5%]">
+                  <SanityImage
+                    node={career.company.logo}
+                    class="border rounded-sm transition duration-300 shadow-sm hover:shadow-md"
+                  />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <h2 class="leading-none tracking-tight font-bold text-xl">
+                    {career.company.name}
+                  </h2>
+
+                  <h3 class="leading-none tracking-tight font-light text-md">
+                    {career.title}
+                  </h3>
+
+                  <h4 class="divide-x-2 flex items-center gap-2 leading-none tracking-tight font-medium text-muted-foreground text-sm [&>*:not(:first-child)]:pl-2">
+                    <span>
+                      {dayjs(career.date.start).format("MMM, YYYY")} -{" "}
+                      {career.date.end
+                        ? dayjs(career.date.end).format("MMM, YYYY")
+                        : "Present"}
+                    </span>
+
+                    <span>
+                      {career.type} - {career.location.type}
+                    </span>
+
+                    <span>{career.location.address}</span>
+                  </h4>
+                </div>
+              </div>
+
+              <ul class="overflow-x-auto max-w-full whitespace-nowrap">
+                {career.derefTag.map((tag) => (
+                  <li class="text-xs font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:bg-primary-foreground inline-block">
+                    {tag.title}
+                  </li>
+                ))}
+              </ul>
+
+              <div>
+                <PortableText data={career.description} />
+              </div>
+
+              <ul>
+                {career.visibleLinks.map((link) => (
+                  <li>
+                    <a
+                      href={link.url}
+                      class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition duration-300 hover:bg-secondary hover:shadow-sm"
+                    >
+                      <span class="text-xs">{link.display}</span>
+                      <ArrowUpRight className="inline relative-icon" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </NavLayout>
+</MainLayout>
