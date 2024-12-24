@@ -80,26 +80,7 @@ export default defineType({
           name: "address",
           title: "Address",
           type: "string",
-          validation: (Rule) =>
-            Rule.custom((value, ctx) => {
-              if (
-                !(
-                  ctx.document?.location &&
-                  typeof ctx.document?.location === "object" &&
-                  "type" in ctx.document.location
-                )
-              ) {
-                return true;
-              }
-
-              if (ctx.document?.location.type === "On-site") {
-                if (value == undefined || value === "") {
-                  return "Address is required for on-site locations";
-                }
-              }
-
-              return true;
-            }),
+          validation: (Rule) => Rule.required(),
         }),
       ],
       validation: (Rule) => Rule.required(),

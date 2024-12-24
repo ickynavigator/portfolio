@@ -118,7 +118,7 @@ export type Career = {
   }>;
   location: {
     type: "On-site" | "Hybrid" | "Remote";
-    address?: string;
+    address: string;
   };
   company: {
     name: string;
