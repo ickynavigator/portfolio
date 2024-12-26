@@ -1,0 +1,37 @@
+---
+
+---
+
+<!-- <span id="progress-bar"></span> -->
+<progress id="progress-bar" max="100" aria-label="page scroll status"
+></progress>
+
+<style>
+  #progress-bar {
+    @apply fixed left-0 top-0 h-0.5 w-svw rounded transition-transform duration-200;
+
+    &::-webkit-progress-bar {
+      @apply bg-transparent;
+    }
+    &::-webkit-progress-value {
+      @apply bg-primary;
+    }
+  }
+</style>
+
+<script is:inline>
+  // eslint-disable-next-line prettier/prettier
+  window.addEventListener("scroll", function () {
+    const currentProgress = window.scrollY;
+    const scrollHeight = document.body.scrollHeight - window.innerHeight;
+
+    const scroll =
+      scrollHeight > 0 ? (currentProgress / scrollHeight) * 100 : 0;
+
+    console.log(scroll.toFixed(2));
+
+    document
+      .getElementById("progress-bar")
+      .setAttribute("value", scroll.toFixed(2));
+  });
+</script>

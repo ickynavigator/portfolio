@@ -5,6 +5,7 @@ import { Calendar, Edit, Timer } from "lucide-react";
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
 import SanityImage from "~/components/SanityImage.astro";
+import ScrollProgress from "~/components/ScrollProgress.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 import dayjs, { getReadingTime } from "~/lib/date";
@@ -37,6 +38,8 @@ if (!result || !image) {
   keywords={result.derefTag.map((tag) => tag.title)}
 >
   <NavLayout>
+    <ScrollProgress />
+
     <div>
       <SanityImage node={image} class="md:rounded-md" />
     </div>
