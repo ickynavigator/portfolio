@@ -3,6 +3,7 @@ import "@fontsource-variable/dm-sans";
 
 import { ClientRouter } from "astro:transitions";
 
+import { getEnv } from "~/lib/env";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PROFILE_IMAGE_QUERY } from "~/lib/sanity/queries";
 
@@ -15,6 +16,8 @@ interface Props {
   ogType?: string;
   image?: string;
 }
+
+const env = getEnv();
 
 const profilePicture = async () => {
   const { result } = await loadQuery({ query: PROFILE_IMAGE_QUERY });
@@ -31,7 +34,7 @@ const {
   image = await profilePicture(),
 } = Astro.props;
 
-const appURL = `${Astro.url.origin}/${Astro.url.pathname}`;
+const appURL = `${env.WEBSITE_URL}${Astro.url.pathname}`;
 
 const keywords = [
   "Astro",

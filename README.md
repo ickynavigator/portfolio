@@ -13,7 +13,6 @@ Fill up the .env file with the variables in the .env.example
 | `PUBLIC_SANITY_API_PROJECT_ID` | Project ID of your Sanity project. Defaults to **MY** project Id |
 | `PUBLIC_SANITY_API_DATASET`    | Dataset name of your Sanity project. Defaults to `production`    |
 | `PUBLIC_SANITY_API_VERSION`    | API version of your Sanity project. Defaults to `2022-03-07`     |
-| `SANITY_API_WRITE_TOKEN`       | API token with write access to your Sanity project               |
 
 ### 🧞 Commands
 

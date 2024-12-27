@@ -1,18 +1,26 @@
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
+// TODO: --log-override:empty-import-meta=silent
+const _getEnv = () => {
+  try {
+    return process.env;
+  } catch {
+    return import.meta.env;
+  }
+};
+
 type RuntimeEnv = Record<string, string | boolean | number | undefined>;
-export const getEnv = (runtimeEnv: RuntimeEnv) => {
+export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
   return createEnv({
     clientPrefix: "PUBLIC_",
     client: {},
-    server: {
-      SANITY_API_WRITE_TOKEN: z.string().min(1),
-    },
+    server: {},
     shared: {
       PUBLIC_SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
       PUBLIC_SANITY_API_DATASET: z.string().min(1).default("production"),
       PUBLIC_SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
+      WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
     },
     runtimeEnv: runtimeEnv,
     emptyStringAsUndefined: true,

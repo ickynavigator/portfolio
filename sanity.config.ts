@@ -13,16 +13,7 @@ import { schema } from "~/lib/sanity/schema";
 import configuration from "~/lib/sanity/schema/documents/configuration";
 import personalInfo from "~/lib/sanity/schema/documents/personalInfo";
 
-const _getEnv = () => {
-  try {
-    return process.env;
-  } catch {
-    return import.meta.env;
-  }
-};
-
-// TODO: --log-override:empty-import-meta=silent
-const env = getEnv(_getEnv());
+const env = getEnv();
 
 export default defineConfig({
   name: "portfolio",

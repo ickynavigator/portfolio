@@ -2,3 +2,9 @@
 name = "portfolio"
 compatibility_date = "2024-10-22"
 pages_build_output_dir = "./dist"
+
+[vars]
+WEBSITE_URL = "https://v4.obifortune.com"
+PUBLIC_SANITY_API_PROJECT_ID = "gtsyvuts"
+PUBLIC_SANITY_API_DATASET = "production"
+PUBLIC_SANITY_API_VERSION = "2022-03-07"
