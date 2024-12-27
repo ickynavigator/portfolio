@@ -81,7 +81,11 @@ export type Career = {
           | "h4"
           | "h5"
           | "h6"
-          | "blockquote";
+          | "blockquote"
+          | "blockquote-info"
+          | "blockquote-success"
+          | "blockquote-warning"
+          | "blockquote-danger";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -202,7 +206,11 @@ export type Project = {
           | "h4"
           | "h5"
           | "h6"
-          | "blockquote";
+          | "blockquote"
+          | "blockquote-info"
+          | "blockquote-success"
+          | "blockquote-warning"
+          | "blockquote-danger";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -285,7 +293,11 @@ export type Post = {
           | "h4"
           | "h5"
           | "h6"
-          | "blockquote";
+          | "blockquote"
+          | "blockquote-info"
+          | "blockquote-success"
+          | "blockquote-warning"
+          | "blockquote-danger";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -329,7 +341,19 @@ export type BlockContent = Array<
         _type: "span";
         _key: string;
       }>;
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      style?:
+        | "normal"
+        | "h1"
+        | "h2"
+        | "h3"
+        | "h4"
+        | "h5"
+        | "h6"
+        | "blockquote"
+        | "blockquote-info"
+        | "blockquote-success"
+        | "blockquote-warning"
+        | "blockquote-danger";
       listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
@@ -630,6 +654,10 @@ export type POST_QUERYResult = {
           _key: string;
         }>;
         style?:
+          | "blockquote-danger"
+          | "blockquote-info"
+          | "blockquote-success"
+          | "blockquote-warning"
           | "blockquote"
           | "h1"
           | "h2"
@@ -801,6 +829,10 @@ export type PROJECT_QUERYResult = {
           _key: string;
         }>;
         style?:
+          | "blockquote-danger"
+          | "blockquote-info"
+          | "blockquote-success"
+          | "blockquote-warning"
           | "blockquote"
           | "h1"
           | "h2"
@@ -884,6 +916,10 @@ export type CAREERS_QUERYResult = {
             _key: string;
           }>;
           style?:
+            | "blockquote-danger"
+            | "blockquote-info"
+            | "blockquote-success"
+            | "blockquote-warning"
             | "blockquote"
             | "h1"
             | "h2"

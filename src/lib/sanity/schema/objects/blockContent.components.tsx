@@ -1,4 +1,7 @@
-import type { BlockDecoratorDefinition } from "sanity";
+import { Text } from "@sanity/ui";
+import type { HTMLProps } from "react";
+import type { BlockDecoratorDefinition, BlockStyleDefinition } from "sanity";
+import { styled } from "styled-components";
 
 export const Highlight = {
   title: "Mark",
@@ -6,3 +9,61 @@ export const Highlight = {
   icon: () => <mark style={{ fontWeight: "bold" }}>H</mark>,
   component: (props) => <mark>{props.children}</mark>,
 } satisfies BlockDecoratorDefinition;
+
+const BlockQuoteBase = (status: string) => {
+  type BlockQuoteStyleProps = Omit<HTMLProps<HTMLQuoteElement>, "as" | "ref">;
+
+  const BlockQuoteRoot = styled.blockquote`
+    --border-color: var(--card-border-color);
+
+    position: relative;
+    display: block;
+    margin: 0;
+    padding-left: ${({ theme }) => theme.sanity.space[3]}px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -4px;
+      bottom: -4px;
+      width: 3px;
+      background: var(--border-color);
+    }
+
+    &[data-status="blockquote-info"] {
+      --border-color: var(--card-badge-suggest-fg-color);
+    }
+
+    &[data-status="blockquote-success"] {
+      --border-color: var(--card-badge-positive-fg-color);
+    }
+
+    &[data-status="blockquote-warning"] {
+      --border-color: var(--card-badge-caution-fg-color);
+    }
+
+    &[data-status="blockquote-danger"] {
+      --border-color: var(--card-badge-critical-fg-color);
+    }
+  `;
+
+  const BlockQuote = ({ children, ...rest }: BlockQuoteStyleProps) => (
+    <BlockQuoteRoot {...rest} data-status={`blockquote-${status}`}>
+      <Text as="p">{children}</Text>
+    </BlockQuoteRoot>
+  );
+
+  const BlockQuoteExample: BlockStyleDefinition = {
+    title: `Quote - ${status}`,
+    value: `blockquote-${status}`,
+    component: ({ children }) => <BlockQuote>{children}</BlockQuote>,
+  };
+
+  return BlockQuoteExample;
+};
+
+export const BlockQuoteInfo = BlockQuoteBase("info");
+export const BlockQuoteSuccess = BlockQuoteBase("success");
+export const BlockQuoteWarning = BlockQuoteBase("warning");
+export const BlockQuoteDanger = BlockQuoteBase("danger");

@@ -1,6 +1,12 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-import { Highlight } from "~/lib/sanity/schema/objects/blockContent.components";
+import {
+  BlockQuoteDanger,
+  BlockQuoteInfo,
+  BlockQuoteSuccess,
+  BlockQuoteWarning,
+  Highlight,
+} from "~/lib/sanity/schema/objects/blockContent.components";
 
 export default defineType({
   title: "Block Content",
@@ -22,6 +28,10 @@ export default defineType({
         { title: "H5", value: "h5" },
         { title: "H6", value: "h6" },
         { title: "Quote", value: "blockquote" },
+        BlockQuoteInfo,
+        BlockQuoteSuccess,
+        BlockQuoteWarning,
+        BlockQuoteDanger,
       ],
       lists: [
         { title: "Bullet", value: "bullet" },

@@ -368,6 +368,22 @@
                         {
                           "type": "string",
                           "value": "blockquote"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-info"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-success"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-warning"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-danger"
                         }
                       ]
                     },
@@ -1119,6 +1135,22 @@
                         {
                           "type": "string",
                           "value": "blockquote"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-info"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-success"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-warning"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-danger"
                         }
                       ]
                     },
@@ -1623,6 +1655,22 @@
                         {
                           "type": "string",
                           "value": "blockquote"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-info"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-success"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-warning"
+                        },
+                        {
+                          "type": "string",
+                          "value": "blockquote-danger"
                         }
                       ]
                     },
@@ -1931,6 +1979,22 @@
                     {
                       "type": "string",
                       "value": "blockquote"
+                    },
+                    {
+                      "type": "string",
+                      "value": "blockquote-info"
+                    },
+                    {
+                      "type": "string",
+                      "value": "blockquote-success"
+                    },
+                    {
+                      "type": "string",
+                      "value": "blockquote-warning"
+                    },
+                    {
+                      "type": "string",
+                      "value": "blockquote-danger"
                     }
                   ]
                 },
