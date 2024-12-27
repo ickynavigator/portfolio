@@ -28,8 +28,6 @@
     const scroll =
       scrollHeight > 0 ? (currentProgress / scrollHeight) * 100 : 0;
 
-    console.log(scroll.toFixed(2));
-
     document
       .getElementById("progress-bar")
       .setAttribute("value", scroll.toFixed(2));
