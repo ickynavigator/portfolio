@@ -1,6 +1,7 @@
 import { codeInput } from "@sanity/code-input";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
+import { webhooksTrigger } from "sanity-plugin-webhooks-trigger";
 import { structureTool } from "sanity/structure";
 
 import {
@@ -61,6 +62,7 @@ export default defineConfig({
       defaultDataset: env.PUBLIC_SANITY_API_DATASET,
     }),
     codeInput(),
+    webhooksTrigger(),
   ],
   schema,
 });
