@@ -31,7 +31,7 @@ const {
   image = await profilePicture(),
 } = Astro.props;
 
-const appURL = `/${Astro.url.pathname}`;
+const appURL = `${Astro.url.origin}/${Astro.url.pathname}`;
 
 const keywords = [
   "Astro",
