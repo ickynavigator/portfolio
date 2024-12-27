@@ -1,9 +1,25 @@
 ---
+import type { BlockProps } from "astro-portabletext/types";
 
+import { cn } from "~/lib/utils";
+
+type Props = BlockProps;
+
+const {
+  node: { style },
+} = Astro.props;
 ---
 
 <blockquote
-  class="p-4 my-4 rounded border-l-4 border-muted-foreground bg-secondary"
+  class={cn(
+    "p-4 my-4 rounded border-l-4 border-muted-foreground bg-secondary",
+    // Todo: Add more styles
+    style === "blockquote-info" && "",
+    style === "blockquote-success" && "",
+    style === "blockquote-warning" && "",
+    style === "blockquote-danger" &&
+      "bg-destructive border-destructive-foreground",
+  )}
 >
   <p class="italic font-medium leading-relaxed">
     <slot />
