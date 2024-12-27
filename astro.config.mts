@@ -19,6 +19,10 @@ const env = getEnv(_env);
 export default defineConfig({
   output: "static",
 
+  prefetch: {
+    prefetchAll: true,
+  },
+
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
