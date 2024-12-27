@@ -29,23 +29,36 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                 <SanityImage
                   node={post.image}
                   alt={post.image.alt}
-                  class="object-cover object-center w-full h-full transition-transform hover:scale-125"
+                  class="object-cover object-center w-full h-full hover:drop-shadow-xl transition"
+                  transition:name={`blog-image-${post.slug.current}`}
                 />
               )}
             </a>
 
             <div class="flex justify-between items-end mt-4">
               <div>
-                <h2 class="line-clamp-1">{post.title}</h2>
+                <h2
+                  class="line-clamp-1"
+                  transition:name={`blog-title-${post.slug.current}`}
+                >
+                  {post.title}
+                </h2>
                 <div class="inline-flex text-center gap-2">
-                  <span class="inline-flex items-center gap-1">
+                  <span
+                    class="inline-flex items-center gap-1"
+                    transition:name={`blog-post-time-${post.slug.current}`}
+                  >
                     <Calendar className="inline relative-icon" />
                     {dayjs(post.postedAt).format("L")}
                   </span>
                   &#xb7;
                   <span class="inline-flex items-center gap-1">
                     <Timer className="inline relative-icon" />
-                    {getReadingTime(post.wordCount)}
+                    <span
+                      transition:name={`blog-read-time-${post.slug.current}`}
+                    >
+                      {getReadingTime(post.wordCount)}
+                    </span>
                   </span>
                 </div>
               </div>

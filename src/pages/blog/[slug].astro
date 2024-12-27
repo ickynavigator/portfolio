@@ -1,6 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { Calendar, Edit, Timer } from "lucide-react";
+import { ArrowLeft, Calendar, Edit, Timer } from "lucide-react";
 
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
@@ -39,14 +39,27 @@ if (!result || !image) {
 >
   <NavLayout>
     <ScrollProgress />
+    <Container innerPage class="mb-4">
+      <a href="/blog" class="hover-link">
+        <ArrowLeft className="inline relative-icon" />
+        Back to Blogs</a
+      >
+    </Container>
 
     <div>
-      <SanityImage node={image} class="md:rounded-md" />
+      <SanityImage
+        node={image}
+        class="md:rounded-md"
+        transition:name={`blog-image-${result.slug.current}`}
+      />
     </div>
 
     <Container as="article" innerPage>
       <div class="flex flex-col gap-4 mt-4">
-        <h1 class="relative font-bold leading-none tracking-tight text-5xl">
+        <h1
+          class="relative font-bold leading-none tracking-tight text-5xl"
+          transition:name={`blog-title-${result.slug.current}`}
+        >
           {result.title}
         </h1>
 
@@ -59,6 +72,7 @@ if (!result || !image) {
             <span
               class="inline-flex items-center gap-1"
               title={`Posted on ${dayjs(result.postedAt).format("LLLL")}`}
+              transition:name={`blog-post-time-${result.slug.current}`}
             >
               <Calendar className="inline relative-icon" />
               <time datetime={result.postedAt}
@@ -84,7 +98,9 @@ if (!result || !image) {
 
           <span class="inline-flex items-center gap-1 line-clamp-1">
             <Timer className="inline relative-icon" />
-            {getReadingTime(result.wordCount)} read
+            <span transition:name={`blog-read-time-${result.slug.current}`}
+              >{getReadingTime(result.wordCount)}</span
+            > read
           </span>
         </div>
 
