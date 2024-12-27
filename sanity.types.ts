@@ -1005,6 +1005,30 @@ export type CAREERS_QUERYResult = {
   }>;
   cvUpdatedAt: string | null;
 };
+// Variable: PROFILE_IMAGE_QUERY
+// Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->
+export type PROFILE_IMAGE_QUERYResult = {
+  _id: string;
+  _type: "sanity.imageAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  metadata?: SanityImageMetadata;
+  source?: SanityAssetSourceData;
+} | null;
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -1017,5 +1041,6 @@ declare module "@sanity/client" {
     '\n    *[_type == "project" && defined(slug.current) && hidden != true] {\n        "slug": slug.current\n    }\n': PROJECT_SLUGS_QUERYResult;
     '\n    *[_type == "project" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "visibleLinks": links[@.hidden != true],\n        "derefTag": coalesce(tags[]->, []),\n    }\n': PROJECT_QUERYResult;
     '\n    {\n        "careers":  *[_type == "career" && hidden != true] {\n            ...,\n            "visibleLinks": coalesce(links[@.hidden != true], []),\n            "derefTag": coalesce(tags[]->, []),\n        },\n        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt\n    }\n': CAREERS_QUERYResult;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->\n': PROFILE_IMAGE_QUERYResult;
   }
 }

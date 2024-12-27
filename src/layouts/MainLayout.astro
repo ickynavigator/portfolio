@@ -3,6 +3,9 @@ import "@fontsource-variable/dm-sans";
 
 import { ClientRouter } from "astro:transitions";
 
+import { loadQuery } from "~/lib/sanity/load-query";
+import { PROFILE_IMAGE_QUERY } from "~/lib/sanity/queries";
+
 import "~/styles/globals.css";
 
 interface Props {
@@ -13,15 +16,22 @@ interface Props {
   image?: string;
 }
 
+const profilePicture = async () => {
+  const { result } = await loadQuery({ query: PROFILE_IMAGE_QUERY });
+  const _profilePicture = result?.url;
+
+  return _profilePicture ?? "/favicon.ico";
+};
+
 const {
   title,
   description = "Obi Fortune's Portfolio. Built with Sanity, Astro, and Tailwind CSS.",
   keywords: _keywords = [],
   ogType = "website",
-  image = "/favicon.svg",
+  image = await profilePicture(),
 } = Astro.props;
 
-const appURL = `${Astro.url.origin}${Astro.url.pathname}`;
+const appURL = `/${Astro.url.pathname}`;
 
 const keywords = [
   "Astro",
@@ -48,7 +58,7 @@ const getPageTitle = (title?: string) => {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" type="image" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="creator" content="Obi Fortune" />

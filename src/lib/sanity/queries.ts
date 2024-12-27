@@ -106,3 +106,7 @@ export const CAREERS_QUERY = defineQuery(`
         "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt
     }
 `);
+
+export const PROFILE_IMAGE_QUERY = defineQuery(`
+    *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].image.asset->
+`);

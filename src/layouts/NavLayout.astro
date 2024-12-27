@@ -1,6 +1,7 @@
 ---
 import { Code2, Github, Linkedin, Mail, Twitter } from "lucide-react";
 
+import headerIcon from "~/assets/fox.svg?raw";
 import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
 import { cn } from "~/lib/utils";
@@ -52,7 +53,10 @@ const socials = [
   <header class="md:rounded-b-xl border border-t-0 mb-8 bg-primary-foreground">
     <nav class="flex justify-between items-center p-6">
       <div>
-        <a href="/" class="font-bold">Obi Fortune</a>
+        <a href="/" class="font-bold text-3xl inline-flex gap-2">
+          <Fragment set:html={headerIcon} />
+          Obi Fortune</a
+        >
       </div>
 
       <NavLinks>
