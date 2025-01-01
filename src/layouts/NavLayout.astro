@@ -4,6 +4,7 @@ import { Code2, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import headerIcon from "~/assets/fox.svg?raw";
 import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
+import { getEnv } from "~/lib/env";
 import { cn } from "~/lib/utils";
 
 const currentPage = Astro.url.pathname;
@@ -47,6 +48,8 @@ const socials = [
     color: "bg-[#010101]",
   },
 ];
+
+const env = getEnv();
 ---
 
 <Container data-vaul-drawer-wrapper>
@@ -119,7 +122,7 @@ const socials = [
       </div>
     </div>
 
-    <div class="text-xs uppercase">
+    <div class="text-xs uppercase flex justify-between">
       <div>
         <span>&copy; {new Date().getFullYear()};</span>
 
@@ -136,6 +139,14 @@ const socials = [
             >Obi Fortune</a
           >
         </span>
+      </div>
+
+      <div>
+        {
+          env.CF_PAGES_COMMIT_SHA && (
+            <span>Build SHA: {env.CF_PAGES_COMMIT_SHA}</span>
+          )
+        }
       </div>
     </div>
   </footer>
