@@ -104,11 +104,17 @@ if (!result) {
           result.selectedPosts.map((post) => (
             <li class="p-3">
               <a href={`/blog/${post.slug}`} class="flex flex-col gap-3 group">
-                <h3 class="hover-link leading-none tracking-tight text-lg group-hover:decoration-primary">
+                <h3
+                  class="hover-link leading-none tracking-tight text-lg group-hover:decoration-primary"
+                  transition:name={`blog-title-${post.slug}`}
+                >
                   {post.title}
                 </h3>
 
-                <p class="line-clamp-1 text-muted-foreground">
+                <p
+                  class="line-clamp-1 text-muted-foreground"
+                  transition:name={`blog-description-${post.title}`}
+                >
                   {post.description}
                 </p>
               </a>
