@@ -82,15 +82,18 @@ import Toggle from "~/components/Toggle.astro";
       });
     });
 
-  // INIT
+  const initialize = () => {
+    updateTheme(storedTheme ?? "system");
 
-  updateTheme(storedTheme ?? "system");
+    document
+      .querySelectorAll("input#light,input#dark,input#system")
+      .forEach((node) => {
+        if (node.id == (storedTheme ?? "system")) {
+          node.checked = true;
+        }
+      });
+  };
 
-  document
-    .querySelectorAll("input#light,input#dark,input#system")
-    .forEach((node) => {
-      if (node.id == (storedTheme ?? "system")) {
-        node.checked = true;
-      }
-    });
+  document.addEventListener("astro:after-swap", initialize);
+  initialize();
 </script>
