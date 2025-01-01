@@ -14,21 +14,26 @@ import Toggle from "~/components/Toggle.astro";
 />
 
 <script is:inline>
+  // eslint-disable-next-line prettier/prettier
+  const THEME_STORAGE_KEY = "theme";
+  const DARK_MODE_CLASS = "dark";
+
   const updateTheme = (incomingTheme) => {
-    // prettier acts weird in script tags
-    // eslint-disable-next-line prettier/prettier
     switch (incomingTheme) {
       case "light": {
-        document.documentElement.classList.remove("dark");
+        document.documentElement.classList.remove(DARK_MODE_CLASS);
         break;
       }
       case "dark": {
-        document.documentElement.classList.add("dark");
+        document.documentElement.classList.add(DARK_MODE_CLASS);
         break;
       }
       case "system": {
         const isDark = window.matchMedia("(prefers-color-scheme: dark)");
-        document.documentElement.classList.toggle("dark", isDark.matches);
+        document.documentElement.classList.toggle(
+          DARK_MODE_CLASS,
+          isDark.matches,
+        );
         break;
       }
       default: {
@@ -37,61 +42,57 @@ import Toggle from "~/components/Toggle.astro";
     }
   };
 
-  const THEME_KEY = "theme";
-  const storedTheme = localStorage.getItem(THEME_KEY);
-
-  let ignoreSystemTheme = storedTheme != null && storedTheme !== "system";
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", () => {
-      if (ignoreSystemTheme) return;
-      updateTheme("system");
-    });
-
-  document
-    .querySelectorAll("input#light,input#dark,input#system")
-    .forEach((node) => {
-      node.addEventListener("change", (event) => {
-        if (!(typeof event.target?.value === "string")) return;
-
-        const selectedTheme = event.target.value;
-
-        switch (selectedTheme) {
-          case "light":
-          case "dark": {
-            localStorage.setItem("theme", selectedTheme);
-
-            ignoreSystemTheme = true;
-
-            updateTheme(selectedTheme);
-            break;
-          }
-          case "system": {
-            localStorage.removeItem("theme");
-
-            ignoreSystemTheme = false;
-
-            updateTheme(selectedTheme);
-            break;
-          }
-          default: {
-            break;
-          }
-        }
-      });
-    });
-
   const initialize = () => {
-    updateTheme(storedTheme ?? "system");
+    const _storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    const storedTheme = _storedTheme ?? "system";
+
+    let ignoreSystemTheme = _storedTheme != null && _storedTheme !== "system";
+
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => {
+        if (ignoreSystemTheme) return;
+        updateTheme("system");
+      });
 
     document
       .querySelectorAll("input#light,input#dark,input#system")
       .forEach((node) => {
-        if (node.id == (storedTheme ?? "system")) {
+        if (node.id == storedTheme) {
           node.checked = true;
         }
+
+        node.addEventListener("change", (event) => {
+          if (!(typeof event.target?.value === "string")) return;
+
+          const selectedTheme = event.target.value;
+
+          switch (selectedTheme) {
+            case "light":
+            case "dark": {
+              localStorage.setItem("theme", selectedTheme);
+
+              ignoreSystemTheme = true;
+
+              updateTheme(selectedTheme);
+              break;
+            }
+            case "system": {
+              localStorage.removeItem("theme");
+
+              ignoreSystemTheme = false;
+
+              updateTheme(selectedTheme);
+              break;
+            }
+            default: {
+              break;
+            }
+          }
+        });
       });
+
+    updateTheme(storedTheme);
   };
 
   document.addEventListener("astro:after-swap", initialize);
