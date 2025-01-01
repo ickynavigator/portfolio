@@ -20,16 +20,20 @@
 </style>
 
 <script is:inline>
-  // eslint-disable-next-line prettier/prettier
-  window.addEventListener("scroll", function () {
-    const currentProgress = window.scrollY;
-    const scrollHeight = document.body.scrollHeight - window.innerHeight;
+  document.addEventListener("astro:page-load", () => {
+    // eslint-disable-next-line prettier/prettier
+    const scrollListener = () => {
+      const currentProgress = window.scrollY;
+      const scrollHeight = document.body.scrollHeight - window.innerHeight;
 
-    const scroll =
-      scrollHeight > 0 ? (currentProgress / scrollHeight) * 100 : 0;
+      const scroll =
+        scrollHeight > 0 ? (currentProgress / scrollHeight) * 100 : 0;
 
-    document
-      .getElementById("progress-bar")
-      .setAttribute("value", scroll.toFixed(2));
+      document
+        .getElementById("progress-bar")
+        ?.setAttribute("value", scroll.toFixed(2));
+    };
+    window.removeEventListener("scroll", scrollListener);
+    window.addEventListener("scroll", scrollListener);
   });
 </script>
