@@ -16,6 +16,8 @@ const links = [
   { href: "/career", text: "Career" },
 ];
 
+const repo = "https://github.com/ickynavigator/portfolio";
+
 const socials = [
   {
     href: "https://twitter.com/obifortunebleh",
@@ -36,7 +38,7 @@ const socials = [
     color: "bg-[#0077B5]",
   },
   {
-    href: "https://github.com/ickynavigator/portfolio",
+    href: repo,
     text: "Code",
     icon: Code2,
     color: "bg-[#010101]",
@@ -122,9 +124,9 @@ const env = getEnv();
       </div>
     </div>
 
-    <div class="text-xs uppercase flex justify-between">
-      <div>
-        <span>&copy; {new Date().getFullYear()};</span>
+    <div class="text-xs uppercase flex flex-col md:flex-row justify-between">
+      <div class="inline-flex flex-col md:inline">
+        <span>&copy; 2024 - {new Date().getFullYear()};</span>
 
         <span>
           Designed by
@@ -137,14 +139,23 @@ const env = getEnv();
           Developed by
           <a class="hover-link" href="https://twitter.com/obifortunebleh"
             >Obi Fortune</a
-          >
+          >;
         </span>
       </div>
 
       <div>
         {
           env.CF_PAGES_COMMIT_SHA && (
-            <span>Build SHA: {env.CF_PAGES_COMMIT_SHA}</span>
+            <span>
+              Build SHA:
+              <a
+                target="_blank"
+                href={`${repo}/commit/${env.CF_PAGES_COMMIT_SHA}`}
+                class="hover-link"
+              >
+                {env.CF_PAGES_COMMIT_SHA.substring(0, 7)}
+              </a>
+            </span>
           )
         }
       </div>
