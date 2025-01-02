@@ -65,8 +65,13 @@ if (!result || !image) {
         >
           {
             result.derefTag.map((tag) => (
-              <li class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:bg-primary-foreground inline-block">
-                {tag.title}
+              <li class="inline">
+                <a
+                  href={`/search?type=project&tag=${encodeURIComponent(tag.slug.current)}`}
+                  class="me-2 px-3 py-1.5 rounded-full border inline-block text-sm font-light transition-colors hover:bg-primary-foreground"
+                >
+                  {tag.title}
+                </a>
               </li>
             ))
           }

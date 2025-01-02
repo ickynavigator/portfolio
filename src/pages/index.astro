@@ -78,21 +78,23 @@ if (!result) {
                 </h3>
               </a>
 
-              <div
+              <ul
                 class="overflow-x-scroll max-w-full whitespace-nowrap"
                 transition:name={`project-tags-${project.slug}`}
               >
                 <div>
                   {project.tags.map((tag) => (
-                    <a
-                      href={`/projects/${project.slug}?tag=${encodeURIComponent(tag.slug)}`}
-                      class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:border-primary inline-block"
-                    >
-                      {tag.name}
-                    </a>
+                    <li class="inline">
+                      <a
+                        href={`/search?type=project&tag=${encodeURIComponent(tag.slug)}`}
+                        class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:border-primary inline-block"
+                      >
+                        {tag.name}
+                      </a>
+                    </li>
                   ))}
                 </div>
-              </div>
+              </ul>
             </li>
           ))
         }

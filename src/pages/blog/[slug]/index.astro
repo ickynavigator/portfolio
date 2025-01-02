@@ -104,6 +104,23 @@ if (!result || !image) {
           </span>
         </div>
 
+        <ul
+          class="overflow-x-scroll max-w-full whitespace-nowrap"
+          transition:name={`blog-tags-${result.slug.current}`}
+        >
+          {
+            result.derefTag.map((tag) => (
+              <li class="inline">
+                <a
+                  href={`/search?type=post&tag=${encodeURIComponent(tag.slug.current)}`}
+                  class="me-2 px-3 py-1.5 rounded-full border inline-block text-sm font-light transition-colors hover:bg-primary-foreground"
+                >
+                  {tag.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
         <p transition:name={`blog-description-${result.slug.current}`}>
           {result.description}
         </p>
