@@ -1,0 +1,39 @@
+---
+import { Search } from "lucide-react";
+
+import Input from "~/components/Input.astro";
+import Tabs from "~/components/Tabs.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
+import NavLayout from "~/layouts/NavLayout.astro";
+
+export const prerender = false;
+
+const defaultType = Astro.url.searchParams.get("type") ?? "post";
+const defaultSearch = Astro.url.searchParams.get("tag") ?? "";
+---
+
+<MainLayout>
+  <NavLayout>
+    <div class="flex flex-row items-center justify-center gap-2">
+      <Tabs
+        options={["Project", "Post"]}
+        defaultOption={defaultType}
+        name="Type"
+      />
+
+      <div class="relative flex-1">
+        <div
+          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+        >
+          <Search className="relative-icon" />
+        </div>
+
+        <Input
+          placeholder="Search Selected Type..."
+          class="pl-10"
+          value={defaultSearch}
+        />
+      </div>
+    </div>
+  </NavLayout>
+</MainLayout>

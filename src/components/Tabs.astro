@@ -1,0 +1,44 @@
+---
+import { cn } from "~/lib/utils";
+
+interface Props {
+  options: string[];
+  defaultOption?: string;
+  name: string;
+  class?: string;
+}
+
+const { options, name, defaultOption, class: _class } = Astro.props;
+---
+
+<div class="inline-flex items-center justify-center rounded-md p-0.5 border">
+  {
+    options.map((option) => (
+      <div class="relative">
+        <input
+          type="radio"
+          name={name}
+          id={option}
+          value={option}
+          checked={
+            defaultOption?.toLocaleLowerCase() === option.toLocaleLowerCase()
+          }
+          class="peer sr-only"
+        />
+
+        <label
+          for={option}
+          class={cn(
+            "inline-flex items-center justify-center rounded-sm px-3 py-1.5 transition",
+            "text-sm font-medium",
+            "cursor-pointer hover:bg-secondary",
+            "peer-focus:ring-2 peer-focus:ring-ring peer-focus:bg-secondary",
+            "peer-checked:bg-secondary peer-checked:text-foreground peer-checked:shadow-sm",
+          )}
+        >
+          {option}
+        </label>
+      </div>
+    ))
+  }
+</div>
