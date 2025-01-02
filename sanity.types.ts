@@ -456,6 +456,13 @@ export type PersonalInfo = {
     _key: string;
     [internalGroqTypeReferenceTo]?: "post";
   }>;
+  selectedProjects?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "project";
+  }>;
 };
 
 export type SanityImageCrop = {

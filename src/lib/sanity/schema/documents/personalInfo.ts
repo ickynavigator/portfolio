@@ -128,5 +128,13 @@ export default defineType({
       of: [defineArrayMember({ type: "reference", to: { type: "post" } })],
       validation: (Rule) => Rule.max(3).unique(),
     }),
+
+    defineField({
+      name: "selectedProjects",
+      title: "Selected Projects",
+      type: "array",
+      of: [defineArrayMember({ type: "reference", to: { type: "project" } })],
+      validation: (Rule) => Rule.max(3).unique(),
+    }),
   ],
 });
