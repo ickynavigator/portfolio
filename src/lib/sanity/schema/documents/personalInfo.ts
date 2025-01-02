@@ -125,7 +125,13 @@ export default defineType({
       name: "selectedPosts",
       title: "Selected Posts",
       type: "array",
-      of: [defineArrayMember({ type: "reference", to: { type: "post" } })],
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: { type: "post" },
+          options: { filter: "hidden != true" },
+        }),
+      ],
       validation: (Rule) => Rule.max(3).unique(),
     }),
 
@@ -133,7 +139,13 @@ export default defineType({
       name: "selectedProjects",
       title: "Selected Projects",
       type: "array",
-      of: [defineArrayMember({ type: "reference", to: { type: "project" } })],
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: { type: "project" },
+          options: { filter: "hidden != true" },
+        }),
+      ],
       validation: (Rule) => Rule.max(3).unique(),
     }),
   ],
