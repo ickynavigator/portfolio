@@ -36,13 +36,20 @@ if (!result || !image) {
 >
   <NavLayout>
     <div>
-      <SanityImage node={image} class="md:rounded-md" />
+      <SanityImage
+        node={image}
+        class="md:rounded-md"
+        transition:name={`project-image-${result.slug.current}`}
+      />
     </div>
 
     <Container as="article" innerPage>
       <div class="flex flex-col gap-4 mt-4">
         <div class="flex flex-col gap-2">
-          <h1 class="leading-none tracking-tight font-light text-2xl">
+          <h1
+            class="leading-none tracking-tight font-light text-2xl"
+            transition:name={`project-title-${result.slug.current}`}
+          >
             {result.name}
           </h1>
           <h3
@@ -52,7 +59,10 @@ if (!result || !image) {
           </h3>
         </div>
 
-        <ul class="overflow-x-scroll max-w-full whitespace-nowrap">
+        <ul
+          class="overflow-x-scroll max-w-full whitespace-nowrap"
+          transition:name={`project-tags-${result.slug.current}`}
+        >
           {
             result.derefTag.map((tag) => (
               <li class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:bg-primary-foreground inline-block">

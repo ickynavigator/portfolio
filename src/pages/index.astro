@@ -70,13 +70,19 @@ if (!result) {
           result.selectedProjects?.map((project) => (
             <li class="py-6 px-3 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
               <a href={`/projects/${project.slug}`} class="flex-1 min-w-fit">
-                <h3 class="hover-link leading-none tracking-tight text-lg truncate">
+                <h3
+                  class="hover-link leading-none tracking-tight text-lg truncate"
+                  transition:name={`project-title-${project.slug}`}
+                >
                   {project.title}
                 </h3>
               </a>
 
-              <div class="overflow-x-scroll max-w-full whitespace-nowrap ">
-                <div class="">
+              <div
+                class="overflow-x-scroll max-w-full whitespace-nowrap"
+                transition:name={`project-tags-${project.slug}`}
+              >
+                <div>
                   {project.tags.map((tag) => (
                     <a
                       href={`/projects/${project.slug}?tag=${encodeURIComponent(tag.slug)}`}

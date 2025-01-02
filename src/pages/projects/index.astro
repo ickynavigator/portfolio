@@ -36,13 +36,19 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                   <SanityImage
                     node={project.image}
                     class="object-cover object-center w-full h-full transition-transform hover:scale-125"
+                    transition:name={`project-image-${project.slug.current}`}
                   />
                 )}
               </a>
 
               <div class="flex justify-between items-end mt-4">
                 <div>
-                  <h2 class="line-clamp-1">{project.name}</h2>
+                  <h2
+                    class="line-clamp-1"
+                    transition:name={`project-title-${project.slug.current}`}
+                  >
+                    {project.name}
+                  </h2>
 
                   <div class="inline-flex text-center gap-2">
                     <span class="inline-flex items-center gap-1">
