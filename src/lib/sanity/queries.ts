@@ -61,7 +61,16 @@ export const HOME_PAGE_QUERY = defineQuery(`
                 "slug": slug.current
             },
         []),
-        "selectedProjects": [{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]},{"slug":"dummy", "title":"Project Name", "tags":[{"slug":"typescript", "name":"Typescript"},{"slug":"nextjs", "name":"Next Js"},{"slug":"nextjs", "name":"Next Js"}]}],
+        "selectedProjects": coalesce(
+            selectedProjects[]-> {
+                "slug": slug.current,
+                "title": name,
+                "tags": tags[]-> {
+                    "slug": slug.current,
+                    "name": title,
+                },
+            },
+        []),
     }
 `);
 
