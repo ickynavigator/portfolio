@@ -104,7 +104,7 @@ if (!result || !image) {
           </span>
         </div>
 
-        <p transition:name={`blog-description-${result.title}`}>
+        <p transition:name={`blog-description-${result.slug.current}`}>
           {result.description}
         </p>
       </div>
