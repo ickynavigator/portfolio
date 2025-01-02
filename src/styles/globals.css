@@ -71,6 +71,10 @@
     @apply font-semibold text-primary underline decoration-[hsla(var(--muted-foreground)/.5)] decoration-2 transition hover:decoration-primary;
   }
 
+  .hover-link-icon {
+    @apply border-b-2 border-[hsla(var(--muted-foreground)/.5)] font-semibold text-primary transition hover:border-primary;
+  }
+
   .relative-icon {
     @apply h-[1em] w-[1em];
   }

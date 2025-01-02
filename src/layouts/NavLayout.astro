@@ -1,5 +1,5 @@
 ---
-import { Code2, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Code2, Github, Linkedin, Mail, Search, Twitter } from "lucide-react";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import Container from "~/components/Container.astro";
@@ -9,6 +9,7 @@ import { cn } from "~/lib/utils";
 
 const currentPage = Astro.url.pathname;
 
+const search = { href: "/search", text: "Search" };
 const links = [
   { href: "/about", text: "About" },
   { href: "/projects", text: "Projects" },
@@ -76,6 +77,16 @@ const env = getEnv();
             </a>
           ))
         }
+
+        <a
+          href={search.href}
+          class="hover-link-icon data-[active-page='true']:border-primary"
+          data-active-page={currentPage === search.href ? "true" : "false"}
+          slot="search"
+        >
+          <Search className="relative-icon" />
+          <span class="sr-only">{search.text}</span>
+        </a>
       </NavLinks>
     </nav>
   </header>
