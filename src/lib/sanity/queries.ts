@@ -128,3 +128,7 @@ export const SEARCH_QUERY = defineQuery(`
         "tags": coalesce(tags[]->, []),
     }
 `);
+
+export const USES_QUERY = defineQuery(`
+    *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].uses
+`);

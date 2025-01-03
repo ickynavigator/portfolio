@@ -1,0 +1,32 @@
+---
+import Container from "~/components/Container.astro";
+import PortableText from "~/components/PortableText/PortableText.astro";
+import MainLayout from "~/layouts/MainLayout.astro";
+import NavLayout from "~/layouts/NavLayout.astro";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { USES_QUERY } from "~/lib/sanity/queries";
+
+const { result } = await loadQuery({ query: USES_QUERY });
+
+if (!result) {
+  return null;
+}
+---
+
+<MainLayout>
+  <NavLayout>
+    <Container innerPage>
+      <div class="mb-4 flex flex-col gap-1">
+        <h1 class="leading-none tracking-tight font-bold text-xl">/Uses</h1>
+        <span
+          class="leading-none tracking-tight font-light text-muted-foreground"
+          >Make sure to check out <a href="https://uses.tech" class="hover-link"
+            >uses.tech</a
+          > for a list of everyone's /uses pages!</span
+        >
+      </div>
+
+      <PortableText data={result} />
+    </Container>
+  </NavLayout>
+</MainLayout>

@@ -1111,6 +1111,9 @@ export type SEARCH_QUERYResult = Array<
       tags: Array<never>;
     }
 >;
+// Variable: USES_QUERY
+// Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].uses
+export type USES_QUERYResult = BlockContent | null;
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -1125,5 +1128,6 @@ declare module "@sanity/client" {
     '\n    {\n        "careers":  *[_type == "career" && hidden != true] {\n            ...,\n            "visibleLinks": coalesce(links[@.hidden != true], []),\n            "derefTag": coalesce(tags[]->, []),\n        },\n        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt\n    }\n': CAREERS_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->\n': PROFILE_IMAGE_QUERYResult;
     '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERYResult;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].uses\n': USES_QUERYResult;
   }
 }

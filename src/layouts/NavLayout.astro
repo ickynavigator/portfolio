@@ -156,7 +156,15 @@ const env = getEnv();
         </span>
       </div>
 
-      <div>
+      <div class="inline-flex flex-col md:inline">
+        <span>
+          <a
+            href="/uses"
+            class="hover-link data-[active-page='true']:decoration-primary"
+            data-active-page={currentPage === "/uses" ? "true" : "false"}
+            >/uses</a
+          >;
+        </span>
         {
           env.CF_PAGES_COMMIT_SHA && (
             <span>
