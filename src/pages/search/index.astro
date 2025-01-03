@@ -10,27 +10,10 @@ import NavLayout from "~/layouts/NavLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { SEARCH_QUERY } from "~/lib/sanity/queries";
 
-let defaultType = Astro.url.searchParams.get("type") ?? "all";
-let defaultSearch = Astro.url.searchParams.get("tag") ?? "";
-
-if (Astro.request.method === "POST") {
-  try {
-    const schema = z.object({
-      search: z.string().trim(),
-      type: z.string().trim().toLowerCase(),
-    });
-
-    const data = await Astro.request.formData();
-    const result = schema.parse(Object.fromEntries(data.entries()));
-
-    defaultType = result.type;
-    defaultSearch = result.search;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
-}
+const schema = z.object({
+  search: z.string().trim().catch(""),
+  type: z.enum(["all", "post", "project"]).catch("all"),
+});
 
 const getTransformedType = (type: string) => {
   const ALL_TYPES = ["post", "project"];
@@ -45,6 +28,23 @@ const getTransformedType = (type: string) => {
       return ALL_TYPES;
   }
 };
+
+let defaultType = Astro.url.searchParams.get("type") ?? "all";
+let defaultSearch = Astro.url.searchParams.get("tag") ?? "";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const result = schema.parse(Object.fromEntries(data.entries()));
+
+    defaultType = result.type;
+    defaultSearch = result.search;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
 
 const { result } =
   defaultSearch.length > 0
