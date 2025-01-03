@@ -17,7 +17,7 @@ interface Props {
 const MobileNavMenu = (props: Props) => {
   return (
     <Drawer>
-      <DrawerTrigger>
+      <DrawerTrigger aria-label="Open Navigation Menu" title="Open menu">
         <Menu />
       </DrawerTrigger>
 
