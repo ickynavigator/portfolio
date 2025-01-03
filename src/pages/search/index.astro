@@ -1,39 +1,164 @@
 ---
 import { Search } from "lucide-react";
+import { z } from "zod";
 
+import Button from "~/components/Button.astro";
 import Input from "~/components/Input.astro";
 import Tabs from "~/components/Tabs.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { SEARCH_QUERY } from "~/lib/sanity/queries";
 
-export const prerender = false;
+let defaultType = Astro.url.searchParams.get("type") ?? "all";
+let defaultSearch = Astro.url.searchParams.get("tag") ?? "";
 
-const defaultType = Astro.url.searchParams.get("type") ?? "post";
-const defaultSearch = Astro.url.searchParams.get("tag") ?? "";
+if (Astro.request.method === "POST") {
+  try {
+    const schema = z.object({
+      search: z.string().trim(),
+      type: z.string().trim().toLowerCase(),
+    });
+
+    const data = await Astro.request.formData();
+    const result = schema.parse(Object.fromEntries(data.entries()));
+
+    defaultType = result.type;
+    defaultSearch = result.search;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+
+const getTransformedType = (type: string) => {
+  const ALL_TYPES = ["post", "project"];
+
+  switch (type) {
+    case "all":
+      return ALL_TYPES;
+    case "post":
+    case "project":
+      return [type];
+    default:
+      return ALL_TYPES;
+  }
+};
+
+const { result } =
+  defaultSearch.length > 0
+    ? await loadQuery({
+        query: SEARCH_QUERY,
+        params: {
+          title: `*${defaultSearch}*`,
+          type: getTransformedType(defaultType),
+        },
+      })
+    : { result: null };
 ---
 
 <MainLayout>
   <NavLayout>
-    <div class="flex flex-row items-center justify-center gap-2">
-      <Tabs
-        options={["Project", "Post"]}
-        defaultOption={defaultType}
-        name="Type"
-      />
-
-      <div class="relative flex-1">
-        <div
-          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-        >
-          <Search className="relative-icon" />
-        </div>
-
-        <Input
-          placeholder="Search Selected Type..."
-          class="pl-10"
-          value={defaultSearch}
+    <form method="POST">
+      <div
+        class="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-2"
+      >
+        <Tabs
+          name="type"
+          options={["All", "Post", "Project"]}
+          defaultOption={defaultType}
+          class="min-w-[25%] inline-flex"
         />
+
+        <div class="flex flex-row gap-2 w-full">
+          <div class="relative flex-1">
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <Search className="relative-icon" />
+            </div>
+            <Input
+              name="search"
+              placeholder="Search By Selected Type..."
+              class="pl-10"
+              value={defaultSearch}
+              required
+              minlength="1"
+            />
+          </div>
+
+          <Button
+            variant="secondary"
+            type="submit"
+            size="icon"
+            class="border md:hidden"
+            aria-label="Submit Search"
+            title="Search"
+          >
+            <span class="sr-only">Submit Search</span>
+            <Search className="relative-icon" />
+          </Button>
+
+          <Button
+            variant="secondary"
+            type="submit"
+            class="border hidden md:flex"
+            aria-label="Submit Search"
+            title="Search"
+          >
+            Search
+          </Button>
+        </div>
       </div>
-    </div>
+    </form>
+
+    <ul class="flex flex-col gap-4 mt-8">
+      {
+        result
+          ?.filter((item) => item._type === "post" || item._type === "project")
+          .map((item) => {
+            const slug = item.slug.current;
+
+            let url;
+
+            switch (item._type) {
+              case "post":
+                url = `/blog/${slug}`;
+                break;
+              case "project":
+                url = `/projects/${slug}`;
+                break;
+              default:
+                url = "";
+            }
+
+            return (
+              <a href={url}>
+                <li class="flex flex-col gap-1 p-4 border rounded-md transition hover:bg-secondary">
+                  <p class="text-muted-foreground capitalize">{item._type}</p>
+
+                  <h2 class="leading-none tracking-tight text-lg">
+                    {item.title}
+                  </h2>
+
+                  {item.tags.length > 0 && (
+                    <ul
+                      class="overflow-x-scroll max-w-full whitespace-nowrap"
+                      transition:name={`project-tags-${slug}`}
+                    >
+                      {item.tags.map((tag) => (
+                        <li class="text-xs font-light me-2 px-2 py-0.5 rounded-full border inline-block">
+                          {tag.title}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              </a>
+            );
+          })
+      }
+    </ul>
   </NavLayout>
 </MainLayout>

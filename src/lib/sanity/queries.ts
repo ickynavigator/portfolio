@@ -119,3 +119,12 @@ export const CAREERS_QUERY = defineQuery(`
 export const PROFILE_IMAGE_QUERY = defineQuery(`
     *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].image.asset->
 `);
+
+export const SEARCH_QUERY = defineQuery(`
+    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title ) && hidden != true] {
+        _type,
+        title,
+        slug,
+        "tags": coalesce(tags[]->, []),
+    }
+`);
