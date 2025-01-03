@@ -23,4 +23,4 @@ type ExtractValidSegments<
   : R[number];
 
 type GetParams<G extends string, _F = ExtractValidSegments<G, "$", " ">> =
-  Match<_F, never> extends true ? unknown : { params: Record<_F, string> };
+  Match<_F, never> extends true ? unknown : { params: Record<_F, unknown> };
