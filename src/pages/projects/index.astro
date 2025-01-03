@@ -15,11 +15,15 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
 <MainLayout title="Project" description="Project list">
   <NavLayout>
     <Container innerPage>
-      <div class="mb-4">
-        <h2 class="leading-none tracking-tight font-light text-2xl">
+      <div class="mb-4 flex flex-col gap-1">
+        <h1 class="leading-none tracking-tight font-bold text-xl">Projects</h1>
+        <h2
+          class="leading-none tracking-tight font-light text-2xl text-muted-foreground"
+        >
           Building experiences, one line of code at a time.
         </h2>
-        <span class="leading-none tracking-tight font-light"
+        <span
+          class="leading-none tracking-tight font-light text-muted-foreground"
           >Click. Explore.</span
         >
       </div>
