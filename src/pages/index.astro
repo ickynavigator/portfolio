@@ -19,17 +19,17 @@ if (!result) {
     <Container innerPage>
       <div class="h-[90svh]">
         <div class="flex flex-col justify-center h-full gap-5">
-          <h2
+          <h1
             class="leading-none tracking-tight font-light text-8xl text-center"
           >
             {result.name}
-          </h2>
+          </h1>
 
-          <h3
+          <h2
             class="leading-none tracking-tight font-light text-6xl text-center"
           >
             {result.title}
-          </h3>
+          </h2>
 
           <p class="text-center text-muted-foreground">
             {result.tagline}
@@ -84,18 +84,16 @@ if (!result) {
                 class="overflow-x-scroll max-w-full whitespace-nowrap"
                 transition:name={`project-tags-${project.slug}`}
               >
-                <div>
-                  {project.tags.map((tag) => (
-                    <li class="inline">
-                      <a
-                        href={`/search?type=project&tag=${encodeURIComponent(tag.slug)}`}
-                        class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:border-primary inline-block"
-                      >
-                        {tag.name}
-                      </a>
-                    </li>
-                  ))}
-                </div>
+                {project.tags.map((tag) => (
+                  <li class="inline">
+                    <a
+                      href={`/search?type=project&tag=${encodeURIComponent(tag.slug)}`}
+                      class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:border-primary inline-block"
+                    >
+                      {tag.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </li>
           ))
