@@ -29,7 +29,7 @@ if (!result || !image) {
 ---
 
 <MainLayout
-  title={result.name}
+  title={result.title}
   image={urlForImage(image).url()}
   ogType="article"
   keywords={result.derefTag.map((tag) => tag.title)}
@@ -50,7 +50,7 @@ if (!result || !image) {
             class="leading-none tracking-tight font-light text-2xl"
             transition:name={`project-title-${result.slug.current}`}
           >
-            {result.name}
+            {result.title}
           </h1>
           <h3
             class="leading-none tracking-tight font-light text-muted-foreground"

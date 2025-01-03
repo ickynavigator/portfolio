@@ -880,7 +880,7 @@
         },
         "optional": false
       },
-      "name": {
+      "title": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

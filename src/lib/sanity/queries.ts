@@ -64,7 +64,7 @@ export const HOME_PAGE_QUERY = defineQuery(`
         "selectedProjects": coalesce(
             selectedProjects[]-> {
                 "slug": slug.current,
-                "title": name,
+                title,
                 "tags": tags[]-> {
                     "slug": slug.current,
                     "name": title,
@@ -79,7 +79,7 @@ export const PROJECTS_QUERY = defineQuery(`
     *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {
         _id,
         _createdAt,
-        name,
+        title,
         slug, 
         "image": images[0]
     }

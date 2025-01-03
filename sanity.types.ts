@@ -167,7 +167,7 @@ export type Project = {
   hidden: boolean;
   archived: boolean;
   slug: Slug;
-  name: string;
+  title: string;
   status: "completed" | "ongoing" | "abandoned";
   role: string;
   images: Array<{
@@ -734,7 +734,7 @@ export type CV_REF_QUERYResult = {
   source?: SanityAssetSourceData;
 } | null;
 // Variable: HOME_PAGE_QUERY
-// Query: *[_type == "personalInfo" && _id == "personalInfo"] [0] {        name,        title,        tagline,        shortBio,        "selectedPosts": coalesce(            selectedPosts[]-> {                title,                description,                "slug": slug.current            },        []),        "selectedProjects": coalesce(            selectedProjects[]-> {                "slug": slug.current,                "title": name,                "tags": tags[]-> {                    "slug": slug.current,                    "name": title,                },            },        []),    }
+// Query: *[_type == "personalInfo" && _id == "personalInfo"] [0] {        name,        title,        tagline,        shortBio,        "selectedPosts": coalesce(            selectedPosts[]-> {                title,                description,                "slug": slug.current            },        []),        "selectedProjects": coalesce(            selectedProjects[]-> {                title,                "tags": tags[]-> {                    "slug": slug.current,                    "name": title,                },                "slug": slug.current,            },        []),    }
 export type HOME_PAGE_QUERYResult = {
   name: string;
   title: string;
@@ -749,22 +749,22 @@ export type HOME_PAGE_QUERYResult = {
     | Array<never>;
   selectedProjects:
     | Array<{
-        slug: string;
         title: string;
         tags: Array<{
           slug: string;
           name: string;
         }>;
+        slug: string;
       }>
     | Array<never>;
 } | null;
 // Variable: PAGINATED_PROJECTS_QUERY
-// Query: {        "data":     *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {        _id,        _createdAt,        name,        slug,         "image": images[0]    },    }
+// Query: {        "data":     *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {        _id,        _createdAt,        title,        slug,         "image": images[0]    },    }
 export type PAGINATED_PROJECTS_QUERYResult = {
   data: Array<{
     _id: string;
     _createdAt: string;
-    name: string;
+    title: string;
     slug: Slug;
     image: {
       asset?: {
@@ -797,7 +797,7 @@ export type PROJECT_QUERYResult = {
   hidden: boolean;
   archived: boolean;
   slug: Slug;
-  name: string;
+  title: string;
   status: "abandoned" | "completed" | "ongoing";
   role: string;
   images: Array<{
@@ -1039,8 +1039,8 @@ declare module "@sanity/client" {
     '\n    *[_type == "post" && defined(slug.current) && hidden != true] {\n        "slug": slug.current\n    }\n': POST_SLUGS_QUERYResult;
     '\n    *[_type == "post" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "wordCount": length(pt::text(body)),\n        "derefTag": coalesce(tags[]->, []),\n    }\n': POST_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CV_REF_QUERYResult;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        name,\n        title,\n        tagline,\n        shortBio,\n        "selectedPosts": coalesce(\n            selectedPosts[]-> {\n                title,\n                description,\n                "slug": slug.current\n            },\n        []),\n        "selectedProjects": coalesce(\n            selectedProjects[]-> {\n                "slug": slug.current,\n                "title": name,\n                "tags": tags[]-> {\n                    "slug": slug.current,\n                    "name": title,\n                },\n            },\n        []),\n    }\n': HOME_PAGE_QUERYResult;
-    '\n    {\n        "data": \n    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {\n        _id,\n        _createdAt,\n        name,\n        slug, \n        "image": images[0]\n    }\n,\n    }\n': PAGINATED_PROJECTS_QUERYResult;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        name,\n        title,\n        tagline,\n        shortBio,\n        "selectedPosts": coalesce(\n            selectedPosts[]-> {\n                title,\n                description,\n                "slug": slug.current\n            },\n        []),\n        "selectedProjects": coalesce(\n            selectedProjects[]-> {\n                title,\n                "tags": tags[]-> {\n                    "slug": slug.current,\n                    "name": title,\n                },\n                "slug": slug.current,\n            },\n        []),\n    }\n': HOME_PAGE_QUERYResult;
+    '\n    {\n        "data": \n    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {\n        _id,\n        _createdAt,\n        title,\n        slug, \n        "image": images[0]\n    }\n,\n    }\n': PAGINATED_PROJECTS_QUERYResult;
     '\n    *[_type == "project" && defined(slug.current) && hidden != true] {\n        "slug": slug.current\n    }\n': PROJECT_SLUGS_QUERYResult;
     '\n    *[_type == "project" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "visibleLinks": links[@.hidden != true],\n        "derefTag": coalesce(tags[]->, []),\n    }\n': PROJECT_QUERYResult;
     '\n    {\n        "careers":  *[_type == "career" && hidden != true] {\n            ...,\n            "visibleLinks": coalesce(links[@.hidden != true], []),\n            "derefTag": coalesce(tags[]->, []),\n        },\n        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt\n    }\n': CAREERS_QUERYResult;
