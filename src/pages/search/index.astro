@@ -10,6 +10,8 @@ import NavLayout from "~/layouts/NavLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { SEARCH_QUERY } from "~/lib/sanity/queries";
 
+export const prerender = false;
+
 const schema = z.object({
   search: z.string().trim().catch(""),
   type: z.enum(["all", "post", "project"]).catch("all"),
