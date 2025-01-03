@@ -1033,7 +1033,7 @@ export type PROFILE_IMAGE_QUERYResult = {
   source?: SanityAssetSourceData;
 } | null;
 // Variable: SEARCH_QUERY
-// Query: *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title ) && hidden != true] {        _type,        title,        slug,        "tags": coalesce(tags[]->, []),    }
+// Query: *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {        _type,        title,        slug,        "tags": coalesce(tags[]->, []),    }
 export type SEARCH_QUERYResult = Array<
   | {
       _type: "career";
@@ -1123,6 +1123,6 @@ declare module "@sanity/client" {
     '\n    *[_type == "project" && slug.current == $slug && hidden != true][0] {\n        ...,\n        "visibleLinks": links[@.hidden != true],\n        "derefTag": coalesce(tags[]->, []),\n    }\n': PROJECT_QUERYResult;
     '\n    {\n        "careers":  *[_type == "career" && hidden != true] {\n            ...,\n            "visibleLinks": coalesce(links[@.hidden != true], []),\n            "derefTag": coalesce(tags[]->, []),\n        },\n        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt\n    }\n': CAREERS_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->\n': PROFILE_IMAGE_QUERYResult;
-    '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERYResult;
+    '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERYResult;
   }
 }
