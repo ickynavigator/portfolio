@@ -121,7 +121,7 @@ export const PROFILE_IMAGE_QUERY = defineQuery(`
 `);
 
 export const SEARCH_QUERY = defineQuery(`
-    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title ) && hidden != true] {
+    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {
         _type,
         title,
         slug,
