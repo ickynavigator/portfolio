@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { z } from "zod";
 
 import Button from "~/components/Button.astro";
+import Container from "~/components/Container.astro";
 import Input from "~/components/Input.astro";
 import Tabs from "~/components/Tabs.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
@@ -62,109 +63,113 @@ const { result } =
 
 <MainLayout>
   <NavLayout>
-    <div class="mb-4">
-      <h1 class="leading-none tracking-tight font-bold text-xl">Search</h1>
-    </div>
-
-    <form method="POST">
-      <div
-        class="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-2"
-      >
-        <Tabs
-          name="type"
-          options={["All", "Post", "Project"]}
-          defaultOption={defaultType}
-          class="min-w-[25%] inline-flex"
-        />
-
-        <div class="flex flex-row gap-2 w-full">
-          <div class="relative flex-1">
-            <div
-              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-            >
-              <Search className="relative-icon" />
-            </div>
-            <Input
-              name="search"
-              placeholder="Search By Selected Type..."
-              class="pl-10"
-              value={defaultSearch}
-              required
-              minlength="1"
-            />
-          </div>
-
-          <Button
-            variant="secondary"
-            type="submit"
-            size="icon"
-            class="border md:hidden"
-            aria-label="Submit Search"
-            title="Search"
-          >
-            <span class="sr-only">Submit Search</span>
-            <Search className="relative-icon" />
-          </Button>
-
-          <Button
-            variant="secondary"
-            type="submit"
-            class="border hidden md:flex"
-            aria-label="Submit Search"
-            title="Search"
-          >
-            Search
-          </Button>
-        </div>
+    <Container innerPage>
+      <div class="mb-4">
+        <h1 class="leading-none tracking-tight font-bold text-xl">Search</h1>
       </div>
-    </form>
 
-    <ul class="flex flex-col gap-4 mt-8">
-      {
-        result
-          ?.filter((item) => item._type === "post" || item._type === "project")
-          .map((item) => {
-            const slug = item.slug.current;
+      <form method="POST">
+        <div
+          class="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-2"
+        >
+          <Tabs
+            name="type"
+            options={["All", "Post", "Project"]}
+            defaultOption={defaultType}
+            class="min-w-[25%] inline-flex"
+          />
 
-            let url;
+          <div class="flex flex-row gap-2 w-full">
+            <div class="relative flex-1">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <Search className="relative-icon" />
+              </div>
+              <Input
+                name="search"
+                placeholder="Search By Selected Type..."
+                class="pl-10"
+                value={defaultSearch}
+                required
+                minlength="1"
+              />
+            </div>
 
-            switch (item._type) {
-              case "post":
-                url = `/blog/${slug}`;
-                break;
-              case "project":
-                url = `/projects/${slug}`;
-                break;
-              default:
-                url = "";
-            }
+            <Button
+              variant="secondary"
+              type="submit"
+              size="icon"
+              class="border md:hidden"
+              aria-label="Submit Search"
+              title="Search"
+            >
+              <span class="sr-only">Submit Search</span>
+              <Search className="relative-icon" />
+            </Button>
 
-            return (
-              <a href={url}>
-                <li class="flex flex-col gap-1 p-4 border rounded-md transition hover:bg-secondary">
-                  <p class="text-muted-foreground capitalize">{item._type}</p>
+            <Button
+              variant="secondary"
+              type="submit"
+              class="border hidden md:flex"
+              aria-label="Submit Search"
+              title="Search"
+            >
+              Search
+            </Button>
+          </div>
+        </div>
+      </form>
 
-                  <h2 class="leading-none tracking-tight text-lg">
-                    {item.title}
-                  </h2>
+      <ul class="flex flex-col gap-4 mt-8">
+        {
+          result
+            ?.filter(
+              (item) => item._type === "post" || item._type === "project",
+            )
+            .map((item) => {
+              const slug = item.slug.current;
 
-                  {item.tags.length > 0 && (
-                    <ul
-                      class="overflow-x-scroll max-w-full whitespace-nowrap"
-                      transition:name={`project-tags-${slug}`}
-                    >
-                      {item.tags.map((tag) => (
-                        <li class="text-xs font-light me-2 px-2 py-0.5 rounded-full border inline-block">
-                          {tag.title}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              </a>
-            );
-          })
-      }
-    </ul>
+              let url;
+
+              switch (item._type) {
+                case "post":
+                  url = `/blog/${slug}`;
+                  break;
+                case "project":
+                  url = `/projects/${slug}`;
+                  break;
+                default:
+                  url = "";
+              }
+
+              return (
+                <a href={url}>
+                  <li class="flex flex-col gap-1 p-4 border rounded-md transition hover:bg-secondary">
+                    <p class="text-muted-foreground capitalize">{item._type}</p>
+
+                    <h2 class="leading-none tracking-tight text-lg">
+                      {item.title}
+                    </h2>
+
+                    {item.tags.length > 0 && (
+                      <ul
+                        class="overflow-x-scroll max-w-full whitespace-nowrap"
+                        transition:name={`project-tags-${slug}`}
+                      >
+                        {item.tags.map((tag) => (
+                          <li class="text-xs font-light me-2 px-2 py-0.5 rounded-full border inline-block">
+                            {tag.title}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                </a>
+              );
+            })
+        }
+      </ul>
+    </Container>
   </NavLayout>
 </MainLayout>
