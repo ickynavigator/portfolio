@@ -463,6 +463,7 @@ export type PersonalInfo = {
     _key: string;
     [internalGroqTypeReferenceTo]?: "project";
   }>;
+  uses: BlockContent;
 };
 
 export type SanityImageCrop = {

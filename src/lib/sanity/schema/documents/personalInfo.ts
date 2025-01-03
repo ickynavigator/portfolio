@@ -148,5 +148,12 @@ export default defineType({
       ],
       validation: (Rule) => Rule.max(3).unique(),
     }),
+
+    defineField({
+      name: "uses",
+      title: "Uses",
+      type: "blockContent",
+      validation: (Rule) => Rule.required(),
+    }),
   ],
 });

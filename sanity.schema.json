@@ -2650,6 +2650,14 @@
           }
         },
         "optional": true
+      },
+      "uses": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "blockContent"
+        },
+        "optional": false
       }
     }
   },
