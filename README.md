@@ -8,14 +8,17 @@ My personal portfolio website built with [Astro](https://astro.build/) project. 
 
 Fill up the .env file with the variables in the .env.example
 
-| Key                                    | Description                                                      |
-| :------------------------------------- | :--------------------------------------------------------------- |
-| `PUBLIC_SANITY_API_PROJECT_ID`         | Project ID of your Sanity project. Defaults to **MY** project Id |
-| `PUBLIC_SANITY_API_DATASET`            | Dataset name of your Sanity project. Defaults to `production`    |
-| `PUBLIC_SANITY_API_VERSION`            | API version of your Sanity project. Defaults to `2022-03-07`     |
-| `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`         |
-| `PUBLIC_SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`         |
-| `SANITY_API_READ_TOKEN`                | Read token for the sanity project                                |
+| Key                                    | Description                                                       |
+| :------------------------------------- | :---------------------------------------------------------------- |
+| `PUBLIC_SANITY_API_PROJECT_ID`         | Project ID of your Sanity project. Defaults to **MY** project Id  |
+| `PUBLIC_SANITY_API_DATASET`            | Dataset name of your Sanity project. Defaults to `production`     |
+| `PUBLIC_SANITY_API_VERSION`            | API version of your Sanity project. Defaults to `2022-03-07`      |
+| `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`          |
+| `LASTFM_USER`                          | Last.fm username to fetch recent tracks. Defaults to `obifortune` |
+| `LASTFM_API_KEY`                       | Last.fm API key. Required. No default value                       |
+| `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`          |
+| `PUBLIC_SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`          |
+| `SANITY_API_READ_TOKEN`                | Read token for the sanity project                                 |
 
 ### 🧞 Commands
 
