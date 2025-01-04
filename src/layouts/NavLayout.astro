@@ -1,5 +1,13 @@
 ---
-import { Code2, Github, Linkedin, Mail, Search, Twitter } from "lucide-react";
+import {
+  Code2,
+  Github,
+  Linkedin,
+  Mail,
+  Rss,
+  Search,
+  Twitter,
+} from "lucide-react";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import Container from "~/components/Container.astro";
@@ -49,6 +57,12 @@ const socials = [
     text: "Mail",
     icon: Mail,
     color: "bg-[#010101]",
+  },
+  {
+    href: "/rss.xml",
+    text: "RSS",
+    icon: Rss,
+    color: "bg-[#EE802F]",
   },
 ];
 
