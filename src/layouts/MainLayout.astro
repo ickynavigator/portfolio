@@ -31,7 +31,7 @@ const {
   image = await profilePicture(),
 } = Astro.props;
 
-const appURL = `${Astro.site}${Astro.url.pathname}`;
+const appURL = new URL(Astro.url.pathname, Astro.site);
 
 const keywords = [
   "Astro",
@@ -72,7 +72,7 @@ const getPageTitle = (title?: string) => {
       rel="alternate"
       type="application/rss+xml"
       title={`RSS Feed for ${Astro.site}`}
-      href="/rss.xml"
+      href={new URL("rss.xml", Astro.site)}
     />
 
     <meta property="og:title" content={title} />
