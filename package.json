@@ -8,6 +8,7 @@
     "build": "astro check && $npm_execpath sa-typegen && astro build",
     "preview": "astro build && wrangler pages dev",
     "astro": "astro",
+    "wrangler": "wrangler",
     "deploy": "astro build && wrangler pages deploy",
     "cf-typegen": "wrangler types",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,astro}\"",
