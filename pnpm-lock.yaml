@@ -34,6 +34,9 @@ importers:
       '@fontsource-variable/hepta-slab':
         specifier: ^5.2.5
         version: 5.2.5
+      '@imikailoby/lastfm-ts':
+        specifier: ^2.0.1
+        version: 2.0.1
       '@radix-ui/react-dialog':
         specifier: ^1.1.6
         version: 1.1.6(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1686,6 +1689,10 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
+
+  '@imikailoby/lastfm-ts@2.0.1':
+    resolution: {integrity: sha512-kBlvgYB82oqLSaTpbB97Yv85avGWumqZgxTO4nwyCB9oEqHm9wS2DfO6/+E7DsWuq2mcmJ+aECMYG9qZYFW90Q==}
+    engines: {node: 20.11.1}
 
   '@inquirer/checkbox@4.1.4':
     resolution: {integrity: sha512-d30576EZdApjAMceijXA5jDzRQHT/MygbC+J8I7EqA6f/FRpYxlRtRJbHF8gHeWYeSdOuTEJqonn7QLB1ELezA==}
@@ -9090,6 +9097,8 @@ snapshots:
 
   '@img/sharp-win32-x64@0.33.5':
     optional: true
+
+  '@imikailoby/lastfm-ts@2.0.1': {}
 
   '@inquirer/checkbox@4.1.4(@types/node@22.14.0)':
     dependencies:
