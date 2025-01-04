@@ -1,0 +1,19 @@
+---
+import ListItem from "~/components/PortableText/List/ListItem.PortableText.astro";
+import UnorderedList from "~/components/PortableText/List/UnorderedList.PortableText.astro";
+import { getRecentlyPlayedTracks } from "~/lib/music";
+
+const { recenttracks } = await getRecentlyPlayedTracks();
+---
+
+<UnorderedList>
+  {
+    recenttracks.track.map((track) => (
+      <ListItem>
+        <span>
+          {track.name} - {track.artist["#text"]} - {track.album["#text"]}
+        </span>
+      </ListItem>
+    ))
+  }
+</UnorderedList>
