@@ -25,6 +25,7 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
     client: {},
     server: {
       WAKATIME_API_KEY: z.string(),
+      LASTFM_API_KEY: z.string(),
     },
     shared: {
       PUBLIC_SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
@@ -42,6 +43,7 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
       WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
       PUBLIC_SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
       SANITY_API_READ_TOKEN: z.string().optional(),
+      LASTFM_USER: z.string(),
     },
     runtimeEnv: runtimeEnv,
     emptyStringAsUndefined: true,
