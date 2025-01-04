@@ -10,6 +10,6 @@ interface Props {
 const isInnerLevel = Astro.props.node.level > 1;
 ---
 
-<ol class={cn("list-decimal list-inside", isInnerLevel && "ps-5")}>
+<ol class={cn("list-decimal list-inside ps-5", isInnerLevel && "ps-5")}>
   <slot />
 </ol>

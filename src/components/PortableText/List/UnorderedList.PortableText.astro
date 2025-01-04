@@ -10,6 +10,6 @@ interface Props {
 const isInnerLevel = Astro.props.node.level > 1;
 ---
 
-<ul class={cn("list-disc list-inside", isInnerLevel && "ps-5")}>
+<ul class={cn("list-disc list-inside ps-5", isInnerLevel && "ps-5")}>
   <slot />
 </ul>
