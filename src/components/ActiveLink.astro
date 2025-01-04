@@ -8,8 +8,11 @@ interface Props extends HTMLAttributes<"a"> {
   text?: string;
 }
 
+const normalize = (url: string) => {
+  return url.toLowerCase().replace(/(\.html$|\/+$)/g, "");
+};
 const isActiveUrl = (url: string) => {
-  return Astro.url.pathname === url;
+  return normalize(Astro.url.pathname) === normalize(url);
 };
 
 const { href, text, class: _class, ...rest } = Astro.props;
