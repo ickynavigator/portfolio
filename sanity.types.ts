@@ -1115,7 +1115,7 @@ export type SEARCH_QUERYResult = Array<
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].uses
 export type USES_QUERYResult = BlockContent | null;
 // Variable: RSS_FEED_QUERY
-// Query: {        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, ''),        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {                    title,                    "pubDate": postedAt,                    description,                    "link": '/blog/' + slug.current,                }, []),    }
+// Query: {        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, ''),        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {                    title,                    "pubDate": postedAt,                    description,                    "link": '/blog/' + slug.current,                    "categories": coalesce(tags[]->slug.current, []),                }, []),    }
 export type RSS_FEED_QUERYResult = {
   title: string | "";
   description: string | "";
@@ -1124,6 +1124,7 @@ export type RSS_FEED_QUERYResult = {
     pubDate: string;
     description: string;
     link: string;
+    categories: Array<string> | Array<never>;
   }>;
 };
 
@@ -1141,6 +1142,6 @@ declare module "@sanity/client" {
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->\n': PROFILE_IMAGE_QUERYResult;
     '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].uses\n': USES_QUERYResult;
-    '\n    {\n        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, \'\'),\n        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),\n        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n                    title,\n                    "pubDate": postedAt,\n                    description,\n                    "link": \'/blog/\' + slug.current,\n                }, []),\n    }\n': RSS_FEED_QUERYResult;
+    '\n    {\n        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, \'\'),\n        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),\n        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n                    title,\n                    "pubDate": postedAt,\n                    description,\n                    "link": \'/blog/\' + slug.current,\n                    "categories": coalesce(tags[]->slug.current, []),\n                }, []),\n    }\n': RSS_FEED_QUERYResult;
   }
 }

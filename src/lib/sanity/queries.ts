@@ -142,6 +142,7 @@ export const RSS_FEED_QUERY = defineQuery(`
                     "pubDate": postedAt,
                     description,
                     "link": '/blog/' + slug.current,
+                    "categories": coalesce(tags[]->slug.current, []),
                 }, []),
     }
 `);
