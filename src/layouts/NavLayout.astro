@@ -165,6 +165,14 @@ const env = getEnv();
             >/uses</a
           >;
         </span>
+
+        <span>
+          <a
+            href="/rss.xml"
+            class="hover-link data-[active-page='true']:decoration-primary"
+            data-active-page={currentPage === "/uses" ? "true" : "false"}>rss</a
+          >;
+        </span>
         {
           env.CF_PAGES_COMMIT_SHA && (
             <span>

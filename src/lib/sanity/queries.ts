@@ -1,6 +1,6 @@
 import { defineQuery } from "groq";
 
-import { PERSONAL_INFO_CONFIG_ID } from "../constants";
+import { CONFIGURATION_CONFIG_ID, PERSONAL_INFO_CONFIG_ID } from "../constants";
 
 // @sanity-typegen-ignore
 export const POSTS_QUERY = defineQuery(`
@@ -131,4 +131,17 @@ export const SEARCH_QUERY = defineQuery(`
 
 export const USES_QUERY = defineQuery(`
     *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].uses
+`);
+
+export const RSS_FEED_QUERY = defineQuery(`
+    {
+        "title": coalesce(*[_type == "configuration" && _id == "${CONFIGURATION_CONFIG_ID}"] [0].name, ''),
+        "description": coalesce(*[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].shortBio, ""),
+        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {
+                    title,
+                    "pubDate": postedAt,
+                    description,
+                    "link": '/blog/' + slug.current,
+                }, []),
+    }
 `);

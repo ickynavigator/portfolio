@@ -21,6 +21,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/cloudflare": "^12.1.0",
     "@astrojs/react": "^4.1.2",
+    "@astrojs/rss": "^4.0.11",
     "@astrojs/tailwind": "^5.1.4",
     "@fontsource-variable/dm-sans": "^5.1.0",
     "@radix-ui/react-dialog": "^1.1.4",

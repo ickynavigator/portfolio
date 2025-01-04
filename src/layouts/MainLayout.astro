@@ -3,7 +3,6 @@ import "@fontsource-variable/dm-sans";
 
 import { ClientRouter } from "astro:transitions";
 
-import { getEnv } from "~/lib/env";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PROFILE_IMAGE_QUERY } from "~/lib/sanity/queries";
 
@@ -68,6 +67,13 @@ const getPageTitle = (title?: string) => {
 
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
+
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`RSS Feed for ${Astro.site}`}
+      href="/rss.xml"
+    />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
