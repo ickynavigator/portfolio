@@ -1,6 +1,6 @@
 ---
+import { IconArrowUpRight } from "@tabler/icons-react";
 import type { GetStaticPaths } from "astro";
-import { ArrowUpRight } from "lucide-react";
 
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
@@ -86,7 +86,7 @@ if (!result || !image) {
                   class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
                 >
                   <span class="text-xs">{link.display}</span>
-                  <ArrowUpRight className="inline relative-icon" />
+                  <IconArrowUpRight className="inline relative-icon" />
                 </a>
               </li>
             ))

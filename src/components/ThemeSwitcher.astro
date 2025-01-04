@@ -1,5 +1,5 @@
 ---
-import { Monitor, Moon, Sun } from "lucide-react";
+import { IconDeviceDesktop, IconMoon, IconSun } from "@tabler/icons-react";
 
 import Toggle from "~/components/Toggle.astro";
 ---
@@ -7,9 +7,9 @@ import Toggle from "~/components/Toggle.astro";
 <Toggle
   name="theme"
   options={[
-    { label: Sun, value: "light" },
-    { label: Monitor, value: "system" },
-    { label: Moon, value: "dark" },
+    { label: IconSun, value: "light" },
+    { label: IconDeviceDesktop, value: "system" },
+    { label: IconMoon, value: "dark" },
   ]}
 />
 

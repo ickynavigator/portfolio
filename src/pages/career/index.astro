@@ -1,5 +1,5 @@
 ---
-import { ArrowUpRight, File } from "lucide-react";
+import { IconArrowUpRight, IconFile } from "@tabler/icons-react";
 
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
@@ -25,7 +25,7 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
           href="/cv"
           class="hover-link inline-flex items-center gap-1"
           title={`CV Last Updated: ${dayjs(result.cvUpdatedAt).format("MMM DD, YYYY")}`}
-          ><File className="relative-icon" />View CV</a
+          ><IconFile className="relative-icon" />View CV</a
         >
       </div>
 
@@ -87,7 +87,7 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
                       class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition duration-300 hover:bg-secondary hover:shadow-sm"
                     >
                       <span class="text-xs">{link.display}</span>
-                      <ArrowUpRight className="inline relative-icon" />
+                      <IconArrowUpRight className="inline relative-icon" />
                     </a>
                   </li>
                 ))}

@@ -1,13 +1,13 @@
 ---
 import {
-  Code2,
-  Github,
-  Linkedin,
-  Mail,
-  Rss,
-  Search,
-  Twitter,
-} from "lucide-react";
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandTwitter,
+  IconCode,
+  IconMail,
+  IconRss,
+  IconSearch,
+} from "@tabler/icons-react";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import Container from "~/components/Container.astro";
@@ -31,37 +31,37 @@ const socials = [
   {
     href: "https://twitter.com/obifortunebleh",
     text: "Twitter",
-    icon: Twitter,
+    icon: IconBrandTwitter,
     color: "bg-[#010101]",
   },
   {
     href: "https://github.com/ickynavigator",
     text: "Github",
-    icon: Github,
+    icon: IconBrandGithub,
     color: "bg-[#24292F]",
   },
   {
     href: "https://linkedin.com/in/obifortune",
     text: "LinkedIn",
-    icon: Linkedin,
+    icon: IconBrandLinkedin,
     color: "bg-[#0077B5]",
   },
   {
     href: repo,
     text: "Code",
-    icon: Code2,
+    icon: IconCode,
     color: "bg-[#010101]",
   },
   {
     href: "mailto:gabrielobi.of@gmail.com",
     text: "Mail",
-    icon: Mail,
+    icon: IconMail,
     color: "bg-[#010101]",
   },
   {
     href: "/rss.xml",
     text: "RSS",
-    icon: Rss,
+    icon: IconRss,
     color: "bg-[#EE802F]",
   },
 ];
@@ -98,7 +98,7 @@ const env = getEnv();
           data-active-page={currentPage === search.href ? "true" : "false"}
           slot="search"
         >
-          <Search className="relative-icon" />
+          <IconSearch className="relative-icon" />
           <span class="sr-only">{search.text}</span>
         </a>
       </NavLinks>

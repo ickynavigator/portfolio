@@ -1,5 +1,5 @@
 ---
-import { ArrowUpRight, Calendar } from "lucide-react";
+import { IconArrowUpRight, IconCalendar } from "@tabler/icons-react";
 
 import Container from "~/components/Container.astro";
 import SanityImage from "~/components/SanityImage.astro";
@@ -56,7 +56,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
 
                   <div class="inline-flex text-center gap-2">
                     <span class="inline-flex items-center gap-1">
-                      <Calendar className="inline relative-icon" />
+                      <IconCalendar className="inline relative-icon" />
                       {dayjs(project._createdAt).format("L")}
                     </span>
                   </div>
@@ -68,7 +68,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                     class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
                   >
                     <span class="text-xs">More</span>
-                    <ArrowUpRight className="inline relative-icon" />
+                    <IconArrowUpRight className="inline relative-icon" />
                   </a>
                 </div>
               </div>

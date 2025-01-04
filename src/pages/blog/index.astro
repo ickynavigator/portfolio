@@ -1,5 +1,9 @@
 ---
-import { ArrowUpRight, Calendar, Timer } from "lucide-react";
+import {
+  IconArrowUpRight,
+  IconCalendar,
+  IconStopwatch,
+} from "@tabler/icons-react";
 
 import Container from "~/components/Container.astro";
 import SanityImage from "~/components/SanityImage.astro";
@@ -50,12 +54,12 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                       class="inline-flex items-center gap-1"
                       transition:name={`blog-post-time-${post.slug.current}`}
                     >
-                      <Calendar className="inline relative-icon" />
+                      <IconCalendar className="inline relative-icon" />
                       {dayjs(post.postedAt).format("L")}
                     </span>
                     &#xb7;
                     <span class="inline-flex items-center gap-1">
-                      <Timer className="inline relative-icon" />
+                      <IconStopwatch className="inline relative-icon" />
                       <span
                         transition:name={`blog-read-time-${post.slug.current}`}
                       >
@@ -71,7 +75,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                     class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
                   >
                     <span class="text-xs">More</span>
-                    <ArrowUpRight className="inline relative-icon" />
+                    <IconArrowUpRight className="inline relative-icon" />
                   </a>
                 </div>
               </div>

@@ -1,6 +1,11 @@
 ---
+import {
+  IconArrowLeft,
+  IconCalendar,
+  IconEdit,
+  IconStopwatch,
+} from "@tabler/icons-react";
 import type { GetStaticPaths } from "astro";
-import { ArrowLeft, Calendar, Edit, Timer } from "lucide-react";
 
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
@@ -41,7 +46,7 @@ if (!result || !image) {
     <ScrollProgress />
     <Container innerPage class="mb-4">
       <a href="/blog" class="hover-link">
-        <ArrowLeft className="inline relative-icon" />
+        <IconArrowLeft className="inline relative-icon" />
         Back to Blogs</a
       >
     </Container>
@@ -74,7 +79,7 @@ if (!result || !image) {
               title={`Posted on ${dayjs(result.postedAt).format("LLLL")}`}
               transition:name={`blog-post-time-${result.slug.current}`}
             >
-              <Calendar className="inline relative-icon" />
+              <IconCalendar className="inline relative-icon" />
               <time datetime={result.postedAt}
                 >{dayjs(result.postedAt).format("LL")}</time
               >
@@ -86,7 +91,7 @@ if (!result || !image) {
                   class="inline-flex items-center gap-1"
                   title={`Last updated on ${dayjs(result._updatedAt).format("LLLL")}`}
                 >
-                  <Edit className="inline relative-icon" />
+                  <IconEdit className="inline relative-icon" />
 
                   <time datetime={result._updatedAt}>
                     {dayjs(result._updatedAt).format("LL")}
@@ -97,7 +102,7 @@ if (!result || !image) {
           </div>
 
           <span class="inline-flex items-center gap-1 line-clamp-1">
-            <Timer className="inline relative-icon" />
+            <IconStopwatch className="inline relative-icon" />
             <span transition:name={`blog-read-time-${result.slug.current}`}
               >{getReadingTime(result.wordCount)}</span
             > read

@@ -1,5 +1,5 @@
 ---
-import { Search } from "lucide-react";
+import { IconSearch } from "@tabler/icons-react";
 import { z } from "zod";
 
 import Button from "~/components/Button.astro";
@@ -76,7 +76,7 @@ const { result } =
             name="type"
             options={["All", "Post", "Project"]}
             defaultOption={defaultType}
-            class="min-w-[15%] inline-flex"
+            class="inline-flex"
           />
 
           <div class="flex flex-row gap-2 w-full">
@@ -84,7 +84,7 @@ const { result } =
               <div
                 class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
               >
-                <Search className="relative-icon" />
+                <IconSearch className="relative-icon" />
               </div>
               <Input
                 name="search"
@@ -105,7 +105,7 @@ const { result } =
               title="Search"
             >
               <span class="sr-only">Submit Search</span>
-              <Search className="relative-icon" />
+              <IconSearch className="relative-icon" />
             </Button>
 
             <Button

@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { IconMenu2 } from "@tabler/icons-react";
 import React from "react";
 
 import {
@@ -18,7 +18,7 @@ const MobileNavMenu = (props: Props) => {
   return (
     <Drawer>
       <DrawerTrigger aria-label="Open Navigation Menu" title="Open menu">
-        <Menu />
+        <IconMenu2 />
       </DrawerTrigger>
 
       <DrawerContent>

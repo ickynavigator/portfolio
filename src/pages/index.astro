@@ -1,5 +1,9 @@
 ---
-import { ArrowUpRight, FolderOpen, MoveDown } from "lucide-react";
+import {
+  IconArrowMoveDown,
+  IconArrowUpRight,
+  IconFolderOpen,
+} from "@tabler/icons-react";
 
 import Container from "~/components/Container.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
@@ -42,7 +46,7 @@ if (!result) {
               aria-label="Scroll down"
               title="Scroll down"
             >
-              <MoveDown className="relative-icon stroke-1 m-3" />
+              <IconArrowMoveDown className="relative-icon stroke-1 m-3" />
             </button>
           </div>
         </div>
@@ -58,12 +62,12 @@ if (!result) {
           class="border rounded-lg mt-2 py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
         >
           <span class="text-xs">Learn more about me</span>
-          <ArrowUpRight className="relative-icon inline" />
+          <IconArrowUpRight className="relative-icon inline" />
         </a>
       </div>
 
       <span class="inline-flex items-center gap-2 mb-5 text-2xl">
-        <FolderOpen className="relative-icon" />
+        <IconFolderOpen className="relative-icon" />
         <h2 class="leading-none tracking-tight font-light">Selected Works</h2>
       </span>
 
@@ -101,7 +105,7 @@ if (!result) {
       </ul>
 
       <span class="inline-flex items-center gap-2 mb-5 text-2xl">
-        <FolderOpen className="relative-icon" />
+        <IconFolderOpen className="relative-icon" />
         <h2 class="leading-none tracking-tight font-light">
           Selected Blog Posts
         </h2>
