@@ -20,6 +20,8 @@ Fill up the .env file with the variables in the .env.example
 | `POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com` |
 | `WEBSITE_URL`                   | URL of the website. Defaults to `https://obifortune.com`         |
 | `WAKATIME_API_KEY`              | API key for the wakatime API                                     |
+| `LASTFM_USER`                   | Last.fm username. Defaults to `obifortune`                       |
+| `LASTFM_API_KEY`                | Last.fm API key                                                  |
 
 ### 🧞 Commands
 

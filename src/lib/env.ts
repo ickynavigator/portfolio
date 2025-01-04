@@ -25,6 +25,7 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
     client: {},
     server: {
       WAKATIME_API_KEY: z.string(),
+      LASTFM_API_KEY: z.string(),
     },
     shared: {
       SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
@@ -38,6 +39,8 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
       POSTHOG_UI_HOST: z.string().url().default("https://us.posthog.com"),
 
       WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
+
+      LASTFM_USER: z.string(),
     },
     runtimeEnv: runtimeEnv,
     emptyStringAsUndefined: true,
