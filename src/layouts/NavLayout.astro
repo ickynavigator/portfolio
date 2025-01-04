@@ -10,20 +10,23 @@ import {
 } from "@tabler/icons-react";
 
 import headerIcon from "~/assets/fox.svg?raw";
+import ActiveLink from "~/components/ActiveLink.astro";
 import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
 import { getEnv } from "~/lib/env";
 import { cn } from "~/lib/utils";
 
-const currentPage = Astro.url.pathname;
+const links = {
+  about: { href: "/about", text: "About" },
+  projects: { href: "/projects", text: "Projects" },
+  blog: { href: "/blog", text: "Blog" },
+  career: { href: "/career", text: "Career" },
+  search: { href: "/search", text: "Search" },
+  uses: { href: "/uses", text: "/uses" },
+  rss: { href: "/rss.xml", text: "RSS" },
+} as const;
 
-const search = { href: "/search", text: "Search" };
-const links = [
-  { href: "/about", text: "About" },
-  { href: "/projects", text: "Projects" },
-  { href: "/blog", text: "Blog" },
-  { href: "/career", text: "Career" },
-];
+const navlinks = [links.about, links.projects, links.blog, links.career];
 
 const repo = "https://github.com/ickynavigator/portfolio";
 
@@ -80,27 +83,16 @@ const env = getEnv();
       </div>
 
       <NavLinks>
-        {
-          links.map((link) => (
-            <a
-              href={link.href}
-              class="hover-link data-[active-page='true']:decoration-primary"
-              data-active-page={currentPage === link.href ? "true" : "false"}
-            >
-              {link.text}
-            </a>
-          ))
-        }
+        {navlinks.map((link) => <ActiveLink {...link} />)}
 
-        <a
-          href={search.href}
-          class="hover-link-icon data-[active-page='true']:border-primary"
-          data-active-page={currentPage === search.href ? "true" : "false"}
+        <ActiveLink
+          href={links.search.href}
           slot="search"
+          class="hover-link-icon data-[active-page='true']:border-primary"
         >
           <IconSearch className="relative-icon" />
-          <span class="sr-only">{search.text}</span>
-        </a>
+          <span class="sr-only">{links.search.text}</span></ActiveLink
+        >
       </NavLinks>
     </nav>
   </header>
@@ -172,20 +164,11 @@ const env = getEnv();
 
       <div class="inline-flex flex-col md:inline">
         <span>
-          <a
-            href="/uses"
-            class="hover-link data-[active-page='true']:decoration-primary"
-            data-active-page={currentPage === "/uses" ? "true" : "false"}
-            >/uses</a
-          >;
+          <ActiveLink {...links.uses} />;
         </span>
 
         <span>
-          <a
-            href="/rss.xml"
-            class="hover-link data-[active-page='true']:decoration-primary"
-            data-active-page={currentPage === "/uses" ? "true" : "false"}>rss</a
-          >;
+          <ActiveLink {...links.rss} />;
         </span>
         {
           env.CF_PAGES_COMMIT_SHA && (

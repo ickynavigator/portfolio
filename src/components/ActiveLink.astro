@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+import { cn } from "~/lib/utils";
+
+interface Props extends HTMLAttributes<"a"> {
+  href: string;
+  text?: string;
+}
+
+const isActiveUrl = (url: string) => {
+  return Astro.url.pathname === url;
+};
+
+const { href, text, class: _class, ...rest } = Astro.props;
+---
+
+<a
+  href={href}
+  class={cn("hover-link data-[active-page='true']:decoration-primary", _class)}
+  data-active-page={isActiveUrl(href)}
+  {...rest}><slot />{text}</a
+>
