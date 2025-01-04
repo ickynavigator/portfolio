@@ -17,8 +17,6 @@ interface Props {
   image?: string;
 }
 
-const env = getEnv();
-
 const profilePicture = async () => {
   const { result } = await loadQuery({ query: PROFILE_IMAGE_QUERY });
   const _profilePicture = result?.url;
@@ -34,7 +32,7 @@ const {
   image = await profilePicture(),
 } = Astro.props;
 
-const appURL = `${env.WEBSITE_URL}${Astro.url.pathname}`;
+const appURL = `${Astro.site}${Astro.url.pathname}`;
 
 const keywords = [
   "Astro",

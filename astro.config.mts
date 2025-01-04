@@ -18,6 +18,7 @@ const env = getEnv(_env);
 // https://astro.build/config
 export default defineConfig({
   output: "static",
+  site: env.WEBSITE_URL,
 
   prefetch: {
     prefetchAll: true,
