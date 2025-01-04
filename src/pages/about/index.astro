@@ -1,6 +1,7 @@
 ---
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
+import RecentlyPlayed from "~/components/RecentlyPlayed.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
@@ -17,10 +18,11 @@ if (!result) {
   <NavLayout>
     <Container innerPage>
       <div class="mb-4">
-        <h1 class="text-xl leading-none font-bold tracking-tight">About</h1>
+        <h1 class="text-xl font-bold leading-none tracking-tight">About</h1>
       </div>
 
       <PortableText data={result.bio} />
+      <RecentlyPlayed server:defer />
     </Container>
   </NavLayout>
 </MainLayout>
