@@ -1,15 +1,7 @@
 ---
-import { cn } from "~/lib/utils";
 
-interface Props {
-  node: {
-    level: number;
-  };
-}
-
-const isInnerLevel = Astro.props.node.level > 1;
 ---
 
-<ul class={cn("list-disc list-inside ps-5", isInnerLevel && "ps-5")}>
+<ul class="list-disc list-inside ps-5">
   <slot />
 </ul>
