@@ -19,6 +19,12 @@
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 89%;
+    --success: 145 75% 47%;
+    --success-foreground: 0 0% 100%;
+    --info: 200 85% 60%;
+    --info-foreground: 0 0% 100%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
@@ -45,8 +51,14 @@
     --muted-foreground: 0 0% 63.9%;
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 78% 55%; /* Brighter red with more saturation */
+    --destructive-foreground: 0 0% 98%; /* Light color for contrast */
+    --warning: 48 96% 89%;
+    --warning-foreground: 38 92% 50%;
+    --success: 145 60% 40%;
+    --success-foreground: 0 0% 98%;
+    --info: 200 70% 50%;
+    --info-foreground: 0 0% 98%;
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
