@@ -4,6 +4,7 @@ import { PortableText as PortableTextInternal } from "astro-portabletext";
 import BlockQuote from "~/components/PortableText/Block/BlockQuote.PortableText.astro";
 import HardBreak from "~/components/PortableText/Block/HardBreak.PortableText.astro";
 import Heading from "~/components/PortableText/Block/Heading.PortableText.astro";
+import MutedBlock from "~/components/PortableText/Block/Muted.PortableText.astro";
 import Normal from "~/components/PortableText/Block/Normal.PortableText.astro";
 import PortableTextCode from "~/components/PortableText/Code.PortableText.astro";
 import PortableTextImage from "~/components/PortableText/Image.PortableText.astro";
@@ -13,6 +14,7 @@ import UnorderedList from "~/components/PortableText/List/UnorderedList.Portable
 import Highlight from "~/components/PortableText/Mark/Highlight.PortableText.astro";
 import InlineCode from "~/components/PortableText/Mark/InlineCode.PortableText.astro";
 import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
+import MutedMark from "~/components/PortableText/Mark/Muted.PortableText.astro";
 import type { BlockContent } from "~/t/sanity";
 
 interface Props {
@@ -38,6 +40,7 @@ const { data } = Astro.props;
       h4: Heading,
       h5: Heading,
       h6: Heading,
+      muted: MutedBlock,
       "blockquote-info": BlockQuote,
       "blockquote-success": BlockQuote,
       "blockquote-warning": BlockQuote,
@@ -51,6 +54,7 @@ const { data } = Astro.props;
       // underline,
       // 'strike-through',
       mark: Highlight,
+      muted: MutedMark,
     },
 
     list: {

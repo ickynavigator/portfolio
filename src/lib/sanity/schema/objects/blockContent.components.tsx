@@ -10,7 +10,18 @@ export const Highlight = {
   component: (props) => <mark>{props.children}</mark>,
 } satisfies BlockDecoratorDefinition;
 
-const BlockQuoteBase = (status: string) => {
+export const Muted = {
+  title: "Muted",
+  value: "muted",
+  icon: () => <Text muted>M</Text>,
+  component: (props) => (
+    <span style={{ color: "var(--card-muted-fg-color)" }}>
+      {props.children}
+    </span>
+  ),
+} satisfies BlockStyleDefinition | BlockDecoratorDefinition;
+
+const _BlockQuoteBase = (status: string) => {
   type BlockQuoteStyleProps = Omit<HTMLProps<HTMLQuoteElement>, "as" | "ref">;
 
   const BlockQuoteRoot = styled.blockquote`
@@ -63,7 +74,7 @@ const BlockQuoteBase = (status: string) => {
   return BlockQuoteExample;
 };
 
-export const BlockQuoteInfo = BlockQuoteBase("info");
-export const BlockQuoteSuccess = BlockQuoteBase("success");
-export const BlockQuoteWarning = BlockQuoteBase("warning");
-export const BlockQuoteDanger = BlockQuoteBase("danger");
+export const BlockQuoteInfo = _BlockQuoteBase("info");
+export const BlockQuoteSuccess = _BlockQuoteBase("success");
+export const BlockQuoteWarning = _BlockQuoteBase("warning");
+export const BlockQuoteDanger = _BlockQuoteBase("danger");
