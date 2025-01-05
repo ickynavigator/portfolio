@@ -54,8 +54,8 @@ importers:
         specifier: ^2.11.4
         version: 2.11.4(@sanity/client@6.24.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@shikijs/transformers':
-        specifier: ^1.26.1
-        version: 1.26.1
+        specifier: ^1.24.4
+        version: 1.24.4
       '@t3-oss/env-core':
         specifier: ^0.11.1
         version: 0.11.1(typescript@5.7.2)(zod@3.24.1)
@@ -2756,8 +2756,8 @@ packages:
   '@shikijs/themes@1.26.1':
     resolution: {integrity: sha512-JDxVn+z+wgLCiUhBGx2OQrLCkKZQGzNH3nAxFir4PjUcYiyD8Jdms9izyxIogYmSwmoPTatFTdzyrRKbKlSfPA==}
 
-  '@shikijs/transformers@1.26.1':
-    resolution: {integrity: sha512-IRLJEP7YxkRMsHo367+7qDlpWjsUu6O79pdlUlkcbF1A5TrF1Ln0FBNrgHA/i9p+IKXiiKNATURa6WXh3iq7Uw==}
+  '@shikijs/transformers@1.24.4':
+    resolution: {integrity: sha512-0jq5p9WLB7ToM/O7RWfxuIwirTJbIQsUR06jxdG3h3CEuO5m7ik8GnDsxwHhyIEfgJSZczSnVUZWFrNKy5It6g==}
 
   '@shikijs/types@1.24.4':
     resolution: {integrity: sha512-0r0XU7Eaow0PuDxuWC1bVqmWCgm3XqizIaT7SM42K03vc69LGooT0U8ccSR44xP/hGlNx4FKhtYpV+BU6aaKAA==}
@@ -7735,7 +7735,7 @@ snapshots:
       remark-parse: 11.0.0
       remark-rehype: 11.1.1
       remark-smartypants: 3.0.2
-      shiki: 1.24.4
+      shiki: 1.26.1
       unified: 11.0.5
       unist-util-remove-position: 5.0.0
       unist-util-visit: 5.0.0
@@ -10505,9 +10505,9 @@ snapshots:
     dependencies:
       '@shikijs/types': 1.26.1
 
-  '@shikijs/transformers@1.26.1':
+  '@shikijs/transformers@1.24.4':
     dependencies:
-      shiki: 1.26.1
+      shiki: 1.24.4
 
   '@shikijs/types@1.24.4':
     dependencies:
