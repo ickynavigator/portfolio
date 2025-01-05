@@ -51,8 +51,8 @@
     --muted-foreground: 0 0% 63.9%;
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 78% 55%; /* Brighter red with more saturation */
-    --destructive-foreground: 0 0% 98%; /* Light color for contrast */
+    --destructive: 0 78% 55%;
+    --destructive-foreground: 0 0% 98%;
     --warning: 48 96% 89%;
     --warning-foreground: 38 92% 50%;
     --success: 145 60% 40%;
