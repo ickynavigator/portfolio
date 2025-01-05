@@ -7,7 +7,10 @@ import {
   transformerNotationWordHighlight,
   transformerRemoveNotationEscape,
 } from "@shikijs/transformers";
+import { IconCaretUpDownFilled, IconMinus, IconX } from "@tabler/icons-react";
 import { Code as CustomCode } from "astro:components";
+
+import { cn } from "~/lib/utils";
 
 interface Props {
   code: string;
@@ -20,12 +23,43 @@ interface Props {
 const { code, inline, title, showLineNumbers = false } = Astro.props;
 
 const language = "ts";
+
+const fileButtons = [
+  {
+    icon: IconX,
+    class:
+      "bg-[#FF5F57] dark:[#FF5F57] hover:bg-[#E0483E] dark:hover:bg-[#E0483E]",
+  },
+  {
+    icon: IconMinus,
+    class:
+      "bg-[#FFBD2E] dark:[#FFBD2E] hover:bg-[#E0A123] dark:hover:bg-[#E0A123]",
+  },
+  {
+    icon: IconCaretUpDownFilled,
+    class:
+      "bg-[#28C940] dark:[#28C940] hover:bg-[#22A532] dark:hover:bg-[#22A532] -rotate-45",
+  },
+];
 ---
 
 <div class="rounded-md border-2 overflow-clip my-2 border-x-0">
   <div
-    class="bg-secondary py-1 px-2 flex justify-between text-sm border-b-2 select-none"
+    class="bg-[#F0F0F5] dark:bg-[#2E2E2E] text-[#2E2E2E] dark:text-[#E0E0E0] drop-shadow-md py-1 px-2 flex justify-between text-sm border-b-2 select-none"
   >
+    <div class="flex gap-2 items-center">
+      {
+        fileButtons.map((button) => (
+          <button.icon
+            className={cn(
+              "rounded-full w-3 h-3 text-transparent hover:text-white hover:dark:text-black p-[0.0625rem] transition-colors",
+              button.class,
+            )}
+          />
+        ))
+      }
+    </div>
+
     <span class="font-semibold">{title ?? "Random Code"}</span>
 
     <span>
