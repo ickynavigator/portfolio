@@ -1,27 +1,85 @@
 ---
+import {
+  IconAlertCircleFilled,
+  IconAlertTriangleFilled,
+  IconCircleCheckFilled,
+  IconInfoSquareRoundedFilled,
+} from "@tabler/icons-react";
 import type { BlockProps } from "astro-portabletext/types";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "~/lib/utils";
 
 type Props = BlockProps;
 
+const quoteVariants = cva(
+  "p-4 my-4 rounded border-l-8 border-muted-foreground bg-secondary",
+  {
+    variants: {
+      variant: {
+        default: "",
+        info: "border-info [&_svg]:text-info [&_.title]:text-info",
+        success: "border-success [&_svg]:text-success [&_.title]:text-success",
+        warning: "border-warning [&_svg]:text-warning [&_.title]:text-warning",
+        danger:
+          "border-destructive [&_svg]:text-destructive [&_.title]:text-destructive",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+const getVariantIcon = (variant: string) => {
+  switch (variant) {
+    case "info":
+      return IconInfoSquareRoundedFilled;
+    case "success":
+      return IconCircleCheckFilled;
+    case "warning":
+      return IconAlertCircleFilled;
+    case "danger":
+      return IconAlertTriangleFilled;
+    default:
+      return IconInfoSquareRoundedFilled;
+  }
+};
+
 const {
   node: { style },
 } = Astro.props;
+
+const variant = style.replace(/blockquote-?/, "");
+const _variant = variant as VariantProps<typeof quoteVariants>["variant"];
+
+const VariantIcon = getVariantIcon(variant);
+
+const bqClass = quoteVariants({ variant: _variant });
 ---
 
-<blockquote
-  class={cn(
-    "p-4 my-4 rounded border-l-4 border-muted-foreground bg-secondary",
-    // Todo: Add more styles
-    style === "blockquote-info" && "",
-    style === "blockquote-success" && "",
-    style === "blockquote-warning" && "",
-    style === "blockquote-danger" &&
-      "bg-destructive border-destructive-foreground",
-  )}
->
-  <p class="italic font-medium leading-relaxed">
-    <slot />
-  </p>
-</blockquote>
+{
+  variant === "" ? (
+    <blockquote class={cn(bqClass)}>
+      <p class="italic font-medium leading-relaxed">
+        <slot />
+      </p>
+    </blockquote>
+  ) : (
+    <blockquote class={cn(bqClass, "bg-transparent")}>
+      <div class="gap-3 flex">
+        <div class="text-xl">
+          <VariantIcon className="relative-icon" />
+        </div>
+
+        <div>
+          <p class="title font-extrabold capitalize">{variant}</p>
+
+          <p class="italic font-medium leading-relaxed">
+            <slot />
+          </p>
+        </div>
+      </div>
+    </blockquote>
+  )
+}
