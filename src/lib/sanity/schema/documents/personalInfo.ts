@@ -109,7 +109,16 @@ export default defineType({
       name: "socialLinks",
       title: "Social Media",
       type: "array",
-      of: [defineArrayMember({ type: "socialLink" })],
+      of: [
+        defineArrayMember({
+          type: "url",
+          validation: (Rule) =>
+            Rule.required().uri({
+              allowRelative: true,
+              scheme: ["http", "https", "mailto", "tel"],
+            }),
+        }),
+      ],
       validation: (Rule) => Rule.unique(),
     }),
 

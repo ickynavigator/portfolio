@@ -7,7 +7,6 @@ import post from "~/lib/sanity/schema/documents/post";
 import project from "~/lib/sanity/schema/documents/project";
 import blockContent from "~/lib/sanity/schema/objects/blockContent";
 import enhancedURL from "~/lib/sanity/schema/objects/enhancedURL";
-import socialLink from "~/lib/sanity/schema/objects/socialLink";
 import career from "./documents/career";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -16,7 +15,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     personalInfo,
     category,
     blockContent,
-    socialLink,
     post,
     project,
     enhancedURL,

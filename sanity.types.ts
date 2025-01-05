@@ -327,12 +327,6 @@ export type Post = {
   >;
 };
 
-export type SocialLink = {
-  _type: "socialLink";
-  name: string;
-  link: string;
-};
-
 export type BlockContent = Array<
   | {
       children?: Array<{
@@ -437,11 +431,7 @@ export type PersonalInfo = {
     _type: "image";
   };
   bio: BlockContent;
-  socialLinks?: Array<
-    {
-      _key: string;
-    } & SocialLink
-  >;
+  socialLinks?: Array<string>;
   skillTags?: Array<{
     _ref: string;
     _type: "reference";
@@ -572,7 +562,6 @@ export type AllSanitySchemaTypes =
   | EnhancedURL
   | Project
   | Post
-  | SocialLink
   | BlockContent
   | Category
   | Slug
