@@ -146,3 +146,7 @@ export const RSS_FEED_QUERY = defineQuery(`
                 }, []),
     }
 `);
+
+export const SOCIAL_LINKS_QUERY = defineQuery(`
+    coalesce(*[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].socialLinks, [])
+`);

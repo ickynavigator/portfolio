@@ -1,0 +1,115 @@
+---
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandTwitter,
+  IconBrandX,
+  IconLink,
+  IconMail,
+  IconRss,
+  type Icon,
+  type IconProps,
+} from "@tabler/icons-react";
+import type { ForwardRefExoticComponent, RefAttributes } from "react";
+
+import { cn } from "~/lib/utils";
+
+interface SocialResult {
+  href: string;
+  text: string;
+  icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+  color: string;
+}
+
+const getSocial = async (href: string): Promise<SocialResult> => {
+  const matches: [RegExp, SocialResult][] = [
+    [
+      /^(?:https?:\/\/)?(?:www\.)?github\.com\/(?:[\w-]+\/?)+$/,
+      {
+        href,
+        text: "Github",
+        icon: IconBrandGithub,
+        color: "bg-[#24292F]",
+      },
+    ],
+    [
+      /^(?:https?:\/\/)?(?:www\.)?linkedin\.com\/(?:[\w-]+\/?)+$/,
+      {
+        href,
+        text: "LinkedIn",
+        icon: IconBrandLinkedin,
+        color: "bg-[#0077B5]",
+      },
+    ],
+    [
+      /^(?:https?:\/\/)?(?:www\.)?x\.com\/(?:[\w-]+\/?)+$/,
+      {
+        href,
+        text: "X",
+        icon: IconBrandX,
+        color: "bg-[#0f1419]",
+      },
+    ],
+    [
+      /^(?:https?:\/\/)?(?:www\.)?twitter\.com\/(?:[\w-]+\/?)+$/,
+      {
+        href,
+        text: "Twitter",
+        icon: IconBrandTwitter,
+        color: "bg-[#1DA1F2]",
+      },
+    ],
+    [
+      /^(?:https?:\/\/)?(?:www\.)*.*\/rss\.xml\/?(?:[\w-]+\/?)?$/,
+      {
+        href,
+        text: "RSS",
+        icon: IconRss,
+        color: "bg-[#EE802F]",
+      },
+    ],
+    [
+      /^mailto:.*$/,
+      {
+        href,
+        text: "Mail",
+        icon: IconMail,
+        color: "bg-[#010101]",
+      },
+    ],
+  ];
+
+  const defaultMatch: SocialResult = {
+    href,
+    text: "Link",
+    icon: IconLink,
+    color: "bg-[#333]",
+  };
+
+  const _href = href.toLocaleLowerCase();
+  const match = matches.find(([regex]) => regex.test(_href))?.[1];
+  return match || defaultMatch;
+};
+
+interface Props {
+  link: string;
+}
+
+const social = await getSocial(Astro.props.link);
+---
+
+<a target="_blank" href={social.href} title={social.text} class="group/icon">
+  <div
+    class={cn(
+      social.color,
+      "rounded-full border-2 p-1.5 transition-transform group-hover/icon:-translate-y-1 text-white",
+    )}
+  >
+    <social.icon
+      className="relative-icon"
+      aria-hidden="true"
+      focusable="false"
+    />
+  </div>
+  <span class="sr-only">{social.text}</span>
+</a>

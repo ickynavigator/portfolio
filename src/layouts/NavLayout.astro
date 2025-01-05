@@ -1,20 +1,14 @@
 ---
-import {
-  IconBrandGithub,
-  IconBrandLinkedin,
-  IconBrandTwitter,
-  IconCode,
-  IconMail,
-  IconRss,
-  IconSearch,
-} from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import ActiveLink from "~/components/ActiveLink.astro";
 import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
+import SocialButton from "~/components/SocialButton.astro";
 import { getEnv } from "~/lib/env";
-import { cn } from "~/lib/utils";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { SOCIAL_LINKS_QUERY } from "~/lib/sanity/queries";
 
 const links = {
   about: { href: "/about", text: "About" },
@@ -28,46 +22,7 @@ const links = {
 
 const navlinks = [links.about, links.projects, links.blog, links.career];
 
-const repo = "https://github.com/ickynavigator/portfolio";
-
-const socials = [
-  {
-    href: "https://twitter.com/obifortunebleh",
-    text: "Twitter",
-    icon: IconBrandTwitter,
-    color: "bg-[#010101]",
-  },
-  {
-    href: "https://github.com/ickynavigator",
-    text: "Github",
-    icon: IconBrandGithub,
-    color: "bg-[#24292F]",
-  },
-  {
-    href: "https://linkedin.com/in/obifortune",
-    text: "LinkedIn",
-    icon: IconBrandLinkedin,
-    color: "bg-[#0077B5]",
-  },
-  {
-    href: repo,
-    text: "Code",
-    icon: IconCode,
-    color: "bg-[#010101]",
-  },
-  {
-    href: "mailto:gabrielobi.of@gmail.com",
-    text: "Mail",
-    icon: IconMail,
-    color: "bg-[#010101]",
-  },
-  {
-    href: "/rss.xml",
-    text: "RSS",
-    icon: IconRss,
-    color: "bg-[#EE802F]",
-  },
-];
+const _socials = await loadQuery({ query: SOCIAL_LINKS_QUERY });
 
 const env = getEnv();
 ---
@@ -116,30 +71,7 @@ const env = getEnv();
       </p>
 
       <div class="flex gap-2 mt-6">
-        {
-          socials.map((social) => (
-            <a
-              target="_blank"
-              href={social.href}
-              title={social.text}
-              class="group/icon"
-            >
-              <div
-                class={cn(
-                  social.color,
-                  "rounded-full border-2 p-1.5 transition-transform group-hover/icon:-translate-y-1 text-white",
-                )}
-              >
-                <social.icon
-                  className="relative-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                />
-              </div>
-              <span class="sr-only">{social.text}</span>
-            </a>
-          ))
-        }
+        {_socials.result.map((link) => <SocialButton link={link} />)}
       </div>
     </div>
 
@@ -176,7 +108,7 @@ const env = getEnv();
               Build SHA:
               <a
                 target="_blank"
-                href={`${repo}/commit/${env.CF_PAGES_COMMIT_SHA}`}
+                href={`https://github.com/ickynavigator/portfolio/commit/${env.CF_PAGES_COMMIT_SHA}`}
                 class="hover-link"
               >
                 {env.CF_PAGES_COMMIT_SHA.substring(0, 7)}
