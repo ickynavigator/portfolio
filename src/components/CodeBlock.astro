@@ -88,11 +88,11 @@ const fileButtons = [
 
 <style>
   :root {
-    --color-line-add: #10b98124;
-    --color-line-remove: #f43f5e24;
-    --color-line-highlight: #8e96aa24;
-    --color-line-warning: #eab30824;
-    --color-line-error: #f43f5e24;
+    --color-line-add: var(--success);
+    --color-line-remove: var(--destructive);
+    --color-line-highlight: var(--info);
+    --color-line-warning: var(--warning-foreground);
+    --color-line-error: var(--destructive);
 
     --bg-color: initial;
   }
@@ -104,7 +104,7 @@ const fileButtons = [
       @apply block w-fit min-w-full py-1 text-base leading-tight;
 
       .line {
-        @apply inline-block min-h-5 w-full bg-[var(--bg-color)] px-2 align-top;
+        @apply inline-block min-h-5 w-full bg-[hsl(var(--bg-color)/0.2)] px-2 align-top;
 
         &.diff {
           &.add {
@@ -129,7 +129,7 @@ const fileButtons = [
         }
 
         .highlighted-word {
-          @apply rounded border bg-[var(--color-line-highlight)] px-1 py-[0.0625rem];
+          @apply rounded border bg-[hsl(var(--color-line-highlight)/0.2)] px-1 py-[0.0625rem];
         }
       }
     }
@@ -156,7 +156,7 @@ const fileButtons = [
       @apply pl-[var(--spacing)];
 
       code {
-        @apply border-0 border-l-[1px] border-solid border-[#738a9466];
+        @apply border-0 border-l-[1px] border-solid border-primary-foreground;
 
         counter-reset: step;
         counter-increment: step 0;
@@ -165,7 +165,7 @@ const fileButtons = [
           @apply relative;
 
           &::before {
-            @apply absolute -left-[100%] inline-block w-full bg-[var(--bg-color)] pr-[.4rem] text-right text-sm blur-none content-[counter(step)];
+            @apply absolute -left-[100%] inline-block w-full bg-[hsl(var(--bg-color)/0.2)] pr-[.4rem] text-right text-sm blur-none content-[counter(step)];
 
             counter-increment: step;
           }
