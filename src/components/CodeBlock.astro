@@ -98,7 +98,7 @@ const fileButtons = [
 
     --bg-color: initial;
     --spacing: calc(((var(--linecount) + 1) * 1rem));
-    --left-position: calc(var(--spacing) + 4px);
+    --left-position: calc(var(--spacing) + 5px);
 
     code {
       font-family: "Input Mono", "IBM Plex Mono", monospace;
@@ -107,6 +107,11 @@ const fileButtons = [
 
       .line {
         @apply relative inline-block min-h-5 w-full border-l-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] px-4 align-top;
+
+        &::before,
+        &::after {
+          @apply text-muted-foreground;
+        }
 
         &.diff {
           &.add {
