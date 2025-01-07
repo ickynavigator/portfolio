@@ -174,7 +174,7 @@ const fileButtons = [
 
         .line {
           &::before {
-            @apply absolute -left-[var(--left-position)] w-[var(--spacing)] bg-[hsl(var(--bg-color)/var(--alpha-offset))] pr-[.4rem] text-right text-sm blur-none content-[counter(step)];
+            @apply absolute -left-[var(--left-position)] w-[var(--spacing)] border-l-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] pr-[.4rem] text-right text-sm blur-none content-[counter(step)];
 
             counter-increment: step;
           }
@@ -182,26 +182,12 @@ const fileButtons = [
       }
     }
 
-    &[data-show-line-numbers="true"] {
-      code {
-        .line {
-          &.highlighted {
-            &::before {
-              @apply border-l-4 border-[hsl(var(--bg-color))];
-            }
-          }
-        }
-      }
+    &[data-show-line-numbers="true"] code .line.highlighted::before {
+      @apply border-[hsl(var(--bg-color))];
     }
-    &[data-show-line-numbers="false"],
-    &[data-show-line-numbers=""] {
-      code {
-        .line {
-          &.highlighted {
-            @apply border-[hsl(var(--bg-color))];
-          }
-        }
-      }
+
+    &:not([data-show-line-numbers="true"]) code .line.highlighted {
+      @apply border-[hsl(var(--bg-color))];
     }
   }
 </style>
