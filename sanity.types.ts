@@ -81,6 +81,7 @@ export type Career = {
           | "h4"
           | "h5"
           | "h6"
+          | "muted"
           | "blockquote"
           | "blockquote-info"
           | "blockquote-success"
@@ -206,6 +207,7 @@ export type Project = {
           | "h4"
           | "h5"
           | "h6"
+          | "muted"
           | "blockquote"
           | "blockquote-info"
           | "blockquote-success"
@@ -293,6 +295,7 @@ export type Post = {
           | "h4"
           | "h5"
           | "h6"
+          | "muted"
           | "blockquote"
           | "blockquote-info"
           | "blockquote-success"
@@ -343,6 +346,7 @@ export type BlockContent = Array<
         | "h4"
         | "h5"
         | "h6"
+        | "muted"
         | "blockquote"
         | "blockquote-info"
         | "blockquote-success"
@@ -662,6 +666,7 @@ export type POST_QUERYResult = {
           | "h4"
           | "h5"
           | "h6"
+          | "muted"
           | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
@@ -833,6 +838,7 @@ export type PROJECT_QUERYResult = {
           | "h4"
           | "h5"
           | "h6"
+          | "muted"
           | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
@@ -920,6 +926,7 @@ export type CAREERS_QUERYResult = {
             | "h4"
             | "h5"
             | "h6"
+            | "muted"
             | "normal";
           listItem?: "bullet" | "number";
           markDefs?: Array<{

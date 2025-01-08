@@ -367,6 +367,10 @@
                         },
                         {
                           "type": "string",
+                          "value": "muted"
+                        },
+                        {
+                          "type": "string",
                           "value": "blockquote"
                         },
                         {
@@ -1134,6 +1138,10 @@
                         },
                         {
                           "type": "string",
+                          "value": "muted"
+                        },
+                        {
+                          "type": "string",
                           "value": "blockquote"
                         },
                         {
@@ -1654,6 +1662,10 @@
                         },
                         {
                           "type": "string",
+                          "value": "muted"
+                        },
+                        {
+                          "type": "string",
                           "value": "blockquote"
                         },
                         {
@@ -1945,6 +1957,10 @@
                     {
                       "type": "string",
                       "value": "h6"
+                    },
+                    {
+                      "type": "string",
+                      "value": "muted"
                     },
                     {
                       "type": "string",
