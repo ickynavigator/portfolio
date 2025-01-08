@@ -19,24 +19,21 @@ import Toggle from "~/components/Toggle.astro";
   const DARK_MODE_CLASS = "dark";
 
   const updateTheme = (incomingTheme) => {
-    switch (incomingTheme) {
+    let _incomingTheme = incomingTheme ?? "dark";
+
+    if (incomingTheme == "system") {
+      _incomingTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+
+    switch (_incomingTheme) {
       case "light": {
         document.documentElement.classList.remove(DARK_MODE_CLASS);
         break;
       }
       case "dark": {
         document.documentElement.classList.add(DARK_MODE_CLASS);
-        break;
-      }
-      case "system": {
-        const isDark = window.matchMedia("(prefers-color-scheme: dark)");
-        document.documentElement.classList.toggle(
-          DARK_MODE_CLASS,
-          isDark.matches,
-        );
-        break;
-      }
-      default: {
         break;
       }
     }
