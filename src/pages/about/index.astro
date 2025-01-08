@@ -1,7 +1,16 @@
 ---
 import Container from "~/components/Container.astro";
+import PortableText from "~/components/PortableText/PortableText.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { ABOUT_QUERY } from "~/lib/sanity/queries";
+
+const { result } = await loadQuery({ query: ABOUT_QUERY });
+
+if (!result) {
+  return null;
+}
 ---
 
 <MainLayout title="About" description="About Me!">
@@ -10,6 +19,8 @@ import NavLayout from "~/layouts/NavLayout.astro";
       <div class="mb-4">
         <h1 class="leading-none tracking-tight font-bold text-xl">About</h1>
       </div>
+
+      <PortableText data={result.bio} />
     </Container>
   </NavLayout>
 </MainLayout>
