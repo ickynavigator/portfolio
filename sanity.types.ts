@@ -1126,6 +1126,11 @@ export type RSS_FEED_QUERYResult = {
 // Variable: SOCIAL_LINKS_QUERY
 // Query: coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])
 export type SOCIAL_LINKS_QUERYResult = Array<string> | Array<never>;
+// Variable: ABOUT_QUERY
+// Query: *[_type == "personalInfo" && _id == "personalInfo"] [0] {        bio,    }
+export type ABOUT_QUERYResult = {
+  bio: BlockContent;
+} | null;
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -1143,5 +1148,6 @@ declare module "@sanity/client" {
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].uses\n': USES_QUERYResult;
     '\n    {\n        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, \'\'),\n        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),\n        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n                    title,\n                    "pubDate": postedAt,\n                    description,\n                    "link": \'/blog/\' + slug.current,\n                    "categories": coalesce(tags[]->slug.current, []),\n                }, []),\n    }\n': RSS_FEED_QUERYResult;
     '\n    coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])\n': SOCIAL_LINKS_QUERYResult;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        bio,\n    }\n': ABOUT_QUERYResult;
   }
 }
