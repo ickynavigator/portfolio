@@ -31,6 +31,10 @@ export default defineConfig({
     imageService: "passthrough",
   }),
 
+  build: {
+    redirects: false,
+  },
+
   integrations: [
     sanity({
       dataset: env.PUBLIC_SANITY_API_DATASET,
