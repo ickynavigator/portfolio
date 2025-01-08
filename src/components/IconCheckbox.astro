@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"input"> {
+  label: string;
+}
+
+const { label, ...rest } = Astro.props;
+---
+
+<label class="flex items-center cursor-pointer relative">
+  <span class="sr-only">{label}</span>
+
+  <input
+    type="checkbox"
+    class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-secondary checked:border-secondary-foreground"
+    title={label}
+    {...rest}
+  />
+
+  <span
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+  >
+    <slot />
+  </span>
+</label>
