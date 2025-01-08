@@ -9,6 +9,7 @@ import {
 } from "@shikijs/transformers";
 import {
   IconCaretUpDownFilled,
+  IconCopy,
   IconFileCode,
   IconFileTypeJs,
   IconFileTypeJsx,
@@ -52,7 +53,7 @@ const fileButtons = [
     title: "Expand",
     icon: IconCaretUpDownFilled,
     class:
-      "bg-[#28C940] dark:[#28C940] hover:bg-[#22A532] dark:hover:bg-[#22A532] -rotate-45",
+      "bg-[#28C940] dark:[#28C940] hover:bg-[#22A532] dark:hover:bg-[#22A532] [&_svg]:-rotate-45",
   },
 ];
 
@@ -83,6 +84,7 @@ const CodeIcon = magicCodeIcon(language);
 <custom-code-block
   class="block rounded-t-md overflow-clip my-2"
   data-show-line-numbers={showLineNumbers}
+  data-code={code}
 >
   <div
     class="bg-[#F0F0F5] dark:bg-[#2E2E2E] text-[#2E2E2E] dark:text-[#E0E0E0] drop-shadow-md py-1 px-2 flex justify-between text-sm border-b-2 select-none"
@@ -93,7 +95,7 @@ const CodeIcon = magicCodeIcon(language);
           <button
             title={button.title}
             class={cn(
-              "rounded-full w-3 h-3 text-transparent group-hover/icons:text-white group-hover/icons:dark:text-black p-[0.0625rem] transition-colors items-center flex justify-center",
+              "rounded-full w-3 h-3 text-transparent group-hover/icons:text-white group-hover/icons:dark:text-black p-[0.0625rem] transition-colors items-center flex justify-center overflow-clip",
               button.class,
             )}
           >
@@ -110,6 +112,14 @@ const CodeIcon = magicCodeIcon(language);
       <IconCheckbox label="Show line numbers" id="show-numbers">
         <IconNumbers className="relative-icon" />
       </IconCheckbox>
+
+      <button
+        id="copy-code"
+        class="border border-primary p-0.5 rounded bg-secondary transition hover:bg-primary/30"
+        title="Copy Code"
+      >
+        <IconCopy className="relative-icon" />
+      </button>
 
       <CodeIcon className="relative-icon" />
     </div>
@@ -260,27 +270,33 @@ const CodeIcon = magicCodeIcon(language);
       });
 
       const showNumbersBtn = this.querySelector("#show-numbers");
-      if (booleanish(this.dataset.showLineNumbers) && showNumbersBtn) {
-        if ("checked" in showNumbersBtn) {
-          showNumbersBtn.checked = true;
+      if (showNumbersBtn) {
+        if (booleanish(this.dataset.showLineNumbers)) {
+          if ("checked" in showNumbersBtn) {
+            showNumbersBtn.checked = true;
+          }
         }
+
+        showNumbersBtn?.addEventListener("click", (e) => {
+          if (e?.currentTarget == null) return;
+
+          let _checked;
+
+          if (
+            "checked" in e.currentTarget &&
+            typeof e.currentTarget.checked === "boolean"
+          ) {
+            _checked = e.currentTarget.checked;
+          } else {
+            _checked = !booleanish(this.dataset.showLineNumbers);
+          }
+
+          this.dataset.showLineNumbers = _checked.toString();
+        });
       }
 
-      showNumbersBtn?.addEventListener("click", (e) => {
-        if (e?.currentTarget == null) return;
-
-        let _checked;
-
-        if (
-          "checked" in e.currentTarget &&
-          typeof e.currentTarget.checked === "boolean"
-        ) {
-          _checked = e.currentTarget.checked;
-        } else {
-          _checked = !booleanish(this.dataset.showLineNumbers);
-        }
-
-        this.dataset.showLineNumbers = _checked.toString();
+      this.querySelector("#copy-code")?.addEventListener("click", () => {
+        navigator.clipboard.writeText(this.dataset.code ?? "");
       });
     }
   }
