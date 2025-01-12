@@ -1,5 +1,3 @@
-import path from "path";
-import { fileURLToPath } from "url";
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
@@ -8,9 +6,6 @@ import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
 import { getEnv } from "./src/lib/env";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const _env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
 const env = getEnv(_env);
@@ -48,12 +43,4 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
-
-  vite: {
-    resolve: {
-      alias: {
-        "~": path.resolve(__dirname, "./src/"),
-      },
-    },
-  },
 });
