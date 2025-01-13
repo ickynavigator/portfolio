@@ -8,12 +8,12 @@ import {
   CONFIGURATION_CONFIG_ID,
   PERSONAL_INFO_CONFIG_ID,
 } from "~/lib/constants";
-import { getEnv } from "~/lib/env";
+import { _getEnv, getEnv } from "~/lib/env";
 import { schema } from "~/lib/sanity/schema";
 import configuration from "~/lib/sanity/schema/documents/configuration";
 import personalInfo from "~/lib/sanity/schema/documents/personalInfo";
 
-const env = getEnv();
+const env = getEnv(_getEnv(true));
 
 export default defineConfig({
   name: "portfolio",

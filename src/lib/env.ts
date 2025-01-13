@@ -2,12 +2,16 @@ import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
 // TODO: --log-override:empty-import-meta=silent
-const _getEnv = () => {
-  try {
-    return process.env;
-  } catch {
-    return import.meta.env;
+export const _getEnv = (tryProcess: boolean = false) => {
+  if (tryProcess) {
+    try {
+      return process.env;
+    } catch {
+      return import.meta.env;
+    }
   }
+
+  return import.meta.env;
 };
 
 type RuntimeEnv = Record<string, string | boolean | number | undefined>;
