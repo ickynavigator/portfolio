@@ -27,8 +27,10 @@ const _socials = await loadQuery({ query: SOCIAL_LINKS_QUERY });
 const env = getEnv();
 ---
 
-<Container data-vaul-drawer-wrapper>
-  <header class="md:rounded-b-xl border border-t-0 mb-8 bg-primary-foreground">
+<Container data-vaul-drawer-wrapper class="relative">
+  <header
+    class="md:rounded-b-xl border border-t-0 mb-8 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50"
+  >
     <nav class="flex justify-between items-center p-6">
       <div>
         <a href="/" class="font-bold text-3xl inline-flex gap-2">
