@@ -109,7 +109,7 @@ const CodeIcon = magicCodeIcon(language);
     <span class="font-semibold">{title ?? "Random Code"}</span>
 
     <div class="flex gap-2 items-center">
-      <IconCheckbox label="Show line numbers" id="show-numbers">
+      <IconCheckbox label="Show line numbers" name="show-numbers">
         <IconNumbers className="relative-icon" />
       </IconCheckbox>
 
@@ -272,7 +272,7 @@ const CodeIcon = magicCodeIcon(language);
         this.querySelector("pre")?.classList.remove("hidden");
       });
 
-      const showNumbersBtn = this.querySelector("#show-numbers");
+      const showNumbersBtn = this.querySelector("[name='show-numbers']");
       if (showNumbersBtn) {
         if (booleanish(this.dataset.showLineNumbers)) {
           if ("checked" in showNumbersBtn) {
