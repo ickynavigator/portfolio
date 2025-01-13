@@ -7,9 +7,15 @@ const useGetTheme = () => {
   useEffect(() => {
     const abortController = new AbortController();
 
-    document.addEventListener("themechange", () => {}, {
-      signal: abortController.signal,
-    });
+    document.addEventListener(
+      "themechange",
+      () => {
+        // setIsDark(document.documentElement.classList.contains("dark"));
+      },
+      {
+        signal: abortController.signal,
+      },
+    );
 
     return () => {
       abortController.abort();
