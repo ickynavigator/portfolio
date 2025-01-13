@@ -16,7 +16,7 @@ interface Props {
 
 const MobileNavMenu = (props: Props) => {
   return (
-    <Drawer noBodyStyles>
+    <Drawer>
       <DrawerTrigger aria-label="Open Navigation Menu" title="Open menu">
         <IconMenu2 />
         <span className="sr-only">Toggle Menu</span>
