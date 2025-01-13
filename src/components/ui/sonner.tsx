@@ -10,7 +10,7 @@ const useGetTheme = () => {
     document.addEventListener(
       "themechange",
       () => {
-        // setIsDark(document.documentElement.classList.contains("dark"));
+        setIsDark(document.documentElement.classList.contains("dark"));
       },
       {
         signal: abortController.signal,
