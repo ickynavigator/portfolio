@@ -44,6 +44,15 @@ const { id } = Astro.props;
         break;
       }
     }
+
+    updateMeta(_incomingTheme);
+  };
+
+  const updateMeta = (incomingTheme) => {
+    document.querySelectorAll("[data-group='meta-theming']").forEach((node) => {
+      const theme = node.getAttribute(`data-${incomingTheme}`);
+      if (theme) node.setAttribute("content", theme);
+    });
   };
 
   const initialize = () => {
