@@ -6,6 +6,10 @@ import type {
 } from "@sanity/client";
 import { sanityClient } from "sanity:client";
 
+import { getEnv } from "~/lib/env";
+
+const env = getEnv();
+
 /**
  * Load a query from Sanity.
  *
@@ -14,7 +18,6 @@ import { sanityClient } from "sanity:client";
 export async function loadQuery<G extends string>(
   args: GetParams<G> & {
     query: G;
-  } & {
     options?: UnfilteredResponseQueryOptions;
   },
 ) {
@@ -27,6 +30,24 @@ export async function loadQuery<G extends string>(
 
   if ("options" in args) {
     _options = args.options;
+  }
+
+  if (env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED) {
+    if (env.SANITY_API_READ_TOKEN == undefined) {
+      throw new Error(
+        "The `SANITY_API_READ_TOKEN` environment variable is required during Visual Editing.",
+      );
+    }
+
+    _options = {
+      ..._options,
+      filterResponse: false,
+      perspective: "previewDrafts",
+      resultSourceMap: "withKeyArraySelector",
+      stega: true,
+      useCdn: false,
+      token: env.SANITY_API_READ_TOKEN,
+    };
   }
 
   type Result = G extends keyof SanityQueries ? SanityQueries[G] : unknown;

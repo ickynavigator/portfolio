@@ -25,6 +25,8 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
       PUBLIC_SANITY_API_DATASET: z.string().min(1).default("production"),
       PUBLIC_SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
       WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
+      PUBLIC_SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
+      SANITY_API_READ_TOKEN: z.string().optional(),
     },
     runtimeEnv: runtimeEnv,
     emptyStringAsUndefined: true,
@@ -61,3 +63,11 @@ export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
     },
     runtimeEnv,
   });
+
+const booleanish = z.union([
+  z.boolean(),
+  z
+    .string()
+    .refine((s) => s === "true" || s === "false")
+    .transform((s) => s === "true"),
+]);

@@ -1,4 +1,5 @@
 ---
+import { VisualEditing } from "@sanity/astro/visual-editing";
 import { IconSearch } from "@tabler/icons-react";
 
 import headerIcon from "~/assets/fox.svg?raw";
@@ -56,6 +57,7 @@ const env = getEnv();
 
   <main>
     <slot />
+    <VisualEditing enabled={env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED} />
   </main>
 
   <footer class="mt-8 mb-3 px-4 lg:px-0">

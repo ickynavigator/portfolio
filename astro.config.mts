@@ -37,6 +37,9 @@ export default defineConfig({
       apiVersion: env.PUBLIC_SANITY_API_VERSION,
       useCdn: false,
       studioBasePath: "/studio",
+      stega: {
+        studioUrl: "/studio",
+      },
     }),
     react(),
     tailwind({

@@ -2,6 +2,7 @@ import { codeInput } from "@sanity/code-input";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { webhooksTrigger } from "sanity-plugin-webhooks-trigger";
+import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 
 import {
@@ -9,6 +10,7 @@ import {
   PERSONAL_INFO_CONFIG_ID,
 } from "~/lib/constants";
 import { _getEnv, getEnv } from "~/lib/env";
+import locationResolver from "~/lib/sanity/location";
 import { schema } from "~/lib/sanity/schema";
 import configuration from "~/lib/sanity/schema/documents/configuration";
 import personalInfo from "~/lib/sanity/schema/documents/personalInfo";
@@ -51,6 +53,11 @@ export default defineConfig({
     visionTool({
       defaultApiVersion: env.PUBLIC_SANITY_API_VERSION,
       defaultDataset: env.PUBLIC_SANITY_API_DATASET,
+    }),
+    presentationTool({
+      resolve: {
+        locations: locationResolver,
+      },
     }),
     codeInput(),
     webhooksTrigger(),
