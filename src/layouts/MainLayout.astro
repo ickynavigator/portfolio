@@ -3,6 +3,7 @@ import "@fontsource-variable/dm-sans";
 
 import { ClientRouter } from "astro:transitions";
 
+import { Toaster } from "~/components/ui/sonner";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PROFILE_IMAGE_QUERY } from "~/lib/sanity/queries";
 
@@ -111,5 +112,17 @@ const getPageTitle = (title?: string) => {
 
   <body>
     <slot />
+    <Toaster
+      client:load
+      toastOptions={{
+        classNames: {
+          error: "[&_svg]:text-destructive",
+          success: "[&_svg]:text-success",
+          warning: "[&_svg]:text-warning",
+          info: "[&_svg]:text-info",
+        },
+      }}
+      visibleToasts={4}
+    />
   </body>
 </html>

@@ -259,8 +259,10 @@ const CodeIcon = magicCodeIcon(language);
 </style>
 
 <script>
+  // eslint-disable-next-line prettier/prettier
+  import { toast } from "sonner";
+
   class CustomCodeBlock extends HTMLElement {
-    // eslint-disable-next-line prettier/prettier
     connectedCallback() {
       this.querySelector("[title='Close']")?.addEventListener("click", () => {
         this.querySelector("pre")?.classList.add("hidden");
@@ -297,7 +299,12 @@ const CodeIcon = magicCodeIcon(language);
       }
 
       this.querySelector("#copy-code")?.addEventListener("click", () => {
-        navigator.clipboard.writeText(this.dataset.code ?? "");
+        try {
+          navigator.clipboard.writeText(this.dataset.code ?? "");
+          toast.success("Copied Succesfully.");
+        } catch {
+          toast.error("Failed to copy code. Please try again.");
+        }
       });
     }
   }

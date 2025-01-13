@@ -46,6 +46,9 @@ const { id } = Astro.props;
     }
 
     updateMeta(_incomingTheme);
+    document.dispatchEvent(
+      new CustomEvent("themechange", { detail: { theme: _incomingTheme } }),
+    );
   };
 
   const updateMeta = (incomingTheme) => {
