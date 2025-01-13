@@ -2,9 +2,16 @@
 import { IconDeviceDesktop, IconMoon, IconSun } from "@tabler/icons-react";
 
 import Toggle from "~/components/Toggle.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
 ---
 
 <Toggle
+  id={id}
   name="theme"
   options={[
     { label: IconSun, value: "light" },
@@ -53,9 +60,11 @@ import Toggle from "~/components/Toggle.astro";
       });
 
     document
-      .querySelectorAll("input#light,input#dark,input#system")
+      .querySelectorAll(
+        "input[value='light'],input[value='dark'],input[value='system']",
+      )
       .forEach((node) => {
-        if (node.id == storedTheme) {
+        if (node.value == storedTheme) {
           node.checked = true;
         }
 

@@ -9,10 +9,16 @@ interface Props {
     value: string;
     disabled?: boolean;
   }[];
+  id?: string;
   name: string;
 }
 
-const { options, name } = Astro.props;
+const { options, name, id } = Astro.props;
+
+const getId = (value: string) => {
+  if (id) return `${id}-${value}`;
+  return value;
+};
 ---
 
 <div class="inline-flex gap-0.5 rounded-full border p-0.5">
@@ -22,14 +28,14 @@ const { options, name } = Astro.props;
         <input
           type="radio"
           name={name}
-          id={option.value}
+          id={getId(option.value)}
           value={option.value}
           class="peer sr-only"
           disabled={option?.disabled}
         />
 
         <label
-          for={option.value}
+          for={getId(option.value)}
           class={cn(
             "flex size-8 cursor-pointer items-center justify-center rounded-full transition",
             "hover:scale-110 hover:bg-secondary",
