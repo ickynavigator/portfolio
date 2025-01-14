@@ -2,28 +2,24 @@
 
 ---
 
-<progress
+<span
   id="progress-bar"
-  max="100"
-  aria-label="page scroll status"
-  class="fixed left-0 top-0 z-[9999] h-0.5 w-svw rounded transition-transform duration-200 [&::-webkit-progress-bar]:bg-transparent [&::-webkit-progress-value]:bg-primary"
-></progress>
+  class="fixed left-0 top-0 z-[9999] h-1 w-svw rounded transition-transform duration-200 bg-primary origin-left"
+></span>
 
-<script is:inline>
-  document.addEventListener("astro:page-load", () => {
-    // eslint-disable-next-line prettier/prettier
-    const scrollListener = () => {
-      const currentProgress = window.scrollY;
-      const scrollHeight = document.body.scrollHeight - window.innerHeight;
+<style>
+  @keyframes scaleProgress {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
 
-      const scroll =
-        scrollHeight > 0 ? (currentProgress / scrollHeight) * 100 : 0;
-
-      document
-        .getElementById("progress-bar")
-        ?.setAttribute("value", scroll.toFixed(2));
-    };
-    window.removeEventListener("scroll", scrollListener);
-    window.addEventListener("scroll", scrollListener);
-  });
-</script>
+  #progress-bar {
+    animation: scaleProgress auto linear;
+    animation-timeline: scroll(root);
+  }
+  /* https://developer.mozilla.org/en-US/blog/scroll-progress-animations-in-css/ */
+</style>
