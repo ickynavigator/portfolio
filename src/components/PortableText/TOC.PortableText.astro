@@ -134,8 +134,7 @@ if (headings.length === 0) {
 
   const booleanish = (value: unknown) => {
     if (typeof value === "boolean") return value;
-    if (typeof value === "string")
-      return value.trim() === "true" ? true : false;
+    if (typeof value === "string") return value.trim() === "true";
     return false;
   };
 
