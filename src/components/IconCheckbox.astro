@@ -19,8 +19,10 @@ const { label, ...rest } = Astro.props;
   />
 
   <span
-    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex justify-center items-center [&_svg[slot='on']]:hidden peer-checked:[&_svg[slot='on']]:inline [&_svg[slot='off']]:inline peer-checked:[&_svg[slot='off']]:hidden"
   >
     <slot />
+    <slot name="on" />
+    <slot name="off" />
   </span>
 </label>
