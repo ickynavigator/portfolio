@@ -272,31 +272,10 @@ const CodeIcon = magicCodeIcon(language);
         this.querySelector("pre")?.classList.remove("hidden");
       });
 
-      const showNumbersBtn = this.querySelector("[name='show-numbers']");
-      if (showNumbersBtn) {
-        if (booleanish(this.dataset.showLineNumbers)) {
-          if ("checked" in showNumbersBtn) {
-            showNumbersBtn.checked = true;
-          }
-        }
-
-        showNumbersBtn?.addEventListener("click", (e) => {
-          if (e?.currentTarget == null) return;
-
-          let _checked;
-
-          if (
-            "checked" in e.currentTarget &&
-            typeof e.currentTarget.checked === "boolean"
-          ) {
-            _checked = e.currentTarget.checked;
-          } else {
-            _checked = !booleanish(this.dataset.showLineNumbers);
-          }
-
-          this.dataset.showLineNumbers = _checked.toString();
-        });
-      }
+      this.#bindCheck(
+        this.querySelector("[name='show-numbers']"),
+        "showLineNumbers",
+      );
 
       this.querySelector("#copy-code")?.addEventListener("click", () => {
         try {
@@ -307,7 +286,26 @@ const CodeIcon = magicCodeIcon(language);
         }
       });
     }
+
+    #bindCheck(el: Element | HTMLElement | null, datasetKey: string) {
+      if (isInputElement(el)) {
+        el.checked = booleanish(this.dataset[datasetKey]);
+
+        el.addEventListener("click", (e) => {
+          if (!isInputElement(e.target)) return;
+
+          this.dataset[datasetKey] = booleanish(e.target.checked).toString();
+        });
+      }
+    }
   }
+
+  const isInputElement = (element: unknown): element is HTMLInputElement => {
+    if (element == null) return false;
+    if (!(element instanceof Element)) return false;
+
+    return element?.tagName === "INPUT";
+  };
 
   const booleanish = (value: unknown) => {
     if (typeof value === "boolean") return value;
