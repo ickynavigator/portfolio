@@ -102,23 +102,16 @@ if (headings.length === 0) {
     }
 
     #bindCheck(el: Element | HTMLElement | null, datasetKey: string) {
-      if (isInputElement(el)) {
+      if (el instanceof HTMLInputElement) {
         el.checked = booleanish(this.dataset[datasetKey]);
 
         el.addEventListener("click", (e) => {
-          if (!isInputElement(e.target)) return;
+          if (!(e.target instanceof HTMLInputElement)) return;
           this.dataset[datasetKey] = booleanish(e.target.checked).toString();
         });
       }
     }
   }
-
-  const isInputElement = (element: unknown): element is HTMLInputElement => {
-    if (element == null) return false;
-    if (!(element instanceof Element)) return false;
-
-    return element?.tagName === "INPUT";
-  };
 
   const booleanish = (value: unknown) => {
     if (typeof value === "boolean") return value;
