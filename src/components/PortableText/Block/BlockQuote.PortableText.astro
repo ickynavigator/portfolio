@@ -13,11 +13,11 @@ import { cn } from "~/lib/utils";
 type Props = BlockProps;
 
 const quoteVariants = cva(
-  "p-4 my-4 rounded border-l-8 border-muted-foreground bg-secondary",
+  "p-4 my-4 rounded border border-l-8 border-muted-foreground bg-secondary",
   {
     variants: {
       variant: {
-        default: "",
+        default: "border-0 border-l-8",
         info: "border-info [&_svg]:text-info [&_.title]:text-info",
         success: "border-success [&_svg]:text-success [&_.title]:text-success",
         warning: "border-warning [&_svg]:text-warning [&_.title]:text-warning",
@@ -73,9 +73,9 @@ const bqClass = quoteVariants({ variant: _variant });
         </div>
 
         <div>
-          <p class="title font-extrabold capitalize">{variant}</p>
+          <p class="title font-extrabold italic capitalize">{variant}</p>
 
-          <p class="italic font-medium leading-relaxed">
+          <p class="font-medium leading-relaxed">
             <slot />
           </p>
         </div>
