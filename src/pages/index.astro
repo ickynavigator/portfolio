@@ -40,14 +40,14 @@ if (!result) {
           </p>
 
           <div class="flex justify-center mt-8">
-            <button
-              id="scroll-down"
+            <a
+              href="#about"
               class="gap-2 text-xl animate-bounce hover:[animation-play-state:paused] hover:border-primary hover:bg-secondary border rounded-full"
-              aria-label="Scroll down"
               title="Scroll down"
             >
+              <span class="sr-only">Scroll down</span>
               <IconArrowMoveDown className="relative-icon stroke-1 m-3" />
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -137,10 +137,3 @@ if (!result) {
     </Container>
   </NavLayout>
 </MainLayout>
-
-<script>
-  document.getElementById("scroll-down")?.addEventListener("click", () => {
-    // eslint-disable-next-line prettier/prettier
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-  });
-</script>
