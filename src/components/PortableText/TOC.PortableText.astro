@@ -43,7 +43,7 @@ if (headings.length === 0) {
 
 <toc-container class="group hidden md:inline" data-open={false} data-pin={true}>
   <div
-    class="top-24 z-50 overflow-hidden border shadow rounded-md w-fit group-data-[open='true']:divide-y backdrop-blur-md"
+    class="top-24 z-50 overflow-hidden border shadow rounded-md w-fit group-data-[open='true']:divide-y backdrop-blur-md group-data-[pin='true']:sticky"
     data-name="controls"
   >
     <div class="px-4 py-2 flex justify-between items-center gap-6">
@@ -97,20 +97,8 @@ if (headings.length === 0) {
   class TOC extends HTMLElement {
     // eslint-disable-next-line prettier/prettier
     connectedCallback() {
-      const showContentCheckBox = this.querySelector("#show-content");
-      const pinTOCCheckBox = this.querySelector("#pin-toc");
-      const content = this.querySelector("[data-name='controls']");
-
-      this.#bindCheck(showContentCheckBox, "open");
-      this.#bindCheck(pinTOCCheckBox, "pin");
-
-      if (isInputElement(pinTOCCheckBox)) {
-        content?.classList.toggle("sticky", booleanish(pinTOCCheckBox.checked));
-        pinTOCCheckBox.addEventListener("change", (e) => {
-          if (!isInputElement(e.target)) return;
-          content?.classList.toggle("sticky", booleanish(e.target.checked));
-        });
-      }
+      this.#bindCheck(this.querySelector("#show-content"), "open");
+      this.#bindCheck(this.querySelector("#pin-toc"), "pin");
     }
 
     #bindCheck(el: Element | HTMLElement | null, datasetKey: string) {
