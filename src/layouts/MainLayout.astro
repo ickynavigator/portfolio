@@ -83,6 +83,9 @@ const getPageTitle = (title?: string) => {
 
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
+    <noscript>
+      <link rel="stylesheet" href="/dark-fallback.css" />
+    </noscript>
 
     <link
       rel="alternate"

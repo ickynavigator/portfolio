@@ -10,6 +10,14 @@ interface Props {
 const { id } = Astro.props;
 ---
 
+<noscript>
+  <style>
+    theme-switcher {
+      display: none;
+    }
+  </style>
+</noscript>
+
 <theme-switcher>
   <Toggle
     id={id}
