@@ -41,7 +41,7 @@ if (headings.length === 0) {
 }
 ---
 
-<toc-container class="group hidden md:inline" data-open={true} data-pin={false}>
+<toc-container class="group hidden md:inline" data-open={false} data-pin={true}>
   <div
     class="top-24 z-50 overflow-hidden border shadow rounded-md w-fit group-data-[open='true']:divide-y backdrop-blur-md"
     data-name="controls"
@@ -53,13 +53,13 @@ if (headings.length === 0) {
       </p>
 
       <div class="flex items-center gap-2 text-md">
-        <IconCheckbox label="pin/unpin" id="pin-toc" checked={false}>
+        <IconCheckbox label="pin/unpin" id="pin-toc">
           <span class="sr-only">Pin/Unpin TOC</span>
           <IconPinned slot="on" className="relative-icon" />
           <IconPinnedOff slot="off" className="relative-icon" />
         </IconCheckbox>
 
-        <IconCheckbox label="show-content" id="show-content" checked={true}>
+        <IconCheckbox label="show-content" id="show-content">
           <span class="sr-only">Show/Hide Content</span>
           <IconCaretUpFilled slot="on" className="relative-icon" />
           <IconCaretDownFilled slot="off" className="relative-icon" />
@@ -101,21 +101,25 @@ if (headings.length === 0) {
       const pinTOCCheckBox = this.querySelector("#pin-toc");
       const content = this.querySelector("[data-name='controls']");
 
-      if (isInputElement(showContentCheckBox)) {
-        showContentCheckBox.checked = booleanish(this.dataset.open);
-        showContentCheckBox.addEventListener("change", (e) => {
-          if (!isInputElement(e.target)) return;
-
-          this.dataset.open = String(booleanish(e.target.checked));
-        });
-      }
+      this.#bindCheck(showContentCheckBox, "open");
+      this.#bindCheck(pinTOCCheckBox, "pin");
 
       if (isInputElement(pinTOCCheckBox)) {
-        pinTOCCheckBox.checked = booleanish(this.dataset.pin);
+        content?.classList.toggle("sticky", booleanish(pinTOCCheckBox.checked));
         pinTOCCheckBox.addEventListener("change", (e) => {
           if (!isInputElement(e.target)) return;
-
           content?.classList.toggle("sticky", booleanish(e.target.checked));
+        });
+      }
+    }
+
+    #bindCheck(el: Element | HTMLElement | null, datasetKey: string) {
+      if (isInputElement(el)) {
+        el.checked = booleanish(this.dataset[datasetKey]);
+
+        el.addEventListener("click", (e) => {
+          if (!isInputElement(e.target)) return;
+          this.dataset[datasetKey] = booleanish(e.target.checked).toString();
         });
       }
     }
