@@ -10,109 +10,113 @@ interface Props {
 const { id } = Astro.props;
 ---
 
-<Toggle
-  id={id}
-  name="theme"
-  options={[
-    { label: IconSun, value: "light" },
-    { label: IconDeviceDesktop, value: "system" },
-    { label: IconMoon, value: "dark" },
-  ]}
-/>
+<theme-switcher>
+  <Toggle
+    id={id}
+    name="theme"
+    options={[
+      { label: IconSun, value: "light" },
+      { label: IconDeviceDesktop, value: "system" },
+      { label: IconMoon, value: "dark" },
+    ]}
+  />
+</theme-switcher>
 
 <script is:inline>
   // eslint-disable-next-line prettier/prettier
   const THEME_STORAGE_KEY = "theme";
   const DARK_MODE_CLASS = "dark";
 
-  const updateTheme = (incomingTheme) => {
-    let _incomingTheme = incomingTheme ?? "dark";
-
-    if (incomingTheme == "system") {
-      _incomingTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+  class ThemeSwitcher extends HTMLElement {
+    connectedCallback() {
+      this.#initialize();
     }
 
-    switch (_incomingTheme) {
-      case "light": {
-        document.documentElement.classList.remove(DARK_MODE_CLASS);
-        break;
-      }
-      case "dark": {
-        document.documentElement.classList.add(DARK_MODE_CLASS);
-        break;
-      }
-    }
+    #initialize() {
+      const _storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      const storedTheme = _storedTheme ?? "system";
 
-    updateMeta(_incomingTheme);
-    document.dispatchEvent(
-      new CustomEvent("themechange", { detail: { theme: _incomingTheme } }),
-    );
-  };
+      let ignoreSystemTheme = _storedTheme != null && _storedTheme !== "system";
 
-  const updateMeta = (incomingTheme) => {
-    document.querySelectorAll("[data-group='meta-theming']").forEach((node) => {
-      const theme = node.getAttribute(`data-${incomingTheme}`);
-      if (theme) node.setAttribute("content", theme);
-    });
-  };
-
-  const initialize = () => {
-    const _storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-    const storedTheme = _storedTheme ?? "system";
-
-    let ignoreSystemTheme = _storedTheme != null && _storedTheme !== "system";
-
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", () => {
-        if (ignoreSystemTheme) return;
-        updateTheme("system");
-      });
-
-    document
-      .querySelectorAll(
-        "input[value='light'],input[value='dark'],input[value='system']",
-      )
-      .forEach((node) => {
-        if (node.value == storedTheme) {
-          node.checked = true;
-        }
-
-        node.addEventListener("change", (event) => {
-          if (!(typeof event.target?.value === "string")) return;
-
-          const selectedTheme = event.target.value;
-
-          switch (selectedTheme) {
-            case "light":
-            case "dark": {
-              localStorage.setItem("theme", selectedTheme);
-
-              ignoreSystemTheme = true;
-
-              updateTheme(selectedTheme);
-              break;
-            }
-            case "system": {
-              localStorage.removeItem("theme");
-
-              ignoreSystemTheme = false;
-
-              updateTheme(selectedTheme);
-              break;
-            }
-            default: {
-              break;
-            }
-          }
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+          if (ignoreSystemTheme) return;
+          this.#updateTheme("system");
         });
+
+      document
+        .querySelectorAll(
+          "input[value='light'],input[value='dark'],input[value='system']",
+        )
+        .forEach((node) => {
+          if (!(node instanceof HTMLInputElement)) return;
+          if (node.value == storedTheme) node.checked = true;
+
+          node.addEventListener("change", (event) => {
+            if (!(event.target instanceof HTMLInputElement)) return;
+            if (!(typeof event.target?.value === "string")) return;
+
+            const selectedTheme = event.target.value;
+
+            switch (selectedTheme) {
+              case "light":
+              case "dark": {
+                localStorage.setItem("theme", selectedTheme);
+                ignoreSystemTheme = true;
+                break;
+              }
+              case "system": {
+                localStorage.removeItem("theme");
+                ignoreSystemTheme = false;
+                break;
+              }
+              default: {
+                break;
+              }
+            }
+
+            this.#updateTheme(selectedTheme);
+          });
+        });
+
+      this.#updateTheme(storedTheme);
+    }
+
+    #updateTheme(incomingTheme) {
+      let _incomingTheme = incomingTheme ?? "dark";
+
+      if (incomingTheme == "system") {
+        _incomingTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+      }
+
+      switch (_incomingTheme) {
+        case "light": {
+          document.documentElement.classList.remove(DARK_MODE_CLASS);
+          break;
+        }
+        case "dark": {
+          document.documentElement.classList.add(DARK_MODE_CLASS);
+          break;
+        }
+      }
+
+      document
+        .querySelectorAll("[data-group='meta-theming']")
+        .forEach((node) => {
+          const theme = node.getAttribute(`data-${_incomingTheme}`);
+          if (theme) node.setAttribute("content", theme);
+        });
+
+      const themeEvent = new CustomEvent("themechange", {
+        detail: { theme: _incomingTheme },
       });
+      document.dispatchEvent(themeEvent);
+    }
+  }
 
-    updateTheme(storedTheme);
-  };
-
-  document.addEventListener("astro:after-swap", initialize);
-  initialize();
+  customElements.define("theme-switcher", ThemeSwitcher);
 </script>
