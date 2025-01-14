@@ -44,7 +44,7 @@ export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
        * @description `1`
        * @example Changing build behaviour when run on Pages versus locally
        */
-      CF_PAGES: z.number().optional(),
+      CF_PAGES: numberish.optional(),
       /**
        * @description `<sha1-hash-of-current-commit>`
        * @example Passing current commit ID to error reporting, for example, Sentry
@@ -71,3 +71,5 @@ const booleanish = z.union([
     .refine((s) => s === "true" || s === "false")
     .transform((s) => s === "true"),
 ]);
+
+const numberish = z.union([z.number(), z.string().transform(Number)]);
