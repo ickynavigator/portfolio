@@ -1,0 +1,139 @@
+---
+import {
+  IconCaretDownFilled,
+  IconCaretUpFilled,
+  IconList,
+  IconPinned,
+  IconPinnedOff,
+} from "@tabler/icons-react";
+import { toPlainText } from "astro-portabletext";
+
+import type { BlockContent } from "~/t/sanity";
+import IconCheckbox from "../IconCheckbox.astro";
+
+interface Props {
+  data: BlockContent;
+}
+
+const { data } = Astro.props;
+
+const getHeadings = (_data: BlockContent) => {
+  const filtered = _data
+    .filter((item) => item._type === "block")
+    .filter((item) => item.style?.startsWith("h"));
+
+  return filtered.map((item) => {
+    // @ts-expect-error we already filtered the items
+    const text = toPlainText(item);
+
+    return {
+      text,
+      level: item.style?.replace("h", ""),
+      slug: text.replace(/\s/g, "-").toLocaleLowerCase(),
+    };
+  });
+};
+
+const headings = getHeadings(data);
+
+if (headings.length === 0) {
+  return null;
+}
+---
+
+<toc-container class="group hidden md:inline" data-open={true} data-pin={false}>
+  <div
+    class="top-24 z-50 overflow-hidden border shadow rounded-md w-fit group-data-[open='true']:divide-y backdrop-blur-md"
+    data-name="controls"
+  >
+    <div class="px-4 py-2 flex justify-between items-center gap-6">
+      <p class="text-lg font-bold inline-flex items-center gap-1">
+        <IconList className="relative-icon" />
+        Content
+      </p>
+
+      <div class="flex items-center gap-2 text-md">
+        <IconCheckbox label="pin/unpin" id="pin-toc" checked={false}>
+          <span class="sr-only">Pin/Unpin TOC</span>
+          <IconPinned slot="on" className="relative-icon" />
+          <IconPinnedOff slot="off" className="relative-icon" />
+        </IconCheckbox>
+
+        <IconCheckbox label="show-content" id="show-content" checked={true}>
+          <span class="sr-only">Show/Hide Content</span>
+          <IconCaretUpFilled slot="on" className="relative-icon" />
+          <IconCaretDownFilled slot="off" className="relative-icon" />
+        </IconCheckbox>
+      </div>
+    </div>
+
+    <div
+      class="transition-[height] group-data-[open='false']:h-0 group-data-[open='true']:h-[calc-size(auto)]"
+    >
+      <ul class="list-none px-4 py-2">
+        {
+          headings.map((heading) => (
+            <li
+              class="data-[level=1]:ml-2 data-[level=2]:ml-4 data-[level=3]:ml-6 data-[level=4]:ml-8 data-[level=5]:ml-10 data-[level=6]:ml-12"
+              data-level={heading.level}
+            >
+              <a
+                href={`#${heading.slug}`}
+                class="hover-link text-muted-foreground data-[active='true']:text-foreground"
+                data-slug={heading.slug}
+                data-active={false}
+              >
+                {heading.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</toc-container>
+
+<script>
+  class TOC extends HTMLElement {
+    // eslint-disable-next-line prettier/prettier
+    connectedCallback() {
+      const showContentCheckBox = this.querySelector("#show-content");
+      const pinTOCCheckBox = this.querySelector("#pin-toc");
+      const content = this.querySelector("[data-name='controls']");
+
+      if (isInputElement(showContentCheckBox)) {
+        showContentCheckBox.checked = booleanish(this.dataset.open);
+        showContentCheckBox.addEventListener("change", (e) => {
+          if (!isInputElement(e.target)) return;
+
+          this.dataset.open = String(booleanish(e.target.checked));
+        });
+      }
+
+      if (isInputElement(pinTOCCheckBox)) {
+        pinTOCCheckBox.checked = booleanish(this.dataset.pin);
+        pinTOCCheckBox.addEventListener("change", (e) => {
+          if (!isInputElement(e.target)) return;
+
+          content?.classList.toggle("sticky", booleanish(e.target.checked));
+        });
+      }
+    }
+  }
+
+  const isInputElement = (element: unknown): element is HTMLInputElement => {
+    if (element == null) return false;
+    if (!(element instanceof Element)) return false;
+
+    return element?.tagName === "INPUT";
+  };
+
+  const booleanish = (value: unknown) => {
+    if (typeof value === "boolean") return value;
+    if (typeof value === "string")
+      return value.trim() === "true" ? true : false;
+    return false;
+  };
+
+  customElements.define("toc-container", TOC);
+</script>
