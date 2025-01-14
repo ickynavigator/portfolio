@@ -44,7 +44,7 @@ export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
        * @description `1`
        * @example Changing build behaviour when run on Pages versus locally
        */
-      CF_PAGES: z.string().optional(),
+      CF_PAGES: z.number().optional(),
       /**
        * @description `<sha1-hash-of-current-commit>`
        * @example Passing current commit ID to error reporting, for example, Sentry
