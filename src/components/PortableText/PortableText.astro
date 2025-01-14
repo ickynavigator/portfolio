@@ -15,14 +15,18 @@ import Highlight from "~/components/PortableText/Mark/Highlight.PortableText.ast
 import InlineCode from "~/components/PortableText/Mark/InlineCode.PortableText.astro";
 import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
 import MutedMark from "~/components/PortableText/Mark/Muted.PortableText.astro";
+import TOC from "~/components/PortableText/TOC.PortableText.astro";
 import type { BlockContent } from "~/t/sanity";
 
 interface Props {
   data: BlockContent;
+  showToc?: boolean;
 }
 
-const { data } = Astro.props;
+const { data, showToc = false } = Astro.props;
 ---
+
+{showToc ? <TOC data={data} /> : null}
 
 <PortableTextInternal
   value={data}
