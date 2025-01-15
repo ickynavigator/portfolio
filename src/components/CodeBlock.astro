@@ -82,12 +82,12 @@ const CodeIcon = magicCodeIcon(language);
 ---
 
 <custom-code-block
-  class="block rounded-t-md overflow-clip my-2"
+  class="block rounded-t-md overflow-clip my-2 border shadow-md"
   data-show-line-numbers={showLineNumbers}
   data-code={code}
 >
   <div
-    class="bg-[#F0F0F5] dark:bg-[#2E2E2E] text-[#2E2E2E] dark:text-[#E0E0E0] drop-shadow-md py-1 px-2 flex justify-between text-sm border-b-2 select-none"
+    class="bg-secondary text-secondary-foreground drop-shadow-md py-1 px-2 flex justify-between text-sm border-b-2 select-none"
   >
     <div class="flex gap-2 items-center group/icons">
       {
@@ -95,7 +95,7 @@ const CodeIcon = magicCodeIcon(language);
           <button
             title={button.title}
             class={cn(
-              "rounded-full w-3 h-3 text-transparent group-hover/icons:text-white group-hover/icons:dark:text-black p-[0.0625rem] transition-colors items-center flex justify-center overflow-clip",
+              "rounded-full w-3 h-3 text-transparent group-hover/icons:text-primary-foreground p-[0.0625rem] transition-colors items-center flex justify-center overflow-clip",
               button.class,
             )}
           >
@@ -109,7 +109,11 @@ const CodeIcon = magicCodeIcon(language);
     <span class="font-semibold">{title ?? "Random Code"}</span>
 
     <div class="flex gap-2 items-center">
-      <IconCheckbox label="Show line numbers" name="show-numbers">
+      <IconCheckbox
+        label="Show line numbers"
+        name="show-numbers"
+        title="Show line numbers"
+      >
         <IconNumbers className="relative-icon" />
       </IconCheckbox>
 
