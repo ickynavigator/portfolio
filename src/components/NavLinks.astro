@@ -1,4 +1,6 @@
 ---
+import { IconMenu2 } from "@tabler/icons-react";
+
 import MobileNavMenu from "~/components/MobileNavMenu";
 import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
 ---
@@ -11,7 +13,7 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
     <ThemeSwitcher id="md" />
   </div>
 
-  <div class="md:hidden">
+  <div class="md:hidden no-js">
     <MobileNavMenu client:load>
       <div class="flex flex-col gap-10 items-center my-10">
         <div class="flex flex-col gap-4 items-center">
@@ -25,4 +27,83 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
       </div>
     </MobileNavMenu>
   </div>
+
+  <noscript>
+    <div>
+      <button
+        popovertarget="navigation-menu"
+        aria-label="Open Navigation Menu"
+        title="Open menu"
+      >
+        <IconMenu2 />
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+
+      <div popover id="navigation-menu">
+        <div class="mt-10">
+          <div class="text-center">
+            <h1
+              class="text-lg font-semibold leading-none tracking-tight text-center"
+            >
+              Obi Fortune
+            </h1>
+          </div>
+
+          <div class="flex flex-col gap-10 items-center my-10">
+            <div class="flex flex-col gap-4 items-center">
+              <slot />
+            </div>
+
+            <div class="flex flex-col gap-4 items-center">
+              <slot name="search" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </noscript>
 </div>
+
+<style is:global>
+  body,
+  [data-vaul-drawer-wrapper] {
+    /* TODO: figure out popover transitions */
+    /* @apply transition-all; */
+    /* transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1); */
+  }
+
+  body:has(#navigation-menu:popover-open) {
+    & [data-vaul-drawer-wrapper] {
+      @apply overflow-clip rounded-lg border;
+
+      transform-origin: top;
+      transform: scale(0.9)
+        translate3d(0, calc(env(safe-area-inset-top) + 14px), 0);
+    }
+  }
+
+  ::backdrop {
+    @apply bg-black/80;
+  }
+</style>
+
+<style>
+  :root {
+    --bg-bg: black;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-bg: white;
+    }
+  }
+
+  body:has(#navigation-menu:popover-open) {
+    background-color: var(--bg-bg);
+    @apply pointer-events-none overflow-hidden overscroll-contain;
+  }
+
+  :popover-open {
+    @apply fixed inset-[unset] inset-x-0 bottom-0 z-50 h-96 w-full rounded-t-md border bg-background;
+  }
+</style>
