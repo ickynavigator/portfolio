@@ -1,8 +1,6 @@
 ---
 import {
-  IconCaretDownFilled,
-  IconCaretUpFilled,
-  IconList,
+  IconCaretRightFilled,
   IconPinned,
   IconPinnedOff,
 } from "@tabler/icons-react";
@@ -41,14 +39,18 @@ if (headings.length === 0) {
 }
 ---
 
-<toc-container class="group hidden md:inline" data-open={false} data-pin={true}>
-  <div
-    class="top-24 z-50 overflow-hidden border shadow rounded-md w-fit group-data-[open='true']:divide-y backdrop-blur-md group-data-[pin='true']:sticky"
+<toc-container class="group hidden md:inline" data-pin={true}>
+  <details
+    class="top-24 z-50 overflow-hidden border shadow rounded-md w-fit backdrop-blur-md group-data-[pin='true']:sticky"
     data-name="controls"
   >
-    <div class="px-4 py-2 flex justify-between items-center gap-6">
+    <summary class="px-4 py-2 flex justify-between items-center gap-6 border-b">
       <p class="text-lg font-bold inline-flex items-center gap-1">
-        <IconList className="relative-icon" />
+        <span>
+          <IconCaretRightFilled
+            className="relative-icon transition-transform [[open]_&]:rotate-90"
+          />
+        </span>
         Content
       </p>
 
@@ -58,18 +60,10 @@ if (headings.length === 0) {
           <IconPinned slot="on" className="relative-icon" />
           <IconPinnedOff slot="off" className="relative-icon" />
         </IconCheckbox>
-
-        <IconCheckbox label="show-content" id="show-content">
-          <span class="sr-only">Show/Hide Content</span>
-          <IconCaretUpFilled slot="on" className="relative-icon" />
-          <IconCaretDownFilled slot="off" className="relative-icon" />
-        </IconCheckbox>
       </div>
-    </div>
+    </summary>
 
-    <div
-      class="transition-[height] group-data-[open='false']:h-0 group-data-[open='true']:h-[calc-size(auto)]"
-    >
+    <div>
       <ul class="list-none px-4 py-2">
         {
           headings.map((heading) => (
@@ -90,14 +84,13 @@ if (headings.length === 0) {
         }
       </ul>
     </div>
-  </div>
+  </details>
 </toc-container>
 
 <script>
   class TOC extends HTMLElement {
     // eslint-disable-next-line prettier/prettier
     connectedCallback() {
-      this.#bindCheck(this.querySelector("#show-content"), "open");
       this.#bindCheck(this.querySelector("#pin-toc"), "pin");
     }
 
