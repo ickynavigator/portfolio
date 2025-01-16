@@ -24,7 +24,7 @@ const MobileNavMenu = (props: Props) => {
 
       <DrawerContent>
         <DrawerHeader className="text-center">
-          <DrawerTitle>Obi Fortune</DrawerTitle>
+          <DrawerTitle className="text-center">Obi Fortune</DrawerTitle>
           <DrawerDescription className="sr-only">Menu</DrawerDescription>
         </DrawerHeader>
 
