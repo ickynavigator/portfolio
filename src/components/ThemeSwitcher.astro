@@ -32,15 +32,14 @@ const { id } = Astro.props;
 
 <script is:inline>
   // eslint-disable-next-line prettier/prettier
-  const THEME_STORAGE_KEY = "theme";
-  const DARK_MODE_CLASS = "dark";
-
   class ThemeSwitcher extends HTMLElement {
     connectedCallback() {
       this.#initialize();
     }
 
     #initialize() {
+      const THEME_STORAGE_KEY = "theme";
+
       const _storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
       const storedTheme = _storedTheme ?? "system";
 
@@ -92,6 +91,8 @@ const { id } = Astro.props;
     }
 
     #updateTheme(incomingTheme) {
+      const DARK_MODE_CLASS = "dark";
+
       let _incomingTheme = incomingTheme ?? "dark";
 
       if (incomingTheme == "system") {
