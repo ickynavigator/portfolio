@@ -3,6 +3,15 @@
 import tailwindcssAnimatePlugin from "tailwindcss-animate";
 import defaultTheme from "tailwindcss/defaultTheme";
 
+/**
+ * @param {string} propertyName
+ */
+const getProgressAnimation = (propertyName) => {
+  return Array.from({ length: 101 }, (_, i) => ({
+    [`${i}%`]: { [propertyName]: `${i}` },
+  })).reduce((acc, cur) => ({ ...acc, ...cur }), {});
+};
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["selector", "media"],
@@ -70,6 +79,12 @@ export default {
       },
       fontFamily: {
         sans: ["DM Sans Variable", ...defaultTheme.fontFamily.sans],
+      },
+      keyframes: {
+        counter: getProgressAnimation("--count"),
+      },
+      animation: {
+        "counter-auto": "counter auto linear",
       },
     },
   },

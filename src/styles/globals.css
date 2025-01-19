@@ -94,4 +94,15 @@
   .relative-icon {
     @apply h-[1em] w-[1em];
   }
+
+  .progress-border {
+    --count: 0;
+    --progress-width: -0.125em;
+    --border-color: hsl(var(--border));
+
+    @apply relative animate-counter-auto border bg-background;
+    &::before {
+      @apply absolute bottom-[var(--progress-width)] left-[var(--progress-width)] right-[var(--progress-width)] top-[var(--progress-width)] -z-50 block bg-transparent bg-[conic-gradient(var(--border-color),var(--border-color)_calc(1%*var(--count)),transparent_calc(1%*var(--count)))] content-[""];
+    }
+  }
 }

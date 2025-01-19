@@ -39,53 +39,59 @@ if (headings.length === 0) {
 }
 ---
 
-<toc-container class="group hidden md:inline" data-pin={true}>
-  <details
-    class="top-24 z-50 overflow-hidden border shadow rounded-md w-fit backdrop-blur-md group-data-[pin='true']:sticky"
-    data-name="controls"
-  >
-    <summary class="px-4 py-2 flex justify-between items-center gap-6 border-b">
-      <p class="text-lg font-bold inline-flex items-center gap-1">
-        <span>
-          <IconCaretRightFilled
-            className="relative-icon transition-transform [[open]_&]:rotate-90"
-          />
-        </span>
-        Content
-      </p>
+<toc-container class="hidden md:inline group" data-pin={true}>
+  <div class="top-24 z-[100] group-data-[pin='true']:sticky">
+    <details class="shadow rounded-md w-fit backdrop-blur-md">
+      <summary class="px-4 py-2 flex justify-between items-center gap-6">
+        <p class="text-lg font-bold inline-flex items-center gap-1">
+          <span>
+            <IconCaretRightFilled
+              className="relative-icon transition-transform [[open]_&]:rotate-90"
+            />
+          </span>
+          Content
+        </p>
 
-      <div class="flex items-center gap-2 text-md">
-        <IconCheckbox label="pin/unpin" id="pin-toc">
-          <span class="sr-only">Pin/Unpin TOC</span>
-          <IconPinned slot="on" className="relative-icon" />
-          <IconPinnedOff slot="off" className="relative-icon" />
-        </IconCheckbox>
-      </div>
-    </summary>
+        <div class="flex items-center gap-2 text-md">
+          <IconCheckbox label="pin/unpin" id="pin-toc">
+            <span class="sr-only">Pin/Unpin TOC</span>
+            <IconPinned slot="on" className="relative-icon" />
+            <IconPinnedOff slot="off" className="relative-icon" />
+          </IconCheckbox>
+        </div>
+      </summary>
 
-    <div>
-      <ul class="list-none px-4 py-2">
-        {
-          headings.map((heading) => (
-            <li
-              class="data-[level=1]:ml-2 data-[level=2]:ml-4 data-[level=3]:ml-6 data-[level=4]:ml-8 data-[level=5]:ml-10 data-[level=6]:ml-12"
-              data-level={heading.level}
-            >
-              <a
-                href={`#${heading.slug}`}
-                class="hover-link text-muted-foreground data-[active='true']:text-foreground"
-                data-slug={heading.slug}
-                data-active={false}
+      <div>
+        <ul class="list-none px-4 py-2">
+          {
+            headings.map((heading) => (
+              <li
+                class="data-[level=1]:ml-2 data-[level=2]:ml-4 data-[level=3]:ml-6 data-[level=4]:ml-8 data-[level=5]:ml-10 data-[level=6]:ml-12"
+                data-level={heading.level}
               >
-                {heading.text}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </details>
+                <a
+                  href={`#${heading.slug}`}
+                  class="hover-link text-muted-foreground data-[active='true']:text-foreground"
+                  data-slug={heading.slug}
+                  data-active={false}
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </details>
+  </div>
 </toc-container>
+
+<style>
+  .details {
+    /* @apply progress-border; */
+    @apply rounded-md [--border-color:hsl(var(--secondary-foreground))] [animation-timeline:scroll(root)] [&::before]:rounded-md;
+  }
+</style>
 
 <script>
   class TOC extends HTMLElement {
