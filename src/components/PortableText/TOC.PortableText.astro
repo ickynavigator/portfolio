@@ -40,13 +40,15 @@ if (headings.length === 0) {
 ---
 
 <toc-container class="hidden md:inline group" data-pin={true}>
-  <div class="top-24 z-[100] group-data-[pin='true']:sticky">
-    <details class="shadow rounded-md w-fit backdrop-blur-md">
+  <div class="top-24 z-100 group-data-[pin='true']:sticky">
+    <details
+      class="shadow-sm rounded-md w-fit backdrop-blur-md before:rounded-md"
+    >
       <summary class="px-4 py-2 flex justify-between items-center gap-6">
         <p class="text-lg font-bold inline-flex items-center gap-1">
           <span>
             <IconCaretRightFilled
-              className="relative-icon transition-transform [[open]_&]:rotate-90"
+              className="relative-icon transition-transform in-[[open]]:rotate-90"
             />
           </span>
           Content
@@ -87,8 +89,9 @@ if (headings.length === 0) {
 </toc-container>
 
 <style>
+  @reference "../../styles/globals.css";
+
   .details {
-    /* @apply progress-border; */
     @apply rounded-md [--border-color:hsl(var(--secondary-foreground))] [animation-timeline:scroll(root)] [&::before]:rounded-md;
   }
 </style>
