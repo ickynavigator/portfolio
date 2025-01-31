@@ -22,31 +22,31 @@ if (!result) {
   <NavLayout>
     <Container innerPage>
       <div class="h-[90svh]">
-        <div class="flex flex-col justify-center h-full gap-5">
+        <div class="flex h-full flex-col justify-center gap-5">
           <h1
-            class="leading-none tracking-tight font-light text-8xl text-center"
+            class="text-center text-8xl leading-none font-light tracking-tight"
           >
             {result.name}
           </h1>
 
           <h2
-            class="leading-none tracking-tight font-light text-6xl text-center"
+            class="text-center text-6xl leading-none font-light tracking-tight"
           >
             {result.title}
           </h2>
 
-          <p class="text-center text-muted-foreground">
+          <p class="text-muted-foreground text-center">
             {result.tagline}
           </p>
 
-          <div class="flex justify-center mt-8">
+          <div class="mt-8 flex justify-center">
             <a
               href="#about"
-              class="gap-2 text-xl animate-bounce hover:[animation-play-state:paused] hover:border-primary hover:bg-secondary border rounded-full"
+              class="hover:border-primary hover:bg-secondary animate-bounce gap-2 rounded-full border text-xl hover:[animation-play-state:paused]"
               title="Scroll down"
             >
               <span class="sr-only">Scroll down</span>
-              <IconArrowMoveDown className="relative-icon stroke-1 m-3" />
+              <IconArrowMoveDown className="relative-icon m-3 stroke-1" />
             </a>
           </div>
         </div>
@@ -59,25 +59,25 @@ if (!result) {
 
         <a
           href={`/about`}
-          class="border rounded-lg mt-2 py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
+          class="hover:bg-secondary mt-2 inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition-colors"
         >
           <span class="text-xs">Learn more about me</span>
           <IconArrowUpRight className="relative-icon inline" />
         </a>
       </div>
 
-      <span class="inline-flex items-center gap-2 mb-5 text-2xl">
+      <span class="mb-5 inline-flex items-center gap-2 text-2xl">
         <IconFolderOpen className="relative-icon" />
-        <h2 class="leading-none tracking-tight font-light">Selected Works</h2>
+        <h2 class="leading-none font-light tracking-tight">Selected Works</h2>
       </span>
 
-      <ul class="divide-y border-t border-b mb-20">
+      <ul class="mb-20 divide-y border-t border-b">
         {
           result.selectedProjects?.map((project) => (
-            <li class="py-6 px-3 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-              <a href={`/projects/${project.slug}`} class="flex-1 min-w-fit">
+            <li class="flex flex-col items-start justify-between gap-4 px-3 py-6 md:flex-row md:items-center">
+              <a href={`/projects/${project.slug}`} class="min-w-fit flex-1">
                 <h3
-                  class="hover-link leading-none tracking-tight text-lg truncate"
+                  class="hover-link truncate text-lg leading-none tracking-tight"
                   transition:name={`project-title-${project.slug}`}
                 >
                   {project.title}
@@ -85,14 +85,14 @@ if (!result) {
               </a>
 
               <ul
-                class="overflow-x-scroll max-w-full whitespace-nowrap"
+                class="max-w-full overflow-x-scroll whitespace-nowrap"
                 transition:name={`project-tags-${project.slug}`}
               >
                 {project.tags.map((tag) => (
                   <li class="inline">
                     <a
                       href={`/search?type=project&tag=${encodeURIComponent(tag.slug)}`}
-                      class="text-sm font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:border-primary inline-block"
+                      class="hover:border-primary me-2 inline-block rounded-full border px-3 py-1.5 text-sm font-light transition-colors"
                     >
                       {tag.name}
                     </a>
@@ -104,27 +104,27 @@ if (!result) {
         }
       </ul>
 
-      <span class="inline-flex items-center gap-2 mb-5 text-2xl">
+      <span class="mb-5 inline-flex items-center gap-2 text-2xl">
         <IconFolderOpen className="relative-icon" />
-        <h2 class="leading-none tracking-tight font-light">
+        <h2 class="leading-none font-light tracking-tight">
           Selected Blog Posts
         </h2>
       </span>
 
-      <ul class="divide-y border-t border-b mb-20">
+      <ul class="mb-20 divide-y border-t border-b">
         {
           result.selectedPosts.map((post) => (
             <li class="p-3">
-              <a href={`/blog/${post.slug}`} class="flex flex-col gap-3 group">
+              <a href={`/blog/${post.slug}`} class="group flex flex-col gap-3">
                 <h3
-                  class="hover-link leading-none tracking-tight text-lg group-hover:decoration-primary"
+                  class="hover-link group-hover:decoration-primary text-lg leading-none tracking-tight"
                   transition:name={`blog-title-${post.slug}`}
                 >
                   {post.title}
                 </h3>
 
                 <p
-                  class="line-clamp-1 text-muted-foreground"
+                  class="text-muted-foreground line-clamp-1"
                   transition:name={`blog-description-${post.slug}`}
                 >
                   {post.description}

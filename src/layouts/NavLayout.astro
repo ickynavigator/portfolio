@@ -28,13 +28,13 @@ const _socials = await loadQuery({ query: SOCIAL_LINKS_QUERY });
 const env = getEnv();
 ---
 
-<Container data-vaul-drawer-wrapper class="relative bg-background">
+<Container data-vaul-drawer-wrapper class="bg-background relative">
   <header
-    class="md:rounded-b-xl border border-t-0 mb-8 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50"
+    class="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 mb-8 border border-t-0 backdrop-blur-xs md:rounded-b-xl"
   >
-    <nav class="flex justify-between items-center p-6">
+    <nav class="flex items-center justify-between p-6">
       <div>
-        <a href="/" class="font-bold text-3xl inline-flex gap-2">
+        <a href="/" class="inline-flex gap-2 text-3xl font-bold">
           <Fragment set:html={headerIcon} />
           Obi Fortune</a
         >
@@ -62,24 +62,24 @@ const env = getEnv();
 
   <footer class="mt-8 mb-3 px-4 lg:px-0">
     <div
-      class="border rounded-xl py-10 flex flex-col justify-center items-center gap-7 mb-10 bg-primary-foreground shadow"
+      class="bg-primary-foreground mb-10 flex flex-col items-center justify-center gap-7 rounded-xl border py-10 shadow-sm"
     >
       <span
-        class="border text-xs font-medium px-2.5 py-0.5 rounded-full uppercase"
+        class="rounded-full border px-2.5 py-0.5 text-xs font-medium uppercase"
       >
         Get in touch
       </span>
 
-      <p class="text-center text-4xl font-medium px-4 md:px-20">
+      <p class="px-4 text-center text-4xl font-medium md:px-20">
         Got a web project? Let's talk.
       </p>
 
-      <div class="flex gap-2 mt-6">
+      <div class="mt-6 flex gap-2">
         {_socials.result.map((link) => <SocialButton link={link} />)}
       </div>
     </div>
 
-    <div class="text-xs uppercase flex flex-col md:flex-row justify-between">
+    <div class="flex flex-col justify-between text-xs uppercase md:flex-row">
       <div class="inline-flex flex-col md:inline">
         <span>&copy; 2024 - {new Date().getFullYear()};</span>
 

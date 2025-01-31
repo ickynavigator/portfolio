@@ -65,12 +65,12 @@ const { result } =
   <NavLayout>
     <Container innerPage>
       <div class="mb-4">
-        <h1 class="leading-none tracking-tight font-bold text-xl">Search</h1>
+        <h1 class="text-xl leading-none font-bold tracking-tight">Search</h1>
       </div>
 
       <form method="POST">
         <div
-          class="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-2"
+          class="flex flex-col items-center justify-center gap-2 md:flex-row md:items-stretch"
         >
           <Tabs
             name="type"
@@ -79,10 +79,10 @@ const { result } =
             class="inline-flex"
           />
 
-          <div class="flex flex-row gap-2 w-full">
+          <div class="flex w-full flex-row gap-2">
             <div class="relative flex-1">
               <div
-                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
               >
                 <IconSearch className="relative-icon" />
               </div>
@@ -111,7 +111,7 @@ const { result } =
             <Button
               variant="secondary"
               type="submit"
-              class="border hidden md:flex"
+              class="hidden border md:flex"
               aria-label="Submit Search"
               title="Search"
             >
@@ -121,7 +121,7 @@ const { result } =
         </div>
       </form>
 
-      <ul class="flex flex-col gap-4 mt-8">
+      <ul class="mt-8 flex flex-col gap-4">
         {
           result
             ?.filter(
@@ -145,20 +145,20 @@ const { result } =
 
               return (
                 <a href={url}>
-                  <li class="flex flex-col gap-1 p-4 border rounded-md transition hover:bg-secondary">
+                  <li class="hover:bg-secondary flex flex-col gap-1 rounded-md border p-4 transition">
                     <p class="text-muted-foreground capitalize">{item._type}</p>
 
-                    <h2 class="leading-none tracking-tight text-lg">
+                    <h2 class="text-lg leading-none tracking-tight">
                       {item.title}
                     </h2>
 
                     {item.tags.length > 0 && (
                       <ul
-                        class="overflow-x-scroll max-w-full whitespace-nowrap"
+                        class="max-w-full overflow-x-scroll whitespace-nowrap"
                         transition:name={`project-tags-${slug}`}
                       >
                         {item.tags.map((tag) => (
-                          <li class="text-xs font-light me-2 px-2 py-0.5 rounded-full border inline-block">
+                          <li class="me-2 inline-block rounded-full border px-2 py-0.5 text-xs font-light">
                             {tag.title}
                           </li>
                         ))}

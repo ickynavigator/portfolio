@@ -20,28 +20,28 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
   <NavLayout>
     <Container innerPage>
       <div class="mb-4">
-        <h1 class="leading-none tracking-tight font-bold text-xl">Blog</h1>
+        <h1 class="text-xl leading-none font-bold tracking-tight">Blog</h1>
       </div>
 
-      <div class="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {
           result.data.map((post) => (
             <div>
               <a
                 href={`/blog/${post.slug.current}`}
-                class="block overflow-hidden rounded-lg aspect-video"
+                class="block aspect-video overflow-hidden rounded-lg"
               >
                 {post.image && (
                   <SanityImage
                     node={post.image}
                     alt={post.image.alt}
-                    class="object-cover object-center w-full h-full hover:drop-shadow-xl transition"
+                    class="size-full object-cover object-center transition hover:drop-shadow-xl"
                     transition:name={`blog-image-${post.slug.current}`}
                   />
                 )}
               </a>
 
-              <div class="flex justify-between items-end mt-4">
+              <div class="mt-4 flex items-end justify-between">
                 <div>
                   <h2
                     class="line-clamp-1"
@@ -49,7 +49,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                   >
                     {post.title}
                   </h2>
-                  <div class="inline-flex text-center gap-2">
+                  <div class="inline-flex gap-2 text-center">
                     <span
                       class="inline-flex items-center gap-1"
                       transition:name={`blog-post-time-${post.slug.current}`}
@@ -72,7 +72,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                 <div>
                   <a
                     href={`/blog/${post.slug.current}`}
-                    class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
+                    class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition-colors"
                   >
                     <span class="text-xs">More</span>
                     <IconArrowUpRight className="inline relative-icon" />

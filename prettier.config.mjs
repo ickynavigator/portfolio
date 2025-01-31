@@ -13,8 +13,8 @@ export default {
 
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-tailwindcss",
     "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss",
   ],
 
   // #region @ianvs/prettier-plugin-sort-imports
@@ -22,6 +22,10 @@ export default {
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   importOrderTypeScriptVersion: "5.0.0",
   // #endregion @ianvs/prettier-plugin-sort-imports
+
+  // #region prettier-plugin-tailwindcss
+  tailwindFunctions: ["clsx", "cva", "cn"],
+  // #endregion prettier-plugin-tailwindcss
 
   overrides: [
     {

@@ -1,0 +1,36 @@
+@utility hover-link {
+  @apply text-primary hover:decoration-primary font-semibold underline decoration-[hsla(var(--muted-foreground)/.5)] decoration-2 transition;
+}
+@utility hover-link-icon {
+  @apply text-primary hover:border-primary border-b-2 border-[hsla(var(--muted-foreground)/.5)] font-semibold transition;
+}
+@utility relative-icon {
+  @apply h-[1em] w-[1em];
+}
+@utility progress-border {
+  @property --count {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+
+  --count: 0;
+  --progress-width: -0.125em;
+  --border-color: hsl(var(--border));
+
+  @keyframes counter {
+    from {
+      --count: 0;
+    }
+    to {
+      --count: 100;
+    }
+  }
+
+  animation: counter auto linear;
+
+  @apply bg-background relative border;
+  &::before {
+    @apply absolute top-[var(--progress-width)] right-[var(--progress-width)] bottom-[var(--progress-width)] left-[var(--progress-width)] -z-50 block bg-transparent bg-[conic-gradient(var(--border-color),var(--border-color)_calc(1%*var(--count)),transparent_calc(1%*var(--count)))] content-[""];
+  }
+}

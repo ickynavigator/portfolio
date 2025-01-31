@@ -1,7 +1,7 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
 import sanity from "@sanity/astro";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
@@ -42,8 +42,9 @@ export default defineConfig({
       },
     }),
     react(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

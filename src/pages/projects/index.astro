@@ -16,36 +16,36 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
   <NavLayout>
     <Container innerPage>
       <div class="mb-4 flex flex-col gap-1">
-        <h1 class="leading-none tracking-tight font-bold text-xl">Projects</h1>
+        <h1 class="text-xl leading-none font-bold tracking-tight">Projects</h1>
         <h2
-          class="leading-none tracking-tight font-light text-2xl text-muted-foreground"
+          class="text-muted-foreground text-2xl leading-none font-light tracking-tight"
         >
           Building experiences, one line of code at a time.
         </h2>
         <span
-          class="leading-none tracking-tight font-light text-muted-foreground"
+          class="text-muted-foreground leading-none font-light tracking-tight"
           >Click. Explore.</span
         >
       </div>
 
-      <div class="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {
           result.data.map((project) => (
             <div>
               <a
                 href={`/projects/${project.slug.current}`}
-                class="block overflow-hidden rounded-lg aspect-video"
+                class="block aspect-video overflow-hidden rounded-lg"
               >
                 {project.image && (
                   <SanityImage
                     node={project.image}
-                    class="object-cover object-center w-full h-full transition-transform hover:scale-125"
+                    class="size-full object-cover object-center transition-transform hover:scale-125"
                     transition:name={`project-image-${project.slug.current}`}
                   />
                 )}
               </a>
 
-              <div class="flex justify-between items-end mt-4">
+              <div class="mt-4 flex items-end justify-between">
                 <div>
                   <h2
                     class="line-clamp-1"
@@ -54,7 +54,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                     {project.title}
                   </h2>
 
-                  <div class="inline-flex text-center gap-2">
+                  <div class="inline-flex gap-2 text-center">
                     <span class="inline-flex items-center gap-1">
                       <IconCalendar className="inline relative-icon" />
                       {dayjs(project._createdAt).format("L")}
@@ -65,7 +65,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                 <div>
                   <a
                     href={`/projects/${project.slug.current}`}
-                    class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
+                    class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition-colors"
                   >
                     <span class="text-xs">More</span>
                     <IconArrowUpRight className="inline relative-icon" />
