@@ -8,18 +8,18 @@ interface Props extends HTMLAttributes<"input"> {
 const { label, ...rest } = Astro.props;
 ---
 
-<label class="flex items-center cursor-pointer relative">
+<label class="relative flex cursor-pointer items-center">
   <span class="sr-only">{label}</span>
 
   <input
     type="checkbox"
-    class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-secondary checked:border-secondary-foreground"
+    class="peer border-secondary checked:border-secondary-foreground size-5 cursor-pointer appearance-none rounded-sm border shadow-sm transition-all hover:shadow-md"
     title={label}
     {...rest}
   />
 
   <span
-    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 inline-flex justify-center items-center [&_svg[slot='on']]:hidden peer-checked:[&_svg[slot='on']]:inline [&_svg[slot='off']]:inline peer-checked:[&_svg[slot='off']]:hidden"
+    class="absolute top-1/2 left-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center [&_svg[slot='off']]:inline [&_svg[slot='off']]:peer-checked:hidden [&_svg[slot='on']]:hidden [&_svg[slot='on']]:peer-checked:inline"
   >
     <slot />
     <slot name="on" />

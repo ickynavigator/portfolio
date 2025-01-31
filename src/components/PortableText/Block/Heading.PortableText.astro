@@ -35,7 +35,7 @@ const order = Tag.slice(1);
 
 <Tag
   data-order={order}
-  class="relative group/heading mb-3 mt-1 font-bold leading-none tracking-tight data-[order=1]:text-5xl data-[order=2]:text-4xl data-[order=3]:text-3xl data-[order=4]:text-2xl data-[order=5]:text-xl data-[order=6]:text-lg"
+  class="group/heading relative mt-1 mb-3 leading-none font-bold tracking-tight data-[order=1]:text-5xl data-[order=2]:text-4xl data-[order=3]:text-3xl data-[order=4]:text-2xl data-[order=5]:text-xl data-[order=6]:text-lg"
   data-slug={headerSlug}
 >
   <a
@@ -47,7 +47,7 @@ const order = Tag.slice(1);
     <slot />
 
     <div
-      class="hidden lg:block absolute top-1/2 transform -translate-y-1/2 opacity-0 group-hover/heading:opacity-100 transition-opacity text-muted-foreground text-[calc(65%)] group-data-[order=1]/heading:left-[-1.9rem] group-data-[order=2]/heading:left-[-1.45rem] group-data-[order=3]/heading:left-[-1.225rem] group-data-[order=4]/heading:left-[-1rem] group-data-[order=5]/heading:left-[-0.85rem] group-data-[order=6]/heading:left-[-0.775rem]"
+      class="text-muted-foreground absolute top-1/2 hidden -translate-y-1/2 transform text-[65%] opacity-0 transition-opacity group-hover/heading:opacity-100 group-data-[order=1]/heading:left-[-1.9rem] group-data-[order=2]/heading:left-[-1.45rem] group-data-[order=3]/heading:left-[-1.225rem] group-data-[order=4]/heading:left-[-1rem] group-data-[order=5]/heading:left-[-0.85rem] group-data-[order=6]/heading:left-[-0.775rem] lg:block"
     >
       <IconHash className="relative-icon" />
     </div>

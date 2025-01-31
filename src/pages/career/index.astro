@@ -16,8 +16,8 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
 <MainLayout title="Career">
   <NavLayout>
     <Container innerPage>
-      <div class="flex justify-between items-center gap-4">
-        <h1 class="leading-none tracking-tight font-bold text-xl">
+      <div class="flex items-center justify-between gap-4">
+        <h1 class="text-xl leading-none font-bold tracking-tight">
           Experience
         </h1>
 
@@ -33,24 +33,24 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
         {
           result.careers.map((career) => (
             <div class="flex flex-col gap-4 py-4">
-              <div class="flex gap-4 flex-col md:flex-row justify-start items-start md:items-center">
-                <div class="w-[5%]">
+              <div class="flex flex-col items-start justify-start gap-4 md:flex-row md:items-center">
+                <div class="w-5/100">
                   <SanityImage
                     node={career.company.logo}
-                    class="border rounded-sm transition duration-300 shadow-sm hover:shadow-md"
+                    class="rounded-xs border shadow-xs transition duration-300 hover:shadow-md"
                   />
                 </div>
 
                 <div class="flex flex-col gap-2">
-                  <h2 class="leading-none tracking-tight font-bold text-xl">
+                  <h2 class="text-xl leading-none font-bold tracking-tight">
                     {career.company.name}
                   </h2>
 
-                  <h3 class="leading-none tracking-tight font-light text-md">
+                  <h3 class="text-md leading-none font-light tracking-tight">
                     {career.title}
                   </h3>
 
-                  <h4 class="divide-x-2 flex items-center gap-2 leading-none tracking-tight font-medium text-muted-foreground text-sm [&>*:not(:first-child)]:pl-2">
+                  <h4 class="text-muted-foreground flex items-center gap-2 divide-x-2 text-sm leading-none font-medium tracking-tight [&>*:not(:first-child)]:pl-2">
                     <span>
                       {dayjs(career.date.start).format("MMM, YYYY")} -{" "}
                       {career.date.end
@@ -67,9 +67,9 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
                 </div>
               </div>
 
-              <ul class="overflow-x-auto max-w-full whitespace-nowrap">
+              <ul class="max-w-full overflow-x-auto whitespace-nowrap">
                 {career.derefTag.map((tag) => (
-                  <li class="text-xs font-light me-2 px-3 py-1.5 rounded-full border transition-colors hover:bg-primary-foreground inline-block">
+                  <li class="hover:bg-primary-foreground me-2 inline-block rounded-full border px-3 py-1.5 text-xs font-light transition-colors">
                     {tag.title}
                   </li>
                 ))}
@@ -84,7 +84,7 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
                   <li>
                     <a
                       href={link.url}
-                      class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition duration-300 hover:bg-secondary hover:shadow-sm"
+                      class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition duration-300 hover:shadow-xs"
                     >
                       <span class="text-xs">{link.display}</span>
                       <IconArrowUpRight className="inline relative-icon" />

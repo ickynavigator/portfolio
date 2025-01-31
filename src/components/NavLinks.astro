@@ -6,21 +6,21 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
 ---
 
 <div>
-  <div class="hidden md:flex gap-4 items-center">
+  <div class="hidden items-center gap-4 md:flex">
     <slot />
 
     <slot name="search" />
     <ThemeSwitcher id="md" />
   </div>
 
-  <div class="md:hidden no-js">
+  <div class="no-js md:hidden">
     <MobileNavMenu client:load>
-      <div class="flex flex-col gap-10 items-center my-10">
-        <div class="flex flex-col gap-4 items-center">
+      <div class="my-10 flex flex-col items-center gap-10">
+        <div class="flex flex-col items-center gap-4">
           <slot />
         </div>
 
-        <div class="flex flex-col gap-4 items-center">
+        <div class="flex flex-col items-center gap-4">
           <slot name="search" />
           <ThemeSwitcher id="xs" />
         </div>
@@ -43,18 +43,18 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
         <div class="mt-10">
           <div class="text-center">
             <h1
-              class="text-lg font-semibold leading-none tracking-tight text-center"
+              class="text-center text-lg leading-none font-semibold tracking-tight"
             >
               Obi Fortune
             </h1>
           </div>
 
-          <div class="flex flex-col gap-10 items-center my-10">
-            <div class="flex flex-col gap-4 items-center">
+          <div class="my-10 flex flex-col items-center gap-10">
+            <div class="flex flex-col items-center gap-4">
               <slot />
             </div>
 
-            <div class="flex flex-col gap-4 items-center">
+            <div class="flex flex-col items-center gap-4">
               <slot name="search" />
             </div>
           </div>
@@ -75,6 +75,9 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
   }
 
   body:has(#navigation-menu:popover-open) {
+    background-color: var(--color-foreground);
+    @apply pointer-events-none overflow-hidden overscroll-contain;
+
     & [data-vaul-drawer-wrapper] {
       @apply overflow-clip rounded-lg border;
 
@@ -84,28 +87,11 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
     }
   }
 
+  :popover-open {
+    @apply bg-background fixed inset-[unset] inset-x-0 bottom-0 z-50 h-96 w-full rounded-t-md border;
+  }
+
   ::backdrop {
     @apply bg-black/80;
-  }
-</style>
-
-<style>
-  :root {
-    --bg-bg: black;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg-bg: white;
-    }
-  }
-
-  body:has(#navigation-menu:popover-open) {
-    background-color: var(--bg-bg);
-    @apply pointer-events-none overflow-hidden overscroll-contain;
-  }
-
-  :popover-open {
-    @apply fixed inset-[unset] inset-x-0 bottom-0 z-50 h-96 w-full rounded-t-md border bg-background;
   }
 </style>

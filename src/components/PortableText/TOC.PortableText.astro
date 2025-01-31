@@ -39,13 +39,13 @@ if (headings.length === 0) {
 }
 ---
 
-<toc-container class="hidden md:inline group" data-pin={true}>
+<toc-container class="group hidden md:inline" data-pin={true}>
   <div class="top-24 z-100 group-data-[pin='true']:sticky">
     <details
-      class="shadow-sm rounded-md w-fit backdrop-blur-md before:rounded-md"
+      class="w-fit rounded-md shadow-xs backdrop-blur-md before:rounded-md"
     >
-      <summary class="px-4 py-2 flex justify-between items-center gap-6">
-        <p class="text-lg font-bold inline-flex items-center gap-1">
+      <summary class="flex items-center justify-between gap-6 px-4 py-2">
+        <p class="inline-flex items-center gap-1 text-lg font-bold">
           <span>
             <IconCaretRightFilled
               className="relative-icon transition-transform in-[[open]]:rotate-90"
@@ -54,7 +54,7 @@ if (headings.length === 0) {
           Content
         </p>
 
-        <div class="flex items-center gap-2 text-md">
+        <div class="text-md flex items-center gap-2">
           <IconCheckbox label="pin/unpin" id="pin-toc">
             <span class="sr-only">Pin/Unpin TOC</span>
             <IconPinned slot="on" className="relative-icon" />
@@ -92,7 +92,7 @@ if (headings.length === 0) {
   @reference "../../styles/globals.css";
 
   .details {
-    @apply rounded-md [--border-color:hsl(var(--secondary-foreground))] [animation-timeline:scroll(root)] [&::before]:rounded-md;
+    @apply rounded-md [--border-color:hsl(var(--secondary-foreground))] [animation-timeline:scroll(root)] before:rounded-md;
   }
 </style>
 

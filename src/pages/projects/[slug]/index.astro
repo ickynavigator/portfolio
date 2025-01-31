@@ -44,23 +44,23 @@ if (!result || !image) {
     </div>
 
     <Container as="article" innerPage>
-      <div class="flex flex-col gap-4 mt-4">
+      <div class="mt-4 flex flex-col gap-4">
         <div class="flex flex-col gap-2">
           <h1
-            class="leading-none tracking-tight font-light text-2xl"
+            class="text-2xl leading-none font-light tracking-tight"
             transition:name={`project-title-${result.slug.current}`}
           >
             {result.title}
           </h1>
           <h2
-            class="leading-none tracking-tight font-light text-muted-foreground"
+            class="text-muted-foreground leading-none font-light tracking-tight"
           >
             Role: {result.role}
           </h2>
         </div>
 
         <ul
-          class="overflow-x-scroll max-w-full whitespace-nowrap"
+          class="max-w-full overflow-x-scroll whitespace-nowrap"
           transition:name={`project-tags-${result.slug.current}`}
         >
           {
@@ -68,7 +68,7 @@ if (!result || !image) {
               <li class="inline">
                 <a
                   href={`/search?type=project&tag=${encodeURIComponent(tag.slug.current)}`}
-                  class="me-2 px-3 py-1.5 rounded-full border inline-block text-sm font-light transition-colors hover:bg-primary-foreground"
+                  class="hover:bg-primary-foreground me-2 inline-block rounded-full border px-3 py-1.5 text-sm font-light transition-colors"
                 >
                   {tag.title}
                 </a>
@@ -83,7 +83,7 @@ if (!result || !image) {
               <li>
                 <a
                   href={link.url}
-                  class="border rounded-lg py-1 px-2 inline-flex text-center gap-2 transition-colors hover:bg-secondary"
+                  class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition-colors"
                 >
                   <span class="text-xs">{link.display}</span>
                   <IconArrowUpRight className="inline relative-icon" />

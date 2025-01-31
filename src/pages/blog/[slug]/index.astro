@@ -46,7 +46,7 @@ if (!result || !image) {
     <ScrollProgress />
     <Container innerPage class="mb-4">
       <a href="/blog" class="hover-link">
-        <IconArrowLeft className="inline relative-icon" />
+        <IconArrowLeft className="relative-icon inline" />
         Back to Blogs</a
       >
     </Container>
@@ -60,26 +60,26 @@ if (!result || !image) {
     </div>
 
     <Container as="article" innerPage>
-      <div class="flex flex-col gap-4 mt-4">
+      <div class="mt-4 flex flex-col gap-4">
         <h1
-          class="relative font-bold leading-none tracking-tight text-5xl"
+          class="relative text-5xl leading-none font-bold tracking-tight"
           transition:name={`blog-title-${result.slug.current}`}
         >
           {result.title}
         </h1>
 
         <div
-          class="flex justify-between flex-col md:flex-row text-muted-foreground"
+          class="text-muted-foreground flex flex-col justify-between md:flex-row"
         >
           <div
-            class="inline-flex text-center gap-0 md:gap-4 flex-col md:flex-row"
+            class="inline-flex flex-col gap-0 text-center md:flex-row md:gap-4"
           >
             <span
               class="inline-flex items-center gap-1"
               title={`Posted on ${dayjs(result.postedAt).format("LLLL")}`}
               transition:name={`blog-post-time-${result.slug.current}`}
             >
-              <IconCalendar className="inline relative-icon" />
+              <IconCalendar className="relative-icon inline" />
               <time datetime={result.postedAt}
                 >{dayjs(result.postedAt).format("LL")}</time
               >
@@ -101,8 +101,8 @@ if (!result || !image) {
             }
           </div>
 
-          <span class="inline-flex items-center gap-1 line-clamp-1">
-            <IconStopwatch className="inline relative-icon" />
+          <span class="line-clamp-1 inline-flex items-center gap-1">
+            <IconStopwatch className="relative-icon inline" />
             <span transition:name={`blog-read-time-${result.slug.current}`}
               >{getReadingTime(result.wordCount)}</span
             > read
@@ -110,7 +110,7 @@ if (!result || !image) {
         </div>
 
         <ul
-          class="overflow-x-scroll max-w-full whitespace-nowrap"
+          class="max-w-full overflow-x-scroll whitespace-nowrap"
           transition:name={`blog-tags-${result.slug.current}`}
         >
           {
@@ -118,7 +118,7 @@ if (!result || !image) {
               <li class="inline">
                 <a
                   href={`/search?type=post&tag=${encodeURIComponent(tag.slug.current)}`}
-                  class="me-2 px-3 py-1.5 rounded-full border inline-block text-sm font-light transition-colors hover:bg-primary-foreground"
+                  class="hover:bg-primary-foreground me-2 inline-block rounded-full border px-3 py-1.5 text-sm font-light transition-colors"
                 >
                   {tag.title}
                 </a>
@@ -131,7 +131,7 @@ if (!result || !image) {
         </p>
       </div>
 
-      <hr class="my-5 rounded h-1 border-0 bg-muted" />
+      <hr class="bg-muted my-5 h-1 rounded-sm border-0" />
 
       <PortableText data={result.body} showToc />
     </Container>
