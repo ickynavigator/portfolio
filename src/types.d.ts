@@ -24,3 +24,5 @@ type ExtractValidSegments<
 
 type GetParams<G extends string, _F = ExtractValidSegments<G, "$", " ">> =
   Match<_F, never> extends true ? unknown : { params: Record<_F, unknown> };
+
+type OneOf<T, N> = T extends N ? T : N;
