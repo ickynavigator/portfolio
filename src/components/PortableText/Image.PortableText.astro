@@ -12,4 +12,9 @@ interface Props {
 const { node } = Astro.props;
 ---
 
-<SanityImage node={node} />
+<SanityImage
+  node={node}
+  pictureProps={{
+    class: "flex items-center justify-center",
+  }}
+/>
