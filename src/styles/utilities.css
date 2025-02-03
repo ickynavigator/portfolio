@@ -5,7 +5,7 @@
   @apply text-primary hover:border-primary border-b-2 border-[hsla(var(--muted-foreground)/.5)] font-semibold transition;
 }
 @utility relative-icon {
-  @apply h-[1em] w-[1em];
+  @apply size-[1em];
 }
 @utility progress-border {
   @property --count {

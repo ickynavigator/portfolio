@@ -172,7 +172,7 @@ const CodeIcon = magicCodeIcon(language);
       @apply block w-fit min-w-full text-base leading-tight;
 
       .line {
-        @apply relative inline-block w-full border-l-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] px-[calc(var(--spacing)-1.5rem)] align-top;
+        @apply relative inline-block w-full border-s-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] ps-[calc(var(--spacing)-1.5rem)] align-top;
 
         &::before,
         &::after {
@@ -191,7 +191,7 @@ const CodeIcon = magicCodeIcon(language);
           }
 
           &::after {
-            @apply absolute left-[calc(var(--spacing)-3rem)] w-(--spacing) content-(--diff-content);
+            @apply absolute start-[calc(var(--spacing)-3rem)] w-(--spacing) content-(--diff-content);
           }
         }
 
@@ -232,17 +232,17 @@ const CodeIcon = magicCodeIcon(language);
 
   custom-code-block {
     &[data-show-line-numbers="true"] pre {
-      @apply pl-(--spacing);
+      @apply ps-(--spacing);
 
       code {
-        @apply border-primary-foreground/30 border-0 border-l-2 border-solid;
+        @apply border-primary-foreground/30 border-0 border-s-2 border-solid;
 
         counter-reset: step;
         counter-increment: step 0;
 
         .line {
           &::before {
-            @apply absolute -left-(--left-position) w-(--spacing) border-l-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] pr-[.4rem] text-right text-sm blur-none content-[counter(step)];
+            @apply absolute -start-(--left-position) w-(--spacing) border-s-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] pe-[.4rem] text-right text-sm blur-none content-[counter(step)];
 
             counter-increment: step;
           }

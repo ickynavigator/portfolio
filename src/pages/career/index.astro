@@ -50,7 +50,7 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
                     {career.title}
                   </h3>
 
-                  <h4 class="text-muted-foreground flex items-center gap-2 divide-x-2 text-sm leading-none font-medium tracking-tight [&>*:not(:first-child)]:pl-2">
+                  <h4 class="text-muted-foreground flex items-center gap-2 divide-x-2 text-sm leading-none font-medium tracking-tight [&>*:not(:first-child)]:ps-2">
                     <span>
                       {dayjs(career.date.start).format("MMM, YYYY")} -{" "}
                       {career.date.end
