@@ -172,7 +172,7 @@ const CodeIcon = magicCodeIcon(language);
       @apply block w-fit min-w-full text-base leading-tight;
 
       .line {
-        @apply relative inline-block min-h-5 w-full border-l-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] px-4 align-top;
+        @apply relative inline-block w-full border-l-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] px-[calc(var(--spacing)-1.5rem)] align-top;
 
         &::before,
         &::after {
