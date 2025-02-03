@@ -38,8 +38,6 @@ class Wakatime {
       }
     }
 
-    console.log(constructedUrl);
-
     const response = await fetch(constructedUrl, {
       headers: {
         Authorization: `Basic ${this.#API_KEY}`,
