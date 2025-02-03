@@ -1,0 +1,15 @@
+diff --git a/dist/esm/tabler-icons-react.mjs b/dist/esm/tabler-icons-react.mjs
+index c4418af8effe4cd0a42b6bca23f5087dfa0704e5..66a2af2063439e9d600822f1e21eaebf06043321 100644
+--- a/dist/esm/tabler-icons-react.mjs
++++ b/dist/esm/tabler-icons-react.mjs
+@@ -9,8 +9,8 @@ import * as index from './icons/index.mjs';
+ export { index as icons };
+ import * as iconsList from './icons-list.mjs';
+ export { iconsList };
+-import * as dynamicImports from './dynamic-imports.mjs';
+-export { dynamicImports };
++// import * as dynamicImports from './dynamic-imports.mjs';
++// export { dynamicImports };
+ export { default as Icon123, default as IconNumber123 } from './icons/IconNumber123.mjs';
+ export { default as Icon360, default as IconView360Arrow } from './icons/IconView360Arrow.mjs';
+ export { default as IconCodeAsterisk, default as IconCodeAsterix } from './icons/IconCodeAsterisk.mjs';
