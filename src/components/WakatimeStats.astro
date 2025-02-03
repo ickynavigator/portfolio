@@ -14,7 +14,7 @@ const env = getEnv();
 
 const wakatime = new Wakatime(env.WAKATIME_API_KEY);
 
-const stats = await wakatime.getStats();
+const stats = await wakatime.getStatsWithRange({ range: "last_30_days" });
 
 const chartData = stats.data.languages
   .filter((lang) => lang.name !== "Other")

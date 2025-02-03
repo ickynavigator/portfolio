@@ -25,6 +25,13 @@ type ExtractValidSegments<
 type GetParams<G extends string, _F = ExtractValidSegments<G, "$", " ">> =
   Match<_F, never> extends true ? unknown : { params: Record<_F, unknown> };
 
+type GetUrlParams<
+  G extends string,
+  Result = GetParams<G, ExtractValidSegments<G, ":", "/">>,
+> = Result extends { params: infer R } ? R : never;
+
+type Items<T> = T[keyof T];
+
 type OneOf<T, N> = T extends N ? T : N;
 
 type Creatable<T extends string> = (string & {}) | T;
