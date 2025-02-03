@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
+import dayjs from "~/lib/date";
 import { getEnv } from "~/lib/env";
 import Wakatime from "~/lib/wakatime";
 
@@ -15,6 +16,10 @@ const env = getEnv();
 const wakatime = new Wakatime(env.WAKATIME_API_KEY);
 
 const stats = await wakatime.getStatsWithRange({ range: "last_30_days" });
+
+const daysInRange = Math.round(
+  dayjs(stats.data.end).diff(stats.data.start, "day", true),
+);
 
 const chartData = stats.data.languages
   .filter((lang) => lang.name !== "Other")
@@ -33,7 +38,7 @@ const chartData = stats.data.languages
     <CardTitle>Top Languages</CardTitle>
 
     <CardDescription
-      >My most used languages for the last 30 days</CardDescription
+      >My most used languages for the last {daysInRange} days</CardDescription
     >
   </CardHeader>
 
