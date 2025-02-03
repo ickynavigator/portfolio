@@ -16,6 +16,7 @@ Fill up the .env file with the variables in the .env.example
 | `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`         |
 | `PUBLIC_SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`         |
 | `SANITY_API_READ_TOKEN`                | Read token for the sanity project                                |
+| `WAKATIME_API_KEY`                     | API key for the wakatime API                                     |
 
 ### 🧞 Commands
 

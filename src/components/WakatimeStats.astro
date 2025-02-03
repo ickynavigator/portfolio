@@ -1,0 +1,50 @@
+---
+import RadarChart from "~/components/RadarChart";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
+import { getEnv } from "~/lib/env";
+import Wakatime from "~/lib/wakatime";
+
+const env = getEnv();
+
+const wakatime = new Wakatime(env.WAKATIME_API_KEY);
+
+const stats = await wakatime.getStats();
+
+const chartData = stats.data.languages
+  .filter((lang) => lang.name !== "Other")
+  .slice(0, 6);
+---
+
+<div class="my-4">
+  <h2 class="text-lg leading-none font-bold tracking-tight">Stats</h2>
+  <p class="text-muted-foreground leading-none tracking-tight">
+    Sourced from Wakatime
+  </p>
+</div>
+
+<Card className="w-fit">
+  <CardHeader className="items-center pb-4">
+    <CardTitle>Top Languages</CardTitle>
+
+    <CardDescription
+      >My most used languages for the last 30 days</CardDescription
+    >
+  </CardHeader>
+
+  <CardContent className="pb-0">
+    <RadarChart
+      client:load
+      data={chartData}
+      config={{
+        hours: { label: "Hours", color: "hsl(var(--chart-1))" },
+      }}
+      angleKey="name"
+    />
+  </CardContent>
+</Card>

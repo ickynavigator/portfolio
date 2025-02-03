@@ -1,6 +1,7 @@
 ---
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
+import WakatimeStats from "~/components/WakatimeStats.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
@@ -21,6 +22,10 @@ if (!result) {
       </div>
 
       <PortableText data={result.bio} />
+
+      <div class="no-js">
+        <WakatimeStats />
+      </div>
     </Container>
   </NavLayout>
 </MainLayout>

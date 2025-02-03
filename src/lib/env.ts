@@ -27,6 +27,7 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
       WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
       PUBLIC_SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
       SANITY_API_READ_TOKEN: z.string().optional(),
+      WAKATIME_API_KEY: z.string(),
     },
     runtimeEnv: runtimeEnv,
     emptyStringAsUndefined: true,
