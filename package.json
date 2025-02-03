@@ -35,7 +35,7 @@
     "@shikijs/transformers": "^1.29.2",
     "@t3-oss/env-core": "^0.12.0",
     "@tabler/icons-react": "3.17.0",
-    "@tailwindcss/vite": "^4.0.1",
+    "@tailwindcss/vite": "^4.0.3",
     "astro": "^5.2.3",
     "astro-portabletext": "^0.11.0",
     "class-variance-authority": "^0.7.1",
@@ -77,7 +77,7 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.22.0",
     "vite": "^6.0.11",
-    "wrangler": "^3.106.0"
+    "wrangler": "^3.107.2"
   },
   "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
 }
