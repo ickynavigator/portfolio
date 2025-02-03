@@ -1,29 +1,14 @@
 ---
-import RadarChart from "~/components/RadarChart";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
-import dayjs from "~/lib/date";
 import { getEnv } from "~/lib/env";
 import Wakatime from "~/lib/wakatime";
+import WakatimeLanguageCard from "./WakatimeLanguageCard.astro";
 
 const env = getEnv();
 
 const wakatime = new Wakatime(env.WAKATIME_API_KEY);
 
 const stats = await wakatime.getStatsWithRange({ range: "last_30_days" });
-
-const daysInRange = Math.round(
-  dayjs(stats.data.end).diff(stats.data.start, "day", true),
-);
-
-const chartData = stats.data.languages
-  .filter((lang) => lang.name !== "Other")
-  .slice(0, 6);
+const statsLastYear = await wakatime.getStatsWithRange({ range: "last_year" });
 ---
 
 <div class="my-4">
@@ -33,23 +18,9 @@ const chartData = stats.data.languages
   </p>
 </div>
 
-<Card className="w-fit">
-  <CardHeader className="items-center pb-4">
-    <CardTitle>Top Languages</CardTitle>
-
-    <CardDescription
-      >My most used languages for the last {daysInRange} days</CardDescription
-    >
-  </CardHeader>
-
-  <CardContent className="pb-0">
-    <RadarChart
-      client:load
-      data={chartData}
-      config={{
-        hours: { label: "Hours", color: "hsl(var(--chart-1))" },
-      }}
-      angleKey="name"
-    />
-  </CardContent>
-</Card>
+<div
+  class="grid grid-cols-1 place-items-center items-center gap-4 md:grid-cols-2"
+>
+  <WakatimeLanguageCard data={stats.data} />
+  <WakatimeLanguageCard data={statsLastYear.data} />
+</div>

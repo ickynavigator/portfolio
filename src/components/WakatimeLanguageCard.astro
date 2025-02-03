@@ -1,0 +1,55 @@
+---
+import RadarChart from "~/components/RadarChart";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
+import dayjs from "~/lib/date";
+import type Wakatime from "~/lib/wakatime";
+
+interface Props {
+  data: Awaited<ReturnType<Wakatime["getStatsWithRange"]>>["data"];
+}
+
+const { data } = Astro.props;
+
+const start = dayjs(data.start);
+const end = dayjs(data.end);
+
+const daysInRange = Math.round(dayjs(end).diff(start, "day", true));
+
+const chartData = data.languages
+  .filter((lang) => lang.name !== "Other")
+  .slice(0, 5);
+---
+
+<Card className="w-fit">
+  <CardHeader className="items-center pb-4">
+    <CardTitle>Top Languages</CardTitle>
+
+    <CardDescription
+      >My most used languages for the last {daysInRange} days</CardDescription
+    >
+  </CardHeader>
+
+  <CardContent className="pb-0">
+    <RadarChart
+      client:load
+      data={chartData}
+      config={{
+        hours: { label: "Hours", color: "hsl(var(--chart-1))" },
+      }}
+      angleKey="name"
+    />
+  </CardContent>
+
+  <CardFooter className="flex-col gap-2 text-sm">
+    <div class="text-muted-foreground flex items-center gap-2 leading-none">
+      <span>{start.format("ll")}</span> - <span>{end.format("ll")}</span>
+    </div>
+  </CardFooter>
+</Card>
