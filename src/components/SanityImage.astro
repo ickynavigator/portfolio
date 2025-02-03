@@ -16,9 +16,10 @@ interface Props extends HTMLAttributes<"img"> {
     asset?: SanityImageAsset | SanityImageRef;
     alt: string;
   };
+  pictureProps?: HTMLAttributes<"picture">;
 }
 
-const { node, ...attrs } = Astro.props;
+const { node, pictureProps, ...attrs } = Astro.props;
 
 if (!node?.asset) return null;
 
@@ -26,7 +27,7 @@ const url = urlForImage(node.asset).url();
 const webpUrl = urlForImage(node.asset).format("webp").url();
 ---
 
-<picture>
+<picture {...pictureProps}>
   <source srcset={webpUrl} type="image/webp" />
   <img alt={node.alt} {...attrs} src={url} />
 </picture>
