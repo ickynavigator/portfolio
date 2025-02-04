@@ -83,10 +83,10 @@ if (!result || !image) {
         <ul>
           {
             result.visibleLinks.map((link) => (
-              <li>
+              <li class="inline">
                 <a
                   href={link.url}
-                  class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition-colors"
+                  class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-3 py-1 text-center transition-colors"
                 >
                   <span class="text-xs">{link.display}</span>
                   <IconArrowUpRight className="inline relative-icon" />
