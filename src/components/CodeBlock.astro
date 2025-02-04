@@ -167,9 +167,7 @@ const CodeIcon = magicCodeIcon(language);
     @apply transition-all;
 
     code {
-      font-family: "Input Mono", "IBM Plex Mono", monospace;
-
-      @apply block w-fit min-w-full text-base leading-tight;
+      @apply block w-fit min-w-full font-mono text-base leading-tight;
 
       .line {
         @apply relative inline-block w-full border-s-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] ps-[calc(var(--spacing)-1.5rem)] align-top;
