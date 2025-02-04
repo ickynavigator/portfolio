@@ -55,9 +55,8 @@
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
 
-  --font-sans: "Bricolage Grotesque Variable", "DM Sans Variable",
-    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: "Hepta Slab Variable", ui-serif, Georgia, Cambria,
     "Times New Roman", Times, serif;
   --font-mono: "Input Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular,
