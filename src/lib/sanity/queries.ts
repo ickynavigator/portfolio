@@ -80,7 +80,8 @@ export const PROJECTS_QUERY = defineQuery(`
         _id,
         _createdAt,
         title,
-        slug, 
+        slug,
+        role,
         "image": images[0]
     }
 `);

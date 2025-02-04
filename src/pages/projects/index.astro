@@ -1,11 +1,10 @@
 ---
-import { IconArrowUpRight, IconCalendar } from "@tabler/icons-react";
+import { IconArrowUpRight } from "@tabler/icons-react";
 
 import Container from "~/components/Container.astro";
 import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
-import dayjs from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PAGINATED_PROJECTS_QUERY } from "~/lib/sanity/queries";
 
@@ -54,11 +53,8 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                     {project.title}
                   </h2>
 
-                  <div class="inline-flex gap-2 text-center">
-                    <span class="inline-flex items-center gap-1">
-                      <IconCalendar className="inline relative-icon" />
-                      {dayjs(project._createdAt).format("L")}
-                    </span>
+                  <div class="text-muted-foreground inline-flex gap-2 text-center">
+                    {project.role}
                   </div>
                 </div>
 
