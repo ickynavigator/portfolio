@@ -25,7 +25,13 @@ importers:
       '@astrojs/rss':
         specifier: ^4.0.11
         version: 4.0.11
+      '@fontsource-variable/bricolage-grotesque':
+        specifier: ^5.1.1
+        version: 5.1.1
       '@fontsource-variable/dm-sans':
+        specifier: ^5.1.1
+        version: 5.1.1
+      '@fontsource-variable/hepta-slab':
         specifier: ^5.1.1
         version: 5.1.1
       '@radix-ui/react-dialog':
@@ -1501,8 +1507,14 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
+  '@fontsource-variable/bricolage-grotesque@5.1.1':
+    resolution: {integrity: sha512-w/eMvrrj+bEw3SwKYvto47r9Jr8Y0sc2GqbBVv4oqErAp88+qO3jeIbRrlBfzKDaVrXad8wCJpxJuHB+dFRKRQ==}
+
   '@fontsource-variable/dm-sans@5.1.1':
     resolution: {integrity: sha512-oOroo1rQurZR8giuNLF64W+EqvZt6prsdJS6gGCAZgD/AMIHKmL6RzVjznGb8ZGXCeiJpVWO/xd4DPgMqr7ayQ==}
+
+  '@fontsource-variable/hepta-slab@5.1.1':
+    resolution: {integrity: sha512-4G6emBo2ExjRo9oS+eO+Nhoj2dsTS4mKBi+8CkdUd7n5PIAlMK0Y6PFCnHU1ln+12WoST/3X8YyjeMTgD2zk5g==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -8912,7 +8924,11 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
+  '@fontsource-variable/bricolage-grotesque@5.1.1': {}
+
   '@fontsource-variable/dm-sans@5.1.1': {}
+
+  '@fontsource-variable/hepta-slab@5.1.1': {}
 
   '@humanfs/core@0.19.1': {}
 
