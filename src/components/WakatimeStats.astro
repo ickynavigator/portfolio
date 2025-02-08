@@ -1,10 +1,16 @@
 ---
+import dayjs from "~/lib/date";
 import { getEnv } from "~/lib/env";
 import Wakatime from "~/lib/wakatime";
 import WakatimeLanguageCard from "./WakatimeLanguageCard.astro";
 
 const env = getEnv();
 
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=86400, s-maxage=604800",
+);
+const currentTime = dayjs();
 const wakatime = new Wakatime(env.WAKATIME_API_KEY);
 
 const stats = await wakatime.getStatsWithRange({ range: "last_30_days" });
@@ -16,6 +22,10 @@ const statsLastYear = await wakatime.getStatsWithRange({ range: "last_year" });
   <p class="text-muted-foreground leading-none tracking-tight">
     Sourced from <a href="https://wakatime.com">Wakatime</a>
   </p>
+  <span class="text-muted-foreground text-sm leading-none tracking-tight"
+    >Refreshed on{" "}
+    <time datetime={currentTime.toISOString()}>{currentTime.format("LL")}</time>
+  </span>
 </div>
 
 <div
