@@ -52,12 +52,10 @@ export default defineConfig({
         {
           source: "/ingest/static/*",
           destination: "https://us-assets.i.posthog.com/static/:splat",
-          code: 200,
         },
         {
           source: "/ingest/*",
           destination: "https://us.i.posthog.com/:splat",
-          code: 200,
         },
       ]),
     ],
