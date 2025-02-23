@@ -9,6 +9,7 @@ const env = getEnv();
   define:vars={{
     API_KEY: env.PUBLIC_POSTHOG_API_KEY,
     API_HOST: env.PUBLIC_POSTHOG_API_HOST,
+    UI_HOST: env.PUBLIC_POSTHOG_UI_HOST,
   }}
 >
   !(function (t, e) {
@@ -59,5 +60,5 @@ const env = getEnv();
       (e.__SV = 1));
   })(document, window.posthog || []);
 
-  posthog.init(API_KEY, { api_host: API_HOST });
+  posthog.init(API_KEY, { api_host: API_HOST, ui_host: UI_HOST });
 </script>
