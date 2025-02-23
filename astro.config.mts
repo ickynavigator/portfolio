@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
+import cfRedirectsVitePlugin from "./cfRedirects.plugin.mts";
 import { getEnv } from "./src/lib/env";
 
 const _env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
@@ -45,6 +46,20 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      tailwindcss(),
+      cfRedirectsVitePlugin([
+        {
+          source: "/ingest/static/*",
+          destination: "https://us-assets.i.posthog.com/static/:splat",
+          code: 200,
+        },
+        {
+          source: "/ingest/*",
+          destination: "https://us.i.posthog.com/:splat",
+          code: 200,
+        },
+      ]),
+    ],
   },
 });
