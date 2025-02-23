@@ -4,6 +4,7 @@ import "@fontsource-variable/hepta-slab";
 
 import { ClientRouter } from "astro:transitions";
 
+import Posthog from "~/components/Posthog.astro";
 import { Toaster } from "~/components/ui/sonner";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PROFILE_IMAGE_QUERY } from "~/lib/sanity/queries";
@@ -111,6 +112,7 @@ const getPageTitle = (title?: string) => {
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@obifortunebleh" />
 
+    <Posthog />
     <ClientRouter />
   </head>
 
