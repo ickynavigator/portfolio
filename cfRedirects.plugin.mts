@@ -10,7 +10,7 @@ const cfRedirectsVitePlugin = (
 ): Plugin => {
   return {
     name: "custom-cloudflare-redirects",
-    buildEnd() {
+    closeBundle() {
       const _redirects = redirects.reduce((acc, r) => {
         return acc + `${r.source} ${r.destination} ${r.code}\n`;
       }, "");
