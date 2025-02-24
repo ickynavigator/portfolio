@@ -34,3 +34,8 @@
     @apply absolute top-[var(--progress-width)] right-[var(--progress-width)] bottom-[var(--progress-width)] left-[var(--progress-width)] -z-50 block bg-transparent bg-[conic-gradient(var(--border-color),var(--border-color)_calc(1%*var(--count)),transparent_calc(1%*var(--count)))] content-[""];
   }
 }
+@utility no-js {
+  @media (scripting: none) {
+    display: none;
+  }
+}
