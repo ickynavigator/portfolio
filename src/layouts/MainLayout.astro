@@ -114,7 +114,9 @@ const getPageTitle = (title?: string) => {
   </head>
 
   <body class="bg-background text-foreground">
-    <slot />
+    <div data-vaul-drawer-wrapper class="flex w-full flex-col items-center">
+      <slot />
+    </div>
     <Toaster
       client:load
       toastOptions={{

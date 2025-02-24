@@ -69,9 +69,7 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
 
   body,
   [data-vaul-drawer-wrapper] {
-    /* TODO: figure out popover transitions */
-    /* @apply transition-all; */
-    /* transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1); */
+    @apply transition-transform duration-500 ease-in-out;
   }
 
   body:has(#navigation-menu:popover-open) {
@@ -81,8 +79,8 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
     & [data-vaul-drawer-wrapper] {
       @apply overflow-clip rounded-lg border;
 
-      transform-origin: top;
-      transform: scale(0.9)
+      transform-origin: center top;
+      transform: scale(0.9754716981132076)
         translate3d(0, calc(env(safe-area-inset-top) + 14px), 0);
     }
   }
