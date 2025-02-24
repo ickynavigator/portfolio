@@ -7,7 +7,7 @@
 
 @custom-variant dark (&:where(media, media *));
 
-@theme {
+@theme inline {
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
