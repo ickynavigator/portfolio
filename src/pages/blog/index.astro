@@ -29,7 +29,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
             <div>
               <a
                 href={`/blog/${post.slug.current}`}
-                class="block aspect-video overflow-hidden rounded-lg"
+                class="block aspect-video overflow-hidden rounded-lg border shadow"
               >
                 {post.image && (
                   <SanityImage

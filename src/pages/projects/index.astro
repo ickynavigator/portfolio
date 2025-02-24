@@ -33,7 +33,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
             <div>
               <a
                 href={`/projects/${project.slug.current}`}
-                class="block aspect-video overflow-hidden rounded-lg"
+                class="block aspect-video overflow-hidden rounded-lg border shadow"
               >
                 {project.image && (
                   <SanityImage
