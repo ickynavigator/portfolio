@@ -1,8 +1,8 @@
 @utility hover-link {
-  @apply text-primary hover:decoration-primary font-semibold underline decoration-[hsla(var(--muted-foreground)/.5)] decoration-2 transition;
+  @apply text-primary hover:decoration-primary font-semibold underline decoration-[--alpha(var(--muted-foreground)/.5)] decoration-2 transition;
 }
 @utility hover-link-icon {
-  @apply text-primary hover:border-primary border-b-2 border-[hsla(var(--muted-foreground)/.5)] font-semibold transition;
+  @apply text-primary hover:border-primary border-b-2 border-[--alpha(var(--muted-foreground)/.5)] font-semibold transition;
 }
 @utility relative-icon {
   @apply size-[1em];
@@ -16,7 +16,7 @@
 
   --count: 0;
   --progress-width: -0.125em;
-  --border-color: hsl(var(--border));
+  --border-color: var(--border);
 
   @keyframes counter {
     from {

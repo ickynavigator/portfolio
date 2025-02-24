@@ -158,7 +158,7 @@ const CodeIcon = magicCodeIcon(language);
     --color-line-warning: var(--warning-foreground);
     --color-line-error: var(--destructive);
 
-    --alpha-offset: 0.2;
+    --alpha-offset: 20%;
 
     --bg-color: initial;
     --spacing: calc(((var(--linecount) + 1) * 1rem));
@@ -170,7 +170,7 @@ const CodeIcon = magicCodeIcon(language);
       @apply block w-fit min-w-full font-mono text-base leading-tight;
 
       .line {
-        @apply relative inline-block w-full border-s-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] ps-[calc(var(--spacing)-1.5rem)] align-top;
+        @apply relative inline-block w-full border-s-4 border-transparent bg-[--alpha(var(--bg-color)/var(--alpha-offset))] ps-[calc(var(--spacing)-1.5rem)] align-top;
 
         &::before,
         &::after {
@@ -206,7 +206,7 @@ const CodeIcon = magicCodeIcon(language);
         }
 
         .highlighted-word {
-          @apply bg-[hsl(var(--color-line-highlight)/var(--alpha-offset))];
+          @apply bg-[--alpha(var(--color-line-highlight)/var(--alpha-offset))];
         }
       }
     }
@@ -240,7 +240,7 @@ const CodeIcon = magicCodeIcon(language);
 
         .line {
           &::before {
-            @apply absolute -start-(--left-position) w-(--spacing) border-s-4 border-transparent bg-[hsl(var(--bg-color)/var(--alpha-offset))] pe-[.4rem] text-right text-sm blur-none content-[counter(step)];
+            @apply absolute -start-(--left-position) w-(--spacing) border-s-4 border-transparent bg-[--alpha(var(--bg-color)/var(--alpha-offset))] pe-[.4rem] text-right text-sm blur-none content-[counter(step)];
 
             counter-increment: step;
           }
@@ -250,13 +250,13 @@ const CodeIcon = magicCodeIcon(language);
 
     &[data-show-line-numbers="true"] pre {
       code .line.highlighted::before {
-        @apply border-[hsl(var(--bg-color))];
+        @apply border-(--bg-color);
       }
     }
 
     &:not([data-show-line-numbers="true"]) pre {
       code .line.highlighted {
-        @apply border-[hsl(var(--bg-color))];
+        @apply border-(--bg-color);
       }
     }
   }
