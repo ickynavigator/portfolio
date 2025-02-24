@@ -1,8 +1,4 @@
-@layer base {
-  :root {
-    --radius: 0.5rem;
-  }
-
+@layer palette {
   :root {
     --background: hsl(0 0% 100%);
     --foreground: hsl(0 0% 3.9%);
@@ -71,6 +67,10 @@
 }
 
 @layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+
   * {
     @apply border-border scroll-smooth;
   }
