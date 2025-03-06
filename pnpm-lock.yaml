@@ -65,8 +65,8 @@ importers:
         specifier: ^0.12.0
         version: 0.12.0(typescript@5.7.3)(zod@3.24.2)
       '@tabler/icons-react':
-        specifier: 3.29.0
-        version: 3.29.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@18.3.1)
+        specifier: 3.31.0
+        version: 3.31.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@18.3.1)
       '@tailwindcss/vite':
         specifier: ^4.0.11
         version: 4.0.11(vite@6.2.0(@types/node@22.13.9)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.0))
@@ -2692,13 +2692,13 @@ packages:
       zod:
         optional: true
 
-  '@tabler/icons-react@3.29.0':
-    resolution: {integrity: sha512-jaa3b3j91CplY7TPgx/Gj/e+PcOnQgYiK6c5qtp1P0ytfKM5WPc1qtXyRLE3NcYlfxS2Pcst4YGy1vUML7SjbQ==}
+  '@tabler/icons-react@3.31.0':
+    resolution: {integrity: sha512-2rrCM5y/VnaVKnORpDdAua9SEGuJKVqPtWxeQ/vUVsgaUx30LDgBZph7/lterXxDY1IKR6NO//HDhWiifXTi3w==}
     peerDependencies:
       react: '>= 16'
 
-  '@tabler/icons@3.29.0':
-    resolution: {integrity: sha512-VWNINymdmhay3MDvWVREmRwuWLSrX3YiInKvs5L4AHRF4bAfJabLlEReE0BW/XFsBt22ff8/C8Eam/LXlF97mA==}
+  '@tabler/icons@3.31.0':
+    resolution: {integrity: sha512-dblAdeKY3+GA1U+Q9eziZ0ooVlZMHsE8dqP0RkwvRtEsAULoKOYaCUOcJ4oW1DjWegdxk++UAt2SlQVnmeHv+g==}
 
   '@tailwindcss/node@4.0.11':
     resolution: {integrity: sha512-y1Ko/QaZh6Fv8sSOOPpRztT8nvNKSetvE4CLxsDdyY5kkBS7hKq04D3y3ldelniWe6YqRIzBHTzfAIc1hZ+0FA==}
@@ -10382,12 +10382,12 @@ snapshots:
       typescript: 5.7.3
       zod: 3.24.2
 
-  '@tabler/icons-react@3.29.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@18.3.1)':
+  '@tabler/icons-react@3.31.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@18.3.1)':
     dependencies:
-      '@tabler/icons': 3.29.0
+      '@tabler/icons': 3.31.0
       react: 18.3.1
 
-  '@tabler/icons@3.29.0': {}
+  '@tabler/icons@3.31.0': {}
 
   '@tailwindcss/node@4.0.11':
     dependencies:
