@@ -7,7 +7,9 @@ interface Redirect {
   code?: number;
 }
 
-export default function cfRedirectsVitePlugin(redirects: Redirect[]): Plugin {
+export default function cfRedirectsVitePlugin(
+  redirects: [Redirect, ...Redirect[]],
+): Plugin {
   return {
     name: "custom-cloudflare-redirects",
     async buildStart() {
