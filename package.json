@@ -83,6 +83,12 @@
   "pnpm": {
     "patchedDependencies": {
       "@tabler/icons-react": "patches/@tabler__icons-react.patch"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "scrollmirror",
+      "sharp",
+      "workerd"
+    ]
   }
 }
