@@ -17,4 +17,11 @@ export function getReadingTime(
   return dayjs.duration(readingTime, "minutes").humanize();
 }
 
+export function isSameDayMonth(dateString: string) {
+  const bday = dayjs(dateString, "YYYY-MM-DD", true);
+  const today = dayjs(undefined, "YYYY-MM-DD", true);
+
+  return bday.month() === today.month() && bday.date() === today.date();
+}
+
 export default dayjs;

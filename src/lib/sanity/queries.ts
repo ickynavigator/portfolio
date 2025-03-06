@@ -157,3 +157,7 @@ export const ABOUT_QUERY = defineQuery(`
         bio,
     }
 `);
+
+export const BIRTHDAY_QUERY = defineQuery(`
+    *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].birthday
+`);

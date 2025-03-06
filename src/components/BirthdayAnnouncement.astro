@@ -1,0 +1,82 @@
+---
+import Marquee from "./Marquee.astro";
+---
+
+<div class="faded-edge overflow-hidden">
+  <Marquee class="sticky w-full py-1">
+    <p
+      class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-lg font-bold text-transparent"
+    >
+      Happy Birthday To Me!
+    </p>
+  </Marquee>
+</div>
+
+<style>
+  .faded-edge {
+    --mask: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 0,
+        rgba(0, 0, 0, 1) 5%,
+        rgba(0, 0, 0, 1) 95%,
+        rgba(0, 0, 0, 0) 100%
+      )
+      50% 100% / 100% 100% repeat-y;
+
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+  }
+</style>
+
+<script>
+  import confetti, { type Options } from "canvas-confetti";
+
+  const randomInRange = (min: number, max: number) =>
+    Math.random() * (max - min) + min;
+
+  const triggerConfetti = () => {
+    const scalar = 2;
+    const cake = confetti.shapeFromText({ text: "🎂", scalar });
+    const duration = 10 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults: Options = {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 0,
+      shapes: [cake],
+      scalar,
+    };
+
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) clearInterval(interval);
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        flat: true,
+      });
+
+      confetti({
+        ...defaults,
+        particleCount: 15,
+        origin: { x: randomInRange(0.4, 0.6), y: Math.random() - 0.2 },
+        scalar: scalar / 2,
+        shapes: ["circle", "square", "star"],
+      });
+    }, 250);
+  };
+
+  triggerConfetti();
+</script>

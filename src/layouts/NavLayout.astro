@@ -3,12 +3,14 @@ import { VisualEditing } from "@sanity/astro/visual-editing";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import ActiveLink from "~/components/ActiveLink.astro";
+import BirthdayAnnouncement from "~/components/BirthdayAnnouncement.astro";
 import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
 import SocialButton from "~/components/SocialButton.astro";
+import { isSameDayMonth } from "~/lib/date";
 import { getEnv } from "~/lib/env";
 import { loadQuery } from "~/lib/sanity/load-query";
-import { SOCIAL_LINKS_QUERY } from "~/lib/sanity/queries";
+import { BIRTHDAY_QUERY, SOCIAL_LINKS_QUERY } from "~/lib/sanity/queries";
 
 const links = {
   about: { href: "/about", text: "About" },
@@ -22,15 +24,23 @@ const links = {
 
 const navlinks = [links.about, links.projects, links.blog, links.career];
 
-const _socials = await loadQuery({ query: SOCIAL_LINKS_QUERY });
+const [_socials, _birthdate] = await Promise.all([
+  loadQuery({ query: SOCIAL_LINKS_QUERY }),
+  loadQuery({ query: BIRTHDAY_QUERY }),
+]);
 
 const env = getEnv();
+
+const isTodayBirthday = _birthdate.result
+  ? isSameDayMonth(_birthdate.result)
+  : false;
 ---
 
 <Container class="bg-background relative">
   <header
     class="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 mb-8 border border-t-0 backdrop-blur-xs md:rounded-b-xl"
   >
+    {isTodayBirthday && <BirthdayAnnouncement />}
     <nav class="flex items-center justify-between p-6">
       <div>
         <a href="/" class="inline-flex gap-2 text-3xl font-bold">
