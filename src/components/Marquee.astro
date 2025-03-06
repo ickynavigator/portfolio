@@ -1,0 +1,43 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+import { cn } from "~/lib/utils";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+
+const { as: Tag = "div", class: className, ...props } = Astro.props;
+---
+
+<Tag
+  class={cn(
+    "marquee flex gap-(--gap) select-none [--gap:1rem] [--speed:10s]",
+    className,
+  )}
+  {...props}
+>
+  <ul class="flex min-w-full shrink-0 justify-around gap-(--gap)">
+    <slot />
+  </ul>
+
+  <ul
+    class="flex min-w-full shrink-0 justify-around gap-(--gap)"
+    aria-hidden="true"
+  >
+    <slot />
+  </ul>
+</Tag>
+
+<style>
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  .marquee {
+    animation: scroll var(--speed) linear infinite;
+  }
+</style>
