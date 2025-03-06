@@ -2307,6 +2307,13 @@
         },
         "optional": false
       },
+      "birthday": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": false
+      },
       "jobStatus": {
         "type": "objectAttribute",
         "value": {

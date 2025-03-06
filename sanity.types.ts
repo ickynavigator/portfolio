@@ -406,6 +406,7 @@ export type PersonalInfo = {
   title: string;
   tagline: string;
   shortBio: string;
+  birthday: string;
   jobStatus?: {
     show: boolean;
     status: "open" | "inbetween" | "close";

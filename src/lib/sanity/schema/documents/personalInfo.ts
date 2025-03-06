@@ -34,6 +34,14 @@ export default defineType({
     }),
 
     defineField({
+      name: "birthday",
+      title: "Birthday",
+      description: "Used to show confetti.",
+      type: "date",
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: "jobStatus",
       title: "Job Status",
       type: "object",
