@@ -12,7 +12,9 @@ export default function cfRedirectsVitePlugin(
 ): Plugin {
   return {
     name: "custom-cloudflare-redirects",
-    async buildStart() {
+    apply: "build",
+    applyToEnvironment: (env) => env.name === "client",
+    async closeBundle() {
       if (!redirects.length) {
         this.warn({ message: `No redirects to write` });
         return;
