@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@tabler/icons-react':
-    hash: 163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c
-    path: patches/@tabler__icons-react.patch
-
 importers:
 
   .:
@@ -66,7 +61,7 @@ importers:
         version: 0.12.0(typescript@5.8.2)(zod@3.24.2)
       '@tabler/icons-react':
         specifier: 3.31.0
-        version: 3.31.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@18.3.1)
+        version: 3.31.0(react@18.3.1)
       '@tailwindcss/vite':
         specifier: ^4.0.11
         version: 4.0.11(vite@6.2.0(@types/node@22.13.9)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.0))
@@ -10366,7 +10361,7 @@ snapshots:
       typescript: 5.8.2
       zod: 3.24.2
 
-  '@tabler/icons-react@3.31.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@18.3.1)':
+  '@tabler/icons-react@3.31.0(react@18.3.1)':
     dependencies:
       '@tabler/icons': 3.31.0
       react: 18.3.1
