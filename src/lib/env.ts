@@ -5,7 +5,11 @@ import { z } from "zod";
 export const _getEnv = (tryProcess: boolean = false) => {
   if (tryProcess) {
     try {
-      return process.env;
+      if (typeof window === "undefined") {
+        return process.env;
+      } else {
+        return import.meta.env;
+      }
     } catch {
       return import.meta.env;
     }
