@@ -6,7 +6,16 @@
 @plugin 'tailwindcss-animate';
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(media, media *));
+@custom-variant dark {
+  @media (scripting: enabled) {
+    &:where(.dark, .dark *) {
+      @slot;
+    }
+  }
+  @media (scripting: none) and (prefers-color-scheme: dark) {
+    @slot;
+  }
+}
 
 @theme inline {
   --radius-lg: var(--radius);
