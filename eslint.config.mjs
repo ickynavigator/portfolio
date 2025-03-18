@@ -10,14 +10,26 @@ export default tseslint.config(
   {
     ignores: ["./node_modules/", "**/Posthog.astro"],
   },
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...eslintPluginAstro.configs.recommended,
-  ...eslintPluginAstro.configs["jsx-a11y-recommended"],
   {
-    plugins: {
-      "unused-imports": eslintPluginUnusedImports,
+    linterOptions: {
+      reportUnusedDisableDirectives: "error",
+      reportUnusedInlineConfigs: "error",
     },
+  },
+  {
+    languageOptions: {
+      parserOptions: {
+        project: true,
+      },
+    },
+  },
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  tseslint.configs.stylistic,
+  ...eslintPluginAstro.configs.recommended,
+  ...eslintPluginAstro.configs["jsx-a11y-strict"],
+  { plugins: { "unused-imports": eslintPluginUnusedImports } },
+  {
     rules: {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "off",
@@ -34,4 +46,15 @@ export default tseslint.config(
     },
   },
   eslintPluginPrettier,
+  {
+    files: [
+      "**/*.astro/*.js",
+      "*.astro/*.js",
+      "**/*.astro/*.ts",
+      "*.astro/*.ts",
+    ],
+    rules: {
+      "prettier/prettier": "off",
+    },
+  },
 );
