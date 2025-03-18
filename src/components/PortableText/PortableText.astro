@@ -6,7 +6,8 @@ import HardBreak from "~/components/PortableText/Block/HardBreak.PortableText.as
 import Heading from "~/components/PortableText/Block/Heading.PortableText.astro";
 import MutedBlock from "~/components/PortableText/Block/Muted.PortableText.astro";
 import Normal from "~/components/PortableText/Block/Normal.PortableText.astro";
-import PortableTextCode from "~/components/PortableText/Code.PortableText.astro";
+import Code from "~/components/PortableText/Code.PortableText.astro";
+import CodeSimple from "~/components/PortableText/CodeSimple.PortableText.astro";
 import PortableTextImage from "~/components/PortableText/Image.PortableText.astro";
 import ListItem from "~/components/PortableText/List/ListItem.PortableText.astro";
 import OrderedList from "~/components/PortableText/List/OrderedList.PortableText.astro";
@@ -22,9 +23,10 @@ import type { BlockContent } from "~/t/sanity";
 interface Props {
   data: BlockContent;
   showToc?: boolean;
+  useSimpleCode?: boolean;
 }
 
-const { data, showToc = false } = Astro.props;
+const { data, showToc = false, useSimpleCode = true } = Astro.props;
 ---
 
 {showToc ? <TOC data={data} /> : null}
@@ -35,7 +37,7 @@ const { data, showToc = false } = Astro.props;
     components={{
       type: {
         image: PortableTextImage,
-        code: PortableTextCode,
+        code: useSimpleCode ? CodeSimple : Code,
       },
       block: {
         normal: Normal,

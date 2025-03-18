@@ -1,37 +1,22 @@
 ---
-import CodeBlock from "../CodeBlock.astro";
-
-interface CodeType {
-  code: string;
-  language: string;
-  filename?: string | undefined;
-  _type: "code";
-  _key: string;
-}
+import CodeBlock from "~/components/CodeBlock.astro";
+import type { Code } from "~/t/sanity";
 
 interface Props {
-  node: CodeType;
+  node: Code;
   index: number;
   isInline: boolean;
 }
 
 const { node } = Astro.props;
-
-const useNewCode = false;
 ---
 
-{
-  useNewCode ? (
-    <CodeBlock
-      code={node.code}
-      language={node.language}
-      inline={false}
-      title={node.filename}
-      showLineNumbers={true}
-    />
-  ) : (
-    <pre class="border shadow">
-      <code>{node.code}</code>
-    </pre>
-  )
-}
+<div class="not-prose">
+  <CodeBlock
+    code={node.code ?? ""}
+    language={node.language}
+    inline={false}
+    title={node.filename}
+    showLineNumbers={true}
+  />
+</div>

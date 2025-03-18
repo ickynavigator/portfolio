@@ -1,0 +1,13 @@
+---
+import type { Code } from "~/t/sanity";
+
+interface Props {
+  node: Code;
+  index: number;
+  isInline: boolean;
+}
+
+const { node } = Astro.props;
+---
+
+<pre class="border shadow"><code>{node.code}</code></pre>
