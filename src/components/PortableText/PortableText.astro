@@ -6,7 +6,8 @@ import HardBreak from "~/components/PortableText/Block/HardBreak.PortableText.as
 import Heading from "~/components/PortableText/Block/Heading.PortableText.astro";
 import MutedBlock from "~/components/PortableText/Block/Muted.PortableText.astro";
 import Normal from "~/components/PortableText/Block/Normal.PortableText.astro";
-import PortableTextCode from "~/components/PortableText/Code.PortableText.astro";
+import Code from "~/components/PortableText/Code.PortableText.astro";
+import CodeSimple from "~/components/PortableText/CodeSimple.PortableText.astro";
 import PortableTextImage from "~/components/PortableText/Image.PortableText.astro";
 import ListItem from "~/components/PortableText/List/ListItem.PortableText.astro";
 import OrderedList from "~/components/PortableText/List/OrderedList.PortableText.astro";
@@ -15,58 +16,65 @@ import Highlight from "~/components/PortableText/Mark/Highlight.PortableText.ast
 import InlineCode from "~/components/PortableText/Mark/InlineCode.PortableText.astro";
 import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
 import MutedMark from "~/components/PortableText/Mark/Muted.PortableText.astro";
+import Text from "~/components/PortableText/Text.PortableText.astro";
 import TOC from "~/components/PortableText/TOC.PortableText.astro";
+import { cn } from "~/lib/utils";
 import type { BlockContent } from "~/t/sanity";
 
 interface Props {
   data: BlockContent;
   showToc?: boolean;
+  useSimpleCode?: boolean;
+  class?: string;
 }
 
-const { data, showToc = false } = Astro.props;
+const { data, showToc = false, useSimpleCode = true } = Astro.props;
 ---
 
 {showToc ? <TOC data={data} /> : null}
 
-<PortableTextInternal
-  value={data}
-  components={{
-    type: {
-      image: PortableTextImage,
-      code: PortableTextCode,
-    },
-    block: {
-      normal: Normal,
-      blockquote: BlockQuote,
-      h1: Heading,
-      h2: Heading,
-      h3: Heading,
-      h4: Heading,
-      h5: Heading,
-      h6: Heading,
-      muted: MutedBlock,
-      "blockquote-info": BlockQuote,
-      "blockquote-success": BlockQuote,
-      "blockquote-warning": BlockQuote,
-      "blockquote-danger": BlockQuote,
-    },
-    mark: {
-      link: Link,
-      code: InlineCode,
-      // em,
-      // strong,
-      // underline,
-      // 'strike-through',
-      mark: Highlight,
-      muted: MutedMark,
-    },
+<article class={cn("prose dark:prose-invert mx-auto", Astro.props.class)}>
+  <PortableTextInternal
+    value={data}
+    components={{
+      type: {
+        image: PortableTextImage,
+        code: useSimpleCode ? CodeSimple : Code,
+      },
+      block: {
+        normal: Normal,
+        blockquote: BlockQuote,
+        h1: Heading,
+        h2: Heading,
+        h3: Heading,
+        h4: Heading,
+        h5: Heading,
+        h6: Heading,
+        muted: MutedBlock,
+        "blockquote-info": BlockQuote,
+        "blockquote-success": BlockQuote,
+        "blockquote-warning": BlockQuote,
+        "blockquote-danger": BlockQuote,
+      },
+      mark: {
+        link: Link,
+        code: InlineCode,
+        // em,
+        // strong,
+        // underline,
+        // 'strike-through',
+        mark: Highlight,
+        muted: MutedMark,
+      },
 
-    list: {
-      bullet: UnorderedList,
-      number: OrderedList,
-    },
+      list: {
+        bullet: UnorderedList,
+        number: OrderedList,
+      },
 
-    listItem: ListItem,
-    hardBreak: HardBreak,
-  }}
-/>
+      text: Text,
+      listItem: ListItem,
+      hardBreak: HardBreak,
+    }}
+  />
+</article>

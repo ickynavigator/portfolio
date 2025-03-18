@@ -1,13 +1,7 @@
 ---
-interface Props {
-  node: {
-    markDef: {
-      href: string;
-      _type: "link";
-      _key: string;
-    };
-  };
-}
+import type { MarkProps } from "astro-portabletext/types";
+
+type Props = MarkProps<{ href: string; _type: "link"; _key: string }>;
 
 const {
   node: {

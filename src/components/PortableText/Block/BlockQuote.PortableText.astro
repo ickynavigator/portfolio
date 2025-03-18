@@ -6,23 +6,31 @@ import {
   IconInfoSquareRoundedFilled,
 } from "@tabler/icons-react";
 import type { BlockProps } from "astro-portabletext/types";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import { z } from "zod";
 
 import { cn } from "~/lib/utils";
 
-type Props = BlockProps;
+const variantSchema = z
+  .union([
+    z.literal("default"),
+    z.literal("info"),
+    z.literal("success"),
+    z.literal("warning"),
+    z.literal("danger"),
+  ])
+  .catch("default");
 
 const quoteVariants = cva(
-  "border-muted-foreground bg-secondary my-4 rounded-sm border border-s-8 p-4",
+  "border-(--bq-highlight) [&_.title]:text-(--bq-highlight) [&_svg]:text-(--bq-highlight)",
   {
     variants: {
       variant: {
-        default: "border-0 border-s-8",
-        info: "border-info [&_svg]:text-info [&_.title]:text-info",
-        success: "border-success [&_svg]:text-success [&_.title]:text-success",
-        warning: "border-warning [&_svg]:text-warning [&_.title]:text-warning",
-        danger:
-          "border-destructive [&_svg]:text-destructive [&_.title]:text-destructive",
+        default: "[--bq-highlight:var(--tw-prose-quote-borders)]",
+        info: "[--bq-highlight:var(--info)]",
+        success: "[--bq-highlight:var(--success)]",
+        warning: "[--bq-highlight:var(--warning)]",
+        danger: "[--bq-highlight:var(--destructive)]",
       },
     },
     defaultVariants: {
@@ -31,7 +39,7 @@ const quoteVariants = cva(
   },
 );
 
-const getVariantIcon = (variant: string) => {
+const getVariantIcon = (variant: z.infer<typeof variantSchema>) => {
   switch (variant) {
     case "info":
       return IconInfoSquareRoundedFilled;
@@ -46,40 +54,29 @@ const getVariantIcon = (variant: string) => {
   }
 };
 
+type Props = BlockProps;
+
 const {
   node: { style },
 } = Astro.props;
 
-const variant = style.replace(/blockquote-?/, "");
-const _variant = variant as VariantProps<typeof quoteVariants>["variant"];
+const _variant = style.replace(/blockquote-?/, "");
+const variant = variantSchema.parse(_variant);
 
 const VariantIcon = getVariantIcon(variant);
 
-const bqClass = quoteVariants({ variant: _variant });
+const bqClass = quoteVariants({ variant });
 ---
 
-{
-  variant === "" ? (
-    <blockquote class={cn(bqClass)}>
-      <p class="leading-relaxed font-medium italic">
-        <slot />
-      </p>
-    </blockquote>
-  ) : (
-    <blockquote class={cn(bqClass, "bg-transparent")}>
-      <div class="flex gap-3">
-        <div class="text-xl">
-          <VariantIcon className="relative-icon" />
-        </div>
+<blockquote class={cn(bqClass)}>
+  {
+    variant === "default" ? null : (
+      <div class="flex items-center justify-between pe-4 not-italic">
+        <span class="title font-extrabold capitalize">{variant}</span>
 
-        <div>
-          <p class="title font-extrabold capitalize italic">{variant}</p>
-
-          <p class="leading-relaxed font-medium">
-            <slot />
-          </p>
-        </div>
+        <VariantIcon className="relative-icon text-lg" />
       </div>
-    </blockquote>
-  )
-}
+    )
+  }
+  <p><slot /></p>
+</blockquote>

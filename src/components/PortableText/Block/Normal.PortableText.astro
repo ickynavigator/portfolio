@@ -1,28 +1,5 @@
 ---
-import HardBreak from "~/components/PortableText/Block/HardBreak.PortableText.astro";
-import { getTextFromPortableTextNode } from "~/lib/utils";
 
-interface Props {
-  node: {
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: string;
-      _key?: string;
-    }>;
-  };
-}
-
-const isWhiteSpace =
-  getTextFromPortableTextNode(Astro.props.node?.children).trim().length === 0;
 ---
 
-{
-  isWhiteSpace ? (
-    <HardBreak />
-  ) : (
-    <p>
-      <slot />
-    </p>
-  )
-}
+<p><slot /></p>
