@@ -2,7 +2,7 @@ import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
 // TODO: --log-override:empty-import-meta=silent
-export const _getEnv = (tryProcess: boolean = false) => {
+export const _getEnv = (tryProcess = false) => {
   if (tryProcess) {
     try {
       if (typeof window === "undefined") {

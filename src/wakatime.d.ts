@@ -24,7 +24,7 @@ namespace WakatimeTypes {
       human_readable_daily_average: string;
       /** daily average as human readable string */
       human_readable_daily_average_including_other_language: string;
-      categories: Array<{
+      categories: {
         /** name of category, for ex: Coding or Debugging */
         name: string;
         /** total coding activity as seconds */
@@ -39,8 +39,8 @@ namespace WakatimeTypes {
         hours: number;
         /** minutes portion of coding activity for this category */
         minutes: number;
-      }>;
-      projects: Array<{
+      }[];
+      projects: {
         /** project name */
         name: string;
         /** total coding activity as seconds */
@@ -55,8 +55,8 @@ namespace WakatimeTypes {
         hours: number;
         /** minutes portion of coding activity for this project */
         minutes: number;
-      }>;
-      languages: Array<{
+      }[];
+      languages: {
         /** language name */
         name: string;
         /** total coding activity spent in this language as seconds */
@@ -73,8 +73,8 @@ namespace WakatimeTypes {
         minutes: number;
         /** seconds portion of coding activity for this language */
         seconds: number;
-      }>;
-      editors: Array<{
+      }[];
+      editors: {
         /** editor name */
         name: string;
         /** total coding activity spent in this editor as seconds */
@@ -91,8 +91,8 @@ namespace WakatimeTypes {
         minutes: number;
         /** seconds portion of coding activity for this editor */
         seconds: number;
-      }>;
-      operating_systems: Array<{
+      }[];
+      operating_systems: {
         /** os name */
         name: string;
         /** total coding activity spent in this os as seconds */
@@ -109,8 +109,8 @@ namespace WakatimeTypes {
         minutes: number;
         /** seconds portion of coding activity for this os */
         seconds: number;
-      }>;
-      dependencies: Array<{
+      }[];
+      dependencies: {
         /** dependency name */
         name: string;
         /** total coding activity spent in this dependency as seconds */
@@ -127,8 +127,8 @@ namespace WakatimeTypes {
         minutes: number;
         /** seconds portion of coding activity for this dependency */
         seconds: number;
-      }>;
-      machines: Array<{
+      }[];
+      machines: {
         /** machine hostname and ip address */
         name: string;
         /** unique id of this machine */
@@ -147,7 +147,7 @@ namespace WakatimeTypes {
         minutes: number;
         /** seconds portion of coding activity for this machine */
         seconds: number;
-      }>;
+      }[];
       best_day: {
         /** day with most coding time logged as Date string in YEAR-MONTH-DAY format */
         date: string;
