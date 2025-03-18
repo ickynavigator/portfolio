@@ -16,15 +16,15 @@ import "@sanity/client";
  */
 
 // Source: schema.json
-export type SanityImagePaletteSwatch = {
+export interface SanityImagePaletteSwatch {
   _type: "sanity.imagePaletteSwatch";
   background?: string;
   foreground?: string;
   population?: number;
   title?: string;
-};
+}
 
-export type SanityImagePalette = {
+export interface SanityImagePalette {
   _type: "sanity.imagePalette";
   darkMuted?: SanityImagePaletteSwatch;
   lightVibrant?: SanityImagePaletteSwatch;
@@ -33,23 +33,23 @@ export type SanityImagePalette = {
   dominant?: SanityImagePaletteSwatch;
   lightMuted?: SanityImagePaletteSwatch;
   muted?: SanityImagePaletteSwatch;
-};
+}
 
-export type SanityImageDimensions = {
+export interface SanityImageDimensions {
   _type: "sanity.imageDimensions";
   height?: number;
   width?: number;
   aspectRatio?: number;
-};
+}
 
-export type Geopoint = {
+export interface Geopoint {
   _type: "geopoint";
   lat?: number;
   lng?: number;
   alt?: number;
-};
+}
 
-export type Career = {
+export interface Career {
   _id: string;
   _type: "career";
   _createdAt: string;
@@ -65,14 +65,14 @@ export type Career = {
     | "Apprenticeship"
     | "Freelance";
   title: string;
-  description: Array<
+  description: (
     | {
-        children?: Array<{
-          marks?: Array<string>;
+        children?: {
+          marks?: string[];
           text?: string;
           _type: "span";
           _key: string;
-        }>;
+        }[];
         style?:
           | "normal"
           | "h1"
@@ -88,11 +88,11 @@ export type Career = {
           | "blockquote-warning"
           | "blockquote-danger";
         listItem?: "bullet" | "number";
-        markDefs?: Array<{
+        markDefs?: {
           href?: string;
           _type: "link";
           _key: string;
-        }>;
+        }[];
         level?: number;
         _type: "block";
         _key: string;
@@ -113,14 +113,14 @@ export type Career = {
     | ({
         _key: string;
       } & Code)
-  >;
-  tags: Array<{
+  )[];
+  tags: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  }[];
   location: {
     type: "On-site" | "Hybrid" | "Remote";
     address: string;
@@ -145,21 +145,19 @@ export type Career = {
     start: string;
     end?: string;
   };
-  links: Array<
-    {
-      _key: string;
-    } & EnhancedURL
-  >;
-};
+  links: ({
+    _key: string;
+  } & EnhancedURL)[];
+}
 
-export type EnhancedURL = {
+export interface EnhancedURL {
   _type: "enhancedURL";
   display: string;
   url: string;
   hidden: boolean;
-};
+}
 
-export type Project = {
+export interface Project {
   _id: string;
   _type: "project";
   _createdAt: string;
@@ -171,7 +169,7 @@ export type Project = {
   title: string;
   status: "completed" | "ongoing" | "abandoned";
   role: string;
-  images: Array<{
+  images: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -183,22 +181,22 @@ export type Project = {
     alt: string;
     _type: "image";
     _key: string;
-  }>;
-  tags: Array<{
+  }[];
+  tags: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  body: Array<
+  }[];
+  body: (
     | {
-        children?: Array<{
-          marks?: Array<string>;
+        children?: {
+          marks?: string[];
           text?: string;
           _type: "span";
           _key: string;
-        }>;
+        }[];
         style?:
           | "normal"
           | "h1"
@@ -214,11 +212,11 @@ export type Project = {
           | "blockquote-warning"
           | "blockquote-danger";
         listItem?: "bullet" | "number";
-        markDefs?: Array<{
+        markDefs?: {
           href?: string;
           _type: "link";
           _key: string;
-        }>;
+        }[];
         level?: number;
         _type: "block";
         _key: string;
@@ -239,15 +237,13 @@ export type Project = {
     | ({
         _key: string;
       } & Code)
-  >;
-  links: Array<
-    {
-      _key: string;
-    } & EnhancedURL
-  >;
-};
+  )[];
+  links: ({
+    _key: string;
+  } & EnhancedURL)[];
+}
 
-export type Post = {
+export interface Post {
   _id: string;
   _type: "post";
   _createdAt: string;
@@ -258,15 +254,15 @@ export type Post = {
   title: string;
   slug: Slug;
   postedAt: string;
-  tags?: Array<{
+  tags?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  }[];
   description: string;
-  images: Array<{
+  images: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -278,15 +274,15 @@ export type Post = {
     alt: string;
     _type: "image";
     _key: string;
-  }>;
-  body: Array<
+  }[];
+  body: (
     | {
-        children?: Array<{
-          marks?: Array<string>;
+        children?: {
+          marks?: string[];
           text?: string;
           _type: "span";
           _key: string;
-        }>;
+        }[];
         style?:
           | "normal"
           | "h1"
@@ -302,11 +298,11 @@ export type Post = {
           | "blockquote-warning"
           | "blockquote-danger";
         listItem?: "bullet" | "number";
-        markDefs?: Array<{
+        markDefs?: {
           href?: string;
           _type: "link";
           _key: string;
-        }>;
+        }[];
         level?: number;
         _type: "block";
         _key: string;
@@ -327,17 +323,17 @@ export type Post = {
     | ({
         _key: string;
       } & Code)
-  >;
-};
+  )[];
+}
 
-export type BlockContent = Array<
+export type BlockContent = (
   | {
-      children?: Array<{
-        marks?: Array<string>;
+      children?: {
+        marks?: string[];
         text?: string;
         _type: "span";
         _key: string;
-      }>;
+      }[];
       style?:
         | "normal"
         | "h1"
@@ -353,11 +349,11 @@ export type BlockContent = Array<
         | "blockquote-warning"
         | "blockquote-danger";
       listItem?: "bullet" | "number";
-      markDefs?: Array<{
+      markDefs?: {
         href?: string;
         _type: "link";
         _key: string;
-      }>;
+      }[];
       level?: number;
       _type: "block";
       _key: string;
@@ -378,9 +374,9 @@ export type BlockContent = Array<
   | ({
       _key: string;
     } & Code)
->;
+)[];
 
-export type Category = {
+export interface Category {
   _id: string;
   _type: "category";
   _createdAt: string;
@@ -388,15 +384,15 @@ export type Category = {
   _rev: string;
   title: string;
   slug: Slug;
-};
+}
 
-export type Slug = {
+export interface Slug {
   _type: "slug";
   current: string;
   source?: string;
-};
+}
 
-export type PersonalInfo = {
+export interface PersonalInfo {
   _id: string;
   _type: "personalInfo";
   _createdAt: string;
@@ -436,48 +432,48 @@ export type PersonalInfo = {
     _type: "image";
   };
   bio: BlockContent;
-  socialLinks?: Array<string>;
-  skillTags?: Array<{
+  socialLinks?: string[];
+  skillTags?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  selectedPosts?: Array<{
+  }[];
+  selectedPosts?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "post";
-  }>;
-  selectedProjects?: Array<{
+  }[];
+  selectedProjects?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "project";
-  }>;
+  }[];
   uses: BlockContent;
-};
+}
 
-export type SanityImageCrop = {
+export interface SanityImageCrop {
   _type: "sanity.imageCrop";
   top?: number;
   bottom?: number;
   left?: number;
   right?: number;
-};
+}
 
-export type SanityImageHotspot = {
+export interface SanityImageHotspot {
   _type: "sanity.imageHotspot";
   x?: number;
   y?: number;
   height?: number;
   width?: number;
-};
+}
 
-export type SanityImageAsset = {
+export interface SanityImageAsset {
   _id: string;
   _type: "sanity.imageAsset";
   _createdAt: string;
@@ -498,9 +494,9 @@ export type SanityImageAsset = {
   url?: string;
   metadata?: SanityImageMetadata;
   source?: SanityAssetSourceData;
-};
+}
 
-export type SanityImageMetadata = {
+export interface SanityImageMetadata {
   _type: "sanity.imageMetadata";
   location?: Geopoint;
   dimensions?: SanityImageDimensions;
@@ -509,9 +505,9 @@ export type SanityImageMetadata = {
   blurHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
-};
+}
 
-export type SanityFileAsset = {
+export interface SanityFileAsset {
   _id: string;
   _type: "sanity.fileAsset";
   _createdAt: string;
@@ -531,16 +527,16 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
-};
+}
 
-export type SanityAssetSourceData = {
+export interface SanityAssetSourceData {
   _type: "sanity.assetSourceData";
   name?: string;
   id?: string;
   url?: string;
-};
+}
 
-export type Configuration = {
+export interface Configuration {
   _id: string;
   _type: "configuration";
   _createdAt: string;
@@ -548,15 +544,15 @@ export type Configuration = {
   _rev: string;
   name: string;
   showOriginalSourceLink: boolean;
-};
+}
 
-export type Code = {
+export interface Code {
   _type: "code";
   language?: string;
   filename?: string;
   code?: string;
-  highlightedLines?: Array<number>;
-};
+  highlightedLines?: number[];
+}
 
 export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
@@ -583,8 +579,8 @@ export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/lib/sanity/queries.ts
 // Variable: PAGINATED_POSTS_QUERY
 // Query: {        "data":     *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {        _id,        title,        slug,        postedAt,         "image": images[0],        "wordCount": length(pt::text(body))    },    }
-export type PAGINATED_POSTS_QUERYResult = {
-  data: Array<{
+export interface PAGINATED_POSTS_QUERYResult {
+  data: {
     _id: string;
     title: string;
     slug: Slug;
@@ -603,13 +599,13 @@ export type PAGINATED_POSTS_QUERYResult = {
       _key: string;
     } | null;
     wordCount: number;
-  }>;
-};
+  }[];
+}
 // Variable: POST_SLUGS_QUERY
 // Query: *[_type == "post" && defined(slug.current) && hidden != true] {        "slug": slug.current    }
-export type POST_SLUGS_QUERYResult = Array<{
+export type POST_SLUGS_QUERYResult = {
   slug: string;
-}>;
+}[];
 // Variable: POST_QUERY
 // Query: *[_type == "post" && slug.current == $slug && hidden != true][0] {        ...,        "wordCount": length(pt::text(body)),        "derefTag": coalesce(tags[]->, []),    }
 export type POST_QUERYResult = {
@@ -623,15 +619,15 @@ export type POST_QUERYResult = {
   title: string;
   slug: Slug;
   postedAt: string;
-  tags?: Array<{
+  tags?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
-  }>;
+  }[];
   description: string;
-  images: Array<{
+  images: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -643,18 +639,18 @@ export type POST_QUERYResult = {
     alt: string;
     _type: "image";
     _key: string;
-  }>;
-  body: Array<
+  }[];
+  body: (
     | ({
         _key: string;
       } & Code)
     | {
-        children?: Array<{
-          marks?: Array<string>;
+        children?: {
+          marks?: string[];
           text?: string;
           _type: "span";
           _key: string;
-        }>;
+        }[];
         style?:
           | "blockquote-danger"
           | "blockquote-info"
@@ -670,11 +666,11 @@ export type POST_QUERYResult = {
           | "muted"
           | "normal";
         listItem?: "bullet" | "number";
-        markDefs?: Array<{
+        markDefs?: {
           href?: string;
           _type: "link";
           _key: string;
-        }>;
+        }[];
         level?: number;
         _type: "block";
         _key: string;
@@ -692,10 +688,11 @@ export type POST_QUERYResult = {
         _type: "image";
         _key: string;
       }
-  >;
+  )[];
   wordCount: number;
   derefTag:
-    | Array<{
+    | never[]
+    | {
         _id: string;
         _type: "category";
         _createdAt: string;
@@ -703,8 +700,7 @@ export type POST_QUERYResult = {
         _rev: string;
         title: string;
         slug: Slug;
-      }>
-    | Array<never>;
+      }[];
 } | null;
 // Variable: CV_REF_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->
@@ -737,27 +733,27 @@ export type HOME_PAGE_QUERYResult = {
   tagline: string;
   shortBio: string;
   selectedPosts:
-    | Array<{
+    | {
         title: string;
         description: string;
         slug: string;
-      }>
-    | Array<never>;
+      }[]
+    | never[];
   selectedProjects:
-    | Array<{
+    | {
         slug: string;
         title: string;
-        tags: Array<{
+        tags: {
           slug: string;
           name: string;
-        }>;
-      }>
-    | Array<never>;
+        }[];
+      }[]
+    | never[];
 } | null;
 // Variable: PAGINATED_PROJECTS_QUERY
 // Query: {        "data":     *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {        _id,        _createdAt,        title,        slug,        role,        "image": images[0]    },    }
-export type PAGINATED_PROJECTS_QUERYResult = {
-  data: Array<{
+export interface PAGINATED_PROJECTS_QUERYResult {
+  data: {
     _id: string;
     _createdAt: string;
     title: string;
@@ -776,13 +772,13 @@ export type PAGINATED_PROJECTS_QUERYResult = {
       _type: "image";
       _key: string;
     } | null;
-  }>;
-};
+  }[];
+}
 // Variable: PROJECT_SLUGS_QUERY
 // Query: *[_type == "project" && defined(slug.current) && hidden != true] {        "slug": slug.current    }
-export type PROJECT_SLUGS_QUERYResult = Array<{
+export type PROJECT_SLUGS_QUERYResult = {
   slug: string;
-}>;
+}[];
 // Variable: PROJECT_QUERY
 // Query: *[_type == "project" && slug.current == $slug && hidden != true][0] {        ...,        "visibleLinks": links[@.hidden != true],        "derefTag": coalesce(tags[]->, []),    }
 export type PROJECT_QUERYResult = {
@@ -797,7 +793,7 @@ export type PROJECT_QUERYResult = {
   title: string;
   status: "abandoned" | "completed" | "ongoing";
   role: string;
-  images: Array<{
+  images: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -809,25 +805,25 @@ export type PROJECT_QUERYResult = {
     alt: string;
     _type: "image";
     _key: string;
-  }>;
-  tags: Array<{
+  }[];
+  tags: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  body: Array<
+  }[];
+  body: (
     | ({
         _key: string;
       } & Code)
     | {
-        children?: Array<{
-          marks?: Array<string>;
+        children?: {
+          marks?: string[];
           text?: string;
           _type: "span";
           _key: string;
-        }>;
+        }[];
         style?:
           | "blockquote-danger"
           | "blockquote-info"
@@ -843,11 +839,11 @@ export type PROJECT_QUERYResult = {
           | "muted"
           | "normal";
         listItem?: "bullet" | "number";
-        markDefs?: Array<{
+        markDefs?: {
           href?: string;
           _type: "link";
           _key: string;
-        }>;
+        }[];
         level?: number;
         _type: "block";
         _key: string;
@@ -865,18 +861,14 @@ export type PROJECT_QUERYResult = {
         _type: "image";
         _key: string;
       }
-  >;
-  links: Array<
-    {
-      _key: string;
-    } & EnhancedURL
-  >;
-  visibleLinks: Array<
-    {
-      _key: string;
-    } & EnhancedURL
-  >;
-  derefTag: Array<{
+  )[];
+  links: ({
+    _key: string;
+  } & EnhancedURL)[];
+  visibleLinks: ({
+    _key: string;
+  } & EnhancedURL)[];
+  derefTag: {
     _id: string;
     _type: "category";
     _createdAt: string;
@@ -884,12 +876,12 @@ export type PROJECT_QUERYResult = {
     _rev: string;
     title: string;
     slug: Slug;
-  }>;
+  }[];
 } | null;
 // Variable: CAREERS_QUERY
 // Query: {        "careers":  *[_type == "career" && hidden != true] {            ...,            "visibleLinks": coalesce(links[@.hidden != true], []),            "derefTag": coalesce(tags[]->, []),        },        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt    }
-export type CAREERS_QUERYResult = {
-  careers: Array<{
+export interface CAREERS_QUERYResult {
+  careers: {
     _id: string;
     _type: "career";
     _createdAt: string;
@@ -905,17 +897,17 @@ export type CAREERS_QUERYResult = {
       | "Part-time"
       | "Self-Employed";
     title: string;
-    description: Array<
+    description: (
       | ({
           _key: string;
         } & Code)
       | {
-          children?: Array<{
-            marks?: Array<string>;
+          children?: {
+            marks?: string[];
             text?: string;
             _type: "span";
             _key: string;
-          }>;
+          }[];
           style?:
             | "blockquote-danger"
             | "blockquote-info"
@@ -931,11 +923,11 @@ export type CAREERS_QUERYResult = {
             | "muted"
             | "normal";
           listItem?: "bullet" | "number";
-          markDefs?: Array<{
+          markDefs?: {
             href?: string;
             _type: "link";
             _key: string;
-          }>;
+          }[];
           level?: number;
           _type: "block";
           _key: string;
@@ -953,14 +945,14 @@ export type CAREERS_QUERYResult = {
           _type: "image";
           _key: string;
         }
-    >;
-    tags: Array<{
+    )[];
+    tags: {
       _ref: string;
       _type: "reference";
       _weak?: boolean;
       _key: string;
       [internalGroqTypeReferenceTo]?: "category";
-    }>;
+    }[];
     location: {
       type: "Hybrid" | "On-site" | "Remote";
       address: string;
@@ -985,17 +977,13 @@ export type CAREERS_QUERYResult = {
       start: string;
       end?: string;
     };
-    links: Array<
-      {
-        _key: string;
-      } & EnhancedURL
-    >;
-    visibleLinks: Array<
-      {
-        _key: string;
-      } & EnhancedURL
-    >;
-    derefTag: Array<{
+    links: ({
+      _key: string;
+    } & EnhancedURL)[];
+    visibleLinks: ({
+      _key: string;
+    } & EnhancedURL)[];
+    derefTag: {
       _id: string;
       _type: "category";
       _createdAt: string;
@@ -1003,10 +991,10 @@ export type CAREERS_QUERYResult = {
       _rev: string;
       title: string;
       slug: Slug;
-    }>;
-  }>;
+    }[];
+  }[];
   cvUpdatedAt: string | null;
-};
+}
 // Variable: PROFILE_IMAGE_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->
 export type PROFILE_IMAGE_QUERYResult = {
@@ -1033,12 +1021,12 @@ export type PROFILE_IMAGE_QUERYResult = {
 } | null;
 // Variable: SEARCH_QUERY
 // Query: *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {        _type,        title,        slug,        "tags": coalesce(tags[]->, []),    }
-export type SEARCH_QUERYResult = Array<
+export type SEARCH_QUERYResult = (
   | {
       _type: "career";
       title: string;
       slug: null;
-      tags: Array<{
+      tags: {
         _id: string;
         _type: "category";
         _createdAt: string;
@@ -1046,32 +1034,33 @@ export type SEARCH_QUERYResult = Array<
         _rev: string;
         title: string;
         slug: Slug;
-      }>;
+      }[];
     }
   | {
       _type: "category";
       title: string;
       slug: Slug;
-      tags: Array<never>;
+      tags: never[];
     }
   | {
       _type: "configuration";
       title: null;
       slug: null;
-      tags: Array<never>;
+      tags: never[];
     }
   | {
       _type: "personalInfo";
       title: string;
       slug: null;
-      tags: Array<never>;
+      tags: never[];
     }
   | {
       _type: "post";
       title: string;
       slug: Slug;
       tags:
-        | Array<{
+        | never[]
+        | {
             _id: string;
             _type: "category";
             _createdAt: string;
@@ -1079,14 +1068,13 @@ export type SEARCH_QUERYResult = Array<
             _rev: string;
             title: string;
             slug: Slug;
-          }>
-        | Array<never>;
+          }[];
     }
   | {
       _type: "project";
       title: string;
       slug: Slug;
-      tags: Array<{
+      tags: {
         _id: string;
         _type: "category";
         _createdAt: string;
@@ -1094,40 +1082,40 @@ export type SEARCH_QUERYResult = Array<
         _rev: string;
         title: string;
         slug: Slug;
-      }>;
+      }[];
     }
   | {
       _type: "sanity.fileAsset";
       title: string | null;
       slug: null;
-      tags: Array<never>;
+      tags: never[];
     }
   | {
       _type: "sanity.imageAsset";
       title: string | null;
       slug: null;
-      tags: Array<never>;
+      tags: never[];
     }
->;
+)[];
 // Variable: USES_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].uses
 export type USES_QUERYResult = BlockContent | null;
 // Variable: RSS_FEED_QUERY
 // Query: {        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, ''),        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {                    title,                    "pubDate": postedAt,                    description,                    "link": '/blog/' + slug.current,                    "categories": coalesce(tags[]->slug.current, []),                }, []),    }
-export type RSS_FEED_QUERYResult = {
+export interface RSS_FEED_QUERYResult {
   title: string | "";
   description: string | "";
-  items: Array<{
+  items: {
     title: string;
     pubDate: string;
     description: string;
     link: string;
-    categories: Array<string> | Array<never>;
-  }>;
-};
+    categories: string[] | never[];
+  }[];
+}
 // Variable: SOCIAL_LINKS_QUERY
 // Query: coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])
-export type SOCIAL_LINKS_QUERYResult = Array<string> | Array<never>;
+export type SOCIAL_LINKS_QUERYResult = string[] | never[];
 // Variable: ABOUT_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0] {        bio,    }
 export type ABOUT_QUERYResult = {
