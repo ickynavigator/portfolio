@@ -18,12 +18,14 @@ import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
 import MutedMark from "~/components/PortableText/Mark/Muted.PortableText.astro";
 import Text from "~/components/PortableText/Text.PortableText.astro";
 import TOC from "~/components/PortableText/TOC.PortableText.astro";
+import { cn } from "~/lib/utils";
 import type { BlockContent } from "~/t/sanity";
 
 interface Props {
   data: BlockContent;
   showToc?: boolean;
   useSimpleCode?: boolean;
+  class?: string;
 }
 
 const { data, showToc = false, useSimpleCode = true } = Astro.props;
@@ -31,7 +33,7 @@ const { data, showToc = false, useSimpleCode = true } = Astro.props;
 
 {showToc ? <TOC data={data} /> : null}
 
-<article class="prose dark:prose-invert mx-auto">
+<article class={cn("prose dark:prose-invert mx-auto", Astro.props.class)}>
   <PortableTextInternal
     value={data}
     components={{

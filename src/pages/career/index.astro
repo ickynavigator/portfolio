@@ -76,7 +76,10 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
               </ul>
 
               <div>
-                <PortableText data={career.description} />
+                <PortableText
+                  data={career.description}
+                  class:list="max-w-none"
+                />
               </div>
 
               <ul>

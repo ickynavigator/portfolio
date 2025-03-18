@@ -79,7 +79,6 @@ if (!result || !image) {
             ))
           }
         </ul>
-        <PortableText data={result.body} />
         <ul>
           {
             result.visibleLinks.map((link) => (
@@ -95,6 +94,7 @@ if (!result || !image) {
             ))
           }
         </ul>
+        <PortableText data={result.body} />
       </div>
     </Container>
   </NavLayout>
