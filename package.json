@@ -36,6 +36,7 @@
     "@shikijs/transformers": "^1.29.2",
     "@t3-oss/env-core": "^0.12.0",
     "@tabler/icons-react": "3.31.0",
+    "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.0.14",
     "astro": "^5.5.1",
     "astro-portabletext": "^0.11.1",

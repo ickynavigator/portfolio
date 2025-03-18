@@ -1,5 +1,5 @@
 ---
-import CodeBlock from "~/components/CodeBlock.astro";
+import CodeBlock from "../CodeBlock.astro";
 
 interface CodeType {
   code: string;
@@ -16,12 +16,22 @@ interface Props {
 }
 
 const { node } = Astro.props;
+
+const useNewCode = false;
 ---
 
-<CodeBlock
-  code={node.code}
-  language={node.language}
-  inline={false}
-  title={node.filename}
-  showLineNumbers={true}
-/>
+{
+  useNewCode ? (
+    <CodeBlock
+      code={node.code}
+      language={node.language}
+      inline={false}
+      title={node.filename}
+      showLineNumbers={true}
+    />
+  ) : (
+    <pre class="border shadow">
+      <code>{node.code}</code>
+    </pre>
+  )
+}

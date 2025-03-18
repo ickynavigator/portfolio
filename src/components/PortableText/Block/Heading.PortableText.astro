@@ -1,55 +1,42 @@
 ---
-import { IconHash } from "@tabler/icons-react";
+import { IconLink } from "@tabler/icons-react";
+import type { BlockProps } from "astro-portabletext/types";
+import { z } from "zod";
 
 import { getTextFromPortableTextNode } from "~/lib/utils";
 
-type Props = {
-  node: {
-    style: string;
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: string;
-      _key?: string;
-    }>;
-  };
-};
+const headingTagsSchema = z
+  .union([
+    z.literal("h1"),
+    z.literal("h2"),
+    z.literal("h3"),
+    z.literal("h4"),
+    z.literal("h5"),
+    z.literal("h6"),
+  ])
+  .catch("h6");
+
+type Props = BlockProps;
 
 const { node } = Astro.props;
-const Tag = node.style;
 
-const ACCEPTED_STYLES = ["h1", "h2", "h3", "h4", "h5", "h6"] as const;
-const getValidHeader = (s: unknown): s is (typeof ACCEPTED_STYLES)[number] =>
-  (ACCEPTED_STYLES as readonly unknown[]).includes(s);
-
-if (!getValidHeader(Tag)) {
-  throw new Error(`Invalid header style: ${Tag}`);
-}
+const Tag = headingTagsSchema.parse(node.style);
 
 const headerSlug = getTextFromPortableTextNode(Astro.props.node?.children)
   .replace(/\s/g, "-")
   .toLocaleLowerCase();
-
-const order = Tag.slice(1);
 ---
 
-<Tag
-  data-order={order}
-  class="group/heading relative mt-1 mb-3 leading-none font-bold tracking-tight data-[order=1]:text-5xl data-[order=2]:text-4xl data-[order=3]:text-3xl data-[order=4]:text-2xl data-[order=5]:text-xl data-[order=6]:text-lg"
-  data-slug={headerSlug}
->
+<Tag class="group">
+  <slot />
+
   <a
     href={`#${headerSlug}`}
     aria-label={headerSlug}
     rel="noopener noreferrer"
     target="_self"
+    class="text-muted-foreground inline-flex text-[70%] opacity-0 transition-opacity group-hover:opacity-100"
   >
-    <slot />
-
-    <div
-      class="text-muted-foreground absolute top-1/2 hidden -translate-y-1/2 transform text-[65%] opacity-0 transition-opacity group-hover/heading:opacity-100 group-data-[order=1]/heading:left-[-1.9rem] group-data-[order=2]/heading:left-[-1.45rem] group-data-[order=3]/heading:left-[-1.225rem] group-data-[order=4]/heading:left-[-1rem] group-data-[order=5]/heading:left-[-0.85rem] group-data-[order=6]/heading:left-[-0.775rem] lg:block"
-    >
-      <IconHash className="relative-icon" />
-    </div>
+    <IconLink className="relative-icon" />
   </a>
 </Tag>

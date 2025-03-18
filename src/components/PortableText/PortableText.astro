@@ -28,45 +28,47 @@ const { data, showToc = false } = Astro.props;
 
 {showToc ? <TOC data={data} /> : null}
 
-<PortableTextInternal
-  value={data}
-  components={{
-    type: {
-      image: PortableTextImage,
-      code: PortableTextCode,
-    },
-    block: {
-      normal: Normal,
-      blockquote: BlockQuote,
-      h1: Heading,
-      h2: Heading,
-      h3: Heading,
-      h4: Heading,
-      h5: Heading,
-      h6: Heading,
-      muted: MutedBlock,
-      "blockquote-info": BlockQuote,
-      "blockquote-success": BlockQuote,
-      "blockquote-warning": BlockQuote,
-      "blockquote-danger": BlockQuote,
-    },
-    mark: {
-      link: Link,
-      code: InlineCode,
-      // em,
-      // strong,
-      // underline,
-      // 'strike-through',
-      mark: Highlight,
-      muted: MutedMark,
-    },
+<article class="prose dark:prose-invert mx-auto">
+  <PortableTextInternal
+    value={data}
+    components={{
+      type: {
+        image: PortableTextImage,
+        code: PortableTextCode,
+      },
+      block: {
+        normal: Normal,
+        blockquote: BlockQuote,
+        h1: Heading,
+        h2: Heading,
+        h3: Heading,
+        h4: Heading,
+        h5: Heading,
+        h6: Heading,
+        muted: MutedBlock,
+        "blockquote-info": BlockQuote,
+        "blockquote-success": BlockQuote,
+        "blockquote-warning": BlockQuote,
+        "blockquote-danger": BlockQuote,
+      },
+      mark: {
+        link: Link,
+        code: InlineCode,
+        // em,
+        // strong,
+        // underline,
+        // 'strike-through',
+        mark: Highlight,
+        muted: MutedMark,
+      },
 
-    list: {
-      bullet: UnorderedList,
-      number: OrderedList,
-    },
+      list: {
+        bullet: UnorderedList,
+        number: OrderedList,
+      },
 
-    listItem: ListItem,
-    hardBreak: HardBreak,
-  }}
-/>
+      listItem: ListItem,
+      hardBreak: HardBreak,
+    }}
+  />
+</article>

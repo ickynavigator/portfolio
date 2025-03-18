@@ -1,4 +1,4 @@
-@layer palette-light {
+@layer palette {
   :root {
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
@@ -122,5 +122,9 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-border, currentColor);
+  }
+
+  .prose {
+    @apply [&_ol]:[counter-reset:item] [&_ol>li]:[counter-increment:item] [&_ol>li::marker]:content-[counters(item,'.')'._'];
   }
 }
