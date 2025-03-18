@@ -15,6 +15,7 @@ import Highlight from "~/components/PortableText/Mark/Highlight.PortableText.ast
 import InlineCode from "~/components/PortableText/Mark/InlineCode.PortableText.astro";
 import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
 import MutedMark from "~/components/PortableText/Mark/Muted.PortableText.astro";
+import Text from "~/components/PortableText/Text.PortableText.astro";
 import TOC from "~/components/PortableText/TOC.PortableText.astro";
 import type { BlockContent } from "~/t/sanity";
 
@@ -67,6 +68,7 @@ const { data, showToc = false } = Astro.props;
         number: OrderedList,
       },
 
+      text: Text,
       listItem: ListItem,
       hardBreak: HardBreak,
     }}
