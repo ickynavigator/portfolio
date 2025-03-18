@@ -3,7 +3,7 @@ import { IconLink } from "@tabler/icons-react";
 import type { BlockProps } from "astro-portabletext/types";
 import { z } from "zod";
 
-import { getTextFromPortableTextNode } from "~/lib/utils";
+import { getTextFromPortableTextBlock } from "~/lib/utils";
 
 const headingTagsSchema = z
   .union([
@@ -22,7 +22,7 @@ const { node } = Astro.props;
 
 const Tag = headingTagsSchema.parse(node.style);
 
-const headerSlug = getTextFromPortableTextNode(Astro.props.node?.children)
+const headerSlug = getTextFromPortableTextBlock(Astro.props.node)
   .replace(/\s/g, "-")
   .toLocaleLowerCase();
 ---
