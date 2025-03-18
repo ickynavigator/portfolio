@@ -1,4 +1,3 @@
-// eslint-disable-next-line unused-imports/no-unused-vars
 namespace WakatimeTypes {
   export type Range =
     | "last_7_days"
