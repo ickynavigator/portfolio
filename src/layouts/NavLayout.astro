@@ -22,7 +22,7 @@ const links = {
   rss: { href: "/rss/index.xml", text: "RSS" },
 } as const;
 
-const navlinks = [links.about, links.projects, links.blog, links.career];
+const navlinks = [links.about, links.projects, links.blog];
 
 const [_socials, _birthdate] = await Promise.all([
   loadQuery({ query: SOCIAL_LINKS_QUERY }),
