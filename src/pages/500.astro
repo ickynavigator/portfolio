@@ -1,6 +1,16 @@
 ---
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
+import { getPostHogInstance } from "~/lib/posthog/node";
+
+interface Props {
+  error: unknown;
+}
+
+const { error } = Astro.props;
+
+const _p = getPostHogInstance();
+_p.posthog.captureException(error);
 ---
 
 <MainLayout title="500" description="An Error Occured">
