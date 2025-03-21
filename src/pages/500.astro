@@ -13,7 +13,12 @@ const _p = getPostHogInstance();
 _p.posthog.captureException(error);
 ---
 
-<MainLayout title="500" description="An Error Occured">
+<MainLayout
+  meta={{
+    title: "500",
+    description: "An Error Occured",
+  }}
+>
   <NavLayout>
     <div
       class="flex h-[50vh] flex-col items-center justify-center gap-7 px-20 text-center"
