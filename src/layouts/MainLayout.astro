@@ -4,72 +4,30 @@ import "@fontsource-variable/hepta-slab";
 
 import { ClientRouter } from "astro:transitions";
 
+import Meta from "~/components/Meta.astro";
 import Posthog from "~/components/Posthog.astro";
 import { Toaster } from "~/components/ui/sonner";
-import { loadQuery } from "~/lib/sanity/load-query";
-import { PROFILE_IMAGE_QUERY } from "~/lib/sanity/queries";
+import type { PartialMeta } from "~/lib/meta";
 
 import "~/styles/globals.css";
 
 interface Props {
-  title?: string;
-  description?: string;
-  keywords?: string[];
-  ogType?: string;
-  image?: string;
+  meta?: PartialMeta;
 }
-
-const profilePicture = async () => {
-  const { result } = await loadQuery({ query: PROFILE_IMAGE_QUERY });
-  const _profilePicture = result?.url;
-
-  return _profilePicture ?? "/favicon.ico";
-};
-
-const {
-  title,
-  description = "Obi Fortune's Portfolio. Built with Sanity, Astro, and Tailwind CSS.",
-  keywords: _keywords = [],
-  ogType = "website",
-  image = await profilePicture(),
-} = Astro.props;
-
-const appURL = new URL(Astro.url.pathname, Astro.site);
-
-const keywords = [
-  "Astro",
-  "TypeScript",
-  "Sanity",
-  "Blog",
-  "Portfolio",
-  "Obi Fortune",
-  "Javascript",
-  "Tech",
-  "Technology",
-  "Programming",
-  "Web Development",
-  ..._keywords,
-].join(",");
-
-const getPageTitle = (title?: string) => {
-  return title
-    ? `${title} | Obi Fortune's Portfolio`
-    : "Obi Fortune's Portfolio";
-};
 ---
 
 <html lang="en">
   <head>
     <meta
       name="theme-color"
-      content=""
+      content="#0a0a0a"
       data-group="meta-theming"
       data-light="#FFFFFF"
       data-dark="#0a0a0a"
     />
     <meta
       name="color-scheme"
-      content=""
+      content="dark"
       data-group="meta-theming"
       data-light="light"
       data-dark="dark"
@@ -79,12 +37,6 @@ const getPageTitle = (title?: string) => {
     <link rel="shortcut icon" type="image" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="creator" content="Obi Fortune" />
-
-    <title>{getPageTitle(title)}</title>
-
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
 
     <link
       rel="alternate"
@@ -94,22 +46,7 @@ const getPageTitle = (title?: string) => {
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={appURL} />
-    <meta property="og:image" content={image} />
-    <meta property="og:image:width" content="160" />
-    <meta property="og:image:height" content="160" />
-    <meta property="og:type" content={ogType} />
-
-    <meta name="twitter:title" content={title} />
-    <meta property="twitter:domain" content={Astro.url.origin} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:site" content={appURL} />
-    <meta name="twitter:image" content={image} />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:creator" content="@obifortunebleh" />
-
+    <Meta meta={Astro.props.meta} />
     <Posthog />
     <ClientRouter />
   </head>
