@@ -14,7 +14,22 @@ if (!result) {
 }
 ---
 
-<MainLayout title="About" description="About Me!">
+<MainLayout
+  meta={{
+    title: "About",
+    description: "About Me!",
+
+    og: {
+      title: "About",
+      description: "About Me!",
+    },
+
+    twitter: {
+      title: "About",
+      description: "About Me!",
+    },
+  }}
+>
   <NavLayout>
     <Container innerPage>
       <div class="mb-4">
