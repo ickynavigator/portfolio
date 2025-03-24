@@ -8,21 +8,17 @@ import {
   transformerRemoveNotationEscape,
 } from "@shikijs/transformers";
 import {
-  IconCaretUpDownFilled,
   IconCopy,
   IconFileCode,
   IconFileTypeJs,
   IconFileTypeJsx,
   IconFileTypeTs,
   IconFileTypeTsx,
-  IconMinus,
   IconNumbers,
-  IconX,
 } from "@tabler/icons-react";
 import { Code as CustomCode } from "astro:components";
 
 import IconCheckbox from "~/components/IconCheckbox.astro";
-import { cn } from "~/lib/utils";
 
 interface Props {
   code: string;
@@ -35,27 +31,6 @@ interface Props {
 const { code, inline, title, showLineNumbers = false } = Astro.props;
 
 const language = "ts";
-
-const fileButtons = [
-  {
-    title: "Close",
-    icon: IconX,
-    class:
-      "bg-[#FF5F57] dark:[#FF5F57] hover:bg-[#E0483E] dark:hover:bg-[#E0483E]",
-  },
-  {
-    title: "Minimize",
-    icon: IconMinus,
-    class:
-      "bg-[#FFBD2E] dark:[#FFBD2E] hover:bg-[#E0A123] dark:hover:bg-[#E0A123]",
-  },
-  {
-    title: "Expand",
-    icon: IconCaretUpDownFilled,
-    class:
-      "bg-[#28C940] dark:[#28C940] hover:bg-[#22A532] dark:hover:bg-[#22A532] [&_svg]:-rotate-45",
-  },
-];
 
 const magicCodeIcon = (_language: string) => {
   switch (_language) {
@@ -82,60 +57,51 @@ const CodeIcon = magicCodeIcon(language);
 ---
 
 <custom-code-block
-  class="my-2 block overflow-clip rounded-t-md border shadow-md"
+  class="my-4 block"
   data-show-line-numbers={showLineNumbers}
   data-code={code}
 >
-  <div
-    class="bg-secondary text-secondary-foreground flex justify-between border-b-2 px-2 py-1 text-sm drop-shadow-md select-none"
-  >
-    <div class="group/icons flex items-center gap-2">
-      {
-        fileButtons.map((button) => (
-          <button
-            title={button.title}
-            class={cn(
-              "group-hover/icons:text-primary-foreground flex size-3 items-center justify-center overflow-clip rounded-full p-[0.0625rem] text-transparent transition-colors",
-              button.class,
-            )}
-          >
-            <span class="sr-only">{button.title}</span>
-            <button.icon className="relative-icon" />
-          </button>
-        ))
-      }
+  <div class="flex justify-between">
+    <div
+      class="bg-accent text-accent-foreground inline-flex items-center gap-3 rounded-t px-2 py-1 text-sm"
+    >
+      <div>
+        <CodeIcon className="relative-icon" />
+      </div>
+
+      <span>
+        {title}
+      </span>
     </div>
 
-    <span class="font-semibold">{title ?? "Random Code"}</span>
-
-    <div class="flex items-center gap-2">
+    <div
+      class="bg-accent text-accent-foreground inline-flex items-center gap-3 rounded-t px-2 py-1 text-sm"
+    >
       <IconCheckbox
-        label="Show line numbers"
+        label="Hide line numbers"
         name="show-numbers"
-        title="Show line numbers"
+        class="border-secondary hover:bg-secondary/40"
       >
         <IconNumbers className="relative-icon" />
       </IconCheckbox>
 
       <button
         id="copy-code"
-        class="border-primary bg-secondary hover:bg-primary/30 rounded-sm border p-0.5 transition"
+        class="border-secondary hover:bg-secondary/40 inline-flex size-5 transform cursor-copy items-center justify-center rounded-sm border shadow-sm transition-all hover:shadow-md"
         title="Copy Code"
       >
         <IconCopy className="relative-icon" />
       </button>
-
-      <CodeIcon className="relative-icon" />
     </div>
   </div>
 
   <CustomCode
+    class="rounded-b-lg transition-all"
     code={code}
     inline={inline}
     lang={language}
-    style="--linecount: 2"
     tabindex={null}
-    themes={{ light: "catppuccin-latte", dark: "catppuccin-frappe" }}
+    themes={{ dark: "catppuccin-frappe", light: "catppuccin-latte" }}
     defaultColor="dark"
     transformers={[
       transformerNotationDiff(),
@@ -265,14 +231,6 @@ const CodeIcon = magicCodeIcon(language);
 
   class CustomCodeBlock extends HTMLElement {
     connectedCallback() {
-      this.querySelector("[title='Close']")?.addEventListener("click", () => {
-        this.querySelector("pre")?.classList.add("hidden");
-      });
-
-      this.querySelector("[title='Expand']")?.addEventListener("click", () => {
-        this.querySelector("pre")?.classList.remove("hidden");
-      });
-
       this.#bindCheck(
         this.querySelector("[name='show-numbers']"),
         "showLineNumbers",
