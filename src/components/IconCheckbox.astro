@@ -1,11 +1,13 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
+import { cn } from "~/lib/utils";
+
 interface Props extends HTMLAttributes<"input"> {
   label: string;
 }
 
-const { label, ...rest } = Astro.props;
+const { label, class: _class, ...rest } = Astro.props;
 ---
 
 <label class="relative flex cursor-pointer items-center">
@@ -13,13 +15,16 @@ const { label, ...rest } = Astro.props;
 
   <input
     type="checkbox"
-    class="peer border-secondary checked:border-secondary-foreground size-5 cursor-pointer appearance-none rounded-sm border shadow-sm transition-all hover:shadow-md"
+    class={cn(
+      "peer checked:border-secondary-foreground size-5 cursor-pointer appearance-none rounded-sm border border-transparent shadow-sm transition-all hover:shadow-md",
+      _class,
+    )}
     title={label}
     {...rest}
   />
 
   <span
-    class="absolute top-1/2 left-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center [&_svg[slot='off']]:inline [&_svg[slot='off']]:peer-checked:hidden [&_svg[slot='on']]:hidden [&_svg[slot='on']]:peer-checked:inline"
+    class="pointer-events-none absolute top-1/2 left-1/2 inline-flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center [&_svg[slot='off']]:inline [&_svg[slot='off']]:peer-checked:hidden [&_svg[slot='on']]:hidden [&_svg[slot='on']]:peer-checked:inline"
   >
     <slot />
     <slot name="on" />
