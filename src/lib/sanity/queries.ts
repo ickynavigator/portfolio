@@ -161,3 +161,7 @@ export const ABOUT_QUERY = defineQuery(`
 export const BIRTHDAY_QUERY = defineQuery(`
     *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].birthday
 `);
+
+export const SHOW_SIMPLE_CODE_QUERY = defineQuery(`
+    coalesce(*[_type == "configuration" && _id == "${CONFIGURATION_CONFIG_ID}"] [0].showSimpleCodePreview, false)
+`);

@@ -1125,6 +1125,9 @@ export type ABOUT_QUERYResult = {
 // Variable: BIRTHDAY_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].birthday
 export type BIRTHDAY_QUERYResult = string | null;
+// Variable: SHOW_SIMPLE_CODE_QUERY
+// Query: coalesce(*[_type == "configuration" && _id == "configuration"] [0].showSimpleCodePreview, false)
+export type SHOW_SIMPLE_CODE_QUERYResult = boolean | false;
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -1144,5 +1147,6 @@ declare module "@sanity/client" {
     '\n    coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])\n': SOCIAL_LINKS_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        bio,\n    }\n': ABOUT_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].birthday\n': BIRTHDAY_QUERYResult;
+    '\n    coalesce(*[_type == "configuration" && _id == "configuration"] [0].showSimpleCodePreview, false)\n': SHOW_SIMPLE_CODE_QUERYResult;
   }
 }

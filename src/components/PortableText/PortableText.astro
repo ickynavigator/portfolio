@@ -18,6 +18,8 @@ import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
 import MutedMark from "~/components/PortableText/Mark/Muted.PortableText.astro";
 import Text from "~/components/PortableText/Text.PortableText.astro";
 import TOC from "~/components/PortableText/TOC.PortableText.astro";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { SHOW_SIMPLE_CODE_QUERY } from "~/lib/sanity/queries";
 import { cn } from "~/lib/utils";
 import type { BlockContent } from "~/t/sanity";
 
@@ -28,7 +30,13 @@ interface Props {
   class?: string;
 }
 
-const { data, showToc = false, useSimpleCode = true } = Astro.props;
+const showSimpleCode = await loadQuery({ query: SHOW_SIMPLE_CODE_QUERY });
+
+const {
+  data,
+  showToc = false,
+  useSimpleCode = showSimpleCode.result,
+} = Astro.props;
 ---
 
 {showToc ? <TOC data={data} /> : null}
