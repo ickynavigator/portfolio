@@ -11,12 +11,11 @@ interface Props {
 const { node } = Astro.props;
 ---
 
-<div class="not-prose">
-  <CodeBlock
-    code={node.code ?? ""}
-    language={node.language}
-    inline={false}
-    title={node.filename}
-    showLineNumbers={true}
-  />
-</div>
+<CodeBlock
+  code={node.code ?? ""}
+  language={node.language}
+  inline={false}
+  title={node.filename}
+  showLineNumbers={true}
+  class="not-prose"
+/>

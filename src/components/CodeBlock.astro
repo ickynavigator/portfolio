@@ -19,6 +19,7 @@ import {
 import { Code as CustomCode } from "astro:components";
 
 import IconCheckbox from "~/components/IconCheckbox.astro";
+import { cn } from "~/lib/utils";
 
 interface Props {
   code: string;
@@ -26,9 +27,16 @@ interface Props {
   inline: boolean;
   title?: string | undefined;
   showLineNumbers?: boolean;
+  class?: string;
 }
 
-const { code, inline, title, showLineNumbers = false } = Astro.props;
+const {
+  code,
+  inline,
+  title,
+  class: _class,
+  showLineNumbers = false,
+} = Astro.props;
 
 const language = "ts";
 
@@ -57,7 +65,7 @@ const CodeIcon = magicCodeIcon(language);
 ---
 
 <custom-code-block
-  class="my-4 block"
+  class={cn("my-4 block", _class)}
   data-show-line-numbers={showLineNumbers}
   data-code={code}
 >
