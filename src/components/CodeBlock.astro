@@ -161,16 +161,14 @@ const CodeIcon = magicCodeIcon(language);
     --alpha-offset: 20%;
 
     --bg-color: initial;
-    --spacing: calc(((var(--linecount) + 1) * 1rem));
-    --left-position: calc(var(--spacing) + 0.375rem);
-
-    @apply transition-all;
+    --code-spacing: calc(var(--linecount, 2) * var(--spacing) * 5);
+    --left-position: calc(var(--code-spacing) + var(--spacing) * 1.5);
 
     code {
       @apply block w-fit min-w-full font-mono text-base leading-tight;
 
       .line {
-        @apply relative inline-block w-full border-s-4 border-transparent bg-[--alpha(var(--bg-color)/var(--alpha-offset))] ps-[calc(var(--spacing)-1.5rem)] align-top;
+        @apply relative inline-block w-full border-s-4 border-transparent bg-(--bg-color)/(--alpha-offset) ps-5 align-top;
 
         &::before,
         &::after {
@@ -189,7 +187,7 @@ const CodeIcon = magicCodeIcon(language);
           }
 
           &::after {
-            @apply absolute start-[calc(var(--spacing)-3rem)] w-(--spacing) content-(--diff-content);
+            @apply absolute start-1 content-(--diff-content);
           }
         }
 
@@ -206,19 +204,19 @@ const CodeIcon = magicCodeIcon(language);
         }
 
         .highlighted-word {
-          @apply bg-[--alpha(var(--color-line-highlight)/var(--alpha-offset))];
+          @apply bg-(--color-line-highlight)/(--alpha-offset);
         }
       }
     }
 
     &.has-focused {
       .line {
-        @apply blur-none transition duration-300;
+        @apply blur-none transition duration-500;
       }
 
       &:not(:hover) {
         .line {
-          @apply blur-[0.095rem];
+          @apply blur-xs;
 
           &.focused {
             @apply blur-none;
@@ -230,7 +228,7 @@ const CodeIcon = magicCodeIcon(language);
 
   custom-code-block {
     &[data-show-line-numbers="true"] pre {
-      @apply ps-(--spacing);
+      @apply ps-(--code-spacing);
 
       code {
         @apply border-primary-foreground/30 border-0 border-s-2 border-solid;
@@ -240,7 +238,7 @@ const CodeIcon = magicCodeIcon(language);
 
         .line {
           &::before {
-            @apply absolute -start-(--left-position) w-(--spacing) border-s-4 border-transparent bg-[--alpha(var(--bg-color)/var(--alpha-offset))] pe-[.4rem] text-right text-sm blur-none content-[counter(step)];
+            @apply absolute -start-(--left-position) w-(--code-spacing) border-s-4 border-transparent bg-(--bg-color)/(--alpha-offset) pe-1.5 text-right text-sm blur-none content-[counter(step)];
 
             counter-increment: step;
           }
