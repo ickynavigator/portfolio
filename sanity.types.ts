@@ -544,6 +544,7 @@ export interface Configuration {
   _rev: string;
   name: string;
   showOriginalSourceLink: boolean;
+  showSimpleCodePreview: boolean;
 }
 
 export interface Code {

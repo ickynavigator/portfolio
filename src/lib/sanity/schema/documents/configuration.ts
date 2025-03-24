@@ -24,5 +24,15 @@ export default defineType({
       validation: (Rule) => Rule.required(),
       initialValue: true,
     }),
+
+    defineField({
+      name: "showSimpleCodePreview",
+      title: "Show Simple Code Preview",
+      type: "boolean",
+      description:
+        "Should the site use the basic prose code preview or the custom code block",
+      validation: (Rule) => Rule.required(),
+      initialValue: true,
+    }),
   ],
 });

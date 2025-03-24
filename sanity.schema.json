@@ -3163,6 +3163,13 @@
           "type": "boolean"
         },
         "optional": false
+      },
+      "showSimpleCodePreview": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": false
       }
     }
   },
