@@ -58,6 +58,7 @@ export default defineConfig({
       resolve: {
         locations: locationResolver,
       },
+      previewUrl: {},
     }),
     codeInput(),
     webhooksTrigger(),
