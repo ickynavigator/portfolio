@@ -21,6 +21,7 @@ Fill up the .dev.vars file with the variables in the .env.example
 | `LASTFM_USER`                          | Last.fm username                                                 |
 | `CLOUDFLARE_API_TOKEN`                 | Cloudflare API token. Used for purging cache.                    |
 | `CLOUDFLARE_ZONE_ID`                   | Zone ID for the Cloudflare project.                              |
+| `SANITY_REVALIDATE_SECRET`             | Secret for revalidating the sanity project                       |
 
 ### 🧞 Commands
 
