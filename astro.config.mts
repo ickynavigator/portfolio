@@ -102,6 +102,12 @@ export default defineConfig({
         context: "client",
       }),
 
+      CLOUDFLARE_ZONE_ID: envField.string({
+        access: "public",
+        context: "client",
+        optional: true,
+      }),
+
       ...cloudflareWorkers,
     },
   },
