@@ -26,6 +26,10 @@ export default defineConfig({
     prefetchAll: true,
   },
 
+  security: {
+    checkOrigin: false,
+  },
+
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
