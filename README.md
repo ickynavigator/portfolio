@@ -20,6 +20,8 @@ Fill up the .dev.vars file with the variables in the .env.example
 | `LASTFM_API_KEY`                       | Last.fm API key                                                  |
 | `LASTFM_USER`                          | Last.fm username                                                 |
 | `PUBLIC_PARTY_URL`                     | PartyKit location. Defaults to `http://localhost:1999`           |
+| `CLOUDFLARE_API_TOKEN`                 | Cloudflare API token. Used for purging cache.                    |
+| `CLOUDFLARE_ZONE_ID`                   | Zone ID for the Cloudflare project.                              |
 
 ### 🧞 Commands
 
