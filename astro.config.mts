@@ -45,7 +45,9 @@ export default defineConfig({
     }),
     react(),
     sitemap(),
-    compress(),
+    compress({
+      CSS: false,
+    }),
   ],
 
   vite: {
