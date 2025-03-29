@@ -22,6 +22,7 @@ Fill up the .env file with the variables in the .env.example
 | `WAKATIME_API_KEY`              | API key for the wakatime API                                     |
 | `CF_API_TOKEN`                  | Cloudflare API token. Used for purging cache.                    |
 | `CF_ZONE_ID`                    | Zone ID for the Cloudflare project.                              |
+| `SANITY_REVALIDATE_SECRET`      | Secret for revalidating the sanity project                       |
 
 ### 🧞 Commands
 
