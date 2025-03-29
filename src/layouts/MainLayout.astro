@@ -92,6 +92,7 @@ const getPageTitle = (title?: string) => {
       title={`RSS Feed for ${Astro.site}`}
       href={new URL("rss.xml", Astro.site)}
     />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
