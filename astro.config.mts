@@ -1,7 +1,9 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
+import compress from "astro-compress";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
@@ -42,6 +44,8 @@ export default defineConfig({
       },
     }),
     react(),
+    sitemap(),
+    compress(),
   ],
 
   vite: {
