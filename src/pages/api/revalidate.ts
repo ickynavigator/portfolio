@@ -49,7 +49,7 @@ export const POST: APIRoute = async (ctx) => {
       event: "revalidate_error",
       properties: { error: revalidateRes.error },
     });
-    return new Response("Unable to revalidate tags", { status: 401 });
+    return new Response("Unable to revalidate tags", { status: 500 });
   }
 
   posthog.capture({
