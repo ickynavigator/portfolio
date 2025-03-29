@@ -55,7 +55,7 @@ export const POST: APIRoute = async (ctx) => {
   posthog.capture({
     distinctId: "success",
     event: "revalidate_success",
-    properties: { tags: TAGS },
+    properties: { tags: TAGS, result: revalidateRes.data },
   });
   return new Response("Revalidated tags", { status: 200 });
 };
