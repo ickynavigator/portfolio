@@ -46,6 +46,7 @@
     "astro-portabletext": "^0.11.1",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
+    "cloudflare": "^4.2.0",
     "dayjs": "^1.11.13",
     "groq": "^4.4.1",
     "posthog-js": "^1.260.1",
