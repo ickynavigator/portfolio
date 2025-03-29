@@ -20,6 +20,8 @@ Fill up the .env file with the variables in the .env.example
 | `POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com` |
 | `WEBSITE_URL`                   | URL of the website. Defaults to `https://obifortune.com`         |
 | `WAKATIME_API_KEY`              | API key for the wakatime API                                     |
+| `CF_API_TOKEN`                  | Cloudflare API token. Used for purging cache.                    |
+| `CF_ZONE_ID`                    | Zone ID for the Cloudflare project.                              |
 
 ### 🧞 Commands
 
