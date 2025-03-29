@@ -23,6 +23,7 @@ Fill up the .env file with the variables in the .env.example
 | `SANITY_API_READ_TOKEN`                | Read token for the sanity project                                |
 | `CF_API_TOKEN`                         | Cloudflare API token. Used for purging cache.                    |
 | `CF_ZONE_ID`                           | Zone ID for the Cloudflare project.                              |
+| `SANITY_REVALIDATE_SECRET`             | Secret for revalidating the sanity project                       |
 
 ### 🧞 Commands
 
