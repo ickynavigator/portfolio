@@ -24,6 +24,10 @@ export default defineConfig({
     prefetchAll: true,
   },
 
+  security: {
+    checkOrigin: false,
+  },
+
   adapter: cloudflare({
     imageService: "passthrough",
     prerenderEnvironment: "node",
