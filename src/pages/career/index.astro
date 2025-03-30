@@ -11,6 +11,8 @@ import { loadQuery } from "~/lib/sanity/load-query";
 import { CAREERS_QUERY } from "~/lib/sanity/queries";
 
 const { result } = await loadQuery({ query: CAREERS_QUERY });
+
+return Astro.redirect("/404");
 ---
 
 <MainLayout title="Career">
