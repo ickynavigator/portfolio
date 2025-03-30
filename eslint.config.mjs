@@ -8,15 +8,11 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["./node_modules/", "**/Posthog.astro"],
-  },
-  {
+    ignores: ["node_modules/", ".astro/", "wrangler/", "dist/"],
     linterOptions: {
       reportUnusedDisableDirectives: "error",
       reportUnusedInlineConfigs: "error",
     },
-  },
-  {
     languageOptions: {
       parserOptions: {
         project: true,
@@ -26,8 +22,8 @@ export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.recommended,
   tseslint.configs.stylistic,
-  ...eslintPluginAstro.configs.recommended,
-  ...eslintPluginAstro.configs["jsx-a11y-strict"],
+  eslintPluginAstro.configs["flat/recommended"],
+  eslintPluginAstro.configs["flat/jsx-a11y-strict"],
   { plugins: { "unused-imports": eslintPluginUnusedImports } },
   {
     rules: {
