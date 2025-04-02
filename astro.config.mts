@@ -62,7 +62,13 @@ export default defineConfig({
       },
     },
     ssr: {
-      external: ["node:crypto", "node:fs", "node:readline", "node:path"],
+      external: [
+        "crypto",
+        "node:crypto",
+        "node:fs",
+        "node:readline",
+        "node:path",
+      ],
     },
   },
 });
