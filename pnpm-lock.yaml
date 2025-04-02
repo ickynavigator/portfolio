@@ -195,8 +195,8 @@ importers:
         specifier: ^0.6.11
         version: 0.6.11(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.5.3))(prettier-plugin-astro@0.14.1)(prettier@3.5.3)
       react-compiler-runtime:
-        specifier: 19.0.0-beta-aeaed83-20250323
-        version: 19.0.0-beta-aeaed83-20250323(react@19.1.0)
+        specifier: 19.0.0-beta-e993439-20250328
+        version: 19.0.0-beta-e993439-20250328(react@19.1.0)
       react-is:
         specifier: ^19.1.0
         version: 19.1.0
@@ -6075,6 +6075,11 @@ packages:
 
   react-compiler-runtime@19.0.0-beta-aeaed83-20250323:
     resolution: {integrity: sha512-77hSVURRTQ86LuCWvCqroEhs8wEAhsFEpipP16RdZrC+P6xWsrZKSqvntNJD++5wJw+ZIxyqU9w6Oz7t7KYINw==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
+
+  react-compiler-runtime@19.0.0-beta-e993439-20250328:
+    resolution: {integrity: sha512-bdLTxDSnjHb8iwkAal+vNb1NK1l7MlsG02/Kc47AkQL0lmszOHRSV5wkeprCVnT2pYAI8721TOeO6e1/Wfgvuw==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
 
@@ -14283,6 +14288,10 @@ snapshots:
       react: 19.1.0
 
   react-compiler-runtime@19.0.0-beta-aeaed83-20250323(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+
+  react-compiler-runtime@19.0.0-beta-e993439-20250328(react@19.1.0):
     dependencies:
       react: 19.1.0
 

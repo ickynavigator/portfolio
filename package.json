@@ -80,7 +80,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "react-compiler-runtime": "19.0.0-beta-aeaed83-20250323",
+    "react-compiler-runtime": "19.0.0-beta-e993439-20250328",
     "react-is": "^19.1.0",
     "typescript": "5.8.2",
     "typescript-eslint": "^8.28.0",
@@ -104,7 +104,7 @@
   },
   "peerDependencies": {
     "lodash": "^4.17.21",
-    "react-compiler-runtime": "19.0.0-beta-aeaed83-20250323",
+    "react-compiler-runtime": "19.0.0-beta-e993439-20250328",
     "react-is": "^19.0.0"
   }
 }
