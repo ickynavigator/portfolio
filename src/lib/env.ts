@@ -30,7 +30,7 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
       SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
       SANITY_API_DATASET: z.string().min(1).default("production"),
       SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
-      SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
+      SANITY_VISUAL_EDITING_ENABLED: booleanish().default(false),
       SANITY_API_READ_TOKEN: z.string().optional(),
 
       POSTHOG_API_KEY: z.string().min(1),
@@ -55,7 +55,7 @@ export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
        * @description `1`
        * @example Changing build behaviour when run on Pages versus locally
        */
-      CF_PAGES: numberish.optional(),
+      CF_PAGES: numberish().optional(),
       /**
        * @description `<sha1-hash-of-current-commit>`
        * @example Passing current commit ID to error reporting, for example, Sentry
@@ -75,12 +75,13 @@ export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
     runtimeEnv,
   });
 
-const booleanish = z.union([
-  z.boolean(),
-  z
-    .string()
-    .refine((s) => s === "true" || s === "false")
-    .transform((s) => s === "true"),
-]);
+const booleanish = () =>
+  z.union([
+    z.boolean(),
+    z
+      .string()
+      .refine((s) => s === "true" || s === "false")
+      .transform((s) => s === "true"),
+  ]);
 
-const numberish = z.union([z.number(), z.string().transform(Number)]);
+const numberish = () => z.union([z.number(), z.string().transform(Number)]);
