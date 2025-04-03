@@ -9,10 +9,14 @@ import tseslint from "typescript-eslint";
 export default tseslint.config(
   {
     ignores: ["node_modules/", ".astro/", "wrangler/", "dist/"],
+  },
+  {
     linterOptions: {
       reportUnusedDisableDirectives: "error",
       reportUnusedInlineConfigs: "error",
     },
+  },
+  {
     languageOptions: {
       parserOptions: {
         project: true,
