@@ -1,9 +1,6 @@
 {
     "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
     "name": "portfolio",
-    "build": {
-        "command": "pnpm run build"
-    },
     "pages_build_output_dir": "dist",
     "compatibility_date": "2024-11-11",
     "compatibility_flags": [
