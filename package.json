@@ -36,6 +36,7 @@
     "@sanity/ui": "^2.15.18",
     "@sanity/vision": "^3.89.0",
     "@sanity/visual-editing": "^2.13.22",
+    "@sanity/webhook": "^4.0.4",
     "@shikijs/transformers": "^3.4.2",
     "@t3-oss/env-core": "^0.13.4",
     "@tabler/icons-react": "3.33.0",

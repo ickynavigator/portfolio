@@ -61,6 +61,9 @@ importers:
       '@sanity/visual-editing':
         specifier: ^2.13.22
         version: 2.13.22(@emotion/is-prop-valid@1.2.2)(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5))(react-dom@19.1.0(react@19.1.0))(react-is@19.1.0)(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(typescript@5.8.3)
+      '@sanity/webhook':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@shikijs/transformers':
         specifier: ^3.4.2
         version: 3.4.2
@@ -2283,6 +2286,10 @@ packages:
         optional: true
       svelte:
         optional: true
+
+  '@sanity/webhook@4.0.4':
+    resolution: {integrity: sha512-c8LmzR5Wx93zJ10ohhp0XlmPrTNSFyvPcLbNY/sN45Wj5VOngz4FbBMbX9j64sSQLt+676U6OhiVfjs1yw3YCw==}
+    engines: {node: '>=20.0.0'}
 
   '@sentry-internal/browser-utils@8.55.0':
     resolution: {integrity: sha512-ROgqtQfpH/82AQIpESPqPQe0UyWywKJsmVIqi3c5Fh+zkds5LUxnssTj3yNd1x+kxaPDVB023jAP+3ibNgeNDw==}
@@ -10154,6 +10161,8 @@ snapshots:
       - '@sanity/types'
       - debug
       - typescript
+
+  '@sanity/webhook@4.0.4': {}
 
   '@sentry-internal/browser-utils@8.55.0':
     dependencies:
