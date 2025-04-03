@@ -16,8 +16,8 @@ Fill up the .env file with the variables in the .env.example
 | `SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`         |
 | `SANITY_API_READ_TOKEN`         | Read token for the sanity project                                |
 | `POSTHOG_API_KEY`               | API key for Posthog                                              |
-| `POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com   |
-| `POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com  |
+| `POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com`  |
+| `POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com` |
 | `WEBSITE_URL`                   | URL of the website. Defaults to `https://obifortune.com`         |
 | `WAKATIME_API_KEY`              | API key for the wakatime API                                     |
 
