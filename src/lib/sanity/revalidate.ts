@@ -1,25 +1,21 @@
+import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { SANITY_REVALIDATE_SECRET } from "astro:env/server";
-
-export const SIGNATURE_HEADER_NAME = "sanity-webhook-signature" as const;
-
-export async function isValidSignature(signature: string) {
-  const secret = SANITY_REVALIDATE_SECRET;
-
-  if (!secret) {
-    throw new Error("SANITY_REVALIDATE_SECRET is not set");
-  }
-
-  return secret === signature;
-}
 
 export async function validateSignature(req: Request) {
   const signature = req.headers.get(SIGNATURE_HEADER_NAME);
+  const stringifiedPayload = await req.json<string>();
 
   if (!signature) {
     return null;
   }
 
-  const validSignature = await isValidSignature(signature);
+  if (!SANITY_REVALIDATE_SECRET) {
+    throw new Error("SANITY_REVALIDATE_SECRET is not set");
+  }
 
-  return validSignature;
+  return await isValidSignature(
+    stringifiedPayload,
+    signature,
+    SANITY_REVALIDATE_SECRET,
+  );
 }
