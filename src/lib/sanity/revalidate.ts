@@ -1,23 +1,20 @@
-import { getEnv } from "../env";
+import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
-export const SIGNATURE_HEADER_NAME = "sanity-webhook-signature" as const;
-
-export async function isValidSignature(signature: string) {
-  const env = getEnv();
-
-  const secret = env.SANITY_REVALIDATE_SECRET;
-
-  return secret === signature;
-}
+import { getEnv } from "~/lib/env";
 
 export async function validateSignature(req: Request) {
+  const env = getEnv();
+
   const signature = req.headers.get(SIGNATURE_HEADER_NAME);
+  const stringifiedPayload = await req.json<string>();
 
   if (!signature) {
     return null;
   }
 
-  const validSignature = await isValidSignature(signature);
-
-  return validSignature;
+  return await isValidSignature(
+    stringifiedPayload,
+    signature,
+    env.SANITY_REVALIDATE_SECRET,
+  );
 }
