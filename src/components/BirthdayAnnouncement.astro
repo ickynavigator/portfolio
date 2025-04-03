@@ -51,7 +51,6 @@ import Marquee from "./Marquee.astro";
     const interval = setInterval(function () {
       const timeLeft = animationEnd - Date.now();
 
-      // @ts-expect-error TODO: Fix this
       if (timeLeft <= 0) clearInterval(interval);
 
       const particleCount = 50 * (timeLeft / duration);
