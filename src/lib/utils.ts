@@ -11,11 +11,7 @@ export function getTextFromPortableTextBlock(block?: Block) {
 }
 
 export function unwrapFuncOrValue<T>(funcOrValue: FuncOrValue<T>) {
-  if (typeof funcOrValue === "function") {
-    return (funcOrValue as () => T)();
-  } else {
-    return funcOrValue;
-  }
+  return funcOrValue instanceof Function ? funcOrValue() : funcOrValue;
 }
 
 export async function tryCatch<T, E = Error>(
