@@ -1,0 +1,22 @@
+{
+    "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
+    "name": "portfolio",
+    "build": {
+        "command": "pnpm run build",
+    },
+    "pages_build_output_dir": "dist",
+    "compatibility_date": "2024-11-11",
+    "compatibility_flags": [
+        "nodejs_compat_v2"
+    ],
+    "vars": {
+        "SANITY_API_PROJECT_ID": "gtsyvuts",
+        "SANITY_API_DATASET": "production",
+        "SANITY_API_VERSION": "2022-03-07",
+        "SANITY_VISUAL_EDITING_ENABLED": "false",
+        "POSTHOG_API_KEY": "phc_tsOUKsYrGpDKtq0LDG4uWzav1y8TwkHLRVadr8TIrv6",
+        "POSTHOG_API_HOST": "https://phog.obifortune.com",
+        "POSTHOG_UI_HOST": "https://us.posthog.com",
+        "WEBSITE_URL": "https://obifortune.com",
+    }
+}
