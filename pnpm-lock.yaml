@@ -59,6 +59,9 @@ importers:
       '@sanity/visual-editing':
         specifier: ^5.3.4
         version: 5.3.4(@emotion/is-prop-valid@1.4.0)(@sanity/client@7.22.0)(@sanity/types@5.24.0(@types/react@19.2.14))(react-dom@19.2.6(react@19.2.6))(react-is@19.2.6)(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(typescript@5.9.3)
+      '@sanity/webhook':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@shikijs/transformers':
         specifier: ^4.0.2
         version: 4.0.2
@@ -3800,6 +3803,10 @@ packages:
         optional: true
       svelte:
         optional: true
+
+  '@sanity/webhook@4.0.4':
+    resolution: {integrity: sha512-c8LmzR5Wx93zJ10ohhp0XlmPrTNSFyvPcLbNY/sN45Wj5VOngz4FbBMbX9j64sSQLt+676U6OhiVfjs1yw3YCw==}
+    engines: {node: '>=20.0.0'}
 
   '@sanity/worker-channels@2.0.0':
     resolution: {integrity: sha512-mC+8yPQuw2rHXdHigFPU9thNa6vTaPmh7jFR6RvloE8s+6dmnk9bHdPXRbrrUqafxzK3L9aH2E170ubXyxcAIA==}
@@ -12511,7 +12518,7 @@ snapshots:
     dependencies:
       rxjs: 7.8.2
       uuid: 11.1.0
-      xstate: 5.28.0
+      xstate: 5.31.1
 
   '@sanity/comlink@4.0.1':
     dependencies:
@@ -12662,6 +12669,19 @@ snapshots:
       rxjs: 7.8.2
     optionalDependencies:
       xstate: 5.28.0
+
+  '@sanity/mutate@0.16.1(xstate@5.31.1)':
+    dependencies:
+      '@sanity/client': 7.22.0
+      '@sanity/diff-match-patch': 3.2.0
+      '@sanity/uuid': 3.0.2
+      hotscript: 1.0.13
+      lodash: 4.18.1
+      mendoza: 3.0.8
+      nanoid: 5.1.6
+      rxjs: 7.8.2
+    optionalDependencies:
+      xstate: 5.31.1
 
   '@sanity/mutator@5.24.0(@types/react@19.2.14)':
     dependencies:
@@ -12903,7 +12923,7 @@ snapshots:
       '@sanity/comlink': 4.0.1
       '@sanity/icons': 3.7.4(react@19.2.6)
       '@sanity/insert-menu': 3.0.6(@emotion/is-prop-valid@1.4.0)(@sanity/types@5.24.0(@types/react@19.2.14))(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
-      '@sanity/mutate': 0.16.1(xstate@5.28.0)
+      '@sanity/mutate': 0.16.1(xstate@5.31.1)
       '@sanity/presentation-comlink': 2.0.1(@sanity/client@7.22.0)(@sanity/types@5.24.0(@types/react@19.2.14))
       '@sanity/preview-url-secret': 4.0.6(@sanity/client@7.22.0)
       '@sanity/ui': 3.2.0(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.6(react@19.2.6))(react-is@19.2.6)(react@19.2.6)(styled-components@6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))
@@ -12915,7 +12935,7 @@ snapshots:
       rxjs: 7.8.2
       scroll-into-view-if-needed: 3.1.0
       styled-components: 6.4.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      xstate: 5.28.0
+      xstate: 5.31.1
     optionalDependencies:
       '@sanity/client': 7.22.0
     transitivePeerDependencies:
@@ -12923,6 +12943,8 @@ snapshots:
       - '@sanity/types'
       - react-is
       - typescript
+
+  '@sanity/webhook@4.0.4': {}
 
   '@sanity/worker-channels@2.0.0': {}
 
