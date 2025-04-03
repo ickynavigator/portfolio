@@ -27,21 +27,17 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
       WAKATIME_API_KEY: z.string(),
     },
     shared: {
-      PUBLIC_SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
-      PUBLIC_SANITY_API_DATASET: z.string().min(1).default("production"),
-      PUBLIC_SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
-      PUBLIC_POSTHOG_API_KEY: z.string().min(1),
-      PUBLIC_POSTHOG_API_HOST: z
-        .string()
-        .url()
-        .default("https://us.i.posthog.com"),
-      PUBLIC_POSTHOG_UI_HOST: z
-        .string()
-        .url()
-        .default("https://us.posthog.com"),
-      WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
-      PUBLIC_SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
+      SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
+      SANITY_API_DATASET: z.string().min(1).default("production"),
+      SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
+      SANITY_VISUAL_EDITING_ENABLED: booleanish().default(false),
       SANITY_API_READ_TOKEN: z.string().optional(),
+
+      POSTHOG_API_KEY: z.string().min(1),
+      POSTHOG_API_HOST: z.string().url().default("https://us.i.posthog.com"),
+      POSTHOG_UI_HOST: z.string().url().default("https://us.posthog.com"),
+
+      WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
     },
     runtimeEnv: runtimeEnv,
     emptyStringAsUndefined: true,
@@ -59,7 +55,7 @@ export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
        * @description `1`
        * @example Changing build behaviour when run on Pages versus locally
        */
-      CF_PAGES: numberish.optional(),
+      CF_PAGES: numberish().optional(),
       /**
        * @description `<sha1-hash-of-current-commit>`
        * @example Passing current commit ID to error reporting, for example, Sentry
@@ -79,12 +75,13 @@ export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
     runtimeEnv,
   });
 
-const booleanish = z.union([
-  z.boolean(),
-  z
-    .string()
-    .refine((s) => s === "true" || s === "false")
-    .transform((s) => s === "true"),
-]);
+const booleanish = () =>
+  z.union([
+    z.boolean(),
+    z
+      .string()
+      .refine((s) => s === "true" || s === "false")
+      .transform((s) => s === "true"),
+  ]);
 
-const numberish = z.union([z.number(), z.string().transform(Number)]);
+const numberish = () => z.union([z.number(), z.string().transform(Number)]);

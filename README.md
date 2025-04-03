@@ -8,18 +8,18 @@ My personal portfolio website built with [Astro](https://astro.build/) project. 
 
 Fill up the .env file with the variables in the .env.example
 
-| Key                                    | Description                                                      |
-| :------------------------------------- | :--------------------------------------------------------------- |
-| `PUBLIC_SANITY_API_PROJECT_ID`         | Project ID of your Sanity project. Defaults to **MY** project Id |
-| `PUBLIC_SANITY_API_DATASET`            | Dataset name of your Sanity project. Defaults to `production`    |
-| `PUBLIC_SANITY_API_VERSION`            | API version of your Sanity project. Defaults to `2022-03-07`     |
-| `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`         |
-| `PUBLIC_SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`         |
-| `SANITY_API_READ_TOKEN`                | Read token for the sanity project                                |
-| `WAKATIME_API_KEY`                     | API key for the wakatime API                                     |
-| `PUBLIC_POSTHOG_API_KEY`               | API key for Posthog                                              |
-| `PUBLIC_POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com   |
-| `PUBLIC_POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com  |
+| Key                             | Description                                                      |
+| :------------------------------ | :--------------------------------------------------------------- |
+| `SANITY_API_PROJECT_ID`         | Project ID of your Sanity project. Defaults to **MY** project Id |
+| `SANITY_API_DATASET`            | Dataset name of your Sanity project. Defaults to `production`    |
+| `SANITY_API_VERSION`            | API version of your Sanity project. Defaults to `2022-03-07`     |
+| `SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`         |
+| `SANITY_API_READ_TOKEN`         | Read token for the sanity project                                |
+| `POSTHOG_API_KEY`               | API key for Posthog                                              |
+| `POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com`  |
+| `POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com` |
+| `WEBSITE_URL`                   | URL of the website. Defaults to `https://obifortune.com`         |
+| `WAKATIME_API_KEY`              | API key for the wakatime API                                     |
 
 ### 🧞 Commands
 

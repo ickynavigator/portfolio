@@ -20,8 +20,8 @@ const env = getEnv(_getEnv(true));
 export default defineConfig({
   name: "portfolio",
   title: "Portfolio",
-  dataset: env.PUBLIC_SANITY_API_DATASET,
-  projectId: env.PUBLIC_SANITY_API_PROJECT_ID,
+  dataset: env.SANITY_API_DATASET,
+  projectId: env.SANITY_API_PROJECT_ID,
   plugins: [
     structureTool({
       structure: (S) =>
@@ -51,8 +51,8 @@ export default defineConfig({
           ]),
     }),
     visionTool({
-      defaultApiVersion: env.PUBLIC_SANITY_API_VERSION,
-      defaultDataset: env.PUBLIC_SANITY_API_DATASET,
+      defaultApiVersion: env.SANITY_API_VERSION,
+      defaultDataset: env.SANITY_API_DATASET,
     }),
     presentationTool({
       resolve: {
