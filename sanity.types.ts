@@ -104,6 +104,7 @@ export interface Career {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt: string;
@@ -135,6 +136,7 @@ export interface Career {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
       };
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt: string;
@@ -176,6 +178,7 @@ export interface Project {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt: string;
@@ -228,6 +231,7 @@ export interface Project {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt: string;
@@ -269,6 +273,7 @@ export interface Post {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt: string;
@@ -314,6 +319,7 @@ export interface Post {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt: string;
@@ -365,6 +371,7 @@ export type BlockContent = (
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
       };
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt: string;
@@ -415,6 +422,7 @@ export interface PersonalInfo {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
       };
+      media?: unknown;
       _type: "file";
     };
     lastupdatedAt?: string;
@@ -426,6 +434,7 @@ export interface PersonalInfo {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt: string;
@@ -593,6 +602,7 @@ export interface PAGINATED_POSTS_QUERYResult {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
       };
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt: string;
@@ -635,6 +645,7 @@ export type POST_QUERYResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt: string;
@@ -683,6 +694,7 @@ export type POST_QUERYResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt: string;
@@ -767,6 +779,7 @@ export interface PAGINATED_PROJECTS_QUERYResult {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
       };
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt: string;
@@ -801,6 +814,7 @@ export type PROJECT_QUERYResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt: string;
@@ -856,6 +870,7 @@ export type PROJECT_QUERYResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt: string;
@@ -940,6 +955,7 @@ export interface CAREERS_QUERYResult {
             _weak?: boolean;
             [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
           };
+          media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           alt: string;
@@ -968,6 +984,7 @@ export interface CAREERS_QUERYResult {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         alt: string;
