@@ -39,6 +39,7 @@
     "@shikijs/transformers": "^3.10.0",
     "@t3-oss/env-core": "^0.13.8",
     "@tabler/icons-react": "3.34.1",
+    "@sanity/webhook": "^4.0.4",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.12",
     "astro": "^5.13.2",
