@@ -30,7 +30,7 @@ const _BlockQuoteBase = (status: string) => {
     position: relative;
     display: block;
     margin: 0;
-    padding-left: ${({ theme }) => theme.sanity.space[3]}px;
+    padding-left: ${({ theme }) => theme.sanity.v2?.space[3]}px;
 
     &::before {
       content: "";
