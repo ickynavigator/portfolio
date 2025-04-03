@@ -19,7 +19,7 @@ const env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: "static",
   site: env.WEBSITE_URL ?? "https://obifortune.com",
 
   prefetch: {
