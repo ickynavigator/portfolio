@@ -8,6 +8,8 @@ on:
 env:
   CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN }}
+  PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}
 
 jobs:
   deploy:
@@ -26,4 +28,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Deploy PartyKit
-        run: CLOUDFLARE_ACCOUNT_ID=${{ env.CLOUDFLARE_ACCOUNT_ID }} CLOUDFLARE_API_TOKEN=${{ env.CLOUDFLARE_API_TOKEN }} pnpm dlx partykit deploy
+        run: pnpm dlx partykit deploy
