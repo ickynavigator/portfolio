@@ -26,7 +26,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Deploy PartyKit
-        run: pnpm dlx partykit deploy
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ env.CLOUDFLARE_API_TOKEN }}
+        run: CLOUDFLARE_ACCOUNT_ID=${{ env.CLOUDFLARE_ACCOUNT_ID }} CLOUDFLARE_API_TOKEN=${{ env.CLOUDFLARE_API_TOKEN }} pnpm dlx partykit deploy
