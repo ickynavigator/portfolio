@@ -43,6 +43,8 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
         .url()
         .default("https://us.posthog.com"),
 
+      PUBLIC_PARTY_URL: z.string().url().default("http://localhost:1999"),
+
       WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
     },
     runtimeEnv: runtimeEnv,
