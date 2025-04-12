@@ -1,5 +1,5 @@
 import { IconBubbleText, IconSend, IconX } from "@tabler/icons-react";
-import { useRef, useState, useTransition } from "react";
+import { useOptimistic, useRef, useState, useTransition } from "react";
 import { z } from "zod";
 
 import { Button } from "~/components/ui/button";
@@ -13,7 +13,13 @@ import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
 
 const usePartyMessages = () => {
-  const [messages, setMessages] = useState([
+  const [realMessages, setMessages] = useState<
+    {
+      type: string;
+      content: string;
+      sending?: boolean;
+    }[]
+  >([
     {
       type: "announcement",
       content: "Hi, how can I help you today?",
@@ -32,11 +38,31 @@ const usePartyMessages = () => {
     },
   ]);
 
+  const [messages, addOptimisticMessage] = useOptimistic(
+    realMessages,
+    (state, newMessage: string) => [
+      ...state,
+      { type: "message", content: newMessage, sending: true },
+    ],
+  );
+
   const addMessage = (message: string) => {
     setMessages((prev) => [...prev, { type: "message", content: message }]);
   };
 
-  return { messages, addMessage };
+  const sendMessage = async (message: string) => {
+    try {
+      addOptimisticMessage(message);
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      addMessage(message);
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };
+
+  return { messages, sendMessage };
 };
 
 const schema = z.object({
@@ -44,13 +70,14 @@ const schema = z.object({
 });
 
 const Party = () => {
-  const { messages, addMessage } = usePartyMessages();
+  const { messages, sendMessage } = usePartyMessages();
 
   const [isPending, startTransition] = useTransition();
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     startTransition(async () => {
@@ -66,11 +93,11 @@ const Party = () => {
       }
 
       try {
-        addMessage(parsed.data.message);
+        await sendMessage(parsed.data.message);
 
-        event.currentTarget.reset();
-      } catch {
-        console.error("Error sending message");
+        formRef.current?.reset();
+      } catch (error) {
+        console.error("Error sending message:", error);
       }
     });
   };
@@ -142,7 +169,8 @@ const Party = () => {
                     item?.scrollIntoView({ behavior: "smooth" });
                   }}
                   className={cn(
-                    "flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm break-words",
+                    "flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm break-words transition-opacity",
+                    message.sending && "opacity-50",
                     message.type === "message"
                       ? "bg-primary text-primary-foreground ml-auto"
                       : "bg-muted",
@@ -158,6 +186,7 @@ const Party = () => {
 
           <CardFooter>
             <form
+              ref={formRef}
               onSubmit={submitHandler}
               className="flex w-full items-center justify-between gap-2"
             >
