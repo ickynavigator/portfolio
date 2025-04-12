@@ -42,7 +42,7 @@ people: ${this.people}
 url:    ${new URL(ctx.request.url).pathname}`,
     );
 
-    this.party.broadcast(partyMessage(this.people), [conn.id]);
+    this.party.broadcast(partyMessage(this.people));
   }
 
   onClose(conn: Party.Connection) {
