@@ -4,58 +4,46 @@ import Transport from "~/t/party/transport";
 
 const transport = new Transport();
 
-const partyMessage = (people: number) => {
-  let message;
-
-  switch (people) {
-    case 0:
-      message = `No one is here yet. Let's get this party started! 🎉`;
-      break;
-    case 1:
-      message = `It's just you here, but that's still a party! 🎈`;
-      break;
-    default:
-      message = `You're partying with ${people} people right now! 🎈`;
-      break;
-  }
-
-  return transport.encode(
-    transport.tag("announcement", { message, timestamp: Date.now() }),
-  );
-};
-
+const MESSAGE_KEY = "messages";
 export default class Server implements Party.Server {
-  people: number;
+  messages: string[] = [];
 
-  constructor(readonly party: Party.Room) {
-    this.people = 0;
+  constructor(readonly party: Party.Room) {}
+
+  async onStart() {
+    this.messages = (await this.party.storage.get<string[]>(MESSAGE_KEY)) ?? [];
   }
 
-  onConnect(conn: Party.Connection, ctx: Party.ConnectionContext) {
-    this.people += 1;
-
+  async onConnect(conn: Party.Connection, ctx: Party.ConnectionContext) {
     console.log(
       `Connected:
 id:     ${conn.id}
 room:   ${this.party.id}
-people: ${this.people}
 url:    ${new URL(ctx.request.url).pathname}`,
     );
 
-    this.party.broadcast(partyMessage(this.people));
+    conn.send(
+      transport.encode(
+        transport.tag("bulk", {
+          messages: this.messages.map((message) =>
+            transport.decode(message, Transport.SCHEMAS.message),
+          ),
+        }),
+      ),
+    );
   }
 
-  onClose(conn: Party.Connection) {
-    this.people -= 1;
-
+  async onMessage(message: string, sender: Party.Connection) {
     console.log(
-      `Disconnected:
-id:     ${conn.id}
-room:   ${this.party.id}
-people: ${this.people}`,
+      `Connection [Message]: 
+id:      ${sender.id}
+message: ${message}`,
     );
 
-    this.party.broadcast(partyMessage(this.people));
+    this.party.broadcast(message);
+
+    this.messages.push(message);
+    await this.party.storage.put(MESSAGE_KEY, this.messages);
   }
 }
 

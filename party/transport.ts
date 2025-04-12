@@ -19,26 +19,38 @@ const JSONToStringSchema = z.any().transform((value, ctx) => {
 });
 
 export const MESSAGE_TYPES = {
-  announcement: "announcement",
+  message: "message",
+  bulk: "bulk",
 } as const;
 export type MESSAGE_TYPES = (typeof MESSAGE_TYPES)[keyof typeof MESSAGE_TYPES];
 
-const SCHEMAS = {
-  announcement: z.object({
-    type: z.literal(MESSAGE_TYPES.announcement),
-    timestamp: z.number(),
-    message: z.string(),
-  }),
-} as const;
+const MessageSchema = z.object({
+  type: z.literal(MESSAGE_TYPES.message),
+  timestamp: z.number(),
+  message: z.string(),
+});
 
-const COMBINED_SCHEMA = z.discriminatedUnion("type", [SCHEMAS.announcement]);
+const BulkSchema = z.object({
+  type: z.literal(MESSAGE_TYPES.bulk),
+  messages: z.array(MessageSchema),
+});
 
 export class Transport {
+  static SCHEMAS = {
+    message: MessageSchema,
+    bulk: BulkSchema,
+  } as const;
+
+  static COMBINED_SCHEMA = z.discriminatedUnion("type", [
+    Transport.SCHEMAS.message,
+    Transport.SCHEMAS.bulk,
+  ]);
+
   tag<Tag extends keyof TransportTypes>(
     type: Tag,
     data: Omit<TransportTypes[Tag], "type">,
   ) {
-    const tagged = SCHEMAS[type].parse({ type, ...data });
+    const tagged = Transport.SCHEMAS[type].parse({ type, ...data });
 
     return tagged as TransportTypes[Tag];
   }
@@ -54,7 +66,7 @@ export class Transport {
   }
 
   match(data: string, cbs: Match) {
-    const parsed = this.decode(data, COMBINED_SCHEMA);
+    const parsed = this.decode(data, Transport.COMBINED_SCHEMA);
 
     type ParsedType = Extract<TransportTypes, { type: typeof parsed.type }>;
     cbs[parsed.type]?.(parsed as ParsedType);
@@ -63,8 +75,8 @@ export class Transport {
 type RecordOfZod = Record<string, z.ZodTypeAny>;
 type ZodWithLiteralType = z.ZodObject<{ type: z.ZodLiteral<string> }>;
 
-type Match = _Match<_Combined<typeof SCHEMAS>>;
-type TransportTypes = _Unwrapped<typeof SCHEMAS>;
+type Match = _Match<_Combined<typeof Transport.SCHEMAS>>;
+type TransportTypes = _Unwrapped<typeof Transport.SCHEMAS>;
 type _Unwrapped<T extends RecordOfZod> = { [K in keyof T]: z.infer<T[K]> };
 type _Combined<T extends RecordOfZod> = { [K in keyof T]: T[K] }[keyof T];
 type _Match<T extends ZodWithLiteralType> = {
