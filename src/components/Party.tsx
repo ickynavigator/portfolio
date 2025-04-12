@@ -31,13 +31,11 @@ const usePartyMessages = () => {
       console.log("Message received", e.data);
       transport.match(e.data, {
         bulk: (data) => {
-          setMessages((prev) =>
-            prev.concat(
-              data.messages.map((message) => ({
-                type: message.type,
-                content: message.message,
-              })),
-            ),
+          setMessages(
+            data.messages.map((message) => ({
+              type: message.type,
+              content: message.message,
+            })),
           );
         },
         message: (data) => {
