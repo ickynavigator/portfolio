@@ -28,7 +28,6 @@ const usePartyMessages = () => {
     host: getEnv().PUBLIC_PARTY_URL,
     room: "my-room",
     onMessage(e) {
-      console.log("Message received", e.data);
       transport.match(e.data, {
         bulk: (data) => {
           setMessages(
