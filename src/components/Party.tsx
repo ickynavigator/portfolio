@@ -1,4 +1,5 @@
 import { IconBubbleText, IconSend, IconX } from "@tabler/icons-react";
+import { usePartySocket } from "partysocket/react";
 import { useOptimistic, useRef, useState, useTransition } from "react";
 import { z } from "zod";
 
@@ -10,53 +11,65 @@ import {
   CardHeader,
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
+import { getEnv } from "~/lib/env";
 import { cn } from "~/lib/utils";
+import Transport, { MESSAGE_TYPES } from "~/t/party/transport";
+
+const transport = new Transport();
+
+interface Message {
+  type: MESSAGE_TYPES;
+  content: string;
+  sending?: boolean;
+}
 
 const usePartyMessages = () => {
-  const [realMessages, setMessages] = useState<
-    {
-      type: string;
-      content: string;
-      sending?: boolean;
-    }[]
-  >([
-    {
-      type: "announcement",
-      content: "Hi, how can I help you today?",
+  const PS = usePartySocket({
+    host: getEnv().PUBLIC_PARTY_URL,
+    room: "my-room",
+    onMessage(e) {
+      console.log("Message received", e.data);
+      transport.match(e.data, {
+        bulk: (data) => {
+          setMessages((prev) =>
+            prev.concat(
+              data.messages.map((message) => ({
+                type: message.type,
+                content: message.message,
+              })),
+            ),
+          );
+        },
+        message: (data) => {
+          addRealMessage(data.message, MESSAGE_TYPES.message);
+        },
+      });
     },
-    {
-      type: "message",
-      content: "Hey, I'm having trouble with my account.",
-    },
-    {
-      type: "announcement",
-      content: "What seems to be the problem?",
-    },
-    {
-      type: "message",
-      content: "I can't log in.",
-    },
-  ]);
+  });
+
+  const [realMessages, setMessages] = useState<Message[]>([]);
 
   const [messages, addOptimisticMessage] = useOptimistic(
     realMessages,
     (state, newMessage: string) => [
       ...state,
-      { type: "message", content: newMessage, sending: true },
+      { type: MESSAGE_TYPES.message, content: newMessage, sending: true },
     ],
   );
 
-  const addMessage = (message: string) => {
-    setMessages((prev) => [...prev, { type: "message", content: message }]);
+  const addRealMessage = (message: string, type: MESSAGE_TYPES) => {
+    setMessages((prev) => [...prev, { type: type, content: message }]);
   };
 
   const sendMessage = async (message: string) => {
     try {
       addOptimisticMessage(message);
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      addMessage(message);
+      PS.send(
+        transport.encode(
+          transport.tag("message", { timestamp: Date.now(), message }),
+        ),
+      );
     } catch (error) {
       console.error("Error sending message:", error);
     }
