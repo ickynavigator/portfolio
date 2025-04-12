@@ -90,7 +90,7 @@ const Party = () => {
   };
 
   return (
-    <div className="fixed right-15 bottom-15 z-100">
+    <div className="no-js fixed right-15 bottom-15 z-100">
       <Button
         variant="outline"
         size="icon"
