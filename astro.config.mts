@@ -105,7 +105,8 @@ export default defineConfig({
       PUBLIC_PARTY_URL: envField.string({
         access: "public",
         context: "client",
-        default: "http://localhost:1999",
+        default: "http://party.portfolio.obifortune.com",
+        url: true,
       }),
 
       ...cloudflareWorkers,
