@@ -130,7 +130,7 @@ const Party = () => {
   };
 
   return (
-    <div className="no-js fixed right-15 bottom-15 z-100">
+    <div className="no-js fixed right-5 bottom-5 z-100">
       <Button
         variant="outline"
         size="icon"
@@ -144,7 +144,7 @@ const Party = () => {
         ref={dialogRef}
         className="absolute inset-auto right-[anchor(right)] bottom-[anchor(top)] mb-3 rounded-xl [position-anchor:--party-dialog]"
       >
-        <Card className="max-h-[60svh] w-sm max-w-full">
+        <Card className="max-h-[60svh] w-sm max-w-[90svw]">
           <CardHeader>
             <div className="flex flex-row items-center justify-between">
               <div>
