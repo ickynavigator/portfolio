@@ -102,6 +102,12 @@ export default defineConfig({
         context: "client",
       }),
 
+      PUBLIC_PARTY_URL: envField.string({
+        access: "public",
+        context: "client",
+        default: "http://localhost:1999",
+      }),
+
       ...cloudflareWorkers,
     },
   },
