@@ -1,5 +1,9 @@
 import type * as Party from "partykit/server";
 
+import Transport from "~/t/party/transport";
+
+const transport = new Transport();
+
 const partyMessage = (people: number) => {
   let message;
 
@@ -15,7 +19,9 @@ const partyMessage = (people: number) => {
       break;
   }
 
-  return message;
+  return transport.encode(
+    transport.tag("announcement", { message, timestamp: Date.now() }),
+  );
 };
 
 export default class Server implements Party.Server {
