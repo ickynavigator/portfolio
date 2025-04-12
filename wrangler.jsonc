@@ -25,6 +25,7 @@
         "PUBLIC_POSTHOG_API_KEY": "phc_tsOUKsYrGpDKtq0LDG4uWzav1y8TwkHLRVadr8TIrv6",
         "PUBLIC_POSTHOG_API_HOST": "https://phog.obifortune.com",
         "PUBLIC_POSTHOG_UI_HOST": "https://us.posthog.com",
-        "WEBSITE_URL": "https://obifortune.com"
+        "WEBSITE_URL": "https://obifortune.com",
+        "PUBLIC_PARTY_URL": "party.portfolio.obifortune.com"
     }
 }
