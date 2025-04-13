@@ -1,15 +1,18 @@
 @layer palette {
   :root {
     @import "./palette-light.css";
+    @import "./palette-light-custom.css";
   }
 
   .dark {
     @import "./palette-dark.css";
+    @import "./palette-dark-custom.css";
   }
 
   @media (scripting: none) and (prefers-color-scheme: dark) {
     :root {
       @import "./palette-dark.css";
+      @import "./palette-dark-custom.css";
     }
   }
 }
