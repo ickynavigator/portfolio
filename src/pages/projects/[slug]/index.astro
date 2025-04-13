@@ -2,6 +2,7 @@
 import { IconArrowUpRight } from "@tabler/icons-react";
 import type { GetStaticPaths } from "astro";
 
+import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
 import SanityImage from "~/components/SanityImage.astro";
@@ -63,33 +64,39 @@ if (!result || !image) {
         </div>
 
         <ul
-          class="max-w-full overflow-x-scroll whitespace-nowrap"
+          class="max-w-full space-x-1 overflow-x-scroll whitespace-nowrap"
           transition:name={`project-tags-${result.slug.current}`}
         >
           {
             result.derefTag.map((tag) => (
               <li class="inline">
-                <a
+                <Badge
+                  as="a"
                   href={`/search?type=project&tag=${encodeURIComponent(tag.slug.current)}`}
-                  class="hover:bg-primary-foreground me-2 inline-block rounded-full border px-3 py-1.5 text-sm font-light transition-colors"
+                  variant="outline"
+                  animate="hover"
+                  class="rounded-full"
                 >
                   {tag.title}
-                </a>
+                </Badge>
               </li>
             ))
           }
         </ul>
-        <ul>
+        <ul class="space-x-1">
           {
             result.visibleLinks.map((link) => (
               <li class="inline">
-                <a
+                <Badge
+                  as="a"
                   href={link.url}
-                  class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-3 py-1 text-center transition-colors"
+                  variant="outline"
+                  animate="hover"
+                  class="gap-2"
                 >
                   <span class="text-xs">{link.display}</span>
                   <IconArrowUpRight className="inline relative-icon" />
-                </a>
+                </Badge>
               </li>
             ))
           }

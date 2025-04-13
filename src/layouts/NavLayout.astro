@@ -3,6 +3,7 @@ import { VisualEditing } from "@sanity/astro/visual-editing";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import ActiveLink from "~/components/ActiveLink.astro";
+import Badge from "~/components/Badge.astro";
 import BirthdayAnnouncement from "~/components/BirthdayAnnouncement.astro";
 import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
@@ -72,13 +73,14 @@ const isTodayBirthday = _birthdate.result
 
   <footer class="mt-8 mb-3 px-4 lg:px-0">
     <div
-      class="bg-primary-foreground mb-10 flex flex-col items-center justify-center gap-7 rounded-xl border py-10 shadow-sm"
+      class="bg-accent mb-10 flex flex-col items-center justify-center gap-7 rounded-xl border py-10 shadow-sm"
     >
-      <span
-        class="rounded-full border px-2.5 py-0.5 text-xs font-medium uppercase"
+      <Badge
+        class="rounded-full text-xs font-medium uppercase"
+        variant="secondary"
       >
         Get in touch
-      </span>
+      </Badge>
 
       <p class="px-4 text-center text-4xl font-medium md:px-20">
         Got a web project? Let's talk.

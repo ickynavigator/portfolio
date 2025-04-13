@@ -7,6 +7,7 @@ import {
 } from "@tabler/icons-react";
 import type { GetStaticPaths } from "astro";
 
+import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
 import SanityImage from "~/components/SanityImage.astro";
@@ -118,12 +119,15 @@ if (!result || !image) {
           {
             result.derefTag.map((tag) => (
               <li class="inline">
-                <a
+                <Badge
+                  as="a"
                   href={`/search?type=post&tag=${encodeURIComponent(tag.slug.current)}`}
-                  class="hover:bg-primary-foreground me-2 inline-block rounded-full border px-3 py-1.5 text-sm font-light transition-colors"
+                  variant="outline"
+                  animate="hover"
+                  class="rounded-full"
                 >
                   {tag.title}
-                </a>
+                </Badge>
               </li>
             ))
           }
