@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "~/lib/utils";
 
 const buttonVariants = cva(
-  "ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -25,10 +25,25 @@ const buttonVariants = cva(
         lg: "h-11 rounded-md px-8",
         icon: "size-10",
       },
+      animate: {
+        default: "",
+        "slide-y":
+          "data-[active='false']:[&_svg[slot='active']]:translate-y-(--move-length)! data-[active='true']:[&_svg[slot='inactive']]:-translate-y-(--move-length)!",
+        "slide-x":
+          "data-[active='false']:[&_svg[slot='active']]:translate-x-(--move-length)! data-[active='true']:[&_svg[slot='inactive']]:-translate-x-(--move-length)!",
+      },
     },
+    compoundVariants: [
+      {
+        animate: ["slide-x", "slide-y"],
+        class:
+          "relative overflow-clip transition-transform [--move-direction:1] [--move-length:calc(var(--move-direction)*200%)] [&_svg[slot]]:absolute [&_svg[slot]]:top-[50%] [&_svg[slot]]:left-[50%] [&_svg[slot]]:translate-[-50%] [&_svg[slot]]:transition-transform [&_svg[slot]]:duration-700",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",
+      animate: "default",
     },
   },
 );
@@ -37,9 +52,14 @@ interface Props
   extends HTMLAttributes<"button">,
     VariantProps<typeof buttonVariants> {}
 
-const { variant, size, class: _class } = Astro.props;
+const { variant, size, animate, class: _class, ...props } = Astro.props;
 ---
 
-<button class={cn(buttonVariants({ variant, size, class: _class }))}>
+<button
+  {...props}
+  class={cn(buttonVariants({ variant, size, animate, class: _class }))}
+>
   <slot />
+  <slot name="inactive" />
+  <slot name="active" />
 </button>
