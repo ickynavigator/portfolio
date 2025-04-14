@@ -8,7 +8,8 @@ import {
   transformerRemoveNotationEscape,
 } from "@shikijs/transformers";
 import {
-  IconCopy,
+  IconCheck,
+  IconClipboard,
   IconFileCode,
   IconFileTypeJs,
   IconFileTypeJsx,
@@ -18,6 +19,7 @@ import {
 } from "@tabler/icons-react";
 import { Code as CustomCode } from "astro:components";
 
+import Button from "~/components/Button.astro";
 import IconCheckbox from "~/components/IconCheckbox.astro";
 import { cn } from "~/lib/utils";
 
@@ -65,46 +67,45 @@ const CodeIcon = magicCodeIcon(language);
 ---
 
 <custom-code-block
-  class={cn("my-4 block", _class)}
+  class={cn("my-4 block overflow-clip rounded-md border", _class)}
   data-show-line-numbers={showLineNumbers}
   data-code={code}
 >
-  <div class="flex justify-between">
-    <div
-      class="bg-accent text-accent-foreground inline-flex items-center gap-3 rounded-t px-2 py-1 text-sm"
-    >
-      <div>
-        <CodeIcon className="relative-icon" />
-      </div>
-
-      <span>
-        {title}
-      </span>
+  <div
+    class="bg-secondary flex items-center justify-between border-b px-2 py-2"
+  >
+    <div class="inline-flex items-center gap-1 text-sm">
+      <CodeIcon className="relative-icon" />
+      <span class="text-md">{title}</span>
     </div>
 
-    <div
-      class="bg-accent text-accent-foreground inline-flex items-center gap-3 rounded-t px-2 py-1 text-sm"
-    >
+    <div class="inline-flex items-center gap-3">
       <IconCheckbox
         label="Hide line numbers"
         name="show-numbers"
-        class="border-secondary hover:bg-secondary/40"
+        class="hover:bg-accent size-7"
       >
         <IconNumbers className="relative-icon" />
       </IconCheckbox>
 
-      <button
+      <Button
+        variant="outline"
+        size="icon"
+        animate="slide-y"
+        class="size-7 cursor-pointer rounded-sm shadow-sm"
         id="copy-code"
-        class="border-secondary hover:bg-secondary/40 inline-flex size-5 transform cursor-copy items-center justify-center rounded-sm border shadow-sm transition-all hover:shadow-md"
         title="Copy Code"
+        data-active="false"
       >
-        <IconCopy className="relative-icon" />
-      </button>
+        <IconClipboard slot="inactive" className="relative-icon" />
+        <IconCheck slot="active" className="relative-icon" />
+        <span class="sr-only">Copy</span>
+      </Button>
     </div>
   </div>
 
   <CustomCode
-    class="rounded-b-lg transition-all"
+    class="transition-all"
     code={code}
     inline={inline}
     lang={language}
@@ -237,6 +238,8 @@ const CodeIcon = magicCodeIcon(language);
 <script>
   import { toast } from "sonner";
 
+  import { debouncer } from "~/lib/utils";
+
   class CustomCodeBlock extends HTMLElement {
     connectedCallback() {
       this.#bindCheck(
@@ -244,10 +247,20 @@ const CodeIcon = magicCodeIcon(language);
         "showLineNumbers",
       );
 
-      this.querySelector("#copy-code")?.addEventListener("click", () => {
+      const resetCopyCodeActive = debouncer((button: HTMLButtonElement) => {
+        button.dataset.active = "false";
+      }, 2000);
+
+      this.querySelector("#copy-code")?.addEventListener("click", async (e) => {
+        if (!this.dataset.code) return;
+        if (!(e.target instanceof HTMLButtonElement)) return;
         try {
-          navigator.clipboard.writeText(this.dataset.code ?? "");
+          await navigator.clipboard.writeText(this.dataset.code);
+
           toast.success("Copied Succesfully.");
+
+          e.target.dataset.active = "true";
+          resetCopyCodeActive(e.target);
         } catch {
           toast.error("Failed to copy code. Please try again.");
         }

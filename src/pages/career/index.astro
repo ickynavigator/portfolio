@@ -1,6 +1,7 @@
 ---
 import { IconArrowUpRight, IconFile } from "@tabler/icons-react";
 
+import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
 import SanityImage from "~/components/SanityImage.astro";
@@ -71,8 +72,10 @@ return Astro.redirect("/404");
 
               <ul class="max-w-full overflow-x-auto whitespace-nowrap">
                 {career.derefTag.map((tag) => (
-                  <li class="hover:bg-primary-foreground me-2 inline-block rounded-full border px-3 py-1.5 text-xs font-light transition-colors">
-                    {tag.title}
+                  <li>
+                    <Badge variant="outline" class="rounded-full">
+                      {tag.title}
+                    </Badge>
                   </li>
                 ))}
               </ul>
@@ -81,16 +84,19 @@ return Astro.redirect("/404");
                 <PortableText data={career.description} class="max-w-none" />
               </div>
 
-              <ul>
+              <ul class="mt-2">
                 {career.visibleLinks.map((link) => (
                   <li>
-                    <a
+                    <Badge
+                      as="a"
                       href={link.url}
-                      class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition duration-300 hover:shadow-xs"
+                      variant="outline"
+                      animate="hover"
+                      class="gap-2"
                     >
                       <span class="text-xs">{link.display}</span>
                       <IconArrowUpRight className="inline relative-icon" />
-                    </a>
+                    </Badge>
                   </li>
                 ))}
               </ul>

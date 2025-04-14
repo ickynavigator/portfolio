@@ -5,6 +5,7 @@ import {
   IconFolderOpen,
 } from "@tabler/icons-react";
 
+import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
@@ -57,13 +58,16 @@ if (!result) {
           {result.shortBio}
         </p>
 
-        <a
-          href={`/about`}
-          class="hover:bg-secondary mt-2 inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition-colors"
+        <Badge
+          as="a"
+          href="/about"
+          variant="outline"
+          animate="hover"
+          class="mt-2 gap-2"
         >
           <span class="text-xs">Learn more about me</span>
           <IconArrowUpRight className="relative-icon inline" />
-        </a>
+        </Badge>
       </div>
 
       <span class="mb-5 inline-flex items-center gap-2 text-2xl">
@@ -85,17 +89,20 @@ if (!result) {
               </a>
 
               <ul
-                class="max-w-full overflow-x-scroll whitespace-nowrap"
+                class="max-w-full space-x-1 overflow-x-scroll whitespace-nowrap"
                 transition:name={`project-tags-${project.slug}`}
               >
                 {project.tags.map((tag) => (
                   <li class="inline">
-                    <a
+                    <Badge
+                      as="a"
                       href={`/search?type=project&tag=${encodeURIComponent(tag.slug)}`}
-                      class="hover:border-primary me-2 inline-block rounded-full border px-3 py-1.5 text-sm font-light transition-colors"
+                      variant="outline"
+                      animate="hover"
+                      class="rounded-full"
                     >
                       {tag.name}
-                    </a>
+                    </Badge>
                   </li>
                 ))}
               </ul>

@@ -11,9 +11,10 @@ interface Props {
   }[];
   id?: string;
   name: string;
+  class?: string;
 }
 
-const { options, name, id } = Astro.props;
+const { options, name, id, class: _class } = Astro.props;
 
 const getId = (value: string) => {
   if (id) return `${id}-${value}`;
@@ -21,7 +22,9 @@ const getId = (value: string) => {
 };
 ---
 
-<div class="inline-flex gap-0.5 rounded-full border p-0.5">
+<div
+  class={cn("bg-muted inline-flex gap-0.5 rounded-full border p-0.5", _class)}
+>
   {
     options.map((option) => (
       <div class="relative">
@@ -38,9 +41,9 @@ const getId = (value: string) => {
           for={getId(option.value)}
           class={cn(
             "flex size-8 cursor-pointer items-center justify-center rounded-full transition",
-            "hover:bg-secondary hover:scale-110",
-            "peer-focus:ring-ring peer-focus:bg-secondary peer-focus:scale-110 peer-focus:ring-2",
-            "peer-checked:bg-secondary peer-checked:shadow-xs",
+            "hover:bg-background hover:scale-110",
+            "peer-focus-visible:ring-ring peer-focus-visible:bg-background peer-focus-visible:scale-110 peer-focus-visible:ring-2",
+            "peer-checked:bg-background peer-checked:shadow-xs",
           )}
         >
           <span class="sr-only">{option.value}</span>

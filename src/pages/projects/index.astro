@@ -1,6 +1,7 @@
 ---
 import { IconArrowUpRight } from "@tabler/icons-react";
 
+import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
 import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
@@ -59,13 +60,16 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                 </div>
 
                 <div>
-                  <a
+                  <Badge
+                    as="a"
                     href={`/projects/${project.slug.current}`}
-                    class="hover:bg-secondary inline-flex gap-2 rounded-lg border px-2 py-1 text-center transition-colors"
+                    variant="outline"
+                    animate="hover"
+                    class="mt-2 gap-2"
                   >
                     <span class="text-xs">More</span>
                     <IconArrowUpRight className="inline relative-icon" />
-                  </a>
+                  </Badge>
                 </div>
               </div>
             </div>
