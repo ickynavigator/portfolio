@@ -14,6 +14,7 @@ const { id } = Astro.props;
   <Toggle
     id={id}
     name="theme"
+    class="supports-backdrop-filter:bg-muted/60"
     options={[
       { label: IconSun, value: "light" },
       { label: IconDeviceDesktop, value: "system" },

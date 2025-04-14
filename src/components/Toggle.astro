@@ -11,9 +11,10 @@ interface Props {
   }[];
   id?: string;
   name: string;
+  class?: string;
 }
 
-const { options, name, id } = Astro.props;
+const { options, name, id, class: _class } = Astro.props;
 
 const getId = (value: string) => {
   if (id) return `${id}-${value}`;
@@ -21,7 +22,9 @@ const getId = (value: string) => {
 };
 ---
 
-<div class="bg-muted inline-flex gap-0.5 rounded-full border p-0.5">
+<div
+  class={cn("bg-muted inline-flex gap-0.5 rounded-full border p-0.5", _class)}
+>
   {
     options.map((option) => (
       <div class="relative">
