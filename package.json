@@ -96,13 +96,12 @@
       "@tabler/icons-react": "patches/@tabler__icons-react.patch"
     },
     "onlyBuiltDependencies": [
+      "core-js",
       "esbuild",
       "scrollmirror",
       "sharp",
-      "workerd"
-    ],
-    "ignoredBuiltDependencies": [
-      "core-js"
+      "workerd",
+      "yarn"
     ]
   },
   "peerDependencies": {
