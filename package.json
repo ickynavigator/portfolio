@@ -96,6 +96,7 @@
       "@tabler/icons-react": "patches/@tabler__icons-react.patch"
     },
     "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
       "core-js",
       "esbuild",
       "scrollmirror",
