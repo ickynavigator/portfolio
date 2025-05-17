@@ -3,7 +3,12 @@ import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 ---
 
-<MainLayout title="404" description="Page not found">
+<MainLayout
+  meta={{
+    title: "404",
+    description: "Page not found",
+  }}
+>
   <NavLayout>
     <div
       class="flex h-[50vh] flex-col items-center justify-center gap-7 px-20 text-center"
