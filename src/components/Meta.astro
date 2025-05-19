@@ -8,7 +8,10 @@ interface Props {
   getBase?: MetaBase;
 }
 
-const baseMeta = (await Astro.props?.getBase?.(Astro)) ?? {};
+const baseMeta =
+  (await Astro.props?.getBase?.({
+    appUrl: new URL(Astro.url.pathname, Astro.site),
+  })) ?? {};
 const incomingMeta = Astro.props?.meta ?? {};
 
 const meta = metaSchema.parse(R.mergeDeep(baseMeta, incomingMeta));

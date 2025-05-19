@@ -2,12 +2,11 @@ import type { MetaBase } from "~/lib/meta";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PROFILE_IMAGE_QUERY } from "~/lib/sanity/queries";
 
-const getBase: MetaBase = async (Astro) => {
+const getBase: MetaBase = async (ctx) => {
   const profilePicture =
     (await loadQuery({ query: PROFILE_IMAGE_QUERY })).result?.url ??
     "/favicon.ico";
-
-  const appURL = new URL(Astro.url.pathname, Astro.site);
+  const { appUrl: appURL } = ctx;
 
   const baseTitle = "Obi Fortune's Portfolio";
   const baseDescription =

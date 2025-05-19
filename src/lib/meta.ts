@@ -1,4 +1,3 @@
-import type { AstroGlobal } from "astro";
 import { z } from "zod";
 
 export const metaSchema = z
@@ -215,4 +214,4 @@ export const metaSchema = z
 export type Meta = z.infer<typeof metaSchema>;
 export type MetaInput = z.input<typeof metaSchema>;
 
-export type MetaBase = (ctx: AstroGlobal) => MetaInput | Promise<MetaInput>;
+export type MetaBase = (ctx: { appUrl: URL }) => MetaInput | Promise<MetaInput>;
