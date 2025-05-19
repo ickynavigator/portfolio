@@ -128,7 +128,7 @@ export const metaSchema = z
       })
       .partial()
       .and(
-        z.discriminatedUnion("card", [
+        z.union([
           z
             .object({
               card: z.literal("summary"),
