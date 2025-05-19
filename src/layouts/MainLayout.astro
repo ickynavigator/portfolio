@@ -8,6 +8,7 @@ import Meta from "~/components/Meta.astro";
 import Posthog from "~/components/Posthog.astro";
 import { Toaster } from "~/components/ui/sonner";
 import type { MetaInput } from "~/lib/meta";
+import getBase from "~/lib/meta.base";
 
 import "~/styles/globals.css";
 
@@ -45,7 +46,7 @@ interface Props {
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <Meta meta={Astro.props.meta} />
+    <Meta meta={Astro.props.meta} getBase={getBase} />
     <Posthog />
     <ClientRouter />
   </head>
