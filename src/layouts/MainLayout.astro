@@ -7,12 +7,12 @@ import { ClientRouter } from "astro:transitions";
 import Meta from "~/components/Meta.astro";
 import Posthog from "~/components/Posthog.astro";
 import { Toaster } from "~/components/ui/sonner";
-import type { PartialMeta } from "~/lib/meta";
+import type { MetaInput } from "~/lib/meta";
 
 import "~/styles/globals.css";
 
 interface Props {
-  meta?: PartialMeta;
+  meta?: MetaInput;
 }
 ---
 
