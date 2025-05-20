@@ -16,7 +16,20 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
 return Astro.redirect("/404");
 ---
 
-<MainLayout title="Career">
+<MainLayout
+  meta={{
+    title: "Career",
+    description: "My Experience!",
+    og: {
+      title: "Career",
+      description: "My Experience!",
+    },
+    twitter: {
+      title: "Career",
+      description: "My Experience!",
+    },
+  }}
+>
   <NavLayout>
     <Container innerPage>
       <div class="flex items-center justify-between gap-4">

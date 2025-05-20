@@ -12,7 +12,22 @@ import { PAGINATED_PROJECTS_QUERY } from "~/lib/sanity/queries";
 const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
 ---
 
-<MainLayout title="Project" description="Project list">
+<MainLayout
+  meta={{
+    title: "Project",
+    description: "Project List",
+
+    og: {
+      title: "Project",
+      description: "Project List",
+    },
+
+    twitter: {
+      title: "Project",
+      description: "Project List",
+    },
+  }}
+>
   <NavLayout>
     <Container innerPage>
       <div class="mb-4 flex flex-col gap-1">

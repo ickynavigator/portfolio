@@ -34,14 +34,39 @@ const image = result?.images?.[0];
 if (!result || !image) {
   return Astro.redirect("/404");
 }
+
+const imageUrl = urlForImage(image).width(4096).url();
 ---
 
 <MainLayout
-  title={result.title}
-  description={result.description}
-  image={urlForImage(image).url()}
-  ogType="article"
-  keywords={result.derefTag.map((tag) => tag.title)}
+  meta={{
+    title: result.title,
+    keywords: result.derefTag.map((tag) => tag.title),
+    description: result.description,
+
+    og: {
+      title: result.title,
+      image: imageUrl,
+      type: "article",
+      locale: "en_US",
+      url: Astro.url,
+      description: result.description,
+
+      article: {
+        published_time: result._createdAt,
+        modified_time: result._updatedAt,
+        tag: result.derefTag.map((tag) => tag.title),
+      },
+    },
+
+    twitter: {
+      title: result.title,
+      image_alt: result.title,
+      card: "summary",
+      image: imageUrl,
+      description: result.description,
+    },
+  }}
 >
   <NavLayout>
     <ScrollProgress />

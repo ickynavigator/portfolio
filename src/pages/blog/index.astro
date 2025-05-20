@@ -17,7 +17,22 @@ import { PAGINATED_POSTS_QUERY } from "~/lib/sanity/queries";
 const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
 ---
 
-<MainLayout title="Blog" description="Blog posts">
+<MainLayout
+  meta={{
+    title: "Blog",
+    description: "Blog posts",
+
+    og: {
+      title: "Blog",
+      description: "Blog posts",
+    },
+
+    twitter: {
+      title: "Blog",
+      description: "Blog posts",
+    },
+  }}
+>
   <NavLayout>
     <Container innerPage>
       <div class="mb-4">
