@@ -1,6 +1,6 @@
 // @ts-check
 
-/** @type {import('prettier').Config & import("@ianvs/prettier-plugin-sort-imports").PluginConfig} */
+/** @type {import('prettier').Config & import("@ianvs/prettier-plugin-sort-imports").PluginConfig & import('prettier-plugin-tailwindcss').PluginOptions} */
 export default {
   tabWidth: 2,
   printWidth: 80,

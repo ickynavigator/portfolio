@@ -8,15 +8,19 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["node_modules/", ".astro/", "wrangler/", "dist/"],
-  },
-  {
+    name: "my-rules/setup",
+    ignores: [
+      "**/node_modules/",
+      ".git/",
+      ".astro/",
+      "wrangler/",
+      "dist/",
+      ".partykit/",
+    ],
     linterOptions: {
       reportUnusedDisableDirectives: "error",
       reportUnusedInlineConfigs: "error",
     },
-  },
-  {
     languageOptions: {
       parserOptions: {
         project: true,
@@ -28,8 +32,12 @@ export default tseslint.config(
   tseslint.configs.stylistic,
   eslintPluginAstro.configs["flat/recommended"],
   eslintPluginAstro.configs["flat/jsx-a11y-strict"],
-  { plugins: { "unused-imports": eslintPluginUnusedImports } },
   {
+    name: "eslint-plugin-unused-imports",
+    plugins: { "unused-imports": eslintPluginUnusedImports },
+  },
+  {
+    name: "my-rules",
     rules: {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "off",
@@ -48,6 +56,7 @@ export default tseslint.config(
   },
   eslintPluginPrettier,
   {
+    name: "my-rules/eslint-plugin-prettier/astro-prettier-reset",
     files: [
       "**/*.astro/*.js",
       "*.astro/*.js",
