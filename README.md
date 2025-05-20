@@ -30,10 +30,11 @@ All commands are run from the root of the project, from a terminal with `pnpm ru
 
 | Command      | Action                                                                          |
 | :----------- | :------------------------------------------------------------------------------ |
+| `prebuild`   | Run the typegen and astro check scripts                                         |
 | `dev`        | Starts local dev server at `localhost:4321` + studio at `localhost:4321/studio` |
 | `build`      | Build your production site to `./dist/`                                         |
-| `preview`    | Preview your build locally with wrangler, before deploying                      |
-| `deploy`     | Deploy your build to cloudflare with wrangler                                   |
+| `preview`    | Preview your build locally with wrangler                                        |
+| `typegen`    | Run all typegen scripts                                                         |
 | `cf-typegen` | Generate types from bindings and module rules in configuration                  |
 | `sa-typegen` | Extract sanity schema info and generate types                                   |
 | `lint`       | Run eslint on the project                                                       |
