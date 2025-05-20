@@ -143,6 +143,9 @@ importers:
         specifier: ^3.25.28
         version: 3.25.28
     devDependencies:
+      '@cloudflare/vite-plugin':
+        specifier: ^1.2.2
+        version: 1.2.2(rollup@4.41.0)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.0))(workerd@1.20250508.0)(wrangler@4.15.2(@cloudflare/workers-types@4.20250517.0))
       '@eslint/js':
         specifier: ^9.27.0
         version: 9.27.0
@@ -883,6 +886,12 @@ packages:
       workerd:
         optional: true
 
+  '@cloudflare/vite-plugin@1.2.2':
+    resolution: {integrity: sha512-VUqXIIXrZ1d6HGtAcp8GnmPJz5OQUnmwGp98EdcDK3VlLmVjhigyVt9rRUCFFo4AeJtBBUG74eqLH7zsSEsU2Q==}
+    peerDependencies:
+      vite: ^6.1.0
+      wrangler: ^3.101.0 || ^4.0.0
+
   '@cloudflare/workerd-darwin-64@1.20250508.0':
     resolution: {integrity: sha512-9x09MrA9Y5RQs3zqWvWns8xHgM2pVNXWpeJ+3hQYu4PrwPFZXtTD6b/iMmOnlYKzINlREq1RGeEybMFyWEUlUg==}
     engines: {node: '>=16'}
@@ -1596,6 +1605,9 @@ packages:
   '@marijn/find-cluster-break@1.0.2':
     resolution: {integrity: sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g==}
 
+  '@mjackson/node-fetch-server@0.6.1':
+    resolution: {integrity: sha512-9ZJnk/DJjt805uv5PPv11haJIW+HHf3YEEyVXv+8iLQxLD/iXA68FH220XoiTPBC4gCg5q+IMadDw8qPqlA5wg==}
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1895,6 +1907,15 @@ packages:
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
+
+  '@rollup/plugin-replace@6.0.2':
+    resolution: {integrity: sha512-7QaYCf8bqF04dOy7w/eHmJeNExxTYwvKAmlSAH/EaWWUzbT0h5sbF6bktFoX/0F/0qwng5/dWFMyf3gzaM8DsQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
 
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
@@ -4096,6 +4117,10 @@ packages:
   get-package-type@0.1.0:
     resolution: {integrity: sha512-pjzuKtY64GYfWizNAJ0fr9VqttZkNiK2iS430LtIHzjBEr6bX8Am2zm4sW4Ro5wjWW5cAlRL1qAMTcXbjNAO2Q==}
     engines: {node: '>=8.0.0'}
+
+  get-port@7.1.0:
+    resolution: {integrity: sha512-QB9NKEeDg3xxVwCCwJQ9+xycaz6pBB6iQ76wiWMl1927n0Kir6alPiP+yuiICLLU4jpMe08dXfpebuQppFA2zw==}
+    engines: {node: '>=16'}
 
   get-proto@1.0.1:
     resolution: {integrity: sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==}
@@ -8428,6 +8453,25 @@ snapshots:
     optionalDependencies:
       workerd: 1.20250508.0
 
+  '@cloudflare/vite-plugin@1.2.2(rollup@4.41.0)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.0))(workerd@1.20250508.0)(wrangler@4.15.2(@cloudflare/workers-types@4.20250517.0))':
+    dependencies:
+      '@cloudflare/unenv-preset': 2.3.1(unenv@2.0.0-rc.15)(workerd@1.20250508.0)
+      '@mjackson/node-fetch-server': 0.6.1
+      '@rollup/plugin-replace': 6.0.2(rollup@4.41.0)
+      get-port: 7.1.0
+      miniflare: 4.20250508.2
+      picocolors: 1.1.1
+      tinyglobby: 0.2.13
+      unenv: 2.0.0-rc.15
+      vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.0)
+      wrangler: 4.15.2(@cloudflare/workers-types@4.20250517.0)
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - bufferutil
+      - rollup
+      - utf-8-validate
+      - workerd
+
   '@cloudflare/workerd-darwin-64@1.20250508.0':
     optional: true
 
@@ -9112,6 +9156,8 @@ snapshots:
 
   '@marijn/find-cluster-break@1.0.2': {}
 
+  '@mjackson/node-fetch-server@0.6.1': {}
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -9427,6 +9473,13 @@ snapshots:
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
+
+  '@rollup/plugin-replace@6.0.2(rollup@4.41.0)':
+    dependencies:
+      '@rollup/pluginutils': 5.1.4(rollup@4.41.0)
+      magic-string: 0.30.17
+    optionalDependencies:
+      rollup: 4.41.0
 
   '@rollup/pluginutils@5.1.4(rollup@4.41.0)':
     dependencies:
@@ -12317,6 +12370,8 @@ snapshots:
   get-nonce@1.0.1: {}
 
   get-package-type@0.1.0: {}
+
+  get-port@7.1.0: {}
 
   get-proto@1.0.1:
     dependencies:

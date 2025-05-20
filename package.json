@@ -7,7 +7,6 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro build && wrangler pages dev",
     "astro": "astro",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
@@ -66,6 +65,7 @@
     "zod": "^3.25.28"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.2.2",
     "@eslint/js": "^9.27.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@types/canvas-confetti": "^1.9.0",
