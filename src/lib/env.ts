@@ -24,17 +24,17 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
     clientPrefix: "PUBLIC_",
     client: {},
     server: {
+      SANITY_REVALIDATE_SECRET: z.string(),
       WAKATIME_API_KEY: z.string(),
-
       CF_API_TOKEN: z.string().optional(),
       CF_ZONE_ID: z.string(),
-
-      SANITY_REVALIDATE_SECRET: z.string(),
     },
     shared: {
       PUBLIC_SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
       PUBLIC_SANITY_API_DATASET: z.string().min(1).default("production"),
       PUBLIC_SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
+      PUBLIC_SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
+      SANITY_API_READ_TOKEN: z.string().optional(),
       PUBLIC_POSTHOG_API_KEY: z.string().min(1),
       PUBLIC_POSTHOG_API_HOST: z
         .string()
@@ -45,8 +45,6 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
         .url()
         .default("https://us.posthog.com"),
       WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
-      PUBLIC_SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
-      SANITY_API_READ_TOKEN: z.string().optional(),
     },
     runtimeEnv: runtimeEnv,
     emptyStringAsUndefined: true,
