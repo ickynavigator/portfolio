@@ -13,16 +13,16 @@ Fill up the .env file with the variables in the .env.example
 | `PUBLIC_SANITY_API_PROJECT_ID`         | Project ID of your Sanity project. Defaults to **MY** project Id |
 | `PUBLIC_SANITY_API_DATASET`            | Dataset name of your Sanity project. Defaults to `production`    |
 | `PUBLIC_SANITY_API_VERSION`            | API version of your Sanity project. Defaults to `2022-03-07`     |
-| `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`         |
 | `PUBLIC_SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`         |
+| `SANITY_REVALIDATE_SECRET`             | Secret for revalidating the sanity project                       |
 | `SANITY_API_READ_TOKEN`                | Read token for the sanity project                                |
 | `WAKATIME_API_KEY`                     | API key for the wakatime API                                     |
 | `PUBLIC_POSTHOG_API_KEY`               | API key for Posthog                                              |
 | `PUBLIC_POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com`  |
 | `PUBLIC_POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com` |
+| `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`         |
 | `CF_API_TOKEN`                         | Cloudflare API token. Used for purging cache.                    |
 | `CF_ZONE_ID`                           | Zone ID for the Cloudflare project.                              |
-| `SANITY_REVALIDATE_SECRET`             | Secret for revalidating the sanity project                       |
 
 ### 🧞 Commands
 
