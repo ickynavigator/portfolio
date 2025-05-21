@@ -145,7 +145,7 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.2.3
-        version: 1.2.3(rollup@4.41.0)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.0))(workerd@1.20250508.0)(wrangler@4.15.2(@cloudflare/workers-types@4.20250517.0))
+        version: 1.2.3(rollup@4.41.0)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.0))(workerd@1.20250508.0)(wrangler@4.16.0(@cloudflare/workers-types@4.20250517.0))
       '@eslint/js':
         specifier: ^9.27.0
         version: 9.27.0
@@ -876,15 +876,6 @@ packages:
   '@cloudflare/kv-asset-handler@0.4.0':
     resolution: {integrity: sha512-+tv3z+SPp+gqTIcImN9o0hqE9xyfQjI1XD9pL6NuKjua9B1y7mNYv0S9cP+QEbA4ppVgGZEmKOvHX5G5Ei1CVA==}
     engines: {node: '>=18.0.0'}
-
-  '@cloudflare/unenv-preset@2.3.2':
-    resolution: {integrity: sha512-MtUgNl+QkQyhQvv5bbWP+BpBC1N0me4CHHuP2H4ktmOMKdB/6kkz/lo+zqiA4mEazb4y+1cwyNjVrQ2DWeE4mg==}
-    peerDependencies:
-      unenv: 2.0.0-rc.17
-      workerd: ^1.20250508.0
-    peerDependenciesMeta:
-      workerd:
-        optional: true
 
   '@cloudflare/unenv-preset@2.3.2':
     resolution: {integrity: sha512-MtUgNl+QkQyhQvv5bbWP+BpBC1N0me4CHHuP2H4ktmOMKdB/6kkz/lo+zqiA4mEazb4y+1cwyNjVrQ2DWeE4mg==}
@@ -2084,6 +2075,10 @@ packages:
     resolution: {integrity: sha512-2TjYEvOftD0v7ukx3Csdh9QIu44P2z7NDJtlC3qITJRYV36J7R6Vfd3trVhFnN77/7CZrGjqngrtohv8VqO5nw==}
     engines: {node: '>=18.0.0'}
 
+  '@sanity/comlink@3.0.3':
+    resolution: {integrity: sha512-Nk9f2R+Ss7NGPHIjx6sXO3XVDYh/5EcO5ODy4mKRniks9O5t3ZhCDZoOaZtrudYKZbFTACDfEul53MzPT4JoHA==}
+    engines: {node: '>=18'}
+
   '@sanity/comlink@3.0.4':
     resolution: {integrity: sha512-2yXb7xKOkR0xW1/5/oEuPFPlitmHbdOxskDI7g/MgiezfcWaotAmAqmv9S4vugd1Z8URjWN1FAh0vL67iZowKA==}
     engines: {node: '>=18'}
@@ -2175,6 +2170,12 @@ packages:
   '@sanity/mutator@3.89.0':
     resolution: {integrity: sha512-5MbBb440cAW/lQ2BttN6IX34ZLdzEj4kLDvKH8QB7D4JRXyrpS3fOXpXHVDEq+2ob98gryJQ6IcAuL8K0o5Rpw==}
 
+  '@sanity/presentation-comlink@1.0.19':
+    resolution: {integrity: sha512-A/Obi1gvaaRYJL+QEPSiMowx0Uasl1o00LazmZse4CwXGYCtrDQow6rMyB43/UxomajFPzvKuh5WDpuvos2/wQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@sanity/client': ^7.1.0
+
   '@sanity/presentation-comlink@1.0.20':
     resolution: {integrity: sha512-gujasXlqbXldeQRuo3OF5vN/7gss2lwhbrTRS0sH6eHwSIBPcpTDXiCdd8IVo2fCj2rdkfxIOooE+O+aGv8cww==}
     engines: {node: '>=18'}
@@ -2187,8 +2188,8 @@ packages:
     peerDependencies:
       '@sanity/client': ^7.1.0
 
-  '@sanity/runtime-cli@7.4.1':
-    resolution: {integrity: sha512-ZBN958j5L4dKag4IWOYYTVdymoXepAD3VDQTn1DhkBMIuZ/J3+v6ESjcNL4/vCUgnWlI03OnbfL4wG33/y+xNQ==}
+  '@sanity/runtime-cli@7.5.0':
+    resolution: {integrity: sha512-G/iUIOn3UfJRj6yCvKN1x1d6Cq51VPQ84Mc/rSDN0ifaS6x0GQ+9BBHkG4YnDu/hCkDmQborPVBc4vY0DyRriQ==}
     engines: {node: '>=18.20.0'}
     hasBin: true
 
@@ -5248,11 +5249,6 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  miniflare@4.20250508.3:
-    resolution: {integrity: sha512-43oTmZ0CCmUcieetI5YDDyX0IiwhOcVIWzdBBCqWXK3F1XgQwg4d3fTqRyJnCmHIoaYx9CE1kTEKZC1UahPQhA==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-
   minimatch@10.0.1:
     resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
     engines: {node: 20 || >=22}
@@ -6818,9 +6814,6 @@ packages:
   undici@5.29.0:
     resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
     engines: {node: '>=14.0'}
-
-  unenv@2.0.0-rc.17:
-    resolution: {integrity: sha512-B06u0wXkEd+o5gOCMl/ZHl5cfpYbDZKAT+HWTL+Hws6jWu7dCiqBBXXXzMFcFVJb8D4ytAnYmxJA83uwOQRSsg==}
 
   unenv@2.0.0-rc.17:
     resolution: {integrity: sha512-B06u0wXkEd+o5gOCMl/ZHl5cfpYbDZKAT+HWTL+Hws6jWu7dCiqBBXXXzMFcFVJb8D4ytAnYmxJA83uwOQRSsg==}
@@ -8470,13 +8463,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20250508.0
 
-  '@cloudflare/unenv-preset@2.3.2(unenv@2.0.0-rc.17)(workerd@1.20250508.0)':
-    dependencies:
-      unenv: 2.0.0-rc.17
-    optionalDependencies:
-      workerd: 1.20250508.0
-
-  '@cloudflare/vite-plugin@1.2.3(rollup@4.41.0)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.0))(workerd@1.20250508.0)(wrangler@4.15.2(@cloudflare/workers-types@4.20250517.0))':
+  '@cloudflare/vite-plugin@1.2.3(rollup@4.41.0)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.0))(workerd@1.20250508.0)(wrangler@4.16.0(@cloudflare/workers-types@4.20250517.0))':
     dependencies:
       '@cloudflare/unenv-preset': 2.3.2(unenv@2.0.0-rc.17)(workerd@1.20250508.0)
       '@mjackson/node-fetch-server': 0.6.1
@@ -8487,7 +8474,7 @@ snapshots:
       tinyglobby: 0.2.13
       unenv: 2.0.0-rc.17
       vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(yaml@2.8.0)
-      wrangler: 4.15.2(@cloudflare/workers-types@4.20250517.0)
+      wrangler: 4.16.0(@cloudflare/workers-types@4.20250517.0)
       ws: 8.18.0
     transitivePeerDependencies:
       - bufferutil
@@ -9606,7 +9593,7 @@ snapshots:
       '@babel/traverse': 7.27.1
       '@sanity/client': 7.3.0(debug@4.4.1)
       '@sanity/codegen': 3.89.0
-      '@sanity/runtime-cli': 7.4.1(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.0)
+      '@sanity/runtime-cli': 7.5.0(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.0)
       '@sanity/telemetry': 0.8.1(react@19.1.0)
       '@sanity/template-validator': 2.4.3
       '@sanity/util': 3.89.0(@types/react@19.1.5)(debug@4.4.1)
@@ -9711,6 +9698,12 @@ snapshots:
       - supports-color
 
   '@sanity/color@3.0.6': {}
+
+  '@sanity/comlink@3.0.3':
+    dependencies:
+      rxjs: 7.8.2
+      uuid: 11.1.0
+      xstate: 5.19.3
 
   '@sanity/comlink@3.0.4':
     dependencies:
@@ -9835,7 +9828,7 @@ snapshots:
 
   '@sanity/message-protocol@0.13.2':
     dependencies:
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.3
 
   '@sanity/migrate@3.89.0(@types/react@19.1.5)':
     dependencies:
@@ -9890,7 +9883,15 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@sanity/presentation-comlink@1.0.20(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5)(debug@4.4.1))':
+  '@sanity/presentation-comlink@1.0.19(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5)(debug@4.4.1))':
+    dependencies:
+      '@sanity/client': 7.3.0(debug@4.4.1)
+      '@sanity/comlink': 3.0.3
+      '@sanity/visual-editing-types': 1.0.18(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5)(debug@4.4.1))
+    transitivePeerDependencies:
+      - '@sanity/types'
+
+  '@sanity/presentation-comlink@1.0.20(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5))':
     dependencies:
       '@sanity/client': 7.3.0(debug@4.4.1)
       '@sanity/comlink': 3.0.4
@@ -9903,7 +9904,7 @@ snapshots:
       '@sanity/client': 7.3.0(debug@4.4.1)
       '@sanity/uuid': 3.0.2
 
-  '@sanity/runtime-cli@7.4.1(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.0)':
+  '@sanity/runtime-cli@7.5.0(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.0)':
     dependencies:
       '@oclif/core': 4.3.0
       '@oclif/plugin-help': 6.2.28
@@ -9952,7 +9953,7 @@ snapshots:
   '@sanity/sdk@0.0.0-alpha.25(@types/react@19.1.5)(debug@4.4.1)(immer@10.1.1)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))':
     dependencies:
       '@sanity/client': 6.29.1(debug@4.4.1)
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.3
       '@sanity/diff-match-patch': 3.2.0
       '@sanity/mutate': 0.12.4(debug@4.4.1)
       '@sanity/types': 3.89.0(@types/react@19.1.5)(debug@4.4.1)
@@ -10115,7 +10116,7 @@ snapshots:
       '@sanity/icons': 3.7.0(react@19.1.0)
       '@sanity/insert-menu': 1.1.11(@emotion/is-prop-valid@1.2.2)(@sanity/types@3.89.0(@types/react@19.1.5))(react-dom@19.1.0(react@19.1.0))(react-is@19.1.0)(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@sanity/mutate': 0.11.0-canary.4(xstate@5.19.3)
-      '@sanity/presentation-comlink': 1.0.20(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5)(debug@4.4.1))
+      '@sanity/presentation-comlink': 1.0.20(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5))
       '@sanity/preview-url-secret': 2.1.11(@sanity/client@7.3.0)
       '@sanity/ui': 2.15.18(@emotion/is-prop-valid@1.2.2)(react-dom@19.1.0(react@19.1.0))(react-is@19.1.0)(react@19.1.0)(styled-components@6.1.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@sanity/visual-editing-csm': 2.0.17(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5))(typescript@5.8.3)
@@ -13718,24 +13719,6 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  miniflare@4.20250508.3:
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      acorn: 8.14.0
-      acorn-walk: 8.3.2
-      exit-hook: 2.2.1
-      glob-to-regexp: 0.4.1
-      sharp: 0.33.5
-      stoppable: 1.1.0
-      undici: 5.29.0
-      workerd: 1.20250508.0
-      ws: 8.18.0
-      youch: 3.3.4
-      zod: 3.22.3
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
   minimatch@10.0.1:
     dependencies:
       brace-expansion: 2.0.1
@@ -14795,7 +14778,7 @@ snapshots:
       '@sanity/cli': 3.89.0(@types/node@22.15.18)(@types/react@19.1.5)(jiti@2.4.2)(lightningcss@1.30.1)(react@19.1.0)(terser@5.39.0)(typescript@5.8.3)(yaml@2.8.0)
       '@sanity/client': 7.3.0(debug@4.4.1)
       '@sanity/color': 3.0.6
-      '@sanity/comlink': 3.0.4
+      '@sanity/comlink': 3.0.3
       '@sanity/diff': 3.89.0
       '@sanity/diff-match-patch': 3.2.0
       '@sanity/diff-patch': 5.0.0
@@ -14810,7 +14793,7 @@ snapshots:
       '@sanity/message-protocol': 0.13.2
       '@sanity/migrate': 3.89.0(@types/react@19.1.5)
       '@sanity/mutator': 3.89.0(@types/react@19.1.5)
-      '@sanity/presentation-comlink': 1.0.20(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5)(debug@4.4.1))
+      '@sanity/presentation-comlink': 1.0.19(@sanity/client@7.3.0)(@sanity/types@3.89.0(@types/react@19.1.5)(debug@4.4.1))
       '@sanity/preview-url-secret': 2.1.11(@sanity/client@7.3.0)
       '@sanity/schema': 3.89.0(@types/react@19.1.5)(debug@4.4.1)
       '@sanity/sdk': 0.0.0-alpha.25(@types/react@19.1.5)(debug@4.4.1)(immer@10.1.1)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0))
@@ -15581,14 +15564,6 @@ snapshots:
   undici@5.29.0:
     dependencies:
       '@fastify/busboy': 2.1.1
-
-  unenv@2.0.0-rc.17:
-    dependencies:
-      defu: 6.1.4
-      exsolve: 1.0.5
-      ohash: 2.0.11
-      pathe: 2.0.3
-      ufo: 1.6.1
 
   unenv@2.0.0-rc.17:
     dependencies:
