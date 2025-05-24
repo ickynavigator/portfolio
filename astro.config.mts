@@ -52,7 +52,7 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss()].concat(env.CI ? [cloudflareVitePlugin()] : []),
+    plugins: [tailwindcss()].concat(env.CI ? [] : [cloudflareVitePlugin()]),
     resolve: {
       alias: {
         // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
