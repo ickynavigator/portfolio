@@ -1,14 +1,11 @@
 {
-    "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
+    "$schema": "node_modules/wrangler/config-schema.json",
     "name": "portfolio",
     "pages_build_output_dir": "dist",
     "compatibility_date": "2025-04-01",
     "compatibility_flags": [
         "nodejs_compat_v2"
     ],
-    "assets": {
-        "not_found_handling": "single-page-application"
-    },
     "vars": {
         "PUBLIC_SANITY_API_PROJECT_ID": "gtsyvuts",
         "PUBLIC_SANITY_API_DATASET": "production",
