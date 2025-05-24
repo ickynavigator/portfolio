@@ -13,6 +13,8 @@ import { getEnv } from "./src/lib/env";
 const _env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
 const env = getEnv(_env);
 
+console.log("Environment Variables", _env);
+
 // https://astro.build/config
 export default defineConfig({
   output: "static",
