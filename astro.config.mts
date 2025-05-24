@@ -13,8 +13,6 @@ import { getEnv } from "./src/lib/env";
 const _env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
 const env = getEnv(_env);
 
-console.log("Environment Variables", _env);
-
 // https://astro.build/config
 export default defineConfig({
   output: "static",
@@ -54,7 +52,7 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss(), cloudflareVitePlugin()],
+    plugins: [tailwindcss()].concat(env.CI ? [cloudflareVitePlugin()] : []),
     resolve: {
       alias: {
         // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
