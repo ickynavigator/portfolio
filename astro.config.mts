@@ -1,6 +1,7 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import { cloudflare as cloudflareVitePlugin } from "@cloudflare/vite-plugin";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
 import compress from "astro-compress";
@@ -51,7 +52,7 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss()].concat(env.CI ? [] : [cloudflareVitePlugin()]),
     resolve: {
       alias: {
         // Use react-dom/server.edge instead of react-dom/server.browser for React 19.

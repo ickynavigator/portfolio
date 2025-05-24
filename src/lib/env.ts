@@ -55,6 +55,7 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
 export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
   createEnv({
     server: {
+      CI: booleanish.optional().default(false),
       /**
        * @description `1`
        * @example Changing build behaviour when run on Pages versus locally
@@ -85,6 +86,8 @@ const booleanish = z.union([
     .string()
     .refine((s) => s === "true" || s === "false")
     .transform((s) => s === "true"),
+  z.literal(1).transform(() => true),
+  z.literal(0).transform(() => false),
 ]);
 
 const numberish = z.union([z.number(), z.string().transform(Number)]);
