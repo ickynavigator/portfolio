@@ -7,7 +7,7 @@
         "nodejs_compat_v2"
     ],
     "assets": {
-        "not_found_handling": "single-page-application",
+        "not_found_handling": "single-page-application"
     },
     "vars": {
         "PUBLIC_SANITY_API_PROJECT_ID": "gtsyvuts",
