@@ -1,10 +1,12 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 import {
+  BlockLink,
   BlockQuoteDanger,
   BlockQuoteInfo,
   BlockQuoteSuccess,
   BlockQuoteWarning,
+  BlockReferenceLink,
   Highlight,
   Muted,
 } from "~/lib/sanity/schema/objects/blockContent.components";
@@ -49,6 +51,7 @@ export default defineType({
           { title: "Strike", value: "strike-through" },
           Highlight,
         ],
+        annotations: [BlockLink, BlockReferenceLink],
       },
     }),
 

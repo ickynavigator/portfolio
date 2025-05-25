@@ -88,11 +88,30 @@ export interface Career {
           | "blockquote-warning"
           | "blockquote-danger";
         listItem?: "bullet" | "number";
-        markDefs?: {
-          href?: string;
-          _type: "link";
-          _key: string;
-        }[];
+        markDefs?: (
+          | {
+              href?: string;
+              _type: "link";
+              _key: string;
+            }
+          | {
+              ref:
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "post";
+                  }
+                | {
+                    _ref: string;
+                    _type: "reference";
+                    _weak?: boolean;
+                    [internalGroqTypeReferenceTo]?: "project";
+                  };
+              _type: "referencelink";
+              _key: string;
+            }
+        )[];
         level?: number;
         _type: "block";
         _key: string;
@@ -159,179 +178,6 @@ export interface EnhancedURL {
   hidden: boolean;
 }
 
-export interface Project {
-  _id: string;
-  _type: "project";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  hidden: boolean;
-  archived: boolean;
-  slug: Slug;
-  title: string;
-  status: "completed" | "ongoing" | "abandoned";
-  role: string;
-  images: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt: string;
-    _type: "image";
-    _key: string;
-  }[];
-  tags: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }[];
-  body: (
-    | {
-        children?: {
-          marks?: string[];
-          text?: string;
-          _type: "span";
-          _key: string;
-        }[];
-        style?:
-          | "normal"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "muted"
-          | "blockquote"
-          | "blockquote-info"
-          | "blockquote-success"
-          | "blockquote-warning"
-          | "blockquote-danger";
-        listItem?: "bullet" | "number";
-        markDefs?: {
-          href?: string;
-          _type: "link";
-          _key: string;
-        }[];
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt: string;
-        _type: "image";
-        _key: string;
-      }
-    | ({
-        _key: string;
-      } & Code)
-  )[];
-  links: ({
-    _key: string;
-  } & EnhancedURL)[];
-}
-
-export interface Post {
-  _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  hidden: boolean;
-  archived: boolean;
-  title: string;
-  slug: Slug;
-  postedAt: string;
-  tags?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }[];
-  description: string;
-  images: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt: string;
-    _type: "image";
-    _key: string;
-  }[];
-  body: (
-    | {
-        children?: {
-          marks?: string[];
-          text?: string;
-          _type: "span";
-          _key: string;
-        }[];
-        style?:
-          | "normal"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "muted"
-          | "blockquote"
-          | "blockquote-info"
-          | "blockquote-success"
-          | "blockquote-warning"
-          | "blockquote-danger";
-        listItem?: "bullet" | "number";
-        markDefs?: {
-          href?: string;
-          _type: "link";
-          _key: string;
-        }[];
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt: string;
-        _type: "image";
-        _key: string;
-      }
-    | ({
-        _key: string;
-      } & Code)
-  )[];
-}
-
 export type BlockContent = (
   | {
       children?: {
@@ -355,11 +201,30 @@ export type BlockContent = (
         | "blockquote-warning"
         | "blockquote-danger";
       listItem?: "bullet" | "number";
-      markDefs?: {
-        href?: string;
-        _type: "link";
-        _key: string;
-      }[];
+      markDefs?: (
+        | {
+            href?: string;
+            _type: "link";
+            _key: string;
+          }
+        | {
+            ref:
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "post";
+                }
+              | {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "project";
+                };
+            _type: "referencelink";
+            _key: string;
+          }
+      )[];
       level?: number;
       _type: "block";
       _key: string;
@@ -391,12 +256,6 @@ export interface Category {
   _rev: string;
   title: string;
   slug: Slug;
-}
-
-export interface Slug {
-  _type: "slug";
-  current: string;
-  source?: string;
 }
 
 export interface PersonalInfo {
@@ -464,6 +323,87 @@ export interface PersonalInfo {
     [internalGroqTypeReferenceTo]?: "project";
   }[];
   uses: BlockContent;
+}
+
+export interface Post {
+  _id: string;
+  _type: "post";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  hidden: boolean;
+  archived: boolean;
+  title: string;
+  slug: Slug;
+  postedAt: string;
+  tags?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }[];
+  description: string;
+  images: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+    _key: string;
+  }[];
+  body: BlockContent;
+}
+
+export interface Project {
+  _id: string;
+  _type: "project";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  hidden: boolean;
+  archived: boolean;
+  slug: Slug;
+  title: string;
+  status: "completed" | "ongoing" | "abandoned";
+  role: string;
+  images: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt: string;
+    _type: "image";
+    _key: string;
+  }[];
+  tags: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "category";
+  }[];
+  body: BlockContent;
+  links: ({
+    _key: string;
+  } & EnhancedURL)[];
+}
+
+export interface Slug {
+  _type: "slug";
+  current: string;
+  source?: string;
 }
 
 export interface SanityImageCrop {
@@ -571,12 +511,12 @@ export type AllSanitySchemaTypes =
   | Geopoint
   | Career
   | EnhancedURL
-  | Project
-  | Post
   | BlockContent
   | Category
-  | Slug
   | PersonalInfo
+  | Post
+  | Project
+  | Slug
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
@@ -652,56 +592,7 @@ export type POST_QUERYResult = {
     _type: "image";
     _key: string;
   }[];
-  body: (
-    | ({
-        _key: string;
-      } & Code)
-    | {
-        children?: {
-          marks?: string[];
-          text?: string;
-          _type: "span";
-          _key: string;
-        }[];
-        style?:
-          | "blockquote-danger"
-          | "blockquote-info"
-          | "blockquote-success"
-          | "blockquote-warning"
-          | "blockquote"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "muted"
-          | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: {
-          href?: string;
-          _type: "link";
-          _key: string;
-        }[];
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt: string;
-        _type: "image";
-        _key: string;
-      }
-  )[];
+  body: BlockContent;
   wordCount: number;
   derefTag:
     | never[]
@@ -828,56 +719,7 @@ export type PROJECT_QUERYResult = {
     _key: string;
     [internalGroqTypeReferenceTo]?: "category";
   }[];
-  body: (
-    | ({
-        _key: string;
-      } & Code)
-    | {
-        children?: {
-          marks?: string[];
-          text?: string;
-          _type: "span";
-          _key: string;
-        }[];
-        style?:
-          | "blockquote-danger"
-          | "blockquote-info"
-          | "blockquote-success"
-          | "blockquote-warning"
-          | "blockquote"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "muted"
-          | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: {
-          href?: string;
-          _type: "link";
-          _key: string;
-        }[];
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt: string;
-        _type: "image";
-        _key: string;
-      }
-  )[];
+  body: BlockContent;
   links: ({
     _key: string;
   } & EnhancedURL)[];
@@ -939,11 +781,30 @@ export interface CAREERS_QUERYResult {
             | "muted"
             | "normal";
           listItem?: "bullet" | "number";
-          markDefs?: {
-            href?: string;
-            _type: "link";
-            _key: string;
-          }[];
+          markDefs?: (
+            | {
+                href?: string;
+                _type: "link";
+                _key: string;
+              }
+            | {
+                ref:
+                  | {
+                      _ref: string;
+                      _type: "reference";
+                      _weak?: boolean;
+                      [internalGroqTypeReferenceTo]?: "post";
+                    }
+                  | {
+                      _ref: string;
+                      _type: "reference";
+                      _weak?: boolean;
+                      [internalGroqTypeReferenceTo]?: "project";
+                    };
+                _type: "referencelink";
+                _key: string;
+              }
+          )[];
           level?: number;
           _type: "block";
           _key: string;
