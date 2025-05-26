@@ -15,6 +15,7 @@ import UnorderedList from "~/components/PortableText/List/UnorderedList.Portable
 import Highlight from "~/components/PortableText/Mark/Highlight.PortableText.astro";
 import InlineCode from "~/components/PortableText/Mark/InlineCode.PortableText.astro";
 import Link from "~/components/PortableText/Mark/Link.PortableText.astro";
+import LinkReference from "~/components/PortableText/Mark/LinkReference.PortableText.astro";
 import MutedMark from "~/components/PortableText/Mark/Muted.PortableText.astro";
 import Text from "~/components/PortableText/Text.PortableText.astro";
 import TOC from "~/components/PortableText/TOC.PortableText.astro";
@@ -73,6 +74,8 @@ const {
         // 'strike-through',
         mark: Highlight,
         muted: MutedMark,
+
+        referencelink: LinkReference,
       },
 
       list: {

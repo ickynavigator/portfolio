@@ -1006,6 +1006,9 @@ export type BIRTHDAY_QUERYResult = string | null;
 // Variable: SHOW_SIMPLE_CODE_QUERY
 // Query: coalesce(*[_type == "configuration" && _id == "configuration"] [0].showSimpleCodePreview, false)
 export type SHOW_SIMPLE_CODE_QUERYResult = boolean | false;
+// Variable: LINK_REFERENCE_QUERY
+// Query: $ref -> {        "type": _type,        "name": title,        "updatedAt": _updatedAt,        "slug": slug.current,        "shouldShow": array::intersects(["post", "project"], [_type]) && hidden == true    }
+export type LINK_REFERENCE_QUERYResult = null;
 
 declare module "@sanity/client" {
   interface SanityQueries {
@@ -1026,5 +1029,6 @@ declare module "@sanity/client" {
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        bio,\n    }\n': ABOUT_QUERYResult;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].birthday\n': BIRTHDAY_QUERYResult;
     '\n    coalesce(*[_type == "configuration" && _id == "configuration"] [0].showSimpleCodePreview, false)\n': SHOW_SIMPLE_CODE_QUERYResult;
+    '\n    $ref -> {\n        "type": _type,\n        "name": title,\n        "updatedAt": _updatedAt,\n        "slug": slug.current,\n        "shouldShow": array::intersects(["post", "project"], [_type]) && hidden == true\n    }\n': LINK_REFERENCE_QUERYResult;
   }
 }

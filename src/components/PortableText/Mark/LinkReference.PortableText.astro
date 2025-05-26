@@ -1,0 +1,75 @@
+---
+import type { MarkProps } from "astro-portabletext/types";
+import { z } from "zod";
+
+import dayjs from "~/lib/date";
+import { loadQuery } from "~/lib/sanity/load-query";
+import { LINK_REFERENCE_QUERY } from "~/lib/sanity/queries";
+
+type Props = MarkProps<{ ref: string; _type: "referencelink"; _key: string }>;
+
+const result = await loadQuery({
+  query: LINK_REFERENCE_QUERY,
+  params: { ref: Astro.props.node.markDef.ref },
+});
+
+const schema = z
+  .object({
+    type: z.union([
+      z.literal("post").transform(() => "blog"),
+      z.literal("project").transform(() => "projects"),
+    ]),
+    name: z.string().min(1),
+    updatedAt: z
+      .string()
+      .datetime()
+      .transform((date) => dayjs(date)),
+    slug: z.string().min(1),
+    shouldShow: z.literal(false),
+  })
+  .transform((data) => ({
+    ...data,
+    base: `/${data.type}`,
+    url: `/${data.type}/${data.slug}`,
+  }));
+
+const { success, data } = schema.safeParse(result.result);
+---
+
+<span class="tooltip">
+  <div
+    data-tooltip-trigger
+    class="text-accent-foreground bg-accent flex flex-col rounded border p-2 shadow"
+  >
+    {
+      !success ? (
+        <>
+          <span class="text-destructive tracking-tight">Broken reference</span>
+        </>
+      ) : (
+        <>
+          <span class="text-muted-foreground text-xs">
+            <span class="capitalize">
+              <a href={data.base}>{data.type}</a>
+            </span>
+            at {data.updatedAt.format("ll")}
+          </span>
+
+          <span class="font-bold tracking-tight">{data.name}</span>
+        </>
+      )
+    }
+  </div>
+
+  {
+    !success ? (
+      <span class="decoration-destructive cursor-not-allowed! underline decoration-wavy">
+        <slot />
+      </span>
+    ) : (
+      <a href={data.url} class="hover-link cursor-alias decoration-wavy">
+        <slot />
+      </a>
+    )
+  }
+</span>

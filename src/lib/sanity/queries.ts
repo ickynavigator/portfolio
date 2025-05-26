@@ -165,3 +165,13 @@ export const BIRTHDAY_QUERY = defineQuery(`
 export const SHOW_SIMPLE_CODE_QUERY = defineQuery(`
     coalesce(*[_type == "configuration" && _id == "${CONFIGURATION_CONFIG_ID}"] [0].showSimpleCodePreview, false)
 `);
+
+export const LINK_REFERENCE_QUERY = defineQuery(`
+    $ref -> {
+        "type": _type,
+        "name": title,
+        "updatedAt": _updatedAt,
+        "slug": slug.current,
+        "shouldShow": array::intersects(["post", "project"], [_type]) && hidden == true
+    }
+`);
