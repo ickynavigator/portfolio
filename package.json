@@ -53,16 +53,16 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "recharts": "^2.15.3",
-    "remeda": "^2.22.4",
+    "remeda": "^2.22.5",
     "sanity": "^3.90.0",
     "sanity-plugin-webhooks-trigger": "^0.4.1",
     "sonner": "^2.0.4",
     "styled-components": "^6.1.18",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.8",
-    "tw-animate-css": "^1.3.2",
+    "tw-animate-css": "^1.3.3",
     "vaul": "^1.1.2",
-    "zod": "^3.25.42"
+    "zod": "^3.25.48"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.3.1",
