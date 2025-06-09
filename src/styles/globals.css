@@ -5,6 +5,10 @@
 
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
+@plugin "tailwind-scrollbar" {
+  nocompatible: true;
+  preferredstrategy: "pseudoelements";
+}
 
 @custom-variant dark {
   @media (scripting: enabled) {
