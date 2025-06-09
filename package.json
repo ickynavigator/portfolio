@@ -59,6 +59,7 @@
     "sonner": "^2.0.5",
     "styled-components": "^6.1.18",
     "tailwind-merge": "^3.3.0",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4.1.8",
     "tw-animate-css": "^1.3.4",
     "vaul": "^1.1.2",
