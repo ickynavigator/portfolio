@@ -13,13 +13,16 @@ Fill up the .env file with the variables in the .env.example
 | `PUBLIC_SANITY_API_PROJECT_ID`         | Project ID of your Sanity project. Defaults to **MY** project Id |
 | `PUBLIC_SANITY_API_DATASET`            | Dataset name of your Sanity project. Defaults to `production`    |
 | `PUBLIC_SANITY_API_VERSION`            | API version of your Sanity project. Defaults to `2022-03-07`     |
-| `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`         |
 | `PUBLIC_SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`         |
+| `SANITY_REVALIDATE_SECRET`             | Secret for revalidating the sanity project                       |
 | `SANITY_API_READ_TOKEN`                | Read token for the sanity project                                |
 | `WAKATIME_API_KEY`                     | API key for the wakatime API                                     |
 | `PUBLIC_POSTHOG_API_KEY`               | API key for Posthog                                              |
 | `PUBLIC_POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com   |
 | `PUBLIC_POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com  |
+| `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`         |
+| `CF_API_TOKEN`                         | Cloudflare API token. Used for purging cache.                    |
+| `CF_ZONE_ID`                           | Zone ID for the Cloudflare project.                              |
 
 ### 🧞 Commands
 
@@ -27,9 +30,10 @@ All commands are run from the root of the project, from a terminal with `pnpm ru
 
 | Command      | Action                                                                          |
 | :----------- | :------------------------------------------------------------------------------ |
+| `prebuild`   | Run the typegen and astro check scripts                                         |
 | `dev`        | Starts local dev server at `localhost:4321` + studio at `localhost:4321/studio` |
 | `build`      | Build your production site to `./dist/`                                         |
-| `deploy`     | Deploy your build to cloudflare with wrangler                                   |
+| `typegen`    | Run all typegen scripts                                                         |
 | `cf-typegen` | Generate types from bindings and module rules in configuration                  |
 | `sa-typegen` | Extract sanity schema info and generate types                                   |
 | `lint`       | Run eslint on the project                                                       |
