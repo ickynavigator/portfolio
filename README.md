@@ -20,6 +20,7 @@ Fill up the .env file with the variables in the .env.example
 | `PUBLIC_POSTHOG_API_KEY`               | API key for Posthog                                              |
 | `PUBLIC_POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com   |
 | `PUBLIC_POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com  |
+| `PUBLIC_PARTY_URL`                     | PartyKit location. Defaults to `http://localhost:1999`           |
 
 ### 🧞 Commands
 
