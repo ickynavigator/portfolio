@@ -66,7 +66,7 @@ importers:
         version: 3.7.0
       '@t3-oss/env-core':
         specifier: ^0.13.8
-        version: 0.13.8(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.73)
+        version: 0.13.8(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@4.0.2)
       '@tabler/icons-react':
         specifier: 3.34.0
         version: 3.34.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@19.1.0)
@@ -143,8 +143,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       zod:
-        specifier: ^3.25.73
-        version: 3.25.73
+        specifier: ^4.0.2
+        version: 4.0.2
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.9.0
@@ -7815,6 +7815,9 @@ packages:
   zod@3.25.73:
     resolution: {integrity: sha512-fuIKbQAWQl22Ba5d1quwEETQYjqnpKVyZIWAhbnnHgnDd3a+z4YgEfkI5SZ2xMELnLAXo/Flk2uXgysZNf0uaA==}
 
+  zod@4.0.2:
+    resolution: {integrity: sha512-X2niJNY54MGam4L6Kj0AxeedeDIi/E5QFW0On2faSX5J4/pfLk1tW+cRMIMoojnCavn/u5W/kX17e1CSGnKMxA==}
+
   zustand@5.0.6:
     resolution: {integrity: sha512-ihAqNeUVhe0MAD+X8M5UzqyZ9k3FFZLBTtqo6JLPwV53cbRB/mJwBI0PxcIgqhBBHlEs8G45OTDTMq3gNcLq3A==}
     engines: {node: '>=12.20.0'}
@@ -10715,11 +10718,11 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@t3-oss/env-core@0.13.8(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.73)':
+  '@t3-oss/env-core@0.13.8(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@4.0.2)':
     optionalDependencies:
       typescript: 5.8.3
       valibot: 1.1.0(typescript@5.8.3)
-      zod: 3.25.73
+      zod: 4.0.2
 
   '@tabler/icons-react@3.34.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@19.1.0)':
     dependencies:
@@ -16825,6 +16828,8 @@ snapshots:
   zod@3.22.3: {}
 
   zod@3.25.73: {}
+
+  zod@4.0.2: {}
 
   zustand@5.0.6(@types/react@19.1.8)(immer@10.1.1)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0)):
     optionalDependencies:
