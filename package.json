@@ -92,7 +92,7 @@
     "vite": "^6.3.5",
     "wrangler": "^4.23.0"
   },
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.13.1",
   "pnpm": {
     "patchedDependencies": {
       "@tabler/icons-react": "patches/@tabler__icons-react.patch"
