@@ -41,7 +41,7 @@
     "@tabler/icons-react": "3.34.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.11.2",
+    "astro": "^5.12.0",
     "astro-compress": "^2.3.8",
     "astro-portabletext": "^0.11.1",
     "canvas-confetti": "^1.9.3",
