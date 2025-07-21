@@ -16,39 +16,6 @@ import "@sanity/client";
  */
 
 // Source: schema.json
-export interface SanityImagePaletteSwatch {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
-}
-
-export interface SanityImagePalette {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
-}
-
-export interface SanityImageDimensions {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
-}
-
-export interface Geopoint {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
-}
-
 export interface Career {
   _id: string;
   _type: "career";
@@ -393,12 +360,6 @@ export interface Category {
   slug: Slug;
 }
 
-export interface Slug {
-  _type: "slug";
-  current: string;
-  source?: string;
-}
-
 export interface PersonalInfo {
   _id: string;
   _type: "personalInfo";
@@ -466,12 +427,49 @@ export interface PersonalInfo {
   uses: BlockContent;
 }
 
-export interface SanityImageCrop {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+export interface Configuration {
+  _id: string;
+  _type: "configuration";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  showOriginalSourceLink: boolean;
+  showSimpleCodePreview: boolean;
+}
+
+export interface Code {
+  _type: "code";
+  language?: string;
+  filename?: string;
+  code?: string;
+  highlightedLines?: number[];
+}
+
+export interface SanityImagePaletteSwatch {
+  _type: "sanity.imagePaletteSwatch";
+  background?: string;
+  foreground?: string;
+  population?: number;
+  title?: string;
+}
+
+export interface SanityImagePalette {
+  _type: "sanity.imagePalette";
+  darkMuted?: SanityImagePaletteSwatch;
+  lightVibrant?: SanityImagePaletteSwatch;
+  darkVibrant?: SanityImagePaletteSwatch;
+  vibrant?: SanityImagePaletteSwatch;
+  dominant?: SanityImagePaletteSwatch;
+  lightMuted?: SanityImagePaletteSwatch;
+  muted?: SanityImagePaletteSwatch;
+}
+
+export interface SanityImageDimensions {
+  _type: "sanity.imageDimensions";
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
 }
 
 export interface SanityImageHotspot {
@@ -480,6 +478,36 @@ export interface SanityImageHotspot {
   y?: number;
   height?: number;
   width?: number;
+}
+
+export interface SanityImageCrop {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+}
+
+export interface SanityFileAsset {
+  _id: string;
+  _type: "sanity.fileAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  source?: SanityAssetSourceData;
 }
 
 export interface SanityImageAsset {
@@ -516,26 +544,17 @@ export interface SanityImageMetadata {
   isOpaque?: boolean;
 }
 
-export interface SanityFileAsset {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
+export interface Geopoint {
+  _type: "geopoint";
+  lat?: number;
+  lng?: number;
+  alt?: number;
+}
+
+export interface Slug {
+  _type: "slug";
+  current: string;
+  source?: string;
 }
 
 export interface SanityAssetSourceData {
@@ -545,46 +564,27 @@ export interface SanityAssetSourceData {
   url?: string;
 }
 
-export interface Configuration {
-  _id: string;
-  _type: "configuration";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name: string;
-  showOriginalSourceLink: boolean;
-  showSimpleCodePreview: boolean;
-}
-
-export interface Code {
-  _type: "code";
-  language?: string;
-  filename?: string;
-  code?: string;
-  highlightedLines?: number[];
-}
-
 export type AllSanitySchemaTypes =
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | Geopoint
   | Career
   | EnhancedURL
   | Project
   | Post
   | BlockContent
   | Category
-  | Slug
   | PersonalInfo
-  | SanityImageCrop
+  | Configuration
+  | Code
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
   | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
   | SanityImageAsset
   | SanityImageMetadata
-  | SanityFileAsset
-  | SanityAssetSourceData
-  | Configuration
-  | Code;
+  | Geopoint
+  | Slug
+  | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/lib/sanity/queries.ts
 // Variable: PAGINATED_POSTS_QUERY
