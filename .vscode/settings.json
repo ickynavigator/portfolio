@@ -1,0 +1,6 @@
+{
+    "explorer.fileNesting.patterns": {
+        "sanity.config.ts": "sanity.cli.ts, sanity.schema.json, sanity-typegen.json, sanity.types.ts",
+        "wrangler.jsonc": "worker-configuration.d.ts, .dev.vars"
+    }
+}
