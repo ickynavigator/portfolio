@@ -704,7 +704,6 @@ export type POST_QUERYResult = {
   )[];
   wordCount: number;
   derefTag:
-    | never[]
     | {
         _id: string;
         _type: "category";
@@ -713,7 +712,8 @@ export type POST_QUERYResult = {
         _rev: string;
         title: string;
         slug: Slug;
-      }[];
+      }[]
+    | never[];
 } | null;
 // Variable: CV_REF_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->
@@ -1077,7 +1077,6 @@ export type SEARCH_QUERYResult = (
       title: string;
       slug: Slug;
       tags:
-        | never[]
         | {
             _id: string;
             _type: "category";
@@ -1086,7 +1085,8 @@ export type SEARCH_QUERYResult = (
             _rev: string;
             title: string;
             slug: Slug;
-          }[];
+          }[]
+        | never[];
     }
   | {
       _type: "project";
