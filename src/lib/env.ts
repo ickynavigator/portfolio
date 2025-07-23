@@ -31,15 +31,9 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
       PUBLIC_SANITY_API_DATASET: z.string().min(1).default("production"),
       PUBLIC_SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
       PUBLIC_POSTHOG_API_KEY: z.string().min(1),
-      PUBLIC_POSTHOG_API_HOST: z
-        .string()
-        .url()
-        .default("https://us.i.posthog.com"),
-      PUBLIC_POSTHOG_UI_HOST: z
-        .string()
-        .url()
-        .default("https://us.posthog.com"),
-      WEBSITE_URL: z.string().min(1).url().default("https://obifortune.com"),
+      PUBLIC_POSTHOG_API_HOST: z.url().default("https://us.i.posthog.com"),
+      PUBLIC_POSTHOG_UI_HOST: z.url().default("https://us.posthog.com"),
+      WEBSITE_URL: z.url().min(1).default("https://obifortune.com"),
       PUBLIC_SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
       SANITY_API_READ_TOKEN: z.string().optional(),
     },
