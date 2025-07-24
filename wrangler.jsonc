@@ -6,7 +6,6 @@
         "nodejs_compat_v2"
     ],
     "assets": {
-        "binding": "ASSETS",
         "directory": "./dist",
     },
     "observability": {
