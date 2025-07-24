@@ -41,7 +41,7 @@
     "@tabler/icons-react": "3.34.1",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.12.2",
+    "astro": "^5.12.3",
     "astro-compress": "^2.3.8",
     "astro-portabletext": "^0.11.1",
     "canvas-confetti": "^1.9.3",
@@ -63,7 +63,7 @@
     "tailwindcss": "^4.1.11",
     "tw-animate-css": "^1.3.5",
     "vaul": "^1.1.2",
-    "zod": "^4.0.5"
+    "zod": "^4.0.8"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.10.0",
