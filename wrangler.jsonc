@@ -13,7 +13,6 @@
     "observability": {
         "enabled": true
     },
-    "preview_urls": true,
     "vars": {
         "PUBLIC_SANITY_API_PROJECT_ID": "gtsyvuts",
         "PUBLIC_SANITY_API_DATASET": "production",
