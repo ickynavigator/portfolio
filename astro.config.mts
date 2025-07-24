@@ -39,10 +39,7 @@ export default defineConfig({
       projectId: env.PUBLIC_SANITY_API_PROJECT_ID,
       apiVersion: env.PUBLIC_SANITY_API_VERSION,
       useCdn: false,
-      studioBasePath: "/studio",
-      stega: {
-        studioUrl: "/studio",
-      },
+      stega: {},
     }),
     react(),
     sitemap(),
@@ -70,6 +67,9 @@ export default defineConfig({
         "node:readline",
         "node:path",
       ],
+    },
+    build: {
+      chunkSizeWarningLimit: 1000,
     },
   },
 });

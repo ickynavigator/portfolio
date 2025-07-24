@@ -9,7 +9,7 @@ import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
 import SocialButton from "~/components/SocialButton.astro";
 import { isSameDayMonth } from "~/lib/date";
-import { getEnv } from "~/lib/env";
+import { env } from "~/lib/env/client";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { BIRTHDAY_QUERY, SOCIAL_LINKS_QUERY } from "~/lib/sanity/queries";
 
@@ -29,8 +29,6 @@ const [_socials, _birthdate] = await Promise.all([
   loadQuery({ query: SOCIAL_LINKS_QUERY }),
   loadQuery({ query: BIRTHDAY_QUERY }),
 ]);
-
-const env = getEnv();
 
 const isTodayBirthday = _birthdate.result
   ? isSameDayMonth(_birthdate.result)

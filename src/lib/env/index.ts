@@ -1,25 +1,8 @@
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
-// TODO: --log-override:empty-import-meta=silent
-export const _getEnv = (tryProcess = false) => {
-  if (tryProcess) {
-    try {
-      if (typeof window === "undefined") {
-        return process.env;
-      } else {
-        return import.meta.env;
-      }
-    } catch {
-      return import.meta.env;
-    }
-  }
-
-  return import.meta.env;
-};
-
 type RuntimeEnv = Record<string, string | boolean | number | undefined>;
-export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
+export const getEnv = (runtimeEnv: RuntimeEnv) => {
   return createEnv({
     clientPrefix: "PUBLIC_",
     client: {},
@@ -30,11 +13,14 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
       PUBLIC_SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
       PUBLIC_SANITY_API_DATASET: z.string().min(1).default("production"),
       PUBLIC_SANITY_API_VERSION: z.string().min(1).default("2022-03-07"),
-      PUBLIC_POSTHOG_API_KEY: z.string().min(1),
+      PUBLIC_POSTHOG_API_KEY: z
+        .string()
+        .min(1)
+        .default("phc_tsOUKsYrGpDKtq0LDG4uWzav1y8TwkHLRVadr8TIrv6"),
       PUBLIC_POSTHOG_API_HOST: z.url().default("https://us.i.posthog.com"),
       PUBLIC_POSTHOG_UI_HOST: z.url().default("https://us.posthog.com"),
       WEBSITE_URL: z.url().min(1).default("https://obifortune.com"),
-      PUBLIC_SANITY_VISUAL_EDITING_ENABLED: booleanish.default(false),
+      PUBLIC_SANITY_VISUAL_EDITING_ENABLED: z.stringbool().default(false),
       SANITY_API_READ_TOKEN: z.string().optional(),
     },
     runtimeEnv: runtimeEnv,
@@ -49,7 +35,7 @@ export const getEnv = (runtimeEnv: RuntimeEnv = _getEnv()) => {
 export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
   createEnv({
     server: {
-      CI: booleanish.optional().default(false),
+      CI: z.stringbool().optional().default(false),
       /**
        * @description `1`
        * @example Changing build behaviour when run on Pages versus locally
@@ -73,15 +59,5 @@ export const cloudflare = (runtimeEnv: RuntimeEnv = process.env) =>
     },
     runtimeEnv,
   });
-
-const booleanish = z.union([
-  z.boolean(),
-  z
-    .string()
-    .refine((s) => s === "true" || s === "false")
-    .transform((s) => s === "true"),
-  z.literal(1).transform(() => true),
-  z.literal(0).transform(() => false),
-]);
 
 const numberish = z.union([z.number(), z.string().transform(Number)]);

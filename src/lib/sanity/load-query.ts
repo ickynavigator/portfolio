@@ -6,9 +6,7 @@ import type {
 } from "@sanity/client";
 import { sanityClient } from "sanity:client";
 
-import { getEnv } from "~/lib/env";
-
-const env = getEnv();
+import { env } from "~/lib/env/client";
 
 /**
  * Load a query from Sanity.
