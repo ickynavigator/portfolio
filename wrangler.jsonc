@@ -1,6 +1,9 @@
 {
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "portfolio",
+    "build": {
+        "command": "pnpm run build",
+    },
     "compatibility_date": "2025-04-01",
     "compatibility_flags": [
         "nodejs_compat_v2"
