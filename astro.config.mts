@@ -71,5 +71,8 @@ export default defineConfig({
         "node:path",
       ],
     },
+    build: {
+      chunkSizeWarningLimit: 1000,
+    },
   },
 });
