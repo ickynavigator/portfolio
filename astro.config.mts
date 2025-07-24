@@ -39,9 +39,9 @@ export default defineConfig({
       projectId: env.PUBLIC_SANITY_API_PROJECT_ID,
       apiVersion: env.PUBLIC_SANITY_API_VERSION,
       useCdn: false,
-      studioBasePath: "/studio",
+      // studioBasePath: "/studio",
       stega: {
-        studioUrl: "/studio",
+        // studioUrl: "/studio",
       },
     }),
     react(),
