@@ -1,10 +1,8 @@
 ---
 import dayjs from "~/lib/date";
-import { getEnv } from "~/lib/env";
+import { env } from "~/lib/env/client";
 import Wakatime from "~/lib/wakatime";
 import WakatimeLanguageCard from "./WakatimeLanguageCard.astro";
-
-const env = getEnv();
 
 Astro.response.headers.set(
   "Cache-Control",
