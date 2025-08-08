@@ -31,7 +31,7 @@
     "@sanity/asset-utils": "^2.2.1",
     "@sanity/astro": "^3.2.10",
     "@sanity/client": "^7.8.2",
-    "@sanity/code-input": "^5.2.0",
+    "@sanity/code-input": "^6.0.0",
     "@sanity/image-url": "^1.1.0",
     "@sanity/ui": "^3.0.5",
     "@sanity/vision": "^4.3.0",
