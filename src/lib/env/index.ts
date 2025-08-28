@@ -7,7 +7,10 @@ export const getEnv = (runtimeEnv: RuntimeEnv) => {
     clientPrefix: "PUBLIC_",
     client: {},
     server: {
+      SANITY_REVALIDATE_SECRET: z.string(),
       WAKATIME_API_KEY: z.string(),
+      CF_API_TOKEN: z.string().optional(),
+      CF_ZONE_ID: z.string(),
     },
     shared: {
       PUBLIC_SANITY_API_PROJECT_ID: z.string().min(1).default("gtsyvuts"),
