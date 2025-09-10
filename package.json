@@ -85,7 +85,7 @@
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "react-compiler-runtime": "19.1.0-rc.2",
+    "react-compiler-runtime": "19.1.0-rc.3",
     "react-is": "^19.1.1",
     "typescript": "5.9.2",
     "typescript-eslint": "^8.41.0",
@@ -109,7 +109,7 @@
   },
   "peerDependencies": {
     "lodash": "^4.17.21",
-    "react-compiler-runtime": "19.1.0-rc.2",
+    "react-compiler-runtime": "19.1.0-rc.3",
     "react-is": "^19.0.0"
   }
 }
