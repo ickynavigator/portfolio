@@ -10,6 +10,7 @@
     "astro": "astro",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "typegen": "$npm_execpath sa-typegen && $npm_execpath cf-typegen",
     "cf-typegen": "$npm_execpath run cf-typegen:generate",
     "cf-typegen:generate": "wrangler types",
