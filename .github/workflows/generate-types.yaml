@@ -75,6 +75,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ steps.check_branch.outputs.branch }}
+          base: ${{ github.ref_name }}
           title: "chore: update generated types"
           body: "This PR updates the generated types."
           commit-message: "chore: update generated types"
