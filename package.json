@@ -95,9 +95,6 @@
   },
   "packageManager": "pnpm@10.18.1",
   "pnpm": {
-    "patchedDependencies": {
-      "@tabler/icons-react": "patches/@tabler__icons-react.patch"
-    },
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
       "core-js",

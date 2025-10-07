@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@tabler/icons-react':
-    hash: 163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c
-    path: patches/@tabler__icons-react.patch
-
 importers:
 
   .:
@@ -69,7 +64,7 @@ importers:
         version: 0.13.8(typescript@5.9.3)(valibot@1.1.0(typescript@5.9.3))(zod@4.1.12)
       '@tabler/icons-react':
         specifier: 3.35.0
-        version: 3.35.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@19.2.0)
+        version: 3.35.0(react@19.2.0)
       '@tailwindcss/typography':
         specifier: ^0.5.19
         version: 0.5.19(tailwindcss@4.1.14)
@@ -11316,7 +11311,7 @@ snapshots:
       valibot: 1.1.0(typescript@5.9.3)
       zod: 4.1.12
 
-  '@tabler/icons-react@3.35.0(patch_hash=163e2128d1350999d40b8a16d5ab1a22f12bdcec5295351a8cb235da4bffc98c)(react@19.2.0)':
+  '@tabler/icons-react@3.35.0(react@19.2.0)':
     dependencies:
       '@tabler/icons': 3.35.0
       react: 19.2.0
