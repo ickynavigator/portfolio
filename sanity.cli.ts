@@ -9,8 +9,8 @@ export default defineCliConfig({
   },
   deployment: {
     appId: "x7g0q8vgghymguyw1oebd4w3",
+    autoUpdates: true,
   },
-  studioHost: "obifortune",
   vite: defineConfig({
     plugins: [tsconfigPaths()],
   }),
