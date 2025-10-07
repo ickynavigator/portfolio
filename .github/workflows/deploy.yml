@@ -32,3 +32,5 @@ jobs:
       - name: Deploy Studio
         run: |
           pnpm dlx sanity deploy
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_DEPLOY_TOKEN }}
