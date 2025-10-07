@@ -31,6 +31,8 @@ jobs:
 
       - name: Deploy Studio
         run: |
-          pnpm dlx sanity deploy
+          DEPLOY_URL=$(pnpm dlx sanity deploy --yes | grep -o 'https://.*.sanity.studio/' | tail -1)
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_DEPLOY_TOKEN }}
