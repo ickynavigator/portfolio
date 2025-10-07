@@ -117,15 +117,15 @@ const isTodayBirthday = _birthdate.result
           <ActiveLink {...links.rss} />;
         </span>
         {
-          env.CF_PAGES_COMMIT_SHA && (
+          env.WORKERS_CI_COMMIT_SHA && (
             <span>
               Build SHA:
               <a
                 target="_blank"
-                href={`https://github.com/ickynavigator/portfolio/commit/${env.CF_PAGES_COMMIT_SHA}`}
+                href={`https://github.com/ickynavigator/portfolio/commit/${env.WORKERS_CI_COMMIT_SHA}`}
                 class="hover-link"
               >
-                {env.CF_PAGES_COMMIT_SHA.substring(0, 7)}
+                {env.WORKERS_CI_COMMIT_SHA.substring(0, 7)}
               </a>
             </span>
           )
