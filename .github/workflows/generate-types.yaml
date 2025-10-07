@@ -3,6 +3,10 @@ name: Generate Types
 on:
   workflow_dispatch:
 
+permissions:
+  actions: write
+  pull-requests: write
+
 jobs:
   generate-types:
     runs-on: ubuntu-latest
