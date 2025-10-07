@@ -7,6 +7,9 @@ export default defineCliConfig({
     projectId: "gtsyvuts",
     dataset: "production",
   },
+  deployment: {
+    appId: "x7g0q8vgghymguyw1oebd4w3",
+  },
   studioHost: "obifortune",
   vite: defineConfig({
     plugins: [tsconfigPaths()],
