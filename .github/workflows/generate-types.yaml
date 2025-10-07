@@ -1,0 +1,80 @@
+name: Generate Types
+
+on:
+    workflow_dispatch:
+
+jobs:
+    generate-types:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+              with:
+                  submodules: true
+                  fetch-depth: 0
+
+            - uses: pnpm/action-setup@v4
+              name: Install pnpm
+              with:
+                  run_install: false
+
+            - name: Install Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: "pnpm"
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Update Git Info
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+
+            - name: Check and Switch to update branch
+              id: check_branch
+              run: |
+                  branch="chore/update-types"
+                  if git ls-remote --heads origin "$branch" | grep -q "$branch"; then
+                      echo "Branch exists, checking out and pulling latest changes."
+                      git fetch origin "$branch"
+                      git checkout "$branch"
+                      git reset --hard origin/"$branch"
+                  else
+                      echo "Branch does not exist, creating new."
+                      git checkout -b "$branch"
+                  fi
+                  echo "branch=$branch" >> $GITHUB_OUTPUT
+
+            - name: Generate Types
+              run: |
+                  pnpm run cf-typegen
+                  pnpm run sa-typegen
+
+            - name: Commit Changes if any
+              id: commit_changes
+              run: |
+                  git add sanity.types.ts sanity.schema.json wrangler.jsonc worker-configuration.d.ts
+                  if git diff --cached --quiet; then
+                      echo "No changes to commit."
+                      echo "changes=false" >> $GITHUB_OUTPUT
+                  else
+                      git commit -m "chore: update generated types"
+                      echo "changes=true" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Push Branch
+              if: steps.commit_changes.outputs.changes == 'true'
+              run: |
+                  git push origin ${{ steps.check_branch.outputs.branch }}
+
+            - name: Create Pull Request
+              if: steps.commit_changes.outputs.changes == 'true'
+              uses: peter-evans/create-pull-request@v7
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  branch: ${{ steps.check_branch.outputs.branch }}
+                  title: "chore: update generated types"
+                  body: "This PR updates the generated types."
+                  commit-message: "chore: update generated types"
+                  delete-branch: true
