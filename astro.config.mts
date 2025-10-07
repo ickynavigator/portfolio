@@ -7,6 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import compress from "astro-compress";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 import { getEnv } from "./src/lib/env";
 
@@ -49,7 +50,9 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss()].concat(env.CI ? [] : [cloudflareVitePlugin()]),
+    plugins: [tailwindcss(), tsconfigPaths()].concat(
+      env.CI ? [] : [cloudflareVitePlugin()],
+    ),
     resolve: {
       alias: {
         // Use react-dom/server.edge instead of react-dom/server.browser for React 19.

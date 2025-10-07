@@ -1,4 +1,6 @@
 import { defineCliConfig } from "sanity/cli";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineCliConfig({
   api: {
@@ -6,4 +8,7 @@ export default defineCliConfig({
     dataset: "production",
   },
   studioHost: "obifortune",
+  vite: defineConfig({
+    plugins: [tsconfigPaths()],
+  }),
 });
