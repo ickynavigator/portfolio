@@ -30,9 +30,18 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Deploy Studio
+        id: deploy
         run: |
           DEPLOY_URL=$(pnpm dlx sanity deploy --yes | grep -o 'https://.*.sanity.studio/' | tail -1)
           echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
           echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_DEPLOY_TOKEN }}
+
+      - name: Create GitHub Deployment
+        uses: chrnorm/deployment-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: sanity
+          description: "Sanity Studio deployed to ${{ steps.deploy.outputs.url }}"
+          environment-url: ${{ steps.deploy.outputs.url }}
