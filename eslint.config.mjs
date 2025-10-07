@@ -4,11 +4,12 @@ import eslint from "@eslint/js";
 import eslintPluginAstro from "eslint-plugin-astro";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
+import { defineConfig } from "eslint/config";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
   {
-    name: "my-rules/setup",
+    name: "my-rules/ignores",
     ignores: [
       "**/node_modules/",
       ".git/",
@@ -17,6 +18,9 @@ export default tseslint.config(
       "dist/",
       ".partykit/",
     ],
+  },
+  {
+    name: "my-rules/setup",
     linterOptions: {
       reportUnusedDisableDirectives: "error",
       reportUnusedInlineConfigs: "error",
