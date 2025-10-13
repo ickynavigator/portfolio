@@ -1,29 +1,6 @@
-import { useEffect, useState } from "react";
 import { Toaster as Sonner } from "sonner";
 
-const useGetTheme = () => {
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    const abortController = new AbortController();
-
-    document.addEventListener(
-      "themechange",
-      () => {
-        setIsDark(document.documentElement.classList.contains("dark"));
-      },
-      {
-        signal: abortController.signal,
-      },
-    );
-
-    return () => {
-      abortController.abort();
-    };
-  }, []);
-
-  return isDark;
-};
+import useGetTheme from "~/hooks/useGetTheme";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
