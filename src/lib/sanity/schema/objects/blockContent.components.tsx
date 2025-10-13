@@ -1,6 +1,12 @@
+import { BoltIcon } from "@sanity/icons";
 import { Text } from "@sanity/ui";
 import type { HTMLProps } from "react";
-import type { BlockDecoratorDefinition, BlockStyleDefinition } from "sanity";
+import {
+  defineField,
+  type BlockAnnotationDefinition,
+  type BlockDecoratorDefinition,
+  type BlockStyleDefinition,
+} from "sanity";
 import { styled } from "styled-components";
 
 export const Highlight = {
@@ -78,3 +84,46 @@ export const BlockQuoteInfo = _BlockQuoteBase("info");
 export const BlockQuoteSuccess = _BlockQuoteBase("success");
 export const BlockQuoteWarning = _BlockQuoteBase("warning");
 export const BlockQuoteDanger = _BlockQuoteBase("danger");
+
+export const BlockLink = {
+  type: "object",
+  name: "link",
+  title: "Link",
+  options: {
+    modal: { type: "popover" },
+  },
+  fields: [
+    defineField({
+      name: "href",
+      type: "url",
+      title: "Link",
+      description: "A valid web, email, phone, or relative link.",
+      validation: (Rule) =>
+        Rule.uri({
+          scheme: ["http", "https", "tel", "mailto"],
+          allowRelative: true,
+        }),
+    }),
+  ],
+};
+
+export const BlockReferenceLink = {
+  type: "object",
+  name: "referencelink",
+  title: "Reference Link",
+  icon: () => <BoltIcon />,
+  options: {
+    modal: { type: "popover" },
+  },
+  fields: [
+    {
+      name: "ref",
+      type: "reference",
+      title: "Link",
+      description: "A reference to a document in Sanity.",
+      to: [{ type: "post" }, { type: "project" }],
+      validation: (Rule) =>
+        Rule.required().error("You must select a document to link to."),
+    },
+  ],
+} satisfies BlockAnnotationDefinition;

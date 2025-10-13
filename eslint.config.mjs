@@ -1,26 +1,30 @@
 // @ts-check
 
-import eslint from "@eslint/js";
+import eslintPluginJs from "@eslint/js";
 import eslintPluginAstro from "eslint-plugin-astro";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import eslintPluginUnusedImports from "eslint-plugin-unused-imports";
-import { defineConfig } from "eslint/config";
-import tseslint from "typescript-eslint";
+import { defineConfig, globalIgnores } from "eslint/config";
+import eslintPluginTs from "typescript-eslint";
+
+const HEADER = "my-rules";
 
 export default defineConfig(
-  {
-    name: "my-rules/ignores",
-    ignores: [
+  globalIgnores(
+    [
       "**/node_modules/",
       ".git/",
       ".astro/",
       "wrangler/",
       "dist/",
       ".partykit/",
+      ".sanity/",
+      "./worker-configuration.d.ts",
     ],
-  },
+    `${HEADER}/ignores`,
+  ),
   {
-    name: "my-rules/setup",
+    name: `${HEADER}/setup`,
     linterOptions: {
       reportUnusedDisableDirectives: "error",
       reportUnusedInlineConfigs: "error",
@@ -31,9 +35,9 @@ export default defineConfig(
       },
     },
   },
-  eslint.configs.recommended,
-  tseslint.configs.recommended,
-  tseslint.configs.stylistic,
+  eslintPluginJs.configs.recommended,
+  eslintPluginTs.configs.recommended,
+  eslintPluginTs.configs.stylistic,
   eslintPluginAstro.configs["flat/recommended"],
   eslintPluginAstro.configs["flat/jsx-a11y-strict"],
   {
@@ -41,7 +45,7 @@ export default defineConfig(
     plugins: { "unused-imports": eslintPluginUnusedImports },
   },
   {
-    name: "my-rules",
+    name: `${HEADER}`,
     rules: {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "off",
@@ -60,7 +64,7 @@ export default defineConfig(
   },
   eslintPluginPrettier,
   {
-    name: "my-rules/eslint-plugin-prettier/astro-prettier-reset",
+    name: `${HEADER}/eslint-plugin-prettier/astro-prettier-reset`,
     files: [
       "**/*.astro/*.js",
       "*.astro/*.js",
