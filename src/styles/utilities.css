@@ -43,6 +43,7 @@
   @apply relative;
 
   --tooltip-arrow-size: 1rem;
+  --tooltip-delay: 300ms;
 
   & > :not([data-tooltip-trigger]) {
     @apply cursor-help;
@@ -57,7 +58,8 @@
     }
   }
 
-  &:hover > [data-tooltip-trigger] {
-    @apply visible z-50 opacity-100;
+  &:hover > [data-tooltip-trigger],
+  &:focus-within > [data-tooltip-trigger] {
+    @apply visible z-50 opacity-100 delay-(--tooltip-delay);
   }
 }
