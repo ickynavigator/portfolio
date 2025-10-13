@@ -35,7 +35,7 @@ const headerSlug = getTextFromPortableTextBlock(Astro.props.node)
     aria-label={headerSlug}
     rel="noopener noreferrer"
     target="_self"
-    class="text-muted-foreground inline-flex text-[70%] opacity-0 transition-opacity group-hover:opacity-100"
+    class="text-muted-foreground inline-flex text-[70%] opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100"
   >
     <IconLink className="relative-icon" />
   </a>
