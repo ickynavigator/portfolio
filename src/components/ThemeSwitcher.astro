@@ -24,18 +24,15 @@ const { id } = Astro.props;
 </theme-switcher>
 
 <script is:inline>
+  // @ts-check
   class ThemeSwitcher extends HTMLElement {
     connectedCallback() {
       this.#initialize();
     }
 
     #initialize() {
-      const THEME_STORAGE_KEY = "theme";
-
-      const _storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-      const storedTheme = _storedTheme ?? "system";
-
-      let ignoreSystemTheme = _storedTheme != null && _storedTheme !== "system";
+      const storedTheme = this.#getStoredTheme();
+      let ignoreSystemTheme = storedTheme != null && storedTheme !== "system";
 
       window
         .matchMedia("(prefers-color-scheme: dark)")
@@ -44,44 +41,45 @@ const { id } = Astro.props;
           this.#updateTheme("system");
         });
 
-      document
-        .querySelectorAll(
-          "input[value='light'],input[value='dark'],input[value='system']",
-        )
-        .forEach((node) => {
-          if (!(node instanceof HTMLInputElement)) return;
-          if (node.value == storedTheme) node.checked = true;
+      this.querySelectorAll(
+        "input[value='light'],input[value='dark'],input[value='system']",
+      ).forEach((node) => {
+        if (!(node instanceof HTMLInputElement)) return;
+        if (node.value == storedTheme) node.checked = true;
 
-          node.addEventListener("change", (event) => {
-            if (!(event.target instanceof HTMLInputElement)) return;
-            if (!(typeof event.target?.value === "string")) return;
+        node.addEventListener("change", (event) => {
+          if (!(event.target instanceof HTMLInputElement)) return;
+          if (!(typeof event.target?.value === "string")) return;
 
-            const selectedTheme = event.target.value;
+          const selectedTheme = this.#validateTheme(event.target.value);
 
-            switch (selectedTheme) {
-              case "light":
-              case "dark": {
-                localStorage.setItem("theme", selectedTheme);
-                ignoreSystemTheme = true;
-                break;
-              }
-              case "system": {
-                localStorage.removeItem("theme");
-                ignoreSystemTheme = false;
-                break;
-              }
-              default: {
-                break;
-              }
+          switch (selectedTheme) {
+            case "light":
+            case "dark": {
+              localStorage.setItem("theme", selectedTheme);
+              ignoreSystemTheme = true;
+              break;
             }
+            case "system": {
+              localStorage.removeItem("theme");
+              ignoreSystemTheme = false;
+              break;
+            }
+            default: {
+              break;
+            }
+          }
 
-            this.#updateTheme(selectedTheme);
-          });
+          this.#updateTheme(selectedTheme);
         });
+      });
 
       this.#updateTheme(storedTheme);
     }
 
+    /**
+     * @param incomingTheme {"light" | "dark" | "system"}
+     */
     #updateTheme(incomingTheme) {
       const DARK_MODE_CLASS = "dark";
 
@@ -116,6 +114,26 @@ const { id } = Astro.props;
         detail: { theme: _incomingTheme },
       });
       document.dispatchEvent(themeEvent);
+    }
+
+    #getStoredTheme() {
+      const THEME_STORAGE_KEY = "theme";
+      const _storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      return this.#validateTheme(_storedTheme);
+    }
+
+    /**
+     * @param incomingTheme {unknown}
+     */
+    #validateTheme(incomingTheme) {
+      switch (incomingTheme) {
+        case "light":
+        case "dark":
+        case "system":
+          return incomingTheme;
+        default:
+          return "system";
+      }
     }
   }
 
