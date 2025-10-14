@@ -2,17 +2,22 @@
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "portfolio",
     "build": {},
+    "main": "./dist/_worker.js/index.js",
     "compatibility_date": "2025-04-01",
     "compatibility_flags": [
         "nodejs_compat_v2"
     ],
+    "preview_urls": true,
+    "workers_dev": true,
     "assets": {
+        "binding": "ASSETS",
         "directory": "./dist",
         "not_found_handling": "404-page"
     },
     "observability": {
         "enabled": true
     },
+    "send_metrics": true,
     "vars": {
         "PUBLIC_SANITY_API_PROJECT_ID": "gtsyvuts",
         "PUBLIC_SANITY_API_DATASET": "production",
