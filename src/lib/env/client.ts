@@ -1,3 +1,3 @@
 import { getEnv } from "~/lib/env";
 
-export const env = getEnv(process.env);
+export const env = getEnv(import.meta.env);
