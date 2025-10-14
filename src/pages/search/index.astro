@@ -1,6 +1,6 @@
 ---
 import { IconSearch } from "@tabler/icons-react";
-import { z } from "zod";
+import z from "zod";
 
 import Button from "~/components/Button.astro";
 import Container from "~/components/Container.astro";
@@ -13,49 +13,33 @@ import { SEARCH_QUERY } from "~/lib/sanity/queries";
 
 export const prerender = false;
 
-const schema = z.object({
-  search: z.string().trim().catch(""),
-  type: z.enum(["all", "post", "project"]).catch("all"),
-});
+const AVAILABLE_TYPES = ["post", "project"] as const;
+const FULL_TYPES = ["all", ...AVAILABLE_TYPES] as const;
 
-const getTransformedType = (type: string) => {
-  const ALL_TYPES = ["post", "project"];
-
-  switch (type) {
-    case "all":
-      return ALL_TYPES;
-    case "post":
-    case "project":
-      return [type];
-    default:
-      return ALL_TYPES;
-  }
-};
-
-let defaultType = Astro.url.searchParams.get("type") ?? "all";
-let defaultSearch = Astro.url.searchParams.get("tag") ?? "";
-
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    const result = schema.parse(Object.fromEntries(data.entries()));
-
-    defaultType = result.type;
-    defaultSearch = result.search;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message);
-    }
-  }
-}
+const parsed = z
+  .object({
+    search: z.string().trim().catch(""),
+    type: z
+      .string()
+      .transform((type) => type.trim())
+      .transform((type) => type.toLocaleLowerCase())
+      .pipe(z.enum(FULL_TYPES).catch("all")),
+  })
+  .catch({ search: "", type: "all" })
+  .transform((data) => ({
+    ...data,
+    forquery_title: `*${data.search.toLocaleLowerCase()}*`,
+    forquery_type: data.type === "all" ? AVAILABLE_TYPES : [data.type],
+  }))
+  .parse(Object.fromEntries(Astro.url.searchParams.entries()));
 
 const { result } =
-  defaultSearch.length > 0
+  parsed.search.length > 0
     ? await loadQuery({
         query: SEARCH_QUERY,
         params: {
-          title: `*${defaultSearch}*`,
-          type: getTransformedType(defaultType),
+          title: parsed.forquery_title,
+          type: parsed.forquery_type,
         },
       })
     : { result: null };
@@ -68,15 +52,15 @@ const { result } =
         <h1 class="text-xl leading-none font-bold tracking-tight">Search</h1>
       </div>
 
-      <form method="POST">
+      <form method="GET">
         <div
           class="flex flex-col items-center justify-center gap-2 md:flex-row md:items-stretch"
         >
           <Tabs
             name="type"
-            options={["All", "Post", "Project"]}
-            defaultOption={defaultType}
-            class="inline-flex"
+            options={[...FULL_TYPES]}
+            defaultOption={parsed.type}
+            class="inline-flex capitalize"
           />
 
           <div class="flex w-full flex-row gap-2">
@@ -90,7 +74,7 @@ const { result } =
                 name="search"
                 placeholder="Search By Selected Type..."
                 class="ps-10"
-                value={defaultSearch}
+                value={parsed.search}
                 required
                 minlength="1"
               />
