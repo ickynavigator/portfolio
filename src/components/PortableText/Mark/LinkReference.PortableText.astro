@@ -20,10 +20,7 @@ const schema = z
       z.literal("project").transform(() => "projects"),
     ]),
     name: z.string().min(1),
-    updatedAt: z
-      .string()
-      .datetime()
-      .transform((date) => dayjs(date)),
+    updatedAt: z.iso.datetime().transform((date) => dayjs(date)),
     slug: z.string().min(1),
     shouldShow: z.literal(false),
   })
