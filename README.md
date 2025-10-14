@@ -55,7 +55,3 @@ This will prompt you to do a few things
 1. Go to the [Sanity dashboard](https://www.sanity.io/manage) and select your project to view your project ID and other details
 
 </details>
-
-## Patches
-
-- @tabler/icons-react@3.29.0: Stop package from importing ALL icons - [issue](https://github.com/tabler/tabler-icons/issues/1233)
