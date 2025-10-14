@@ -1,5 +1,6 @@
 ---
 import { VisualEditing } from "@sanity/astro/visual-editing";
+import { IconSearch } from "@tabler/icons-react";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import ActiveLink from "~/components/ActiveLink.astro";
@@ -51,15 +52,14 @@ const isTodayBirthday = _birthdate.result
       <NavLinks>
         {navlinks.map((link) => <ActiveLink {...link} />)}
 
-        <!-- TODO: inspect broken search page in prod -->
-        <!-- <ActiveLink
+        <ActiveLink
           href={links.search.href}
           slot="search"
           class="hover-link-icon data-[active-page='true']:border-primary"
         >
           <IconSearch className="relative-icon" />
           <span class="sr-only">{links.search.text}</span></ActiveLink
-        > -->
+        >
       </NavLinks>
     </nav>
   </header>
