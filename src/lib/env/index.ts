@@ -5,6 +5,7 @@ import { cloudflare } from "./preset/cloudflare";
 
 type RuntimeEnv = Record<string, string | boolean | number | undefined>;
 export const getEnv = (runtimeEnv: RuntimeEnv) => {
+  console.log("runtimeEnv", runtimeEnv);
   return createEnv({
     clientPrefix: "PUBLIC_",
     client: {},
