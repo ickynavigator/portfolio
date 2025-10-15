@@ -3,7 +3,7 @@
     "name": "portfolio",
     "build": {},
     "main": "./dist/_worker.js/index.js",
-    "compatibility_date": "2025-04-01",
+    "compatibility_date": "2025-10-14",
     "compatibility_flags": [
         "nodejs_compat_v2"
     ],

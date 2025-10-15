@@ -1,6 +1,6 @@
 ---
 import type { MarkProps } from "astro-portabletext/types";
-import { z } from "zod";
+import * as z from "zod";
 
 import dayjs from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
@@ -20,10 +20,7 @@ const schema = z
       z.literal("project").transform(() => "projects"),
     ]),
     name: z.string().min(1),
-    updatedAt: z
-      .string()
-      .datetime()
-      .transform((date) => dayjs(date)),
+    updatedAt: z.iso.datetime().transform((date) => dayjs(date)),
     slug: z.string().min(1),
     shouldShow: z.literal(false),
   })

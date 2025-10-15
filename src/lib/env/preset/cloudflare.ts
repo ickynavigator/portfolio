@@ -1,5 +1,5 @@
 import { createEnv } from "@t3-oss/env-core";
-import z from "zod";
+import * as z from "zod";
 
 type RuntimeEnv = Record<string, string | boolean | number | undefined>;
 
