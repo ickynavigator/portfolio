@@ -30,6 +30,7 @@
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource-variable/dm-sans": "^5.2.8",
     "@fontsource-variable/hepta-slab": "^5.2.8",
+    "@imikailoby/lastfm-ts": "^2.0.1",
     "@radix-ui/react-dialog": "^1.1.15",
     "@sanity/asset-utils": "^2.3.0",
     "@sanity/astro": "^3.2.10",

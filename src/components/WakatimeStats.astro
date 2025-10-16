@@ -1,15 +1,16 @@
 ---
+import { WAKATIME_API_KEY } from "astro:env/server";
+
+import WakatimeLanguageCard from "~/components/WakatimeLanguageCard.astro";
 import dayjs from "~/lib/date";
-import { env } from "~/lib/env/client";
 import Wakatime from "~/lib/wakatime";
-import WakatimeLanguageCard from "./WakatimeLanguageCard.astro";
 
 Astro.response.headers.set(
   "Cache-Control",
   "public, max-age=86400, s-maxage=604800",
 );
 const currentTime = dayjs();
-const wakatime = new Wakatime(env.WAKATIME_API_KEY);
+const wakatime = new Wakatime(WAKATIME_API_KEY);
 
 const stats = await wakatime.getStatsWithRange({ range: "last_30_days" });
 const statsLastYear = await wakatime.getStatsWithRange({ range: "last_year" });

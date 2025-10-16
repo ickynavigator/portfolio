@@ -6,34 +6,37 @@ My personal portfolio website built with [Astro](https://astro.build/) project. 
 
 ### 🤫 Environment Variables
 
-Fill up the .env file with the variables in the .env.example
+Fill up the .dev.vars file with the variables in the .env.example
 
 | Key                                    | Description                                                      |
 | :------------------------------------- | :--------------------------------------------------------------- |
-| `PUBLIC_SANITY_API_PROJECT_ID`         | Project ID of your Sanity project. Defaults to **MY** project Id |
-| `PUBLIC_SANITY_API_DATASET`            | Dataset name of your Sanity project. Defaults to `production`    |
-| `PUBLIC_SANITY_API_VERSION`            | API version of your Sanity project. Defaults to `2022-03-07`     |
 | `WEBSITE_URL`                          | URL of the website. Defaults to `https://obifortune.com`         |
 | `PUBLIC_SANITY_VISUAL_EDITING_ENABLED` | Enable visual editing in the studio. Defaults to `false`         |
 | `SANITY_API_READ_TOKEN`                | Read token for the sanity project                                |
-| `WAKATIME_API_KEY`                     | API key for the wakatime API                                     |
 | `PUBLIC_POSTHOG_API_KEY`               | API key for Posthog                                              |
 | `PUBLIC_POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com`  |
 | `PUBLIC_POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com` |
+| `WAKATIME_API_KEY`                     | API key for the wakatime API                                     |
+| `LASTFM_API_KEY`                       | Last.fm API key                                                  |
+| `LASTFM_USER`                          | Last.fm username                                                 |
 
 ### 🧞 Commands
 
 All commands are run from the root of the project, from a terminal with `pnpm run`:
 
-| Command      | Action                                                                          |
-| :----------- | :------------------------------------------------------------------------------ |
-| `dev`        | Starts local dev server at `localhost:4321` + studio at `localhost:4321/studio` |
-| `build`      | Build your production site to `./dist/`                                         |
-| `deploy`     | Deploy your build to cloudflare with wrangler                                   |
-| `cf-typegen` | Generate types from bindings and module rules in configuration                  |
-| `sa-typegen` | Extract sanity schema info and generate types                                   |
-| `lint`       | Run eslint on the project                                                       |
-| `lint:fix`   | Run eslint on the project and resolve auto-fixable issues                       |
+| Command      | Action                                                                                 |
+| :----------- | :------------------------------------------------------------------------------------- |
+| `dev`        | Starts local dev server at `localhost:4321`                                            |
+| `build`      | Build your production site to `./dist/`, will generate app types and check astro setup |
+| `preview`    | Deploy a local preview of the build with wrangler                                      |
+| `typegen`    | Generate all user types                                                                |
+| `cf-typegen` | Generate types from bindings and module rules in configuration                         |
+| `sa-dev`     | Starts sanity dev server at `localhost:3333`                                           |
+| `sa-deploy`  | Deploy sanity schema to the cloud                                                      |
+| `sa-typegen` | Extract sanity schema info and generate types                                          |
+| `lint`       | Run eslint on the project                                                              |
+| `lint:fix`   | Run eslint on the project and resolve auto-fixable issues                              |
+| `typecheck`  | Run tsc to check for type errors                                                       |
 
 <details>
 <summary>Setting up Sanity</summary>

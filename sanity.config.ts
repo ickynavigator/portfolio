@@ -8,8 +8,10 @@ import { structureTool } from "sanity/structure";
 import {
   CONFIGURATION_CONFIG_ID,
   PERSONAL_INFO_CONFIG_ID,
+  SANITY_API_DATASET,
+  SANITY_API_VERSION,
+  SANITY_PROJECT_ID,
 } from "~/lib/constants";
-import { env } from "~/lib/env/server";
 import locationResolver from "~/lib/sanity/location";
 import { schema } from "~/lib/sanity/schema";
 import configuration from "~/lib/sanity/schema/documents/configuration";
@@ -18,8 +20,8 @@ import personalInfo from "~/lib/sanity/schema/documents/personalInfo";
 export default defineConfig({
   name: "portfolio",
   title: "Portfolio",
-  dataset: env.PUBLIC_SANITY_API_DATASET,
-  projectId: env.PUBLIC_SANITY_API_PROJECT_ID,
+  dataset: SANITY_API_DATASET,
+  projectId: SANITY_PROJECT_ID,
   plugins: [
     structureTool({
       structure: (S) =>
@@ -49,8 +51,8 @@ export default defineConfig({
           ]),
     }),
     visionTool({
-      defaultApiVersion: env.PUBLIC_SANITY_API_VERSION,
-      defaultDataset: env.PUBLIC_SANITY_API_DATASET,
+      defaultApiVersion: SANITY_API_VERSION,
+      defaultDataset: SANITY_API_DATASET,
     }),
     presentationTool({
       resolve: {
