@@ -1,0 +1,51 @@
+---
+import {
+  IconLoader,
+  IconLoader2,
+  IconLoader3,
+  IconLoaderQuarter,
+  type IconProps,
+} from "@tabler/icons-react";
+
+import { cn } from "~/lib/utils";
+
+interface Props extends Omit<IconProps, "className"> {
+  variant?: "regular" | "incomplete" | "quarter" | "with-inner";
+  class?: string;
+  wrapperClass?: string;
+}
+
+const {
+  class: _class,
+  wrapperClass,
+  variant = "incomplete",
+  ...props
+} = Astro.props;
+
+let Component;
+
+switch (variant) {
+  case "regular":
+    Component = IconLoader;
+    break;
+  case "quarter":
+    Component = IconLoaderQuarter;
+    break;
+  case "with-inner":
+    Component = IconLoader3;
+    break;
+  case "incomplete":
+  default:
+    Component = IconLoader2;
+    break;
+}
+---
+
+<div class={cn("flex items-center justify-center p-4", wrapperClass)}>
+  <Component
+    role="status"
+    aria-label="Loading"
+    className={cn("size-4 animate-spin", _class)}
+    {...props}
+  />
+</div>

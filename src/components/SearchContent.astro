@@ -1,0 +1,76 @@
+---
+import { loadQuery } from "~/lib/sanity/load-query";
+import { SEARCH_QUERY } from "~/lib/sanity/queries";
+
+interface Props {
+  search: string;
+  type: string;
+  tag: string | undefined;
+}
+
+const { result } = await loadQuery({
+  query: SEARCH_QUERY,
+  params: {
+    title: `*${Astro.props.search.toLocaleLowerCase()}*`,
+    type: Astro.props.type === "all" ? ["post", "project"] : [Astro.props.type],
+  },
+  options: {
+    filterResponse: false,
+    useCdn: true,
+  },
+});
+
+const filteredResult = result.filter(
+  (item) => item._type === "post" || item._type === "project",
+);
+---
+
+{
+  filteredResult.length > 0 ? (
+    <ul class="mt-8 flex flex-col gap-4">
+      {filteredResult.map((item) => {
+        const slug = item.slug.current;
+
+        let url;
+
+        switch (item._type) {
+          case "post":
+            url = `/blog/${slug}`;
+            break;
+          case "project":
+            url = `/projects/${slug}`;
+            break;
+          default:
+            url = "";
+        }
+
+        return (
+          <a href={url}>
+            <li class="hover:bg-secondary flex flex-col gap-1 rounded-md border p-4 transition">
+              <p class="text-muted-foreground capitalize">{item._type}</p>
+
+              <h2 class="text-lg leading-none tracking-tight">{item.title}</h2>
+
+              {item.tags.length > 0 && (
+                <ul
+                  class="scrollbar-thin max-w-full overflow-x-scroll whitespace-nowrap"
+                  transition:name={`project-tags-${slug}`}
+                >
+                  {item.tags.map((tag) => (
+                    <li class="me-2 inline-block rounded-full border px-2 py-0.5 text-xs font-light">
+                      {tag.title}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          </a>
+        );
+      })}
+    </ul>
+  ) : (
+    <h3 class="py-8 text-center text-lg leading-none tracking-tight">
+      No search results found
+    </h3>
+  )
+}
