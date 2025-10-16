@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from "astro/types";
 import { cva, type VariantProps } from "class-variance-authority";
 
+import Loader from "~/components/Loader.astro";
 import { cn } from "~/lib/utils";
 
 const buttonVariants = cva(
@@ -48,17 +49,38 @@ const buttonVariants = cva(
   },
 );
 
+const loaderVariants = cva("text-primary", {
+  variants: {
+    size: {
+      default: "",
+      sm: "",
+      lg: "",
+      icon: "",
+    },
+  },
+});
+
 interface Props
   extends HTMLAttributes<"button">,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  loading?: boolean;
+}
 
-const { variant, size, animate, class: _class, ...props } = Astro.props;
+const {
+  variant,
+  size,
+  animate,
+  class: _class,
+  loading,
+  ...props
+} = Astro.props;
 ---
 
 <button
   {...props}
   class={cn(buttonVariants({ variant, size, animate, class: _class }))}
 >
+  {loading && <Loader wrapperClass="p-0" class={loaderVariants({ size })} />}
   <slot />
   <slot name="inactive" />
   <slot name="active" />
