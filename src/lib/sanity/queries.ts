@@ -175,3 +175,10 @@ export const LINK_REFERENCE_QUERY = defineQuery(`
         "shouldShow": array::intersects(["post", "project"], [_type]) && hidden == true
     }
 `);
+
+export const TAGS_QUERY = defineQuery(`
+    *[_type == "category" && hidden != true] {
+        "slug": slug.current,
+        "name": title,
+    }
+`);
