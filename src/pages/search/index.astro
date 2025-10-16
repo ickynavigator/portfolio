@@ -88,23 +88,12 @@ const { result } = await loadQuery({ query: TAGS_QUERY });
             <Button
               variant="secondary"
               type="submit"
-              size="icon"
-              class="border md:hidden"
               aria-label="Submit Search"
               title="Search"
             >
               <span class="sr-only">Submit Search</span>
-              <IconSearch className="relative-icon" />
-            </Button>
-
-            <Button
-              variant="secondary"
-              type="submit"
-              class="hidden border md:flex"
-              aria-label="Submit Search"
-              title="Search"
-            >
-              Search
+              <IconSearch className="relative-icon md:hidden" />
+              <span class="not-sm:hidden">Search</span>
             </Button>
           </div>
         </div>
