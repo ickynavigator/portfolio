@@ -19,6 +19,9 @@ Fill up the .dev.vars file with the variables in the .env.example
 | `WAKATIME_API_KEY`                     | API key for the wakatime API                                     |
 | `LASTFM_API_KEY`                       | Last.fm API key                                                  |
 | `LASTFM_USER`                          | Last.fm username                                                 |
+| `CLOUDFLARE_API_TOKEN`                 | Cloudflare API token. Used for purging cache.                    |
+| `CLOUDFLARE_ZONE_ID`                   | Zone ID for the Cloudflare project.                              |
+| `SANITY_REVALIDATE_SECRET`             | Secret for revalidating the sanity project                       |
 
 ### 🧞 Commands
 

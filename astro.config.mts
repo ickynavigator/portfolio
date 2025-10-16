@@ -26,6 +26,10 @@ export default defineConfig({
     prefetchAll: true,
   },
 
+  security: {
+    checkOrigin: false,
+  },
+
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
@@ -100,6 +104,17 @@ export default defineConfig({
       LASTFM_USER: envField.string({
         access: "public",
         context: "client",
+      }),
+
+      CLOUDFLARE_ZONE_ID: envField.string({
+        access: "public",
+        context: "client",
+        optional: true,
+      }),
+      SANITY_REVALIDATE_SECRET: envField.string({
+        access: "secret",
+        context: "server",
+        optional: true,
       }),
 
       ...cloudflareWorkers,
