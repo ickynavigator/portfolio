@@ -1,9 +1,9 @@
 import { LastFm } from "@imikailoby/lastfm-ts";
-
-import { env } from "~/lib/env/client";
+import { LASTFM_USER } from "astro:env/client";
+import { LASTFM_API_KEY } from "astro:env/server";
 
 export function createLastFMInstance() {
-  const lastFm = new LastFm(env.LASTFM_API_KEY);
+  const lastFm = new LastFm(LASTFM_API_KEY);
 
   return {
     lastFm,
@@ -14,7 +14,7 @@ export async function getRecentlyPlayedTracks() {
   const l = createLastFMInstance();
 
   const response = await l.lastFm.user.getRecentTracks({
-    user: env.LASTFM_USER,
+    user: LASTFM_USER,
     limit: "10",
   });
   return response;

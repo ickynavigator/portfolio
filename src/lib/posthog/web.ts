@@ -1,11 +1,14 @@
+import {
+  PUBLIC_POSTHOG_API_HOST,
+  PUBLIC_POSTHOG_API_KEY,
+  PUBLIC_POSTHOG_UI_HOST,
+} from "astro:env/client";
 import { posthog } from "posthog-js";
 
-import { env } from "~/lib/env/client";
-
 export function getPostHogInstance() {
-  posthog.init(env.PUBLIC_POSTHOG_API_KEY, {
-    api_host: env.PUBLIC_POSTHOG_API_HOST,
-    ui_host: env.PUBLIC_POSTHOG_UI_HOST,
+  posthog.init(PUBLIC_POSTHOG_API_KEY, {
+    api_host: PUBLIC_POSTHOG_API_HOST,
+    ui_host: PUBLIC_POSTHOG_UI_HOST,
   });
 
   return {

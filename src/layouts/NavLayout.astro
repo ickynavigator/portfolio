@@ -1,6 +1,10 @@
 ---
 import { VisualEditing } from "@sanity/astro/visual-editing";
 import { IconSearch } from "@tabler/icons-react";
+import {
+  PUBLIC_SANITY_VISUAL_EDITING_ENABLED,
+  WORKERS_CI_COMMIT_SHA,
+} from "astro:env/client";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import ActiveLink from "~/components/ActiveLink.astro";
@@ -10,7 +14,6 @@ import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
 import SocialButton from "~/components/SocialButton.astro";
 import { isSameDayMonth } from "~/lib/date";
-import { env } from "~/lib/env/client";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { BIRTHDAY_QUERY, SOCIAL_LINKS_QUERY } from "~/lib/sanity/queries";
 
@@ -66,7 +69,7 @@ const isTodayBirthday = _birthdate.result
 
   <main>
     <slot />
-    <VisualEditing enabled={env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED} />
+    <VisualEditing enabled={PUBLIC_SANITY_VISUAL_EDITING_ENABLED} />
   </main>
 
   <footer class="mt-8 mb-3 px-4 lg:px-0">
@@ -117,15 +120,15 @@ const isTodayBirthday = _birthdate.result
           <ActiveLink {...links.rss} />;
         </span>
         {
-          env.WORKERS_CI_COMMIT_SHA && (
+          WORKERS_CI_COMMIT_SHA && (
             <span>
               Build SHA:
               <a
                 target="_blank"
-                href={`https://github.com/ickynavigator/portfolio/commit/${env.WORKERS_CI_COMMIT_SHA}`}
+                href={`https://github.com/ickynavigator/portfolio/commit/${WORKERS_CI_COMMIT_SHA}`}
                 class="hover-link"
               >
-                {env.WORKERS_CI_COMMIT_SHA.substring(0, 7)}
+                {WORKERS_CI_COMMIT_SHA.substring(0, 7)}
               </a>
             </span>
           )
