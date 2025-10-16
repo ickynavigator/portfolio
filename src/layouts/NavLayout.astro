@@ -13,6 +13,7 @@ import BirthdayAnnouncement from "~/components/BirthdayAnnouncement.astro";
 import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
 import SocialButton from "~/components/SocialButton.astro";
+import { REPO_URL } from "~/lib/constants";
 import { isSameDayMonth } from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { BIRTHDAY_QUERY, SOCIAL_LINKS_QUERY } from "~/lib/sanity/queries";
@@ -125,7 +126,7 @@ const isTodayBirthday = _birthdate.result
               Build SHA:
               <a
                 target="_blank"
-                href={`https://github.com/ickynavigator/portfolio/commit/${WORKERS_CI_COMMIT_SHA}`}
+                href={new URL(`commit/${WORKERS_CI_COMMIT_SHA}`, REPO_URL)}
                 class="hover-link"
               >
                 {WORKERS_CI_COMMIT_SHA.substring(0, 7)}
