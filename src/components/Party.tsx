@@ -1,4 +1,5 @@
 import { IconBubbleText, IconSend, IconX } from "@tabler/icons-react";
+import { PUBLIC_PARTY_URL } from "astro:env/client";
 import { usePartySocket } from "partysocket/react";
 import { useOptimistic, useRef, useState, useTransition } from "react";
 import { z } from "zod";
@@ -11,7 +12,6 @@ import {
   CardHeader,
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
-import { env } from "~/lib/env/client";
 import { cn } from "~/lib/utils";
 import Transport, { MESSAGE_TYPES } from "~/t/party/transport";
 
@@ -25,7 +25,7 @@ interface Message {
 
 const usePartyMessages = () => {
   const PS = usePartySocket({
-    host: env.PUBLIC_PARTY_URL,
+    host: PUBLIC_PARTY_URL,
     room: "my-room",
     onMessage(e) {
       transport.match(e.data, {
