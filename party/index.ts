@@ -1,10 +1,9 @@
 import type * as Party from "partykit/server";
 
-import Transport from "~/t/party/transport";
-
-const transport = new Transport();
+import { transport } from "~/t/party/transport.in-use";
 
 const MESSAGE_KEY = "messages";
+
 export default class Server implements Party.Server {
   messages: string[] = [];
 
@@ -23,13 +22,12 @@ url:    ${new URL(ctx.request.url).pathname}`,
     );
 
     conn.send(
-      transport.encode(
-        transport.tag("bulk", {
-          messages: this.messages.map((message) =>
-            transport.decode(message, Transport.SCHEMAS.message),
-          ),
-        }),
-      ),
+      transport.tag("bulk", {
+        messages: this.messages.map(
+          (message) =>
+            transport.decodeByDiscriminant(message, "message").processed,
+        ),
+      }).encoded,
     );
   }
 

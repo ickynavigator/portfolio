@@ -13,12 +13,14 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
-import Transport, { MESSAGE_TYPES } from "~/t/party/transport";
-
-const transport = new Transport();
+import {
+  MESSAGE_TYPES,
+  transport,
+  type TMESSAGE_TYPES,
+} from "~/t/party/transport.in-use";
 
 interface Message {
-  type: MESSAGE_TYPES;
+  type: TMESSAGE_TYPES;
   content: string;
   sending?: boolean;
 }
@@ -28,7 +30,7 @@ const usePartyMessages = () => {
     host: PUBLIC_PARTY_URL,
     room: "my-room",
     onMessage(e) {
-      transport.match(e.data, {
+      const matcher = transport.match({
         bulk: (data) => {
           setMessages(
             data.messages.map((message) => ({
@@ -41,6 +43,8 @@ const usePartyMessages = () => {
           addRealMessage(data.message, MESSAGE_TYPES.message);
         },
       });
+
+      matcher(e.data);
     },
   });
 
@@ -54,7 +58,7 @@ const usePartyMessages = () => {
     ],
   );
 
-  const addRealMessage = (message: string, type: MESSAGE_TYPES) => {
+  const addRealMessage = (message: string, type: TMESSAGE_TYPES) => {
     setMessages((prev) => [...prev, { type: type, content: message }]);
   };
 
@@ -63,9 +67,7 @@ const usePartyMessages = () => {
       addOptimisticMessage(message);
 
       PS.send(
-        transport.encode(
-          transport.tag("message", { timestamp: Date.now(), message }),
-        ),
+        transport.tag("message", { timestamp: Date.now(), message }).encoded,
       );
     } catch (error) {
       console.error("Error sending message:", error);
