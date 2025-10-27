@@ -18,8 +18,8 @@ importers:
         specifier: ^4.4.0
         version: 4.4.0(@types/node@24.9.1)(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(terser@5.39.0)(yaml@2.8.1)
       '@astrojs/rss':
-        specifier: ^4.0.12
-        version: 4.0.12
+        specifier: ^4.0.13
+        version: 4.0.13
       '@astrojs/sitemap':
         specifier: ^3.6.0
         version: 3.6.0
@@ -78,10 +78,10 @@ importers:
         specifier: ^0.5.19
         version: 0.5.19(tailwindcss@4.1.16)
       '@tailwindcss/vite':
-        specifier: ^4.1.15
+        specifier: ^4.1.16
         version: 4.1.16(vite@6.4.1(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(yaml@2.8.1))
       astro:
-        specifier: ^5.14.8
+        specifier: ^5.15.1
         version: 5.15.1(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.4)(terser@5.39.0)(typescript@5.9.3)(yaml@2.8.1)
       astro-compress:
         specifier: ^2.3.8
@@ -102,7 +102,7 @@ importers:
         specifier: ^4.11.0
         version: 4.11.0
       posthog-js:
-        specifier: ^1.279.3
+        specifier: ^1.280.1
         version: 1.280.1
       posthog-node:
         specifier: ^5.10.3
@@ -138,7 +138,7 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(react@19.2.0)(tailwindcss@4.1.16)
       tailwindcss:
-        specifier: ^4.1.15
+        specifier: ^4.1.16
         version: 4.1.16
       tw-animate-css:
         specifier: ^1.4.0
@@ -223,7 +223,7 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.9.3)(vite@6.4.1(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(yaml@2.8.1))
       wrangler:
-        specifier: ^4.44.0
+        specifier: ^4.45.0
         version: 4.45.0(@cloudflare/workers-types@4.20251011.0)
 
 packages:
@@ -324,8 +324,8 @@ packages:
       react: ^17.0.2 || ^18.0.0 || ^19.0.0
       react-dom: ^17.0.2 || ^18.0.0 || ^19.0.0
 
-  '@astrojs/rss@4.0.12':
-    resolution: {integrity: sha512-O5yyxHuDVb6DQ6VLOrbUVFSm+NpObulPxjs6XT9q3tC+RoKbN4HXMZLpv0LvXd1qdAjzVgJ1NFD+zKHJNDXikw==}
+  '@astrojs/rss@4.0.13':
+    resolution: {integrity: sha512-ugW4DmGn8kgfl8/qecU3EcKCAuEBrZqY7eYfa6at0sY7HGEwRdzsOafLE437RwDMP2ZuxfKnCNABs99YVhX0kg==}
 
   '@astrojs/sitemap@3.6.0':
     resolution: {integrity: sha512-4aHkvcOZBWJigRmMIAJwRQXBS+ayoP5z40OklTXYXhUDhwusz+DyDl+nSshY6y9DvkVEavwNcFO8FD81iGhXjg==}
@@ -8373,10 +8373,10 @@ snapshots:
       - tsx
       - yaml
 
-  '@astrojs/rss@4.0.12':
+  '@astrojs/rss@4.0.13':
     dependencies:
       fast-xml-parser: 5.3.0
-      kleur: 4.1.5
+      picocolors: 1.1.1
 
   '@astrojs/sitemap@3.6.0':
     dependencies:
