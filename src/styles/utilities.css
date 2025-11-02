@@ -31,7 +31,7 @@
 
   @apply bg-background relative border;
   &::before {
-    @apply absolute top-[var(--progress-width)] right-[var(--progress-width)] bottom-[var(--progress-width)] left-[var(--progress-width)] -z-50 block bg-transparent bg-[conic-gradient(var(--border-color),var(--border-color)_calc(1%*var(--count)),transparent_calc(1%*var(--count)))] content-[""];
+    @apply absolute top-(--progress-width) right-(--progress-width) bottom-(--progress-width) left-(--progress-width) -z-50 block bg-transparent bg-[conic-gradient(var(--border-color),var(--border-color)_calc(1%*var(--count)),transparent_calc(1%*var(--count)))] content-[""];
   }
 }
 @utility no-js {
