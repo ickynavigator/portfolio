@@ -24,9 +24,10 @@ export default {
   // #endregion @ianvs/prettier-plugin-sort-imports
 
   // #region prettier-plugin-tailwindcss
-  tailwindFunctions: ["clsx", "cva", "cn"],
+  tailwindFunctions: ["clsx", "cva", "cn", "cx", "twMerge"],
   // #endregion prettier-plugin-tailwindcss
 
+  // #region prettier-plugin-astro
   overrides: [
     {
       files: "*.astro",
@@ -35,4 +36,5 @@ export default {
       },
     },
   ],
+  // #endregion prettier-plugin-astro
 };
