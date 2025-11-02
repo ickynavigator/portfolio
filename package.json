@@ -47,14 +47,14 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.16",
-    "astro": "^5.15.2",
+    "astro": "^5.15.3",
     "astro-compress": "^2.3.8",
     "astro-portabletext": "^0.11.3",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
     "dayjs": "^1.11.18",
     "groq": "^4.12.0",
-    "posthog-js": "^1.281.0",
+    "posthog-js": "^1.282.0",
     "posthog-node": "^5.10.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
@@ -96,7 +96,7 @@
     "typescript-eslint": "^8.46.2",
     "vite": "^6.4.1",
     "vite-tsconfig-paths": "^5.1.4",
-    "wrangler": "^4.45.1"
+    "wrangler": "^4.45.3"
   },
   "packageManager": "pnpm@10.20.0",
   "pnpm": {
