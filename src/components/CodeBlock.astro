@@ -238,18 +238,21 @@ const CodeIcon = magicCodeIcon(language);
 <script>
   import { toast } from "sonner";
 
-  import { debouncer } from "~/lib/utils";
+  import { ComponentBase } from "~/lib/utils.client";
 
-  class CustomCodeBlock extends HTMLElement {
+  class CustomCodeBlock extends ComponentBase {
     connectedCallback() {
-      this.#bindCheck(
+      this.$bindCheckbox(
         this.querySelector("[name='show-numbers']"),
         "showLineNumbers",
       );
 
-      const resetCopyCodeActive = debouncer((button: HTMLButtonElement) => {
-        button.dataset.active = "false";
-      }, 2000);
+      const resetCopyCodeActive = this.$debouncer(
+        (button: HTMLButtonElement) => {
+          button.dataset.active = "false";
+        },
+        2000,
+      );
 
       this.querySelector("#copy-code")?.addEventListener("click", async (e) => {
         if (!this.dataset.code) return;
@@ -266,24 +269,7 @@ const CodeIcon = magicCodeIcon(language);
         }
       });
     }
-
-    #bindCheck(el: Element | HTMLElement | null, datasetKey: string) {
-      if (el instanceof HTMLInputElement) {
-        el.checked = booleanish(this.dataset[datasetKey]);
-
-        el.addEventListener("click", (e) => {
-          if (!(e.target instanceof HTMLInputElement)) return;
-          this.dataset[datasetKey] = booleanish(e.target.checked).toString();
-        });
-      }
-    }
   }
-
-  const booleanish = (value: unknown) => {
-    if (typeof value === "boolean") return value;
-    if (typeof value === "string") return value.trim() === "true";
-    return false;
-  };
 
   customElements.define("custom-code-block", CustomCodeBlock);
 </script>
