@@ -28,15 +28,27 @@ export class ComponentBase extends HTMLElement {
     return debounced;
   }
 
-  $bindCheckbox(el: Element | HTMLElement | null, datasetKey: string) {
-    if (el instanceof HTMLInputElement) {
-      el.checked = this.$booleanish(this.dataset[datasetKey]);
+  $bindCheckbox(_elements: Element | Element[] | null, datasetKey: string) {
+    let elements;
 
-      el.addEventListener("click", (e) => {
-        if (!(e.target instanceof HTMLInputElement)) return;
-        const boolean = this.$booleanish(e.target.checked);
-        this.dataset[datasetKey] = boolean.toString();
-      });
+    if (Array.isArray(_elements)) {
+      elements = _elements;
+    } else {
+      elements = [_elements];
     }
+
+    elements
+      .filter((element) => element != null)
+      .forEach((el) => {
+        if (el instanceof HTMLInputElement) {
+          el.checked = this.$booleanish(this.dataset[datasetKey]);
+
+          el.addEventListener("click", (e) => {
+            if (!(e.target instanceof HTMLInputElement)) return;
+            const boolean = this.$booleanish(e.target.checked);
+            this.dataset[datasetKey] = boolean.toString();
+          });
+        }
+      });
   }
 }
