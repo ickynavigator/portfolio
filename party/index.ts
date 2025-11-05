@@ -1,17 +1,9 @@
 import type * as Party from "partykit/server";
 
-import { transport } from "~/t/party/transport.in-use";
-
-const MESSAGE_KEY = "messages";
+import { MESSAGE_TYPES, transport } from "~/t/party/transport.in-use";
 
 export default class Server implements Party.Server {
-  messages: string[] = [];
-
   constructor(readonly party: Party.Room) {}
-
-  async onStart() {
-    this.messages = (await this.party.storage.get<string[]>(MESSAGE_KEY)) ?? [];
-  }
 
   async onConnect(conn: Party.Connection, ctx: Party.ConnectionContext) {
     console.log(
@@ -23,7 +15,7 @@ url:    ${new URL(ctx.request.url).pathname}`,
 
     conn.send(
       transport.tag("bulk", {
-        messages: this.messages.map(
+        messages: (await this.messages.get()).map(
           (message) =>
             transport.decodeByDiscriminant(message, "message").processed,
         ),
@@ -39,9 +31,22 @@ message: ${message}`,
     );
 
     this.party.broadcast(message);
+    await this.messages.add(message);
+  }
 
-    this.messages.push(message);
-    await this.party.storage.put(MESSAGE_KEY, this.messages);
+  get messages() {
+    const key = MESSAGE_TYPES.message;
+
+    return {
+      get: async () => {
+        const msgs = await this.party.storage.get<string[]>(key);
+        return msgs ?? [];
+      },
+      add: async (message: string) => {
+        const msgs = (await this.messages.get()).push(message);
+        await this.party.storage.put(key, msgs);
+      },
+    };
   }
 }
 
