@@ -45,3 +45,46 @@ jobs:
           environment: sanity
           description: "Sanity Studio deployed to ${{ steps.deploy.outputs.url }}"
           environment-url: ${{ steps.deploy.outputs.url }}
+
+  party:
+    name: PartyKit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: |
+          pnpm install --frozen-lockfile
+
+      - name: Deploy PartyKit
+        id: deploy
+        run: |
+          DEPLOY_URL=$(pnpm dlx partykit deploy | grep -o 'https://[^ ]*' | tail -1)
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN }}
+          PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}
+
+      - name: Create GitHub Deployment
+        uses: chrnorm/deployment-action@55729fcebec3d284f60f5bcabbd8376437d696b1 # v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: party
+          description: "PartyKit deployed to ${{ steps.deploy.outputs.url }}"
+          environment-url: ${{ steps.deploy.outputs.url }}

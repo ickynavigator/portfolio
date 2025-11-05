@@ -8,6 +8,9 @@
             ],
             "~/t/sanity": [
                 "./sanity.types.ts"
+            ],
+            "~/t/party/*": [
+                "./party/*"
             ]
         },
         "types": [

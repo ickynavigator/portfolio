@@ -102,6 +102,13 @@ export default defineConfig({
         context: "client",
       }),
 
+      PUBLIC_PARTY_URL: envField.string({
+        access: "public",
+        context: "client",
+        default: "http://party.portfolio.obifortune.com",
+        url: true,
+      }),
+
       ...cloudflareWorkers,
     },
   },

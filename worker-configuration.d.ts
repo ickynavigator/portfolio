@@ -14,6 +14,7 @@ declare namespace Cloudflare {
 		PUBLIC_POSTHOG_API_HOST: "https://phog.obifortune.com";
 		PUBLIC_POSTHOG_UI_HOST: "https://us.posthog.com";
 		WEBSITE_URL: "https://obifortune.com";
+		PUBLIC_PARTY_URL: "https://party.portfolio.obifortune.com";
 		SANITY_API_READ_TOKEN: string;
 		WAKATIME_API_KEY: string;
 		ASSETS: Fetcher;
