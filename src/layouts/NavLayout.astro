@@ -12,7 +12,6 @@ import Badge from "~/components/Badge.astro";
 import BirthdayAnnouncement from "~/components/BirthdayAnnouncement.astro";
 import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
-import Party from "~/components/Party";
 import SocialButton from "~/components/SocialButton.astro";
 import { REPO_URL } from "~/lib/constants";
 import { isSameDayMonth } from "~/lib/date";
@@ -138,6 +137,4 @@ const isTodayBirthday = _birthdate.result
       </div>
     </div>
   </footer>
-
-  <Party client:load />
 </Container>
