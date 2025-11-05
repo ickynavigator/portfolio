@@ -7,9 +7,7 @@ export const MESSAGE_TYPES = {
   bulk: "bulk",
 } as const;
 
-export type TMESSAGE_TYPES = z.infer<
-  (typeof MESSAGE_TYPES)[keyof typeof MESSAGE_TYPES]
->;
+export type TMESSAGE_TYPES = (typeof MESSAGE_TYPES)[keyof typeof MESSAGE_TYPES];
 
 const MessageSchema = z.object({
   type: z.literal(MESSAGE_TYPES.message),
