@@ -56,7 +56,7 @@
     "dayjs": "^1.11.19",
     "groq": "^4.13.0",
     "partysocket": "^1.1.6",
-    "posthog-js": "^1.283.0",
+    "posthog-js": "^1.284.0",
     "posthog-node": "^5.11.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
