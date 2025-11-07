@@ -12,7 +12,7 @@ export const cloudflareWorkers = {
   NODE_ENV: envField.enum({
     access: "public",
     context: "client",
-    values: ["development", "production"],
+    values: ["development", "production", "test"],
     default: "development",
   }),
 
