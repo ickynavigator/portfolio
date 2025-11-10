@@ -15,7 +15,7 @@ importers:
         specifier: ^12.6.10
         version: 12.6.10(@types/node@24.10.0)(astro@5.15.4(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.4)(terser@5.39.0)(typescript@5.9.3)(yaml@2.8.1))(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(yaml@2.8.1)
       '@astrojs/react':
-        specifier: ^4.4.1
+        specifier: ^4.4.2
         version: 4.4.2(@types/node@24.10.0)(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(jiti@2.6.1)(lightningcss@1.30.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(terser@5.39.0)(yaml@2.8.1)
       '@astrojs/rss':
         specifier: ^4.0.13
@@ -66,7 +66,7 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(@emotion/is-prop-valid@1.2.2)(@sanity/client@7.12.1)(@sanity/types@4.14.2(@types/react@19.2.2))(react-dom@19.2.0(react@19.2.0))(react-is@19.2.0)(react@19.2.0)(sanity@4.14.2(@emotion/is-prop-valid@1.2.2)(@portabletext/sanity-bridge@1.2.0(@sanity/schema@4.14.2(@types/react@19.2.2)(debug@4.4.3))(@sanity/types@4.14.2(@types/react@19.2.2)))(@types/node@24.10.0)(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(immer@10.2.0)(jiti@2.6.1)(lightningcss@1.30.2)(postcss@8.5.6)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(styled-components@6.1.19(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(terser@5.39.0)(typescript@5.9.3)(yaml@2.8.1))(styled-components@6.1.19(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(typescript@5.9.3)
       '@shikijs/transformers':
-        specifier: ^3.14.0
+        specifier: ^3.15.0
         version: 3.15.0
       '@t3-oss/env-core':
         specifier: ^0.13.8
@@ -81,10 +81,10 @@ importers:
         specifier: ^0.5.19
         version: 0.5.19(tailwindcss@4.1.17)
       '@tailwindcss/vite':
-        specifier: ^4.1.16
+        specifier: ^4.1.17
         version: 4.1.17(vite@6.4.1(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(yaml@2.8.1))
       astro:
-        specifier: ^5.15.3
+        specifier: ^5.15.4
         version: 5.15.4(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.4)(terser@5.39.0)(typescript@5.9.3)(yaml@2.8.1)
       astro-compress:
         specifier: ^2.3.8
@@ -108,10 +108,10 @@ importers:
         specifier: ^1.1.6
         version: 1.1.6
       posthog-js:
-        specifier: ^1.288.0
+        specifier: ^1.289.0
         version: 1.290.0
       posthog-node:
-        specifier: ^5.11.1
+        specifier: ^5.11.2
         version: 5.11.2
       react:
         specifier: ^19.2.0
@@ -144,7 +144,7 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2(react@19.2.0)(tailwindcss@4.1.17)
       tailwindcss:
-        specifier: ^4.1.16
+        specifier: ^4.1.17
         version: 4.1.17
       tw-animate-css:
         specifier: ^1.4.0
@@ -232,7 +232,7 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.9.3)(vite@6.4.1(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(yaml@2.8.1))
       wrangler:
-        specifier: ^4.45.4
+        specifier: ^4.46.0
         version: 4.46.0(@cloudflare/workers-types@4.20251011.0)
 
 packages:
