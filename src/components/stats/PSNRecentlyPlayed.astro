@@ -1,0 +1,15 @@
+---
+import { getPSNStats } from "~/lib/psn";
+
+const { recentlyPlayed } = await getPSNStats();
+---
+
+<ul class="flex flex-wrap">
+  {
+    recentlyPlayed.map((title) => (
+      <li>
+        <pre>{title.name}</pre>
+      </li>
+    ))
+  }
+</ul>
