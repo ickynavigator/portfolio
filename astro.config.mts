@@ -107,6 +107,11 @@ export default defineConfig({
         url: true,
       }),
 
+      PSN_NPSSO: envField.string({
+        access: "secret",
+        context: "server",
+      }),
+
       ...cloudflareWorkers,
     },
   },

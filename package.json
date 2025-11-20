@@ -53,6 +53,7 @@
     "partysocket": "^1.2.0",
     "posthog-js": "^1.386.7",
     "posthog-node": "^5.37.1",
+    "psn-api": "^2.18.0",
     "radix-ui": "^1.5.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
