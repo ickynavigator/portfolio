@@ -1,4 +1,4 @@
-import { IconBubbleText, IconSend, IconX } from "@tabler/icons-react";
+import { IconMessageCircle, IconSend, IconX } from "@tabler/icons-react";
 import { PUBLIC_PARTY_URL } from "astro:env/client";
 import { usePartySocket } from "partysocket/react";
 import { useOptimistic, useRef, useState, useTransition } from "react";
@@ -21,46 +21,53 @@ import {
 
 interface Message {
   type: TMESSAGE_TYPES;
-  content: string;
+  message: string;
   sending?: boolean;
 }
 
 const usePartyMessages = () => {
+  const [_messages, _setMessages] = useState<Message[]>([]);
+  const [messages, addOptimisticMessage] = useOptimistic(
+    _messages,
+    (state, newMessage: string) => [
+      ...state,
+      { type: MESSAGE_TYPES.message, message: newMessage, sending: true },
+    ],
+  );
+
+  const pushRealMessage = (messages: Message[], persist = true) => {
+    _setMessages((prev) => {
+      if (persist) {
+        return [...prev, ...messages];
+      }
+
+      return messages;
+    });
+  };
+
   const PS = usePartySocket({
     host: PUBLIC_PARTY_URL,
     room: "my-room",
     onMessage(e) {
       const matcher = transport.match({
-        bulk: (data) => {
-          setMessages(
-            data.messages.map((message) => ({
-              type: message.type,
-              content: message.message,
-            })),
-          );
+        bulk: ({ messages }) => {
+          const _messages: Message[] = messages.map(({ type, message }) => ({
+            type,
+            message,
+          }));
+
+          pushRealMessage(_messages, false);
         },
-        message: (data) => {
-          addRealMessage(data.message, MESSAGE_TYPES.message);
+        message: ({ message, type }) => {
+          const _message: Message[] = [{ type, message }];
+
+          pushRealMessage(_message);
         },
       });
 
       matcher(e.data);
     },
   });
-
-  const [realMessages, setMessages] = useState<Message[]>([]);
-
-  const [messages, addOptimisticMessage] = useOptimistic(
-    realMessages,
-    (state, newMessage: string) => [
-      ...state,
-      { type: MESSAGE_TYPES.message, content: newMessage, sending: true },
-    ],
-  );
-
-  const addRealMessage = (message: string, type: TMESSAGE_TYPES) => {
-    setMessages((prev) => [...prev, { type: type, content: message }]);
-  };
 
   const sendMessage = async (message: string) => {
     try {
@@ -80,8 +87,13 @@ const usePartyMessages = () => {
 const schema = z.object({
   message: z.string().min(1, { message: "Message is required" }),
 });
+const formDataPreprocessor = (target: HTMLFormElement) => {
+  const formData = new FormData(target);
+  const formObject = Object.fromEntries(formData);
+  return formObject;
+};
 
-const Party = () => {
+export default function Party() {
   const { messages, sendMessage } = usePartyMessages();
 
   const [isPending, startTransition] = useTransition();
@@ -95,22 +107,17 @@ const Party = () => {
     startTransition(async () => {
       event.preventDefault();
 
-      const formData = new FormData(event.currentTarget);
-      const formObject = Object.fromEntries(formData);
-      const parsed = schema.safeParse(formObject);
+      const parsed = z
+        .preprocess(formDataPreprocessor, schema)
+        .safeDecode(event.currentTarget);
 
       if (!parsed.success) {
-        console.error(z.treeifyError(parsed.error));
+        console.error(z.prettifyError(parsed.error));
         return;
       }
 
-      try {
-        await sendMessage(parsed.data.message);
-
-        formRef.current?.reset();
-      } catch (error) {
-        console.error("Error sending message:", error);
-      }
+      await sendMessage(parsed.data.message);
+      formRef.current?.reset();
     });
   };
 
@@ -133,10 +140,10 @@ const Party = () => {
       <Button
         variant="outline"
         size="icon"
-        className="size-15 rounded-full [anchor-name:--party-dialog]"
+        className="size-13 rounded-2xl [anchor-name:--party-dialog]"
         onClick={openDialog}
       >
-        <IconBubbleText className="size-7/10" />
+        <IconMessageCircle className="size-7/10" />
       </Button>
 
       <dialog
@@ -181,14 +188,14 @@ const Party = () => {
                     item?.scrollIntoView({ behavior: "smooth" });
                   }}
                   className={cn(
-                    "flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm break-words transition-opacity",
+                    "flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm wrap-break-word transition-opacity",
                     message.sending && "opacity-50",
                     message.type === "message"
                       ? "bg-primary text-primary-foreground ml-auto"
                       : "bg-muted",
                   )}
                 >
-                  {message.content}
+                  {message.message}
                 </div>
               ))}
             </div>
@@ -222,6 +229,4 @@ const Party = () => {
       </dialog>
     </div>
   );
-};
-
-export default Party;
+}
