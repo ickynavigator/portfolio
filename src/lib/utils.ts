@@ -12,3 +12,16 @@ export function getTextFromPortableTextBlock(block?: Block) {
     return acc;
   }, "");
 }
+
+export function createSingleton<T>(name: string, create: () => T): T {
+  const s = Symbol.for(name);
+  const g = globalThis as unknown as Record<symbol, T | undefined>;
+
+  let scope = g[s];
+  if (scope === undefined) {
+    scope = create();
+    g[s] = scope;
+  }
+
+  return scope as T;
+}
