@@ -9,19 +9,23 @@ import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
-import { PROJECT_QUERY, PROJECT_SLUGS_QUERY } from "~/lib/sanity/queries";
+import { PROJECT_SLUGS_QUERY } from "~/lib/sanity/queries";
 import { urlForImage } from "~/lib/sanity/urlForImage";
 
 export const getStaticPaths = (async () => {
   const { result } = await loadQuery({ query: PROJECT_SLUGS_QUERY });
 
-  return result.map((post) => ({
-    params: { slug: post.slug },
+  return result.map((project) => ({
+    params: {
+      slug: project.slug.current,
+    },
+    props: {
+      project,
+    },
   }));
 }) satisfies GetStaticPaths;
 
-const { slug } = Astro.params;
-const { result } = await loadQuery({ query: PROJECT_QUERY, params: { slug } });
+const { project: result } = Astro.props;
 const image = result?.images?.[0];
 
 if (!result || !image) {

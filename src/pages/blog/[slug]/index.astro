@@ -16,19 +16,23 @@ import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 import dayjs, { getReadingTime } from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
-import { POST_QUERY, POST_SLUGS_QUERY } from "~/lib/sanity/queries";
+import { POST_SLUGS_QUERY } from "~/lib/sanity/queries";
 import { urlForImage } from "~/lib/sanity/urlForImage";
 
 export const getStaticPaths = (async () => {
   const { result } = await loadQuery({ query: POST_SLUGS_QUERY });
 
   return result.map((post) => ({
-    params: { slug: post.slug },
+    params: {
+      slug: post.slug.current,
+    },
+    props: {
+      post,
+    },
   }));
 }) satisfies GetStaticPaths;
 
-const { slug } = Astro.params;
-const { result } = await loadQuery({ query: POST_QUERY, params: { slug } });
+const { post: result } = Astro.props;
 const image = result?.images?.[0];
 
 if (!result || !image) {
