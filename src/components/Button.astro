@@ -61,8 +61,7 @@ const loaderVariants = cva("text-primary", {
 });
 
 interface Props
-  extends HTMLAttributes<"button">,
-    VariantProps<typeof buttonVariants> {
+  extends HTMLAttributes<"button">, VariantProps<typeof buttonVariants> {
   loading?: boolean;
 }
 
