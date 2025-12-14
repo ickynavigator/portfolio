@@ -232,7 +232,7 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.9.3)(vite@6.4.1(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.39.0)(yaml@2.8.2))
       wrangler:
-        specifier: ^4.53.0
+        specifier: ^4.54.0
         version: 4.54.0(@cloudflare/workers-types@4.20251213.0)
 
 packages:
