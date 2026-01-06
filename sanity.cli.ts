@@ -14,4 +14,10 @@ export default defineCliConfig({
   vite: defineConfig({
     plugins: [tsconfigPaths()],
   }),
+  typegen: {
+    path: "./src/**/*.{ts,tsx,js,jsx}",
+    schema: "./sanity.schema.json",
+    generates: "./sanity.types.ts",
+    overloadClientMethods: true,
+  },
 });
