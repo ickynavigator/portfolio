@@ -87,7 +87,6 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-unused-imports": "^4.3.0",
-    "lodash": "^4.17.21",
     "partykit": "0.0.115",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
@@ -113,7 +112,6 @@
     ]
   },
   "peerDependencies": {
-    "lodash": "^4.17.21",
     "react-compiler-runtime": "19.1.0-rc.3",
     "react-is": "^19.0.0"
   }
