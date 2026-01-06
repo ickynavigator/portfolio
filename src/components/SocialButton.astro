@@ -7,17 +7,15 @@ import {
   IconLink,
   IconMail,
   IconRss,
-  type Icon,
-  type IconProps,
+  type TablerIcon,
 } from "@tabler/icons-react";
-import type { ForwardRefExoticComponent, RefAttributes } from "react";
 
 import { cn } from "~/lib/utils";
 
 interface SocialResult {
   href: string;
   text: string;
-  icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+  icon: TablerIcon;
   color: string;
 }
 
