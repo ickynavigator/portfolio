@@ -60,7 +60,7 @@
     "posthog-node": "^5.18.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "recharts": "^2.15.4",
+    "recharts": "^3.6.0",
     "remeda": "^2.33.1",
     "sanity": "^5.2.0",
     "sanity-plugin-webhooks-trigger": "^0.7.0",
