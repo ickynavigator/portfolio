@@ -3,7 +3,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { webhooksTrigger } from "sanity-plugin-webhooks-trigger";
 import { presentationTool } from "sanity/presentation";
-import { structureTool } from "sanity/structure";
+import { structureTool, type StructureToolOptions } from "sanity/structure";
 
 import {
   CONFIGURATION_CONFIG_ID,
@@ -49,7 +49,8 @@ export default defineConfig({
                 ),
             ),
           ]),
-    }),
+      // todo: take out when sanity updates
+    } satisfies StructureToolOptions),
     visionTool({
       defaultApiVersion: SANITY_API_VERSION,
       defaultDataset: SANITY_API_DATASET,
