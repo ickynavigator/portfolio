@@ -15,7 +15,21 @@ import "@sanity/client";
  * ---------------------------------------------------------------------------------
  */
 
-// Source: schema.json
+// Source: sanity.schema.json
+export interface CategoryReference {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "category";
+}
+
+export interface SanityImageAssetReference {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+}
+
 export interface Career {
   _id: string;
   _type: "career";
@@ -33,13 +47,9 @@ export interface Career {
     | "Freelance";
   title: string;
   description: BlockContent;
-  tags: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  tags: ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }[];
+  } & CategoryReference)[];
   location: {
     type: "On-site" | "Hybrid" | "Remote";
     address: string;
@@ -48,12 +58,7 @@ export interface Career {
     name: string;
     url: string;
     logo: {
-      asset: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -86,6 +91,20 @@ export interface SanityImageHotspot {
   width: number;
 }
 
+export interface PostReference {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "post";
+}
+
+export interface ProjectReference {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "project";
+}
+
 export type BlockContent = (
   | {
       children?: {
@@ -116,19 +135,7 @@ export type BlockContent = (
             _key: string;
           }
         | {
-            ref:
-              | {
-                  _ref: string;
-                  _type: "reference";
-                  _weak?: boolean;
-                  [internalGroqTypeReferenceTo]?: "post";
-                }
-              | {
-                  _ref: string;
-                  _type: "reference";
-                  _weak?: boolean;
-                  [internalGroqTypeReferenceTo]?: "project";
-                };
+            ref: PostReference | ProjectReference;
             _type: "referencelink";
             _key: string;
           }
@@ -138,12 +145,7 @@ export type BlockContent = (
       _key: string;
     }
   | {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -179,6 +181,13 @@ export interface Slug {
   source?: string;
 }
 
+export interface SanityFileAssetReference {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+}
+
 export interface PersonalInfo {
   _id: string;
   _type: "personalInfo";
@@ -196,24 +205,14 @@ export interface PersonalInfo {
   };
   CV?: {
     file?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-      };
+      asset?: SanityFileAssetReference;
       media?: unknown;
       _type: "file";
     };
     lastupdatedAt?: string;
   };
   image: {
-    asset: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -222,27 +221,15 @@ export interface PersonalInfo {
   };
   bio: BlockContent;
   socialLinks?: string[];
-  skillTags?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  skillTags?: ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }[];
-  selectedPosts?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } & CategoryReference)[];
+  selectedPosts?: ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "post";
-  }[];
-  selectedProjects?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  } & PostReference)[];
+  selectedProjects?: ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "project";
-  }[];
+  } & ProjectReference)[];
   uses: BlockContent;
 }
 
@@ -257,21 +244,12 @@ export interface Post {
   title: string;
   slug: Slug;
   postedAt: string;
-  tags?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  tags?: ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }[];
+  } & CategoryReference)[];
   description: string;
   images: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -295,12 +273,7 @@ export interface Project {
   status: "completed" | "ongoing" | "abandoned";
   role: string;
   images: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -308,13 +281,9 @@ export interface Project {
     _type: "image";
     _key: string;
   }[];
-  tags: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  tags: ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }[];
+  } & CategoryReference)[];
   body: BlockContent;
   links: ({
     _key: string;
@@ -373,6 +342,7 @@ export interface SanityImageMetadata {
   palette?: SanityImagePalette;
   lqip?: string;
   blurHash?: string;
+  thumbHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
 }
@@ -437,13 +407,18 @@ export interface Geopoint {
 }
 
 export type AllSanitySchemaTypes =
+  | CategoryReference
+  | SanityImageAssetReference
   | Career
   | SanityImageCrop
   | SanityImageHotspot
+  | PostReference
+  | ProjectReference
   | BlockContent
   | EnhancedURL
   | Category
   | Slug
+  | SanityFileAssetReference
   | PersonalInfo
   | Post
   | Project
@@ -457,23 +432,24 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
+
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./src/lib/sanity/queries.ts
+
+type ArrayOf<T> = (T & {
+  _key: string;
+})[];
+
+// Source: src/lib/sanity/queries.ts
 // Variable: PAGINATED_POSTS_QUERY
 // Query: {        "data":     *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {        _id,        title,        slug,        postedAt,         "image": images[0],        "wordCount": length(pt::text(body))    },    }
-export interface PAGINATED_POSTS_QUERYResult {
+export interface PAGINATED_POSTS_QUERY_RESULT {
   data: {
     _id: string;
     title: string;
     slug: Slug;
     postedAt: string;
     image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -484,9 +460,11 @@ export interface PAGINATED_POSTS_QUERYResult {
     wordCount: number;
   }[];
 }
+
+// Source: src/lib/sanity/queries.ts
 // Variable: POST_SLUGS_QUERY
 // Query: *[_type == "post" && defined(slug.current) && hidden != true] {        ...,        "wordCount": length(pt::text(body)),        "derefTag": coalesce(tags[]->, []),    }
-export type POST_SLUGS_QUERYResult = {
+export type POST_SLUGS_QUERY_RESULT = {
   _id: string;
   _type: "post";
   _createdAt: string;
@@ -497,21 +475,12 @@ export type POST_SLUGS_QUERYResult = {
   title: string;
   slug: Slug;
   postedAt: string;
-  tags?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  tags?: ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }[];
+  } & CategoryReference)[];
   description: string;
   images: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -533,9 +502,11 @@ export type POST_SLUGS_QUERYResult = {
       }[]
     | never[];
 }[];
+
+// Source: src/lib/sanity/queries.ts
 // Variable: CV_REF_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->
-export type CV_REF_QUERYResult = {
+export type CV_REF_QUERY_RESULT = {
   _id: string;
   _type: "sanity.fileAsset";
   _createdAt: string;
@@ -556,9 +527,11 @@ export type CV_REF_QUERYResult = {
   url?: string;
   source?: SanityAssetSourceData;
 } | null;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: HOME_PAGE_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0] {        name,        title,        tagline,        shortBio,        "selectedPosts": coalesce(            selectedPosts[]-> {                title,                description,                "slug": slug.current            },        []),        "selectedProjects": coalesce(            selectedProjects[]-> {                "slug": slug.current,                title,                "tags": tags[]-> {                    "slug": slug.current,                    "name": title,                },            },        []),    }
-export type HOME_PAGE_QUERYResult = {
+export type HOME_PAGE_QUERY_RESULT = {
   name: string;
   title: string;
   tagline: string;
@@ -581,9 +554,11 @@ export type HOME_PAGE_QUERYResult = {
       }[]
     | never[];
 } | null;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: PAGINATED_PROJECTS_QUERY
 // Query: {        "data":     *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {        _id,        _createdAt,        title,        slug,        role,        "image": images[0]    },    }
-export interface PAGINATED_PROJECTS_QUERYResult {
+export interface PAGINATED_PROJECTS_QUERY_RESULT {
   data: {
     _id: string;
     _createdAt: string;
@@ -591,12 +566,7 @@ export interface PAGINATED_PROJECTS_QUERYResult {
     slug: Slug;
     role: string;
     image: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -606,9 +576,11 @@ export interface PAGINATED_PROJECTS_QUERYResult {
     } | null;
   }[];
 }
+
+// Source: src/lib/sanity/queries.ts
 // Variable: PROJECT_SLUGS_QUERY
 // Query: *[_type == "project" && defined(slug.current) && hidden != true] {        ...,        "visibleLinks": links[@.hidden != true],        "derefTag": coalesce(tags[]->, []),    }
-export type PROJECT_SLUGS_QUERYResult = {
+export type PROJECT_SLUGS_QUERY_RESULT = {
   _id: string;
   _type: "project";
   _createdAt: string;
@@ -621,12 +593,7 @@ export type PROJECT_SLUGS_QUERYResult = {
   status: "abandoned" | "completed" | "ongoing";
   role: string;
   images: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -634,13 +601,9 @@ export type PROJECT_SLUGS_QUERYResult = {
     _type: "image";
     _key: string;
   }[];
-  tags: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
+  tags: ({
     _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }[];
+  } & CategoryReference)[];
   body: BlockContent;
   links: ({
     _key: string;
@@ -658,9 +621,11 @@ export type PROJECT_SLUGS_QUERYResult = {
     slug: Slug;
   }[];
 }[];
+
+// Source: src/lib/sanity/queries.ts
 // Variable: CAREERS_QUERY
 // Query: {        "careers":  *[_type == "career" && hidden != true] {            ...,            "visibleLinks": coalesce(links[@.hidden != true], []),            "derefTag": coalesce(tags[]->, []),        },        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt    }
-export interface CAREERS_QUERYResult {
+export interface CAREERS_QUERY_RESULT {
   careers: {
     _id: string;
     _type: "career";
@@ -678,13 +643,9 @@ export interface CAREERS_QUERYResult {
       | "Self-Employed";
     title: string;
     description: BlockContent;
-    tags: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
+    tags: ({
       _key: string;
-      [internalGroqTypeReferenceTo]?: "category";
-    }[];
+    } & CategoryReference)[];
     location: {
       type: "Hybrid" | "On-site" | "Remote";
       address: string;
@@ -693,12 +654,7 @@ export interface CAREERS_QUERYResult {
       name: string;
       url: string;
       logo: {
-        asset: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
+        asset: SanityImageAssetReference;
         media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
@@ -728,9 +684,11 @@ export interface CAREERS_QUERYResult {
   }[];
   cvUpdatedAt: string | null;
 }
+
+// Source: src/lib/sanity/queries.ts
 // Variable: PROFILE_IMAGE_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->
-export type PROFILE_IMAGE_QUERYResult = {
+export type PROFILE_IMAGE_QUERY_RESULT = {
   _id: string;
   _type: "sanity.imageAsset";
   _createdAt: string;
@@ -752,9 +710,11 @@ export type PROFILE_IMAGE_QUERYResult = {
   metadata?: SanityImageMetadata;
   source?: SanityAssetSourceData;
 } | null;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: SEARCH_QUERY
 // Query: *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {        _type,        title,        slug,        "tags": coalesce(tags[]->, []),    }
-export type SEARCH_QUERYResult = (
+export type SEARCH_QUERY_RESULT = (
   | {
       _type: "career";
       title: string;
@@ -830,12 +790,16 @@ export type SEARCH_QUERYResult = (
       tags: never[];
     }
 )[];
+
+// Source: src/lib/sanity/queries.ts
 // Variable: USES_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].uses
-export type USES_QUERYResult = BlockContent | null;
+export type USES_QUERY_RESULT = BlockContent | null;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: RSS_FEED_QUERY
 // Query: {        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, ''),        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {                    title,                    "pubDate": postedAt,                    description,                    "link": '/blog/' + slug.current,                    "categories": coalesce(tags[]->slug.current, []),                }, []),    }
-export interface RSS_FEED_QUERYResult {
+export interface RSS_FEED_QUERY_RESULT {
   title: string | "";
   description: string | "";
   items: {
@@ -846,48 +810,60 @@ export interface RSS_FEED_QUERYResult {
     categories: string[] | never[];
   }[];
 }
+
+// Source: src/lib/sanity/queries.ts
 // Variable: SOCIAL_LINKS_QUERY
 // Query: coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])
-export type SOCIAL_LINKS_QUERYResult = string[] | never[];
+export type SOCIAL_LINKS_QUERY_RESULT = string[] | never[];
+
+// Source: src/lib/sanity/queries.ts
 // Variable: ABOUT_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0] {        bio,    }
-export type ABOUT_QUERYResult = {
+export type ABOUT_QUERY_RESULT = {
   bio: BlockContent;
 } | null;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: BIRTHDAY_QUERY
 // Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].birthday
-export type BIRTHDAY_QUERYResult = string | null;
+export type BIRTHDAY_QUERY_RESULT = string | null;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: SHOW_SIMPLE_CODE_QUERY
 // Query: coalesce(*[_type == "configuration" && _id == "configuration"] [0].showSimpleCodePreview, false)
-export type SHOW_SIMPLE_CODE_QUERYResult = boolean | false;
+export type SHOW_SIMPLE_CODE_QUERY_RESULT = boolean | false;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: LINK_REFERENCE_QUERY
 // Query: $ref -> {        "type": _type,        "name": title,        "updatedAt": _updatedAt,        "slug": slug.current,        "shouldShow": array::intersects(["post", "project"], [_type]) && hidden == true    }
-export type LINK_REFERENCE_QUERYResult = null;
+export type LINK_REFERENCE_QUERY_RESULT = null;
+
+// Source: src/lib/sanity/queries.ts
 // Variable: TAGS_QUERY
 // Query: *[_type == "category" && hidden != true] {        "slug": slug.current,        "name": title,    }
-export type TAGS_QUERYResult = {
+export type TAGS_QUERY_RESULT = {
   slug: string;
   name: string;
 }[];
 
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n    {\n        "data": \n    *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {\n        _id,\n        title,\n        slug,\n        postedAt, \n        "image": images[0],\n        "wordCount": length(pt::text(body))\n    }\n,\n    }\n': PAGINATED_POSTS_QUERYResult;
-    '\n    *[_type == "post" && defined(slug.current) && hidden != true] {\n        ...,\n        "wordCount": length(pt::text(body)),\n        "derefTag": coalesce(tags[]->, []),\n    }\n': POST_SLUGS_QUERYResult;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CV_REF_QUERYResult;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        name,\n        title,\n        tagline,\n        shortBio,\n        "selectedPosts": coalesce(\n            selectedPosts[]-> {\n                title,\n                description,\n                "slug": slug.current\n            },\n        []),\n        "selectedProjects": coalesce(\n            selectedProjects[]-> {\n                "slug": slug.current,\n                title,\n                "tags": tags[]-> {\n                    "slug": slug.current,\n                    "name": title,\n                },\n            },\n        []),\n    }\n': HOME_PAGE_QUERYResult;
-    '\n    {\n        "data": \n    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {\n        _id,\n        _createdAt,\n        title,\n        slug,\n        role,\n        "image": images[0]\n    }\n,\n    }\n': PAGINATED_PROJECTS_QUERYResult;
-    '\n    *[_type == "project" && defined(slug.current) && hidden != true] {\n        ...,\n        "visibleLinks": links[@.hidden != true],\n        "derefTag": coalesce(tags[]->, []),\n    }\n': PROJECT_SLUGS_QUERYResult;
-    '\n    {\n        "careers":  *[_type == "career" && hidden != true] {\n            ...,\n            "visibleLinks": coalesce(links[@.hidden != true], []),\n            "derefTag": coalesce(tags[]->, []),\n        },\n        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt\n    }\n': CAREERS_QUERYResult;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->\n': PROFILE_IMAGE_QUERYResult;
-    '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERYResult;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].uses\n': USES_QUERYResult;
-    '\n    {\n        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, \'\'),\n        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),\n        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n                    title,\n                    "pubDate": postedAt,\n                    description,\n                    "link": \'/blog/\' + slug.current,\n                    "categories": coalesce(tags[]->slug.current, []),\n                }, []),\n    }\n': RSS_FEED_QUERYResult;
-    '\n    coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])\n': SOCIAL_LINKS_QUERYResult;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        bio,\n    }\n': ABOUT_QUERYResult;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].birthday\n': BIRTHDAY_QUERYResult;
-    '\n    coalesce(*[_type == "configuration" && _id == "configuration"] [0].showSimpleCodePreview, false)\n': SHOW_SIMPLE_CODE_QUERYResult;
-    '\n    $ref -> {\n        "type": _type,\n        "name": title,\n        "updatedAt": _updatedAt,\n        "slug": slug.current,\n        "shouldShow": array::intersects(["post", "project"], [_type]) && hidden == true\n    }\n': LINK_REFERENCE_QUERYResult;
-    '\n    *[_type == "category" && hidden != true] {\n        "slug": slug.current,\n        "name": title,\n    }\n': TAGS_QUERYResult;
+    '\n    {\n        "data": \n    *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {\n        _id,\n        title,\n        slug,\n        postedAt, \n        "image": images[0],\n        "wordCount": length(pt::text(body))\n    }\n,\n    }\n': PAGINATED_POSTS_QUERY_RESULT;
+    '\n    *[_type == "post" && defined(slug.current) && hidden != true] {\n        ...,\n        "wordCount": length(pt::text(body)),\n        "derefTag": coalesce(tags[]->, []),\n    }\n': POST_SLUGS_QUERY_RESULT;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CV_REF_QUERY_RESULT;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        name,\n        title,\n        tagline,\n        shortBio,\n        "selectedPosts": coalesce(\n            selectedPosts[]-> {\n                title,\n                description,\n                "slug": slug.current\n            },\n        []),\n        "selectedProjects": coalesce(\n            selectedProjects[]-> {\n                "slug": slug.current,\n                title,\n                "tags": tags[]-> {\n                    "slug": slug.current,\n                    "name": title,\n                },\n            },\n        []),\n    }\n': HOME_PAGE_QUERY_RESULT;
+    '\n    {\n        "data": \n    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {\n        _id,\n        _createdAt,\n        title,\n        slug,\n        role,\n        "image": images[0]\n    }\n,\n    }\n': PAGINATED_PROJECTS_QUERY_RESULT;
+    '\n    *[_type == "project" && defined(slug.current) && hidden != true] {\n        ...,\n        "visibleLinks": links[@.hidden != true],\n        "derefTag": coalesce(tags[]->, []),\n    }\n': PROJECT_SLUGS_QUERY_RESULT;
+    '\n    {\n        "careers":  *[_type == "career" && hidden != true] {\n            ...,\n            "visibleLinks": coalesce(links[@.hidden != true], []),\n            "derefTag": coalesce(tags[]->, []),\n        },\n        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt\n    }\n': CAREERS_QUERY_RESULT;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->\n': PROFILE_IMAGE_QUERY_RESULT;
+    '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERY_RESULT;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].uses\n': USES_QUERY_RESULT;
+    '\n    {\n        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, \'\'),\n        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),\n        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n                    title,\n                    "pubDate": postedAt,\n                    description,\n                    "link": \'/blog/\' + slug.current,\n                    "categories": coalesce(tags[]->slug.current, []),\n                }, []),\n    }\n': RSS_FEED_QUERY_RESULT;
+    '\n    coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])\n': SOCIAL_LINKS_QUERY_RESULT;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        bio,\n    }\n': ABOUT_QUERY_RESULT;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].birthday\n': BIRTHDAY_QUERY_RESULT;
+    '\n    coalesce(*[_type == "configuration" && _id == "configuration"] [0].showSimpleCodePreview, false)\n': SHOW_SIMPLE_CODE_QUERY_RESULT;
+    '\n    $ref -> {\n        "type": _type,\n        "name": title,\n        "updatedAt": _updatedAt,\n        "slug": slug.current,\n        "shouldShow": array::intersects(["post", "project"], [_type]) && hidden == true\n    }\n': LINK_REFERENCE_QUERY_RESULT;
+    '\n    *[_type == "category" && hidden != true] {\n        "slug": slug.current,\n        "name": title,\n    }\n': TAGS_QUERY_RESULT;
   }
 }
