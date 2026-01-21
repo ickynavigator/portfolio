@@ -99,7 +99,7 @@
     "vite-tsconfig-paths": "^6.0.4",
     "wrangler": "^4.59.2"
   },
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@tailwindcss/oxide",
