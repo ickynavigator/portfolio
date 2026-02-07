@@ -8,7 +8,8 @@ import {
   BlockQuoteWarning,
   BlockReferenceLink,
   Highlight,
-  Muted,
+  MutedDecorator,
+  MutedStyle,
 } from "~/lib/sanity/schema/objects/blockContent.components";
 
 export default defineType({
@@ -30,7 +31,7 @@ export default defineType({
         { title: "H4", value: "h4" },
         { title: "H5", value: "h5" },
         { title: "H6", value: "h6" },
-        Muted,
+        MutedStyle,
         { title: "Quote", value: "blockquote" },
         BlockQuoteInfo,
         BlockQuoteSuccess,
@@ -47,7 +48,7 @@ export default defineType({
           { title: "Emphasis", value: "em" },
           { title: "Code", value: "code" },
           { title: "Underline", value: "underline" },
-          Muted,
+          MutedDecorator,
           { title: "Strike", value: "strike-through" },
           Highlight,
         ],

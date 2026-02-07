@@ -103,7 +103,7 @@ export default function Party() {
   const inputRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = (event: React.SubmitEvent<HTMLFormElement>) => {
     startTransition(async () => {
       event.preventDefault();
 
