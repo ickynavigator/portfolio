@@ -18,14 +18,14 @@
     },
     "send_metrics": true,
     "vars": {
+        "WEBSITE_URL": "https://obifortune.com",
+        "PUBLIC_SANITY_VISUAL_EDITING_ENABLED": "false",
         "PUBLIC_SANITY_API_PROJECT_ID": "gtsyvuts",
         "PUBLIC_SANITY_API_DATASET": "production",
         "PUBLIC_SANITY_API_VERSION": "2022-03-07",
-        "PUBLIC_SANITY_VISUAL_EDITING_ENABLED": "false",
         "PUBLIC_POSTHOG_API_KEY": "phc_tsOUKsYrGpDKtq0LDG4uWzav1y8TwkHLRVadr8TIrv6",
         "PUBLIC_POSTHOG_API_HOST": "https://phog.obifortune.com",
         "PUBLIC_POSTHOG_UI_HOST": "https://us.posthog.com",
-        "WEBSITE_URL": "https://obifortune.com",
         "PUBLIC_PARTY_URL": "https://party.portfolio.obifortune.com"
     }
 }
