@@ -1,8 +1,0 @@
-{
-    "compilerOptions": {
-        "noUnusedLocals": false
-    },
-    "include": [
-        "sanity.types.ts"
-    ]
-}

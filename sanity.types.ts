@@ -435,10 +435,6 @@ export type AllSanitySchemaTypes =
 
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
-type ArrayOf<T> = (T & {
-  _key: string;
-})[];
-
 // Source: src/lib/sanity/queries.ts
 // Variable: PAGINATED_POSTS_QUERY
 // Query: {        "data":     *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {        _id,        title,        slug,        postedAt,         "image": images[0],        "wordCount": length(pt::text(body))    },    }
