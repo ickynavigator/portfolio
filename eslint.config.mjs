@@ -20,6 +20,7 @@ export default defineConfig(
       ".partykit/",
       ".sanity/",
       "./worker-configuration.d.ts",
+      "./sanity.types.ts",
     ],
     `${HEADER}/ignores`,
   ),
