@@ -16,7 +16,7 @@
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "typegen": "$npm_execpath typegen:sa && $npm_execpath typegen:cf",
     "typegen:cf": "wrangler types",
-    "typegen:sa": "sanity schema extract && sanity typegen generate && eslint --fix --cache ./sanity.types.ts"
+    "typegen:sa": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
