@@ -113,15 +113,6 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss(), tsconfigPaths()],
-    ssr: {
-      external: [
-        "crypto",
-        "node:crypto",
-        "node:fs",
-        "node:readline",
-        "node:path",
-      ],
-    },
     build: {
       chunkSizeWarningLimit: 1000,
     },
