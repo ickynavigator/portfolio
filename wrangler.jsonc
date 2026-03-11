@@ -2,7 +2,7 @@
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "portfolio",
     "build": {},
-    "main": "./dist/_worker.js/index.js",
+    "main": "@astrojs/cloudflare/entrypoints/server",
     "compatibility_date": "2025-10-14",
     "compatibility_flags": [
         "nodejs_compat_v2"
