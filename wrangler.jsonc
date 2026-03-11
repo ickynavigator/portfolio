@@ -3,7 +3,7 @@
     "name": "portfolio",
     "build": {},
     "main": "@astrojs/cloudflare/entrypoints/server",
-    "compatibility_date": "2026-03-11",
+    "compatibility_date": "2026-03-10",
     "compatibility_flags": [
         "nodejs_compat_v2",
         "global_fetch_strictly_public"
