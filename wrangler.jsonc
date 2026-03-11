@@ -5,8 +5,7 @@
     "main": "@astrojs/cloudflare/entrypoints/server",
     "compatibility_date": "2026-03-10",
     "compatibility_flags": [
-        "nodejs_compat_v2",
-        "global_fetch_strictly_public"
+        "nodejs_compat"
     ],
     "preview_urls": true,
     "workers_dev": true,
