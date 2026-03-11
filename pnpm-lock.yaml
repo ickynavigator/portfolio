@@ -104,6 +104,9 @@ importers:
       groq:
         specifier: ^5.14.1
         version: 5.14.1
+      lodash:
+        specifier: ^4.17.23
+        version: 4.17.23
       partysocket:
         specifier: ^1.1.16
         version: 1.1.16(react@19.2.4)

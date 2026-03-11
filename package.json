@@ -51,6 +51,7 @@
     "class-variance-authority": "^0.7.1",
     "dayjs": "^1.11.19",
     "groq": "^5.14.1",
+    "lodash": "^4.17.23",
     "partysocket": "^1.1.16",
     "posthog-js": "^1.360.1",
     "posthog-node": "^5.28.1",
