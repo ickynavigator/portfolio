@@ -31,10 +31,10 @@ All commands are run from the root of the project, from a terminal with `pnpm ru
 | `build`      | Build your production site to `./dist/`, will generate app types and check astro setup |
 | `preview`    | Deploy a local preview of the build with wrangler                                      |
 | `typegen`    | Generate all user types                                                                |
-| `cf-typegen` | Generate types from bindings and module rules in configuration                         |
-| `sa-dev`     | Starts sanity dev server at `localhost:3333`                                           |
-| `sa-deploy`  | Deploy sanity schema to the cloud                                                      |
-| `sa-typegen` | Extract sanity schema info and generate types                                          |
+| `typegen:cf` | Generate types from bindings and module rules in configuration                         |
+| `dev:sa`     | Starts sanity dev server at `localhost:3333`                                           |
+| `deploy:sa`  | Deploy sanity schema to the cloud                                                      |
+| `typegen:sa` | Extract sanity schema info and generate types                                          |
 | `lint`       | Run eslint on the project                                                              |
 | `lint:fix`   | Run eslint on the project and resolve auto-fixable issues                              |
 | `typecheck`  | Run tsc to check for type errors                                                       |

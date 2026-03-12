@@ -54,8 +54,7 @@ jobs:
 
       - name: Generate Types
         run: |
-          pnpm run cf-typegen
-          pnpm run sa-typegen
+          pnpm run typegen
 
       - name: Commit Changes if any
         id: commit_changes
