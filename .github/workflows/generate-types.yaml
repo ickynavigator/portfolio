@@ -37,21 +37,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Check and Switch to update branch
-        id: check_branch
-        run: |
-          branch="chore/update-types"
-          if git ls-remote --heads origin "$branch" | grep -q "$branch"; then
-              echo "Branch exists, checking out and pulling latest changes."
-              git fetch origin "$branch"
-              git checkout "$branch"
-              git reset --hard origin/"$branch"
-          else
-              echo "Branch does not exist, creating new."
-              git checkout -b "$branch"
-          fi
-          echo "branch=$branch" >> $GITHUB_OUTPUT
-
       - name: Generate Types
         run: |
           pnpm run typegen
@@ -68,17 +53,11 @@ jobs:
               echo "changes=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Push Branch
-        if: steps.commit_changes.outputs.changes == 'true'
-        run: |
-          git push origin ${{ steps.check_branch.outputs.branch }}
-
       - name: Create Pull Request
         if: steps.commit_changes.outputs.changes == 'true'
         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ steps.check_branch.outputs.branch }}
           base: ${{ github.ref_name }}
           title: "chore: update generated types"
           body: "This PR updates the generated types."
