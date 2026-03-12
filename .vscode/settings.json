@@ -6,6 +6,7 @@
     "files.associations": {
         "*.css": "tailwindcss"
     },
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    "typescript.preferences.preferTypeOnlyAutoImports": true,
+    "js/ts.preferences.importModuleSpecifier": "non-relative",
+    "js/ts.preferences.preferTypeOnlyAutoImports": true,
+    "js/ts.tsdk.path": "node_modules/typescript/lib",
 }

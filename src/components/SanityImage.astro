@@ -23,8 +23,10 @@ const { node, pictureProps, ...attrs } = Astro.props;
 
 if (!node?.asset) return null;
 
-const url = urlForImage(node.asset).url();
-const webpUrl = urlForImage(node.asset).format("webp").url();
+const _image = urlForImage(node.asset);
+
+const url = _image.url();
+const webpUrl = _image.format("webp").url();
 ---
 
 <picture {...pictureProps}>
