@@ -39,7 +39,7 @@
     "@sanity/vision": "^5.18.0",
     "@sanity/visual-editing": "^5.3.3",
     "@shikijs/transformers": "^4.0.2",
-    "@t3-oss/env-core": "^0.13.10",
+    "@t3-oss/env-core": "^0.13.11",
     "@tabler/icons-react": "3.40.0",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
