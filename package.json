@@ -97,17 +97,6 @@
     "wrangler": "^4.76.0"
   },
   "packageManager": "pnpm@11.0.9",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@tailwindcss/oxide",
-      "core-js",
-      "esbuild",
-      "scrollmirror",
-      "sharp",
-      "workerd",
-      "yarn"
-    ]
-  },
   "peerDependencies": {
     "react-compiler-runtime": "19.1.0-rc.3",
     "react-is": "^19.0.0"
