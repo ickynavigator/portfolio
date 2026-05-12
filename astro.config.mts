@@ -103,8 +103,8 @@ export default defineConfig({
       }),
 
       CLOUDFLARE_ZONE_ID: envField.string({
-        access: "public",
-        context: "client",
+        access: "secret",
+        context: "server",
         optional: true,
       }),
       SANITY_REVALIDATE_SECRET: envField.string({
