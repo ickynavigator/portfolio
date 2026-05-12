@@ -21,7 +21,9 @@ export const POST: APIRoute = async (ctx) => {
     return new Response("Invalid Signature", { status: 401 });
   }
 
-  const revalidateRes = await tryCatch(revalidateTag(["hi"]));
+  const revalidateRes = await tryCatch(
+    revalidateTag(["TODO: UPDATE WITH REAL TAGS"]),
+  );
 
   if (!revalidateRes.success) {
     return new Response("Unable to revalidate tags", { status: 500 });
