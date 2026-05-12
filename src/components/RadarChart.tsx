@@ -15,7 +15,7 @@ import {
 interface RadarChartProps<
   T extends Record<string, unknown> = Record<string, unknown>,
 > {
-  config: ChartConfig<T>;
+  config: ChartConfig;
   data: T[];
   angleKey: OneOf<keyof T, string>;
 }

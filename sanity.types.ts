@@ -15,6 +15,8 @@ import "@sanity/client";
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: sanity.schema.json
 export type CategoryReference = {
   _ref: string;
@@ -448,8 +450,6 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
-
-export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: src/lib/sanity/queries.ts
 // Variable: PAGINATED_POSTS_QUERY

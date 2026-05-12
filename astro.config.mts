@@ -36,6 +36,7 @@ export default defineConfig({
   },
 
   integrations: [
+    react(),
     sanity({
       dataset: SANITY_API_DATASET,
       projectId: SANITY_PROJECT_ID,
@@ -43,7 +44,6 @@ export default defineConfig({
       useCdn: false,
       stega: {},
     }),
-    react(),
     sitemap(),
     compress({
       CSS: false,
