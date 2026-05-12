@@ -12,3 +12,19 @@ export function getTextFromPortableTextBlock(block?: Block) {
     return acc;
   }, "");
 }
+
+export function unwrapFuncOrValue<T>(funcOrValue: FuncOrValue<T>) {
+  return funcOrValue instanceof Function ? funcOrValue() : funcOrValue;
+}
+
+export async function tryCatch<T, E = Error>(
+  fn: FuncOrValue<T>,
+): Promise<Result<Awaited<T>, E>> {
+  try {
+    const data = await unwrapFuncOrValue(fn);
+
+    return { success: true, data, error: null };
+  } catch (error) {
+    return { success: false, data: null, error: error as E };
+  }
+}
