@@ -3,6 +3,10 @@ import { CLOUDFLARE_API_TOKEN } from "astro:env/server";
 import Cloudflare from "cloudflare";
 
 export function createCloudflareInstance() {
+  if (!CLOUDFLARE_API_TOKEN || CLOUDFLARE_API_TOKEN.trim() === "") {
+    throw new Error("CLOUDFLARE_API_TOKEN is not set");
+  }
+
   const cloudflare = new Cloudflare({ apiToken: CLOUDFLARE_API_TOKEN });
 
   return {
