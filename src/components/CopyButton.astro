@@ -1,0 +1,70 @@
+---
+import { IconCheck, IconClipboard } from "@tabler/icons-react";
+
+import { Button } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
+
+interface Props extends React.ComponentProps<typeof Button> {
+  value: string;
+}
+
+const { value, className, ...props } = Astro.props;
+---
+
+<copy-button data-value={value}>
+  <Button
+    data-slot="copy-button"
+    data-copied="false"
+    size="icon"
+    className={cn("group", className)}
+    {...props}
+  >
+    <span class="sr-only">Copy</span>
+    <IconCheck className="not-group-data-[copied='true']:hidden" />
+    <IconClipboard className="not-group-data-[copied='false']:hidden" />
+  </Button>
+</copy-button>
+
+<script>
+  import { toast } from "sonner";
+
+  import { ComponentBase } from "~/lib/utils.client";
+
+  class CopyButton extends ComponentBase {
+    connectedCallback() {
+      this.button?.addEventListener("click", async (e) => {
+        if (!this.dataset.value) return;
+        if (!(e.target instanceof HTMLButtonElement)) return;
+        try {
+          await navigator.clipboard.writeText(this.dataset.value);
+
+          toast.success("Copied Succesfully.");
+          this.buttonCopiedState = true;
+        } catch {
+          toast.error("Failed to copy code. Please try again.");
+        }
+      });
+    }
+
+    get button() {
+      return this.querySelector("button");
+    }
+
+    set buttonCopiedState(copied: boolean) {
+      if (!this.button) return;
+
+      const reset = this.$debouncer(() => {
+        this.buttonCopiedState = false;
+      }, 2000);
+
+      if (copied) {
+        this.button.dataset.copied = "true";
+        reset();
+      } else {
+        this.button.dataset.copied = "false";
+      }
+    }
+  }
+
+  customElements.define("copy-button", CopyButton);
+</script>

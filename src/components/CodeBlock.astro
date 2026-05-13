@@ -8,8 +8,6 @@ import {
   transformerRemoveNotationEscape,
 } from "@shikijs/transformers";
 import {
-  IconCheck,
-  IconClipboard,
   IconFileCode,
   IconFileTypeJs,
   IconFileTypeJsx,
@@ -19,9 +17,9 @@ import {
 } from "@tabler/icons-react";
 import { Code as CustomCode } from "astro:components";
 
-import Button from "~/components/Button.astro";
 import IconCheckbox from "~/components/IconCheckbox.astro";
 import { cn } from "~/lib/utils";
+import CopyButton from "./CopyButton.astro";
 
 interface Props {
   code: string;
@@ -88,19 +86,7 @@ const CodeIcon = magicCodeIcon(language);
         <IconNumbers className="relative-icon" />
       </IconCheckbox>
 
-      <Button
-        variant="outline"
-        size="icon"
-        animate="slide-y"
-        class="size-7 cursor-pointer rounded-sm shadow-sm"
-        id="copy-code"
-        title="Copy Code"
-        data-active="false"
-      >
-        <IconClipboard slot="inactive" className="relative-icon" />
-        <IconCheck slot="active" className="relative-icon" />
-        <span class="sr-only">Copy</span>
-      </Button>
+      <CopyButton value={code} variant="default" size="icon-xs" />
     </div>
   </div>
 
@@ -236,8 +222,6 @@ const CodeIcon = magicCodeIcon(language);
 </style>
 
 <script>
-  import { toast } from "sonner";
-
   import { ComponentBase } from "~/lib/utils.client";
 
   class CustomCodeBlock extends ComponentBase {
@@ -246,28 +230,6 @@ const CodeIcon = magicCodeIcon(language);
         this.querySelector("[name='show-numbers']"),
         "showLineNumbers",
       );
-
-      const resetCopyCodeActive = this.$debouncer(
-        (button: HTMLButtonElement) => {
-          button.dataset.active = "false";
-        },
-        2000,
-      );
-
-      this.querySelector("#copy-code")?.addEventListener("click", async (e) => {
-        if (!this.dataset.code) return;
-        if (!(e.target instanceof HTMLButtonElement)) return;
-        try {
-          await navigator.clipboard.writeText(this.dataset.code);
-
-          toast.success("Copied Succesfully.");
-
-          e.target.dataset.active = "true";
-          resetCopyCodeActive(e.target);
-        } catch {
-          toast.error("Failed to copy code. Please try again.");
-        }
-      });
     }
   }
 

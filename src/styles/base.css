@@ -45,4 +45,9 @@
   .prose {
     @apply [&_ol]:[counter-reset:item] [&_ol>li]:[counter-increment:item] [&_ol>li::marker]:content-[counters(item,'.')'._'];
   }
+
+  button:not([disabled]),
+  [role="button"]:not([disabled]) {
+    cursor: pointer;
+  }
 }
