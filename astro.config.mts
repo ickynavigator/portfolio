@@ -107,6 +107,17 @@ export default defineConfig({
         url: true,
       }),
 
+      CLOUDFLARE_ZONE_ID: envField.string({
+        access: "secret",
+        context: "server",
+        optional: true,
+      }),
+      SANITY_REVALIDATE_SECRET: envField.string({
+        access: "secret",
+        context: "server",
+        optional: true,
+      }),
+
       ...cloudflareWorkers,
     },
   },
