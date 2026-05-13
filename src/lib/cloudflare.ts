@@ -1,5 +1,4 @@
-import { CLOUDFLARE_ZONE_ID } from "astro:env/client";
-import { CLOUDFLARE_API_TOKEN } from "astro:env/server";
+import { CLOUDFLARE_API_TOKEN, CLOUDFLARE_ZONE_ID } from "astro:env/server";
 import Cloudflare from "cloudflare";
 
 export function createCloudflareInstance() {
