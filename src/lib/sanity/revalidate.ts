@@ -5,8 +5,6 @@ export async function validateSignature(_req: Request) {
   const req = _req.clone();
 
   const signature = req.headers.get(SIGNATURE_HEADER_NAME);
-  const stringifiedPayload = await req.text();
-
   if (!signature) {
     return null;
   }
@@ -14,6 +12,8 @@ export async function validateSignature(_req: Request) {
   if (!SANITY_REVALIDATE_SECRET) {
     throw new Error("SANITY_REVALIDATE_SECRET is not set");
   }
+
+  const stringifiedPayload = await req.text();
 
   return await isValidSignature(
     stringifiedPayload,
