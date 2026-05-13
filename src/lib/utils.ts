@@ -17,14 +17,33 @@ export function unwrapFuncOrValue<T>(funcOrValue: FuncOrValue<T>) {
   return funcOrValue instanceof Function ? funcOrValue() : funcOrValue;
 }
 
-export async function tryCatch<T, E = Error>(
+function toError(error: unknown): Error {
+  return error instanceof Error ? error : new Error(String(error));
+}
+export async function tryCatch<T>(
   fn: FuncOrValue<T>,
-): Promise<Result<Awaited<T>, E>> {
+): Promise<Result<Awaited<T>, Error>>;
+export async function tryCatch<T, E>(
+  fn: FuncOrValue<T>,
+  errorMapper: (error: unknown) => E,
+): Promise<Result<Awaited<T>, E>>;
+export async function tryCatch<T, E>(
+  fn: FuncOrValue<T>,
+  errorMapper?: (error: unknown) => E,
+): Promise<Result<Awaited<T>, Error | E>> {
   try {
     const data = await unwrapFuncOrValue(fn);
 
-    return { success: true, data, error: null };
+    return {
+      success: true,
+      data,
+      error: null,
+    };
   } catch (error) {
-    return { success: false, data: null, error: error as E };
+    return {
+      success: false,
+      data: null,
+      error: errorMapper ? errorMapper(error) : toError(error),
+    };
   }
 }
