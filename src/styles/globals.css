@@ -8,10 +8,6 @@
 @plugin "@tailwindcss/forms" {
   strategy: "class";
 }
-@plugin "tailwind-scrollbar" {
-  nocompatible: true;
-  preferredstrategy: "pseudoelements";
-}
 
 @custom-variant dark {
   @media (scripting: enabled) {
