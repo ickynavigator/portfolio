@@ -11,6 +11,7 @@ import dayjs from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { CAREERS_QUERY } from "~/lib/sanity/queries";
 
+// eslint-disable-next-line no-useless-assignment
 const { result } = await loadQuery({ query: CAREERS_QUERY });
 
 return Astro.redirect("/404");

@@ -7,5 +7,8 @@ export function cn(...inputs: CxOptions) {
 }
 
 export function getTextFromPortableTextBlock(block?: Block) {
-  return (block?.children ?? []).reduce((acc, curr) => (acc += curr?.text), "");
+  return (block?.children ?? []).reduce((acc, curr) => {
+    acc += curr?.text;
+    return acc;
+  }, "");
 }
