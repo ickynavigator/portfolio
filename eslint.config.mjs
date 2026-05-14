@@ -39,8 +39,8 @@ export default defineConfig(
   eslintPluginJs.configs.recommended,
   eslintPluginTs.configs.recommended,
   eslintPluginTs.configs.stylistic,
-  eslintPluginAstro.configs["flat/recommended"],
-  eslintPluginAstro.configs["flat/jsx-a11y-strict"],
+  eslintPluginAstro.configs.recommended,
+  eslintPluginAstro.configs["jsx-a11y-strict"],
   {
     name: "eslint-plugin-unused-imports",
     plugins: { "unused-imports": eslintPluginUnusedImports },
