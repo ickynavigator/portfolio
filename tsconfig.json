@@ -3,7 +3,6 @@
         "astro/tsconfigs/strictest"
     ],
     "compilerOptions": {
-        "baseUrl": ".",
         "paths": {
             "~/*": [
                 "./src/*"
@@ -18,7 +17,15 @@
         "types": [
             "./worker-configuration.d.ts",
             "node"
-        ]
+        ],
+        "jsx": "react-jsx",
+        "jsxImportSource": "react",
+        "verbatimModuleSyntax": true,
+        "plugins": [
+            {
+                "name": "@astrojs/ts-plugin"
+            },
+        ],
     },
     "include": [
         ".astro/types.d.ts",
