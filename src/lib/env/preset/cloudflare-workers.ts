@@ -1,5 +1,7 @@
+import type { AstroUserConfig } from "astro";
 import { envField } from "astro/config";
-import type { EnvSchema } from "node_modules/astro/dist/env/schema";
+
+type EnvSchema = NonNullable<AstroUserConfig["env"]>["schema"];
 
 export const cloudflareWorkers = {
   CI: envField.boolean({
