@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/hepta-slab";
 
 @import "./base.css";
 @import "./utilities.css";
