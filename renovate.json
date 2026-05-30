@@ -6,5 +6,8 @@
     "lockFileMaintenance": {
         "enabled": true,
         "automerge": true
+    },
+    "toolSettings": {
+        "nodeMaxMemory": 4096
     }
 }
