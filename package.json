@@ -20,10 +20,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/cloudflare": "^13.5.0",
-    "@astrojs/react": "^5.0.4",
+    "@astrojs/cloudflare": "^13.6.0",
+    "@astrojs/react": "^5.0.6",
     "@astrojs/rss": "^4.0.18",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/dm-sans": "^5.2.8",
     "@fontsource-variable/hepta-slab": "^5.2.8",
     "@imikailoby/lastfm-ts": "^2.0.1",
@@ -42,7 +42,7 @@
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.3.0",
-    "astro": "^6.3.1",
+    "astro": "^6.4.2",
     "astro-compress": "^2.4.1",
     "astro-portabletext": "^0.13.0",
     "canvas-confetti": "^1.9.4",
@@ -92,7 +92,7 @@
     "typescript-eslint": "^8.59.2",
     "vite": "^7.3.3",
     "vite-tsconfig-paths": "^6.1.1",
-    "wrangler": "^4.90.0"
+    "wrangler": "^4.95.0"
   },
   "packageManager": "pnpm@11.1.1",
   "peerDependencies": {
