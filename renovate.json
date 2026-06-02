@@ -8,6 +8,6 @@
         "automerge": true
     },
     "toolSettings": {
-        "nodeMaxMemory": 4096
+        "nodeMaxMemory": 2048
     }
 }
