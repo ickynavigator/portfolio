@@ -9,6 +9,14 @@ import eslintPluginTs from "typescript-eslint";
 
 const HEADER = "my-rules";
 
+const myEslintPluginPrettier = defineConfig(eslintPluginPrettier, {
+  name: `${HEADER}/eslint-plugin-prettier/astro-prettier-reset`,
+  files: ["**/*.astro/*.js", "*.astro/*.js", "**/*.astro/*.ts", "*.astro/*.ts"],
+  rules: {
+    "prettier/prettier": "off",
+  },
+});
+
 export default defineConfig(
   globalIgnores(
     [
@@ -63,17 +71,5 @@ export default defineConfig(
       ],
     },
   },
-  eslintPluginPrettier,
-  {
-    name: `${HEADER}/eslint-plugin-prettier/astro-prettier-reset`,
-    files: [
-      "**/*.astro/*.js",
-      "*.astro/*.js",
-      "**/*.astro/*.ts",
-      "*.astro/*.ts",
-    ],
-    rules: {
-      "prettier/prettier": "off",
-    },
-  },
+  myEslintPluginPrettier,
 );
