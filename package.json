@@ -95,7 +95,7 @@
     "vite-tsconfig-paths": "^6.1.1",
     "wrangler": "^4.98.0"
   },
-  "packageManager": "pnpm@11.1.1",
+  "packageManager": "pnpm@11.6.0",
   "peerDependencies": {
     "react-compiler-runtime": "19.1.0-rc.3",
     "react-is": "^19.0.0"
