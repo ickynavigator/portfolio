@@ -1,6 +1,4 @@
 import { defineCliConfig } from "sanity/cli";
-import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 import {
   SANITY_API_DATASET,
@@ -17,9 +15,11 @@ export default defineCliConfig({
     appId: SANITY_APP_ID,
     autoUpdates: true,
   },
-  vite: defineConfig({
-    plugins: [tsconfigPaths()],
-  }),
+  vite: {
+    resolve: {
+      tsconfigPaths: true,
+    },
+  },
   schemaExtraction: {
     path: "./sanity.schema.json",
     enforceRequiredFields: true,
