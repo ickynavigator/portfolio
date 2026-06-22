@@ -21,7 +21,7 @@ export function getPSNApiInstance() {
 export async function getPSNStats() {
   const { authorization } = await getPSNApiInstance();
   const title = await getUserPlayedGames(authorization, "me", {
-    limit: 6,
+    limit: 10,
     offset: 0,
     categories: "ps4_game,ps5_native_game",
   });
