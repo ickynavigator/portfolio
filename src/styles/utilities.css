@@ -63,3 +63,38 @@
     @apply visible z-50 opacity-100 delay-(--tooltip-delay);
   }
 }
+@utility marquee {
+  /* TODO: separate speed from count */
+  --speed: var(--count, 1);
+  --count: var(--count, 1);
+
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  & > [data-marquee-item] {
+    will-change: translate;
+    --duration: calc(var(--speed) * 1s);
+    --delay: calc(1s * (var(--index) - (var(--count) * 0.5)));
+    --animation-delay: calc(var(--delay) - (var(--count) * 0.5s));
+
+    --origin-x: calc(((var(--count) - var(--index)) + 1) * 100%);
+    --destination-x: calc(var(--index) * -100%);
+
+    animation: marquee-slide var(--duration) var(--animation-delay) infinite
+      linear;
+    translate: var(--origin-x) 0;
+  }
+
+  &[data-marquee-control_hover-on-pause] {
+    &:hover [data-slide-item] {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes marquee-slide {
+  100% {
+    translate: var(--destination-x) 0;
+  }
+}

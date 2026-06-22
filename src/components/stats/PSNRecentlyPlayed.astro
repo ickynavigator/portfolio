@@ -4,11 +4,22 @@ import { getPSNStats } from "~/lib/psn";
 const { recentlyPlayed } = await getPSNStats();
 ---
 
-<ul class="flex flex-wrap">
+<ul
+  class="marquee mt-4"
+  data-marquee-control_hover-on-pause
+  style={{ "--count": recentlyPlayed.length }}
+>
   {
-    recentlyPlayed.map((title) => (
-      <li>
-        <pre>{title.name}</pre>
+    recentlyPlayed.map((title, index) => (
+      <li
+        data-marquee-item
+        class="relative aspect-square min-h-64 rounded-md bg-contain bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${title.imageUrl})`,
+          "--index": index + 1,
+        }}
+      >
+        <span class="sr-only">{title.name}</span>
       </li>
     ))
   }
