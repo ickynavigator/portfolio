@@ -5,8 +5,6 @@ import {
   getUserPlayedGames,
 } from "psn-api";
 
-import { createSingleton } from "~/lib/utils";
-
 export async function createPSNApiInstance() {
   const accessCode = await exchangeNpssoForAccessCode(PSN_NPSSO);
   const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
@@ -17,7 +15,7 @@ export async function createPSNApiInstance() {
 }
 
 export function getPSNApiInstance() {
-  return createSingleton("psn-api", createPSNApiInstance);
+  return createPSNApiInstance();
 }
 
 export async function getPSNStats() {
