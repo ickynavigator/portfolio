@@ -7,3 +7,6 @@ allowBuilds:
   workerd: true
 
 minimumReleaseAge: 0
+
+publicHoistPattern:
+  - vite
