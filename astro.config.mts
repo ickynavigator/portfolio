@@ -6,7 +6,6 @@ import tailwindcss from "@tailwindcss/vite";
 import compress from "astro-compress";
 import { defineConfig, envField } from "astro/config";
 import { loadEnv } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 import {
   SANITY_API_DATASET,
@@ -112,7 +111,10 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [tailwindcss(), tsconfigPaths()],
+    plugins: [tailwindcss()],
+    resolve: {
+      tsconfigPaths: true,
+    },
     build: {
       chunkSizeWarningLimit: 1000,
     },
