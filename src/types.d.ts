@@ -35,3 +35,19 @@ type Items<T> = T[keyof T];
 type OneOf<T, N> = T extends N ? T : N;
 
 type Creatable<T extends string> = (string & {}) | T;
+
+interface Success<T> {
+  success: true;
+  data: T;
+  error: null;
+}
+
+interface Failure<E> {
+  success: false;
+  data: null;
+  error: E;
+}
+
+type Result<T, E = Error> = Success<T> | Failure<E>;
+
+type FuncOrValue<T> = T | (() => T);
