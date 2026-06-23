@@ -64,8 +64,8 @@ export const cloudflareWorkers = {
     optional: true,
   }),
   CLOUDFLARE_API_TOKEN: envField.string({
-    access: "secret",
-    context: "server",
+    access: "public",
+    context: "client",
     optional: true,
   }),
 } satisfies EnvSchema;
