@@ -1,9 +1,10 @@
 import cloudflare from "@astrojs/cloudflare";
+import { cacheCloudflare } from "@astrojs/cloudflare/cache";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, envField, memoryCache } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import { loadEnv } from "vite";
 
 import {
@@ -30,7 +31,7 @@ export default defineConfig({
   }),
 
   cache: {
-    provider: memoryCache(),
+    provider: cacheCloudflare(),
   },
 
   build: {
