@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, memoryCache } from "astro/config";
 import { loadEnv } from "vite";
 
 import {
@@ -28,6 +28,10 @@ export default defineConfig({
     imageService: "passthrough",
     prerenderEnvironment: "node",
   }),
+
+  cache: {
+    provider: memoryCache(),
+  },
 
   build: {
     redirects: false,
@@ -107,11 +111,6 @@ export default defineConfig({
         context: "server",
       }),
 
-      CLOUDFLARE_ZONE_ID: envField.string({
-        access: "secret",
-        context: "server",
-        optional: true,
-      }),
       SANITY_REVALIDATE_SECRET: envField.string({
         access: "secret",
         context: "server",

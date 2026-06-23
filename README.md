@@ -21,8 +21,6 @@ Fill up the .dev.vars file with the variables in the .env.example
 | `LASTFM_USER`                          | Last.fm username                                                 |
 | `PUBLIC_PARTY_URL`                     | PartyKit location. Defaults to `http://localhost:1999`           |
 | `PSN_NPSSO`                            | PSN NPSSO token                                                  |
-| `CLOUDFLARE_API_TOKEN`                 | Cloudflare API token. Used for purging cache.                    |
-| `CLOUDFLARE_ZONE_ID`                   | Zone ID for the Cloudflare project.                              |
 | `SANITY_REVALIDATE_SECRET`             | Secret for revalidating the sanity project                       |
 
 ### 🧞 Commands

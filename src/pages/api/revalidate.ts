@@ -1,6 +1,5 @@
 import type { APIRoute } from "astro";
 
-import { revalidateTag } from "~/lib/cloudflare";
 import { validateSignature } from "~/lib/sanity/revalidate";
 import { tryCatch } from "~/lib/utils";
 
@@ -22,7 +21,7 @@ export const POST: APIRoute = async (ctx) => {
   }
 
   const revalidateRes = await tryCatch(
-    revalidateTag(["TODO: UPDATE WITH REAL TAGS"]),
+    ctx.cache.invalidate({ tags: ["TODO: UPDATE WITH REAL TAGS"] }),
   );
 
   if (!revalidateRes.success) {
