@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 /// <reference types="@sanity/astro/module" />
 
 import "styled-components";

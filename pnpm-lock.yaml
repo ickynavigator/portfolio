@@ -59,6 +59,9 @@ importers:
       '@sanity/visual-editing':
         specifier: ^5.4.4
         version: 5.4.4(@emotion/is-prop-valid@1.4.0)(@sanity/client@7.23.0)(@sanity/types@6.2.0(@types/react@19.2.17))(react-dom@19.2.7(react@19.2.7))(react-is@19.2.7)(react@19.2.7)(styled-components@6.4.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7))(typescript@6.0.3)
+      '@sanity/webhook':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@shikijs/transformers':
         specifier: ^4.3.0
         version: 4.3.0
@@ -3810,6 +3813,10 @@ packages:
         optional: true
       svelte:
         optional: true
+
+  '@sanity/webhook@4.0.4':
+    resolution: {integrity: sha512-c8LmzR5Wx93zJ10ohhp0XlmPrTNSFyvPcLbNY/sN45Wj5VOngz4FbBMbX9j64sSQLt+676U6OhiVfjs1yw3YCw==}
+    engines: {node: '>=20.0.0'}
 
   '@sanity/workbench-cli@1.1.0':
     resolution: {integrity: sha512-wFV82o6Qd3OMyRoYN471qrq96ourIwP/5OeVfRRvDg9/FKu+CreuNhr8H7/7M9qg2lIUVe43Ia3Kmk6+E9S9/A==}
@@ -12783,6 +12790,8 @@ snapshots:
       - '@sanity/types'
       - react-is
       - typescript
+
+  '@sanity/webhook@4.0.4': {}
 
   '@sanity/workbench-cli@1.1.0(@noble/hashes@2.2.0)(@types/node@26.0.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.46.1)(tsx@4.22.4)(typescript@6.0.3)(yaml@2.9.0)':
     dependencies:
