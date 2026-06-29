@@ -137,14 +137,12 @@ export default defineType({
           initialValue: new Date().toISOString().split("T")[0],
           validation: (Rule) =>
             Rule.required().custom((value, ctx) => {
-              if (
-                !(
-                  ctx.document?.date &&
-                  typeof ctx.document?.date === "object" &&
-                  "end" in ctx.document.date &&
-                  typeof ctx.document.date.end === "string"
-                )
-              ) {
+              if (!(
+                ctx.document?.date &&
+                typeof ctx.document?.date === "object" &&
+                "end" in ctx.document.date &&
+                typeof ctx.document.date.end === "string"
+              )) {
                 return true;
               }
 

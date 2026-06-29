@@ -1,10 +1,6 @@
 namespace WakatimeTypes {
   export type Range =
-    | "last_7_days"
-    | "last_30_days"
-    | "last_6_months"
-    | "last_year"
-    | "all_time";
+    "last_7_days" | "last_30_days" | "last_6_months" | "last_year" | "all_time";
 
   export interface WakaTimeStats {
     data: {

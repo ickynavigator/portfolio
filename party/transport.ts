@@ -120,12 +120,14 @@ type DiscriminantOptions<T extends z.ZodType> =
 type MatchMap<T extends z.ZodType> =
   T extends z.ZodDiscriminatedUnion<infer Items, infer Disc>
     ? {
-        [Key in Items[number] as z.infer<Key> extends Record<
-          Disc,
-          infer U extends PropertyKey
-        >
-          ? U
-          : never]: (data: z.infer<Key>) => void;
+        [
+          Key in Items[number] as z.infer<Key> extends Record<
+            Disc,
+            infer U extends PropertyKey
+          >
+            ? U
+            : never
+        ]: (data: z.infer<Key>) => void;
       }
     : never;
 
