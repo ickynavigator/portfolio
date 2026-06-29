@@ -38,14 +38,6 @@ jobs:
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_DEPLOY_TOKEN }}
 
-      - name: Create GitHub Deployment
-        uses: chrnorm/deployment-action@500aa6a23c81ffa1acf71072aee3cfa2cc2e556a # v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: sanity
-          description: "Sanity Studio deployed to ${{ steps.deploy.outputs.url }}"
-          environment-url: ${{ steps.deploy.outputs.url }}
-
   party:
     name: PartyKit
     runs-on: ubuntu-latest
@@ -80,11 +72,3 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN }}
           PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}
-
-      - name: Create GitHub Deployment
-        uses: chrnorm/deployment-action@500aa6a23c81ffa1acf71072aee3cfa2cc2e556a # v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: party
-          description: "PartyKit deployed to ${{ steps.deploy.outputs.url }}"
-          environment-url: ${{ steps.deploy.outputs.url }}
