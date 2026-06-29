@@ -83,7 +83,7 @@
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-unused-imports": "^4.4.1",
     "partykit": "0.0.115",
-    "prettier": "^3.9.0",
+    "prettier": "^3.9.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "react-compiler-runtime": "19.1.0-rc.3",
