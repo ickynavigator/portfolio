@@ -31,7 +31,7 @@
     "@sanity/astro": "^3.4.2",
     "@sanity/client": "^7.23.0",
     "@sanity/code-input": "^7.2.2",
-    "@sanity/icons": "^4.1.0",
+    "@sanity/icons": "^5.0.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/ui": "^3.3.0",
     "@sanity/vision": "^6.3.0",
