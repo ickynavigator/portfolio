@@ -92,7 +92,7 @@
     "typescript-eslint": "^8.62.1",
     "wrangler": "^4.106.0"
   },
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@11.11.0",
   "peerDependencies": {
     "react-compiler-runtime": "19.1.0-rc.3",
     "react-is": "^19.0.0"
