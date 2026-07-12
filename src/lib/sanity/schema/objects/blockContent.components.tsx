@@ -1,4 +1,4 @@
-import { BoltIcon } from "@sanity/icons";
+import { BoltIcon } from "@sanity/icons/Bolt";
 import { Text } from "@sanity/ui";
 import {
   defineField,
