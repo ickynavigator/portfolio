@@ -9,6 +9,8 @@ export default getViteConfig({
   test: {
     coverage: {
       provider: "v8",
+      reporter: ["text", "html"],
+      exclude: ["src/tests"],
     },
     projects: [
       {
