@@ -13,6 +13,8 @@
     "astro": "astro",
     "lint": "eslint --cache",
     "lint:fix": "eslint --fix --cache",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "typecheck": "tsc --project tsconfig.json --noEmit",
     "typegen": "$npm_execpath typegen:sa && $npm_execpath typegen:cf",
     "typegen:cf": "wrangler types",
@@ -81,6 +83,9 @@
     "@types/react-dom": "^19.3.0",
     "@typescript-eslint/eslint-plugin": "^8.71.1",
     "eslint": "^10.12.0",
+    "@vitest/browser-playwright": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/ui": "^4.1.10",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -91,6 +96,8 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.71.1",
+    "vitest": "^4.1.10",
+    "vitest-browser-astro": "^0.2.0",
     "wrangler": "^4.149.0"
   },
   "packageManager": "pnpm@12.11.2"
