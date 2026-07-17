@@ -63,7 +63,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
 
       - name: Run Astro Check
         run: |
