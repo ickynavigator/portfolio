@@ -1,4 +1,5 @@
 ---
+import { transformerColorizedBrackets } from "@shikijs/colorized-brackets";
 import {
   transformerNotationDiff,
   transformerNotationErrorLevel,
@@ -105,6 +106,7 @@ const CodeIcon = magicCodeIcon(language);
       transformerNotationFocus(),
       transformerNotationErrorLevel(),
       transformerRemoveNotationEscape(),
+      transformerColorizedBrackets(),
     ]}
   />
 </custom-code-block>
