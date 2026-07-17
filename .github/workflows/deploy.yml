@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
 
       - name: Deploy Studio
         id: deploy
@@ -59,7 +59,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pnpm install --frozen-lockfile
+          pnpm ci
 
       - name: Deploy PartyKit
         id: deploy
