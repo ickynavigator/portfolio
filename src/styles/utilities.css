@@ -65,7 +65,7 @@
 }
 @utility marquee {
   /* TODO: separate speed from count */
-  --speed: var(--speed, var(--count, 1));
+  --speed: var(--count, 1);
   --count: var(--count, 1);
   --delay-factor: calc(var(--count) * 0.5s);
 
