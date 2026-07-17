@@ -115,7 +115,6 @@ export default defineConfig({
       SANITY_REVALIDATE_SECRET: envField.string({
         access: "secret",
         context: "server",
-        optional: true,
       }),
 
       ...cloudflareWorkers,
