@@ -14,12 +14,8 @@ export async function createPSNApiInstance() {
   };
 }
 
-export function getPSNApiInstance() {
-  return createPSNApiInstance();
-}
-
 export async function getPSNStats() {
-  const { authorization } = await getPSNApiInstance();
+  const { authorization } = await createPSNApiInstance();
   const title = await getUserPlayedGames(authorization, "me", {
     limit: 10,
     offset: 0,
