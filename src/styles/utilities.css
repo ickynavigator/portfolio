@@ -64,27 +64,33 @@
   }
 }
 @utility marquee {
-  /* TODO: separate speed from count */
-  --speed: var(--count, 1);
-  --count: var(--count, 1);
-  --delay-factor: calc(var(--count) * 0.5s);
+  --var-slowdown: max(calc(var(--slowdown) * 1s), 0.1s);
+  --var-count: var(--count);
+
+  --duration: calc(var(--var-count) * var(--var-slowdown));
+
+  --origin-x: 0;
+  --origin-y: 0;
+  --destination-x: 0;
+  --destination-y: 0;
 
   overflow: hidden;
   display: flex;
   align-items: center;
 
   & > [data-marquee-item] {
+    --delay: calc(var(--index) * var(--var-slowdown) - var(--duration));
     will-change: translate;
-    --duration: calc(var(--speed) * 1s);
-    --delay: calc(var(--index) * 1s - var(--delay-factor));
-    --animation-delay: calc(var(--delay) - var(--delay-factor));
+    animation: marquee-slide var(--duration) var(--delay) infinite linear;
+    translate: var(--origin-x) var(--origin-y);
+  }
 
-    --origin-x: calc(((var(--count) - var(--index)) + 1) * 100%);
-    --destination-x: calc(var(--index) * -100%);
-
-    animation: marquee-slide var(--duration) var(--animation-delay) infinite
-      linear;
-    translate: var(--origin-x) 0;
+  &[data-marquee-direction="horizontal"] {
+    flex-direction: row;
+    & > [data-marquee-item] {
+      --origin-x: calc(((var(--var-count) - var(--index)) + 1) * 100%);
+      --destination-x: calc(var(--index) * -100%);
+    }
   }
 
   &[data-marquee-control_hover-on-pause] {
@@ -96,6 +102,6 @@
 
 @keyframes marquee-slide {
   100% {
-    translate: var(--destination-x) 0;
+    translate: var(--destination-x) var(--destination-y);
   }
 }
