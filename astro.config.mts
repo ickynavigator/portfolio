@@ -1,4 +1,5 @@
 import cloudflare from "@astrojs/cloudflare";
+import { cacheCloudflare } from "@astrojs/cloudflare/cache";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
@@ -28,6 +29,10 @@ export default defineConfig({
     imageService: "passthrough",
     prerenderEnvironment: "node",
   }),
+
+  cache: {
+    provider: cacheCloudflare(),
+  },
 
   build: {
     redirects: false,
@@ -103,6 +108,11 @@ export default defineConfig({
       }),
 
       PSN_NPSSO: envField.string({
+        access: "secret",
+        context: "server",
+      }),
+
+      SANITY_REVALIDATE_SECRET: envField.string({
         access: "secret",
         context: "server",
       }),
