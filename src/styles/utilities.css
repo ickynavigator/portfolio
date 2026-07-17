@@ -88,7 +88,7 @@
   }
 
   &[data-marquee-control_hover-on-pause] {
-    &:hover [data-marquee-item] {
+    &:hover > [data-marquee-item] {
       animation-play-state: paused;
     }
   }
