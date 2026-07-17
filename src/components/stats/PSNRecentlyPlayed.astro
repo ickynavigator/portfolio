@@ -14,12 +14,27 @@ const { recentlyPlayed } = await getPSNStats();
     recentlyPlayed.map((title, index) => (
       <li
         data-marquee-item
-        class="relative aspect-square min-h-64 rounded-md bg-contain bg-center bg-no-repeat"
+        class="group relative aspect-square min-h-64 rounded-md bg-contain bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${title.imageUrl})`,
           "--index": index + 1,
         }}
       >
+        <div class="size-full p-4 transition not-group-hover:invisible group-hover:bg-black/70 group-hover:backdrop-blur-xs">
+          {[
+            ["Name", title.name],
+            [
+              "Playtime",
+              Temporal.Duration.from(title.playDuration).toLocaleString("en", {
+                style: "short",
+              }),
+            ],
+          ].map(([title, value]) => (
+            <div class="text-sm font-semibold text-white">
+              {title}: {value}
+            </div>
+          ))}
+        </div>
         <span class="sr-only">{title.name}</span>
       </li>
     ))
