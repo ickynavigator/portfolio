@@ -7,7 +7,7 @@ const { recentlyPlayed } = await getPSNStats();
 <ul
   class="marquee mt-4"
   data-marquee-control_hover-on-pause
-  style={{ "--count": recentlyPlayed.length }}
+  style={{ "--count": Math.max(recentlyPlayed.length, 1) }}
 >
   {
     recentlyPlayed.map((title, index) => (
