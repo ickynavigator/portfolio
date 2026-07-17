@@ -19,7 +19,9 @@ export const currentProjection = z.object({
   _type: z.string(),
 });
 
-export const getTagsFromBody = (body: z.infer<typeof currentProjection>) => {
+export const getTagsFromBody = (
+  body: Partial<z.infer<typeof currentProjection>>,
+) => {
   const tags = [];
 
   if (body._type) {
@@ -36,3 +38,6 @@ export const getTagsFromBody = (body: z.infer<typeof currentProjection>) => {
 
   return tags;
 };
+
+export const MAX_AGE = 120; // seconds
+export const SWR = 60; // seconds
