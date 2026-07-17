@@ -20,6 +20,7 @@ Fill up the .dev.vars file with the variables in the .env.example
 | `LASTFM_API_KEY`                       | Last.fm API key                                                  |
 | `LASTFM_USER`                          | Last.fm username                                                 |
 | `PUBLIC_PARTY_URL`                     | PartyKit location. Defaults to `http://localhost:1999`           |
+| `PSN_NPSSO`                            | PSN NPSSO token                                                  |
 
 ### 🧞 Commands
 

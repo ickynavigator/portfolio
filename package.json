@@ -53,6 +53,7 @@
     "partysocket": "^1.3.0",
     "posthog-js": "^1.402.3",
     "posthog-node": "^5.44.0",
+    "psn-api": "^2.18.0",
     "radix-ui": "^1.6.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -64,6 +65,7 @@
     "styled-components": "^6.4.3",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.2",
+    "temporal-polyfill": "^1.0.1",
     "tw-animate-css": "^1.4.0",
     "vaul": "^1.1.2",
     "zod": "^4.4.3"
