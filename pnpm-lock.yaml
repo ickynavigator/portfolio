@@ -3698,9 +3698,6 @@ packages:
       xstate:
         optional: true
 
-  '@sanity/mutator@6.1.0':
-    resolution: {integrity: sha512-nYF9iEQaTVFo3FnidRkU7Ti46U9jdhGdMkwYcy8I7coCeuiNg95CDDn2rvNLCBK/IvrUVkHCXondMJ284uuTpw==}
-
   '@sanity/mutator@6.5.0':
     resolution: {integrity: sha512-XiV3oWYr8LsCQdKXJWXnG75TOoRhK1bufgVsEe9lU15ylaHrOBEIxq3TunzxgXdfHu1Y090dkNKwPGMkFGyW3Q==}
 
@@ -3749,11 +3746,6 @@ packages:
     resolution: {integrity: sha512-pIy9yXosuA2duaJH0J1V8RYrabGB/Jh77FGYozr2pGwmCFwnLw/W/FS99qbcsJZa3wXHSMhMRyYq7IbulbijZw==}
     engines: {node: '>=18.0.0'}
     hasBin: true
-
-  '@sanity/types@6.1.0':
-    resolution: {integrity: sha512-EtkC/oB1585wkTEiVyuBsIJYLGlbNldWzMuYPvi91WKBGhMyJ1OJqMfpZDcqWpsvTqjV8TH+/YlVwi+CQBKcTA==}
-    peerDependencies:
-      '@types/react': ^19.2
 
   '@sanity/types@6.5.0':
     resolution: {integrity: sha512-H3Qs1yeizArl69i3VSDHC20RxLUNo/yWWmzUl2dMOtyooHPLOaKOUv8WrsH1gLg+w++LvuELfwEcxN431DRcnw==}
@@ -12163,7 +12155,7 @@ snapshots:
       '@sanity/asset-utils': 2.3.0
       '@sanity/client': 7.23.2
       '@sanity/generate-help-url': 4.0.0
-      '@sanity/mutator': 6.1.0(@types/react@19.2.17)
+      '@sanity/mutator': 6.5.0(@types/react@19.2.17)
       debug: 4.4.3(supports-color@8.1.1)
       get-it: 8.8.0
       gunzip-maybe: 1.4.2
@@ -12247,17 +12239,6 @@ snapshots:
       rxjs: 7.8.2
     optionalDependencies:
       xstate: 5.32.5
-
-  '@sanity/mutator@6.1.0(@types/react@19.2.17)':
-    dependencies:
-      '@sanity/diff-match-patch': 3.2.0
-      '@sanity/types': 6.1.0(@types/react@19.2.17)
-      '@sanity/uuid': 3.0.3
-      debug: 4.4.3(supports-color@8.1.1)
-      lodash-es: 4.18.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
 
   '@sanity/mutator@6.5.0(@types/react@19.2.17)':
     dependencies:
@@ -12390,12 +12371,6 @@ snapshots:
       '@actions/core': 3.0.1
       '@actions/github': 9.1.1
       yaml: 2.9.0
-
-  '@sanity/types@6.1.0(@types/react@19.2.17)':
-    dependencies:
-      '@sanity/client': 7.23.2
-      '@sanity/media-library-types': 1.6.0
-      '@types/react': 19.2.17
 
   '@sanity/types@6.5.0(@types/react@19.2.17)':
     dependencies:
