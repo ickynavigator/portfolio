@@ -7,15 +7,15 @@ import {
   IconLink,
   IconMail,
   IconRss,
-  type TablerIcon,
-} from "@tabler/icons-react";
+  type AstroComponent,
+} from "@tabler/icons-astro";
 
 import { cn } from "~/lib/utils";
 
 interface SocialResult {
   href: string;
   text: string;
-  icon: TablerIcon;
+  icon: AstroComponent;
   color: string;
 }
 
@@ -103,11 +103,7 @@ const social = await getSocial(Astro.props.link);
       "rounded-full border-2 p-1.5 text-white transition-transform group-hover/icon:-translate-y-1",
     )}
   >
-    <social.icon
-      className="relative-icon"
-      aria-hidden="true"
-      focusable="false"
-    />
+    <social.icon class="relative-icon" aria-hidden="true" focusable="false" />
   </div>
   <span class="sr-only">{social.text}</span>
 </a>

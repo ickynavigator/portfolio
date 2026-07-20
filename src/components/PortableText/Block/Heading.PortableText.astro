@@ -1,5 +1,5 @@
 ---
-import { IconLink } from "@tabler/icons-react";
+import { IconLink } from "@tabler/icons-astro";
 import type { BlockProps } from "astro-portabletext/types";
 import * as z from "zod";
 
@@ -37,6 +37,6 @@ const headerSlug = getTextFromPortableTextBlock(Astro.props.node)
     target="_self"
     class="text-muted-foreground inline-flex text-[70%] opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100"
   >
-    <IconLink className="relative-icon" />
+    <IconLink class="relative-icon" />
   </a>
 </Tag>

@@ -1,5 +1,5 @@
 ---
-import { IconArrowUpRight } from "@tabler/icons-react";
+import { IconArrowUpRight } from "@tabler/icons-astro";
 import type { GetStaticPaths } from "astro";
 
 import Badge from "~/components/Badge.astro";
@@ -122,7 +122,7 @@ const imageUrl = urlForImage(image).url();
                   class="gap-2"
                 >
                   <span class="text-xs">{link.display}</span>
-                  <IconArrowUpRight className="inline relative-icon" />
+                  <IconArrowUpRight class="relative-icon inline" />
                 </Badge>
               </li>
             ))

@@ -3,7 +3,7 @@ import {
   IconCaretRightFilled,
   IconPinned,
   IconPinnedOff,
-} from "@tabler/icons-react";
+} from "@tabler/icons-astro";
 import { toPlainText } from "astro-portabletext";
 
 import type { BlockContent } from "~/t/sanity";
@@ -48,7 +48,7 @@ if (headings.length === 0) {
         <p class="inline-flex items-center gap-1 text-lg font-bold">
           <span>
             <IconCaretRightFilled
-              className="relative-icon transition-transform in-[[open]]:rotate-90"
+              class="relative-icon transition-transform in-[[open]]:rotate-90"
             />
           </span>
           Content
@@ -57,8 +57,8 @@ if (headings.length === 0) {
         <div class="text-md flex items-center gap-2">
           <IconCheckbox label="pin/unpin" id="pin-toc">
             <span class="sr-only">Pin/Unpin TOC</span>
-            <IconPinned slot="on" className="relative-icon" />
-            <IconPinnedOff slot="off" className="relative-icon" />
+            <IconPinned slot="on" class="relative-icon" />
+            <IconPinnedOff slot="off" class="relative-icon" />
           </IconCheckbox>
         </div>
       </summary>

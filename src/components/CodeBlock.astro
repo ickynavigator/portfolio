@@ -15,7 +15,7 @@ import {
   IconFileTypeTs,
   IconFileTypeTsx,
   IconNumbers,
-} from "@tabler/icons-react";
+} from "@tabler/icons-astro";
 import { Code as CustomCode } from "astro:components";
 
 import IconCheckbox from "~/components/IconCheckbox.astro";
@@ -74,7 +74,7 @@ const CodeIcon = magicCodeIcon(language);
     class="bg-secondary flex items-center justify-between border-b px-2 py-2"
   >
     <div class="inline-flex items-center gap-1 text-sm">
-      <CodeIcon className="relative-icon" />
+      <CodeIcon class="relative-icon" />
       <span class="text-md">{title}</span>
     </div>
 
@@ -84,7 +84,7 @@ const CodeIcon = magicCodeIcon(language);
         name="show-numbers"
         class="hover:bg-accent size-6"
       >
-        <IconNumbers className="relative-icon" />
+        <IconNumbers class="relative-icon" />
       </IconCheckbox>
 
       <CopyButton value={code} variant="default" size="icon-xs" />

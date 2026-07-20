@@ -1,6 +1,6 @@
 ---
 import { VisualEditing } from "@sanity/astro/visual-editing";
-import { IconSearch } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-astro";
 import {
   PUBLIC_SANITY_VISUAL_EDITING_ENABLED,
   WORKERS_CI_COMMIT_SHA,
@@ -61,7 +61,7 @@ const isTodayBirthday = _birthdate.result
           slot="search"
           class="hover-link-icon data-[active-page='true']:border-primary"
         >
-          <IconSearch className="relative-icon" />
+          <IconSearch class="relative-icon" />
           <span class="sr-only">{links.search.text}</span></ActiveLink
         >
       </NavLinks>

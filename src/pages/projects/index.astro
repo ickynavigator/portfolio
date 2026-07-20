@@ -1,5 +1,5 @@
 ---
-import { IconArrowUpRight } from "@tabler/icons-react";
+import { IconArrowUpRight } from "@tabler/icons-astro";
 
 import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
@@ -83,7 +83,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
                     class="mt-2 gap-2"
                   >
                     <span class="text-xs">More</span>
-                    <IconArrowUpRight className="inline relative-icon" />
+                    <IconArrowUpRight class="relative-icon inline" />
                   </Badge>
                 </div>
               </div>

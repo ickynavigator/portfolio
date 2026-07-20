@@ -3,7 +3,7 @@ import {
   IconArrowUpRight,
   IconCalendar,
   IconStopwatch,
-} from "@tabler/icons-react";
+} from "@tabler/icons-astro";
 
 import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
@@ -70,12 +70,12 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                       class="inline-flex items-center gap-1"
                       transition:name={`blog-post-time-${post.slug.current}`}
                     >
-                      <IconCalendar className="inline relative-icon" />
+                      <IconCalendar class="relative-icon inline" />
                       {dayjs(post.postedAt).format("L")}
                     </span>
                     &#xb7;
                     <span class="inline-flex items-center gap-1">
-                      <IconStopwatch className="inline relative-icon" />
+                      <IconStopwatch class="relative-icon inline" />
                       <span
                         transition:name={`blog-read-time-${post.slug.current}`}
                       >
@@ -94,7 +94,7 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
                     class="mt-2 gap-2"
                   >
                     <span class="text-xs">More</span>
-                    <IconArrowUpRight className="inline relative-icon" />
+                    <IconArrowUpRight class="relative-icon inline" />
                   </Badge>
                 </div>
               </div>

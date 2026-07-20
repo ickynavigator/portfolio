@@ -1,5 +1,5 @@
 ---
-import { IconSearch } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-astro";
 import * as z from "zod";
 
 import Container from "~/components/Container.astro";
@@ -75,7 +75,7 @@ const { result } = await loadQuery({ query: TAGS_QUERY });
               <div
                 class="pointer-events-none absolute inset-y-0 left-0 flex items-center ps-3"
               >
-                <IconSearch className="relative-icon" />
+                <IconSearch class="relative-icon" />
               </div>
               <Input
                 name="search"
@@ -94,7 +94,7 @@ const { result } = await loadQuery({ query: TAGS_QUERY });
               title="Search"
             >
               <span class="sr-only">Submit Search</span>
-              <IconSearch className="relative-icon md:hidden" />
+              <IconSearch class="relative-icon md:hidden" />
               <span class="not-sm:hidden">Search</span>
             </Button>
           </div>

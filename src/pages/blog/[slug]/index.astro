@@ -4,7 +4,7 @@ import {
   IconCalendar,
   IconEdit,
   IconStopwatch,
-} from "@tabler/icons-react";
+} from "@tabler/icons-astro";
 import type { GetStaticPaths } from "astro";
 
 import Badge from "~/components/Badge.astro";
@@ -76,7 +76,7 @@ const imageUrl = urlForImage(image).width(4096).url();
     <ScrollProgress />
     <Container innerPage class="mb-4">
       <a href="/blog" class="hover-link"
-        ><IconArrowLeft className="relative-icon inline" />Back to Blogs</a
+        ><IconArrowLeft class="relative-icon inline" />Back to Blogs</a
       >
     </Container>
 
@@ -111,7 +111,7 @@ const imageUrl = urlForImage(image).width(4096).url();
               title={`Posted on ${dayjs(result.postedAt).format("LLLL")}`}
               transition:name={`blog-post-time-${result.slug.current}`}
             >
-              <IconCalendar className="relative-icon inline" />
+              <IconCalendar class="relative-icon inline" />
               <time datetime={result.postedAt}
                 >{dayjs(result.postedAt).format("LL")}</time
               >
@@ -123,7 +123,7 @@ const imageUrl = urlForImage(image).width(4096).url();
                   class="inline-flex items-center gap-1"
                   title={`Last updated on ${dayjs(result._updatedAt).format("LLLL")}`}
                 >
-                  <IconEdit className="inline relative-icon" />
+                  <IconEdit class="relative-icon inline" />
 
                   <time datetime={result._updatedAt}>
                     {dayjs(result._updatedAt).format("LL")}
@@ -134,7 +134,7 @@ const imageUrl = urlForImage(image).width(4096).url();
           </div>
 
           <span class="line-clamp-1 inline-flex items-center gap-1">
-            <IconStopwatch className="relative-icon inline" />
+            <IconStopwatch class="relative-icon inline" />
             <span transition:name={`blog-read-time-${result.slug.current}`}
               >{getReadingTime(result.wordCount)}</span
             > read

@@ -1,11 +1,11 @@
 ---
-import type { ReactNode } from "react";
+import type { AstroComponent } from "@tabler/icons-astro";
 
 import { cn } from "~/lib/utils";
 
 interface Props {
   options: {
-    label: (opts: { className: string }) => ReactNode;
+    label: AstroComponent;
     value: string;
     disabled?: boolean;
   }[];
@@ -47,7 +47,7 @@ const getId = (value: string) => {
           )}
         >
           <span class="sr-only">{option.value}</span>
-          {<option.label className="relative-icon" />}
+          {<option.label class="relative-icon" />}
         </label>
       </div>
     ))

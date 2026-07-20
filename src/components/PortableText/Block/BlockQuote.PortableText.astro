@@ -4,7 +4,7 @@ import {
   IconAlertTriangleFilled,
   IconCircleCheckFilled,
   IconInfoSquareRoundedFilled,
-} from "@tabler/icons-react";
+} from "@tabler/icons-astro";
 import type { BlockProps } from "astro-portabletext/types";
 import { cva } from "class-variance-authority";
 import * as z from "zod";
@@ -74,7 +74,7 @@ const bqClass = quoteVariants({ variant });
       <div class="flex items-center justify-between pe-4 not-italic">
         <span class="title font-extrabold capitalize">{variant}</span>
 
-        <VariantIcon className="relative-icon text-lg" />
+        <VariantIcon class="relative-icon text-lg" />
       </div>
     )
   }

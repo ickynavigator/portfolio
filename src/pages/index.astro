@@ -3,7 +3,7 @@ import {
   IconArrowMoveDown,
   IconArrowUpRight,
   IconFolderOpen,
-} from "@tabler/icons-react";
+} from "@tabler/icons-astro";
 
 import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
@@ -47,7 +47,7 @@ if (!result) {
               title="Scroll down"
             >
               <span class="sr-only">Scroll down</span>
-              <IconArrowMoveDown className="relative-icon m-3 stroke-1" />
+              <IconArrowMoveDown class="relative-icon m-3 stroke-1" />
             </a>
           </div>
         </div>
@@ -66,12 +66,12 @@ if (!result) {
           class="mt-2 gap-2"
         >
           <span class="text-xs">Learn more about me</span>
-          <IconArrowUpRight className="relative-icon inline" />
+          <IconArrowUpRight class="relative-icon inline" />
         </Badge>
       </div>
 
       <span class="mb-5 inline-flex items-center gap-2 text-2xl">
-        <IconFolderOpen className="relative-icon" />
+        <IconFolderOpen class="relative-icon" />
         <h2 class="leading-none font-light tracking-tight">Selected Works</h2>
       </span>
 
@@ -112,7 +112,7 @@ if (!result) {
       </ul>
 
       <span class="mb-5 inline-flex items-center gap-2 text-2xl">
-        <IconFolderOpen className="relative-icon" />
+        <IconFolderOpen class="relative-icon" />
         <h2 class="leading-none font-light tracking-tight">
           Selected Blog Posts
         </h2>

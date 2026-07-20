@@ -1,5 +1,5 @@
 ---
-import { IconArrowUpRight, IconFile } from "@tabler/icons-react";
+import { IconArrowUpRight, IconFile } from "@tabler/icons-astro";
 
 import Badge from "~/components/Badge.astro";
 import Container from "~/components/Container.astro";
@@ -42,7 +42,7 @@ return Astro.redirect("/404");
           href="/cv"
           class="hover-link inline-flex items-center gap-1"
           title={`CV Last Updated: ${dayjs(result.cvUpdatedAt).format("MMM DD, YYYY")}`}
-          ><IconFile className="relative-icon" />View CV</a
+          ><IconFile class="relative-icon" />View CV</a
         >
       </div>
 
@@ -109,7 +109,7 @@ return Astro.redirect("/404");
                       class="gap-2"
                     >
                       <span class="text-xs">{link.display}</span>
-                      <IconArrowUpRight className="inline relative-icon" />
+                      <IconArrowUpRight class="relative-icon inline" />
                     </Badge>
                   </li>
                 ))}
