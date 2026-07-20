@@ -1,27 +1,15 @@
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+import { ThemeSwitcherSubscriber } from "~/lib/theme";
+
+const themeSwitcherSubscriber = new ThemeSwitcherSubscriber();
 
 const useGetTheme = () => {
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    const abortController = new AbortController();
-
-    document.addEventListener(
-      "themechange",
-      () => {
-        setIsDark(document.documentElement.classList.contains("dark"));
-      },
-      {
-        signal: abortController.signal,
-      },
-    );
-
-    return () => {
-      abortController.abort();
-    };
-  }, []);
-
-  return isDark;
+  return useSyncExternalStore(
+    themeSwitcherSubscriber.subscribe,
+    themeSwitcherSubscriber.getIsDark,
+    themeSwitcherSubscriber.getIsDark_server,
+  );
 };
 
 export default useGetTheme;
