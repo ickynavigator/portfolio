@@ -68,6 +68,9 @@ importers:
       '@t3-oss/env-core':
         specifier: ^0.13.11
         version: 0.13.11(typescript@6.0.3)(valibot@1.4.1(typescript@6.0.3))(zod@4.4.3)
+      '@tabler/icons-astro':
+        specifier: ^3.45.0
+        version: 3.45.0(astro@7.1.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.1.1)(jiti@2.7.0)(rollup@4.62.0)(terser@5.46.1)(tsx@4.22.4)(yaml@2.9.0))
       '@tabler/icons-react':
         specifier: 3.45.0
         version: 3.45.0(react@19.2.7)
@@ -3943,6 +3946,11 @@ packages:
         optional: true
       zod:
         optional: true
+
+  '@tabler/icons-astro@3.45.0':
+    resolution: {integrity: sha512-c5GsGfsHpbMyuz9nDNGFBhejIQ8psuxW7GMC8XjZB+K8c+gnXJULzQrE3AxpHojUtlh97g7quEQ0SZdSNPatgw==}
+    peerDependencies:
+      astro: '>=4.0.0'
 
   '@tabler/icons-react@3.45.0':
     resolution: {integrity: sha512-t/AuKs7ALMDDTY+B9IvfZnlO0mbLlP/lJxP/HnGC49QkM8mCsTN38kYyxjXxgrb1+TeK53ioVBJqIV7n/eysXQ==}
@@ -12651,6 +12659,11 @@ snapshots:
       typescript: 6.0.3
       valibot: 1.4.1(typescript@6.0.3)
       zod: 4.4.3
+
+  '@tabler/icons-astro@3.45.0(astro@7.1.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.1.1)(jiti@2.7.0)(rollup@4.62.0)(terser@5.46.1)(tsx@4.22.4)(yaml@2.9.0))':
+    dependencies:
+      '@tabler/icons': 3.45.0
+      astro: 7.1.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@26.1.1)(jiti@2.7.0)(rollup@4.62.0)(terser@5.46.1)(tsx@4.22.4)(yaml@2.9.0)
 
   '@tabler/icons-react@3.45.0(react@19.2.7)':
     dependencies:
