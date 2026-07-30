@@ -94,7 +94,7 @@
     "react-is": "^19.2.8",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.65.0",
-    "wrangler": "^4.115.0"
+    "wrangler": "^4.116.0"
   },
   "packageManager": "pnpm@11.18.0",
   "peerDependencies": {
