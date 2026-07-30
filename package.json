@@ -52,7 +52,7 @@
     "groq": "^6.7.0",
     "lodash": "^4.18.1",
     "partysocket": "^1.3.0",
-    "posthog-js": "^1.407.4",
+    "posthog-js": "^1.407.8",
     "posthog-node": "^5.46.1",
     "psn-api": "^2.18.0",
     "radix-ui": "^1.6.7",
