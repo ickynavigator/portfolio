@@ -59,6 +59,9 @@ importers:
       '@sanity/visual-editing':
         specifier: ^6.0.4
         version: 6.0.4(@sanity/client@8.1.0)(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(styled-components@6.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@6.0.3)
+      '@sanity/webhook':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@shikijs/colorized-brackets':
         specifier: ^4.4.3
         version: 4.4.3
@@ -3938,6 +3941,10 @@ packages:
         optional: true
       svelte:
         optional: true
+
+  '@sanity/webhook@4.0.4':
+    resolution: {integrity: sha512-c8LmzR5Wx93zJ10ohhp0XlmPrTNSFyvPcLbNY/sN45Wj5VOngz4FbBMbX9j64sSQLt+676U6OhiVfjs1yw3YCw==}
+    engines: {node: '>=20.0.0'}
 
   '@sanity/workbench-cli@2.0.1':
     resolution: {integrity: sha512-+mjSeXu7GhWWuG9xhOu3Vuv+Zxvy3d6tTUvVl6qdUr9r8IneIzDsp6WRUVwuqZSSwyG+V2Cy98TaEEcp7tppOQ==}
@@ -12943,6 +12950,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - typescript
+
+  '@sanity/webhook@4.0.4': {}
 
   '@sanity/workbench-cli@2.0.1(@noble/hashes@2.2.0)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(@types/node@26.2.0)(@types/react@19.2.18)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.12)(typescript@6.0.3)(yaml@2.9.0)':
     dependencies:
