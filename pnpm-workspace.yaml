@@ -6,7 +6,5 @@ allowBuilds:
   sharp: true
   workerd: true
 
-minimumReleaseAge: 0
-
 publicHoistPattern:
   - vite
