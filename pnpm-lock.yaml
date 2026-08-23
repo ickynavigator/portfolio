@@ -216,12 +216,6 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.8.1
         version: 0.8.1(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.9.6)(supports-color@8.1.1))(prettier-plugin-astro@0.14.1)(prettier@3.9.6)
-      react-compiler-runtime:
-        specifier: 19.1.0-rc.3
-        version: 19.1.0-rc.3(react@19.2.8)
-      react-is:
-        specifier: ^19.2.8
-        version: 19.2.8
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -7161,11 +7155,6 @@ packages:
 
   react-compiler-runtime@1.0.0:
     resolution: {integrity: sha512-rRfjYv66HlG8896yPUDONgKzG5BxZD1nV9U6rkm+7VCuvQc903C4MjcoZR4zPw53IKSOX9wMQVpA1IAbRtzQ7w==}
-    peerDependencies:
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
-
-  react-compiler-runtime@19.1.0-rc.3:
-    resolution: {integrity: sha512-Cssogys2XZu6SqxRdX2xd8cQAf57BBvFbLEBlIa77161lninbKUn/EqbecCe7W3eqDQfg3rIoOwzExzgCh7h/g==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0 || ^19.0.0 || ^0.0.0-experimental
 
@@ -16294,10 +16283,6 @@ snapshots:
       react: 19.2.8
 
   react-compiler-runtime@1.0.0(react@19.2.8):
-    dependencies:
-      react: 19.2.8
-
-  react-compiler-runtime@19.1.0-rc.3(react@19.2.8):
     dependencies:
       react: 19.2.8
 

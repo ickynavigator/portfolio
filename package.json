@@ -90,15 +90,9 @@
     "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "react-compiler-runtime": "19.1.0-rc.3",
-    "react-is": "^19.2.8",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.67.0",
     "wrangler": "^4.125.0"
   },
-  "packageManager": "pnpm@11.22.0",
-  "peerDependencies": {
-    "react-compiler-runtime": "19.1.0-rc.3",
-    "react-is": "^19.0.0"
-  }
+  "packageManager": "pnpm@11.22.0"
 }
