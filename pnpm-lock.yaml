@@ -129,8 +129,8 @@ importers:
         specifier: 3.10.1
         version: 3.10.1(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@19.2.8)(react@19.2.8)(redux@5.0.1)
       remeda:
-        specifier: ^2.42.0
-        version: 2.42.0
+        specifier: ^2.43.0
+        version: 2.43.0
       sanity:
         specifier: ^6.10.1
         version: 6.10.1(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(@noble/hashes@2.2.0)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))(@sanity/sdk@3.0.0-rc.1(@types/react@19.2.18)(immer@11.1.15)(react@19.2.8)(use-sync-external-store@1.6.0(react@19.2.8))(xstate@5.32.5))(@types/node@26.2.0)(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(esbuild@0.28.1)(immer@11.1.15)(jiti@2.7.0)(prismjs@1.30.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rolldown@1.2.4)(styled-components@6.5.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(supports-color@8.1.1)(typescript@6.0.3)
@@ -7359,8 +7359,8 @@ packages:
     resolution: {integrity: sha512-NgRBy2Nx/bE+9F27nVHnqcN5HjyLmecqsqx2PJHu3/IEtADD4WuxuXIVExD5PoSDFVrl78dOonfcOe5O+5nbzQ==}
     hasBin: true
 
-  remeda@2.42.0:
-    resolution: {integrity: sha512-wDnRk66DV3uXCvJ8yGVtgOtiaOJsyYlucaKWJKY9EAONW86I1OiYqtMbmVaUjv7M0qp4XiMBjJRamibvE8yA1Q==}
+  remeda@2.43.0:
+    resolution: {integrity: sha512-6V18zwONdwLwhzNjLY4KWW2b+nG7VXTi7yM+PtvsKyPug8JEPXjfV64hiXoATTbzU3e99i6uMVHkONj/iUaMUw==}
     engines: {node: '>=18.0.0'}
 
   request-light@0.5.8:
@@ -16512,7 +16512,7 @@ snapshots:
     dependencies:
       jsesc: 3.1.0
 
-  remeda@2.42.0: {}
+  remeda@2.43.0: {}
 
   request-light@0.5.8: {}
 

@@ -59,7 +59,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "recharts": "3.10.1",
-    "remeda": "^2.42.0",
+    "remeda": "^2.43.0",
     "sanity": "^6.10.1",
     "sanity-plugin-webhooks-trigger": "^1.0.1",
     "sonner": "^2.0.8",
