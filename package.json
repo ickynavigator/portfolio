@@ -94,5 +94,12 @@
     "typescript-eslint": "^8.69.0",
     "wrangler": "^4.129.0"
   },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "26.7.0",
+      "onFail": "download"
+    }
+  },
   "packageManager": "pnpm@12.3.4"
 }

@@ -14,20 +14,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/setup@v2
         name: Install pnpm
         with:
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: |
-          pnpm ci
+          install: true
+          cache: true
 
       - name: Deploy Studio
         id: deploy
@@ -46,20 +37,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/setup@v2
         name: Install pnpm
         with:
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version-file: ".node-version"
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: |
-          pnpm ci
+          install: true
+          cache: true
 
       - name: Deploy PartyKit
         id: deploy
