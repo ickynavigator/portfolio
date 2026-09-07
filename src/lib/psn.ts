@@ -1,21 +1,10 @@
-import { PSN_NPSSO } from "astro:env/server";
-import {
-  exchangeAccessCodeForAuthTokens,
-  exchangeNpssoForAccessCode,
-  getUserPlayedGames,
-} from "psn-api";
+import { env } from "cloudflare:workers";
+import { getUserPlayedGames } from "psn-api";
 
-export async function createPSNApiInstance() {
-  const accessCode = await exchangeNpssoForAccessCode(PSN_NPSSO);
-  const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
-
-  return {
-    authorization,
-  };
-}
+import { AuthorizationStore } from "~/durable/refresh-psn.utils";
 
 export async function getPSNStats() {
-  const { authorization } = await createPSNApiInstance();
+  const authorization = await new AuthorizationStore(env).getOrThrow();
   const title = await getUserPlayedGames(authorization, "me", {
     limit: 10,
     offset: 0,

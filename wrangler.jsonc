@@ -2,7 +2,7 @@
     "$schema": "node_modules/wrangler/config-schema.json",
     "name": "portfolio",
     "build": {},
-    "main": "@astrojs/cloudflare/entrypoints/server",
+    "main": "./src/worker.ts",
     "compatibility_date": "2026-03-10",
     "compatibility_flags": [
         "nodejs_compat"
@@ -17,6 +17,26 @@
         "enabled": true
     },
     "send_metrics": true,
+    "kv_namespaces": [
+        {
+            "binding": "PSN_AUTH_KV",
+            "id": "PSN_AUTH_KV_ID",
+        }
+    ],
+    "durable_objects": {
+        "bindings": [
+            {
+                "name": "PSN_AUTH",
+                "class_name": "PsnAuth",
+            }
+        ]
+    },
+    "exports": {
+        "PsnAuth": {
+            "type": "durable-object",
+            "storage": "sqlite"
+        }
+    },
     "vars": {
         "WEBSITE_URL": "https://obifortune.com",
         "PUBLIC_SANITY_VISUAL_EDITING_ENABLED": "false",
