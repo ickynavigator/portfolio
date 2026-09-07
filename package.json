@@ -6,7 +6,6 @@
     "dev": "astro dev",
     "dev:sa": "sanity dev",
     "start": "astro dev",
-    "prebuild": "$npm_execpath typegen && astro check",
     "build": "astro build",
     "deploy:sa": "sanity schema deploy --manifest-dir ./public/studio/static",
     "preview": "astro build && wrangler dev",
