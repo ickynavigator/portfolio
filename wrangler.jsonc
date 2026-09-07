@@ -1,51 +1,52 @@
 {
-    "$schema": "node_modules/wrangler/config-schema.json",
-    "name": "portfolio",
-    "build": {},
-    "main": "./src/worker.ts",
-    "compatibility_date": "2026-03-10",
-    "compatibility_flags": [
-        "nodejs_compat"
-    ],
-    "preview_urls": true,
-    "workers_dev": true,
-    "assets": {
-        "binding": "ASSETS",
-        "directory": "./dist",
-    },
-    "observability": {
-        "enabled": true
-    },
-    "send_metrics": true,
-    "kv_namespaces": [
-        {
-            "binding": "PSN_AUTH_KV",
-            "id": "PSN_AUTH_KV_ID",
-        }
-    ],
-    "durable_objects": {
-        "bindings": [
-            {
-                "name": "PSN_AUTH",
-                "class_name": "PsnAuth",
-            }
-        ]
-    },
-    "exports": {
-        "PsnAuth": {
-            "type": "durable-object",
-            "storage": "sqlite"
-        }
-    },
-    "vars": {
-        "WEBSITE_URL": "https://obifortune.com",
-        "PUBLIC_SANITY_VISUAL_EDITING_ENABLED": "false",
-        "PUBLIC_SANITY_API_PROJECT_ID": "gtsyvuts",
-        "PUBLIC_SANITY_API_DATASET": "production",
-        "PUBLIC_SANITY_API_VERSION": "2022-03-07",
-        "PUBLIC_POSTHOG_API_KEY": "phc_tsOUKsYrGpDKtq0LDG4uWzav1y8TwkHLRVadr8TIrv6",
-        "PUBLIC_POSTHOG_API_HOST": "https://phog.obifortune.com",
-        "PUBLIC_POSTHOG_UI_HOST": "https://us.posthog.com",
-        "PUBLIC_PARTY_URL": "https://party.portfolio.obifortune.com"
-    }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "portfolio",
+	"build": {},
+	"main": "./src/worker.ts",
+	"compatibility_date": "2026-03-10",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"preview_urls": true,
+	"workers_dev": true,
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist",
+	},
+	"observability": {
+		"enabled": true
+	},
+	"send_metrics": true,
+	"kv_namespaces": [
+		{
+			"binding": "PSN_AUTH_KV",
+			"id": "3e346b096cd1447b8f55f06d41a468de",
+			"remote": true,
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "PSN_AUTH",
+				"class_name": "PsnAuth",
+			}
+		]
+	},
+	"exports": {
+		"PsnAuth": {
+			"type": "durable-object",
+			"storage": "sqlite"
+		}
+	},
+	"vars": {
+		"WEBSITE_URL": "https://obifortune.com",
+		"PUBLIC_SANITY_VISUAL_EDITING_ENABLED": "false",
+		"PUBLIC_SANITY_API_PROJECT_ID": "gtsyvuts",
+		"PUBLIC_SANITY_API_DATASET": "production",
+		"PUBLIC_SANITY_API_VERSION": "2022-03-07",
+		"PUBLIC_POSTHOG_API_KEY": "phc_tsOUKsYrGpDKtq0LDG4uWzav1y8TwkHLRVadr8TIrv6",
+		"PUBLIC_POSTHOG_API_HOST": "https://phog.obifortune.com",
+		"PUBLIC_POSTHOG_UI_HOST": "https://us.posthog.com",
+		"PUBLIC_PARTY_URL": "https://party.portfolio.obifortune.com"
+	}
 }
