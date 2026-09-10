@@ -29,6 +29,7 @@ export async function loadQuery<G extends string>(
     _options = args.options;
   }
 
+  console.log(env);
   if (env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true") {
     if (env.SANITY_API_READ_TOKEN == undefined) {
       throw new Error(
