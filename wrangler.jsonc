@@ -32,14 +32,12 @@
 			}
 		]
 	},
-	"migrations": [
-		{
-			"tag": "v1",
-			"new_sqlite_classes": [
-				"PsnAuth"
-			]
+	"exports": {
+		"PsnAuth": {
+			"type": "durable-object",
+			"storage": "sqlite"
 		}
-	],
+	},
 	"vars": {
 		"WEBSITE_URL": "https://obifortune.com",
 		"PUBLIC_SANITY_VISUAL_EDITING_ENABLED": "false",
