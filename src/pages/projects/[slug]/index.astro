@@ -83,9 +83,7 @@ const imageUrl = urlForImage(image).url();
           >
             {result.title}
           </h1>
-          <h2
-            class="text-muted-foreground leading-none font-light tracking-tight"
-          >
+          <h2 class="text-muted-foreground leading-none font-light tracking-tight">
             Role: {result.role}
           </h2>
         </div>
@@ -94,39 +92,35 @@ const imageUrl = urlForImage(image).url();
           class="max-w-full scrollbar-thin space-x-1 overflow-x-scroll whitespace-nowrap"
           transition:name={`project-tags-${result.slug.current}`}
         >
-          {
-            result.derefTag.map((tag) => (
-              <li class="inline">
-                <Badge
-                  as="a"
-                  href={`/search?type=project&tag=${encodeURIComponent(tag.slug.current)}`}
-                  variant="outline"
-                  animate="hover"
-                  class="rounded-full"
-                >
-                  {tag.title}
-                </Badge>
-              </li>
-            ))
-          }
+          {result.derefTag.map((tag) => (
+            <li class="inline">
+              <Badge
+                as="a"
+                href={`/search?type=project&tag=${encodeURIComponent(tag.slug.current)}`}
+                variant="outline"
+                animate="hover"
+                class="rounded-full"
+              >
+                {tag.title}
+              </Badge>
+            </li>
+          ))}
         </ul>
         <ul class="space-x-1">
-          {
-            result.visibleLinks.map((link) => (
-              <li class="inline">
-                <Badge
-                  as="a"
-                  href={link.url}
-                  variant="outline"
-                  animate="hover"
-                  class="gap-2"
-                >
-                  <span class="text-xs">{link.display}</span>
-                  <IconArrowUpRight class="relative-icon inline" />
-                </Badge>
-              </li>
-            ))
-          }
+          {result.visibleLinks.map((link) => (
+            <li class="inline">
+              <Badge
+                as="a"
+                href={link.url}
+                variant="outline"
+                animate="hover"
+                class="gap-2"
+              >
+                <span class="text-xs">{link.display}</span>
+                <IconArrowUpRight class="relative-icon inline" />
+              </Badge>
+            </li>
+          ))}
         </ul>
         <PortableText data={result.body} />
       </div>

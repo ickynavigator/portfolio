@@ -25,31 +25,29 @@ const getId = (value: string) => {
 <div
   class={cn("bg-muted inline-flex gap-0.5 rounded-full border p-0.5", _class)}
 >
-  {
-    options.map((option) => (
-      <div class="relative">
-        <input
-          type="radio"
-          name={name}
-          id={getId(option.value)}
-          value={option.value}
-          class="peer sr-only"
-          disabled={option?.disabled}
-        />
+  {options.map((option) => (
+    <div class="relative">
+      <input
+        type="radio"
+        name={name}
+        id={getId(option.value)}
+        value={option.value}
+        class="peer sr-only"
+        disabled={option?.disabled}
+      />
 
-        <label
-          for={getId(option.value)}
-          class={cn(
-            "flex size-8 cursor-pointer items-center justify-center rounded-full transition",
-            "hover:bg-background hover:scale-110",
-            "peer-focus-visible:ring-ring peer-focus-visible:bg-background peer-focus-visible:scale-110 peer-focus-visible:ring-2",
-            "peer-checked:bg-background peer-checked:shadow-xs",
-          )}
-        >
-          <span class="sr-only">{option.value}</span>
-          {<option.label class="relative-icon" />}
-        </label>
-      </div>
-    ))
-  }
+      <label
+        for={getId(option.value)}
+        class={cn(
+          "flex size-8 cursor-pointer items-center justify-center rounded-full transition",
+          "hover:bg-background hover:scale-110",
+          "peer-focus-visible:ring-ring peer-focus-visible:bg-background peer-focus-visible:scale-110 peer-focus-visible:ring-2",
+          "peer-checked:bg-background peer-checked:shadow-xs",
+        )}
+      >
+        <span class="sr-only">{option.value}</span>
+        {<option.label class="relative-icon" />}
+      </label>
+    </div>
+  ))}
 </div>

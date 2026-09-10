@@ -75,9 +75,10 @@ const imageUrl = urlForImage(image).width(4096).url();
   <NavLayout>
     <ScrollProgress />
     <Container innerPage class="mb-4">
-      <a href="/blog" class="hover-link"
-        ><IconArrowLeft class="relative-icon inline" />Back to Blogs</a
-      >
+      <a href="/blog" class="hover-link">
+        <IconArrowLeft class="relative-icon inline" />
+        Back to Blogs
+      </a>
     </Container>
 
     <div>
@@ -100,44 +101,39 @@ const imageUrl = urlForImage(image).width(4096).url();
           {result.title}
         </h1>
 
-        <div
-          class="text-muted-foreground flex flex-col justify-between md:flex-row"
-        >
-          <div
-            class="inline-flex flex-col gap-0 text-center md:flex-row md:gap-4"
-          >
+        <div class="text-muted-foreground flex flex-col justify-between md:flex-row">
+          <div class="inline-flex flex-col gap-0 text-center md:flex-row md:gap-4">
             <span
               class="inline-flex items-center gap-1"
               title={`Posted on ${dayjs(result.postedAt).format("LLLL")}`}
               transition:name={`blog-post-time-${result.slug.current}`}
             >
               <IconCalendar class="relative-icon inline" />
-              <time datetime={result.postedAt}
-                >{dayjs(result.postedAt).format("LL")}</time
-              >
+              <time datetime={result.postedAt}>
+                {dayjs(result.postedAt).format("LL")}
+              </time>
             </span>
 
-            {
-              result._updatedAt && (
-                <span
-                  class="inline-flex items-center gap-1"
-                  title={`Last updated on ${dayjs(result._updatedAt).format("LLLL")}`}
-                >
-                  <IconEdit class="relative-icon inline" />
+            {result._updatedAt && (
+              <span
+                class="inline-flex items-center gap-1"
+                title={`Last updated on ${dayjs(result._updatedAt).format("LLLL")}`}
+              >
+                <IconEdit class="relative-icon inline" />
 
-                  <time datetime={result._updatedAt}>
-                    {dayjs(result._updatedAt).format("LL")}
-                  </time>
-                </span>
-              )
-            }
+                <time datetime={result._updatedAt}>
+                  {dayjs(result._updatedAt).format("LL")}
+                </time>
+              </span>
+            )}
           </div>
 
           <span class="line-clamp-1 inline-flex items-center gap-1">
             <IconStopwatch class="relative-icon inline" />
-            <span transition:name={`blog-read-time-${result.slug.current}`}
-              >{getReadingTime(result.wordCount)}</span
-            > read
+            <span transition:name={`blog-read-time-${result.slug.current}`}>
+              {getReadingTime(result.wordCount)}
+            </span>{" "}
+            read
           </span>
         </div>
 
@@ -145,21 +141,19 @@ const imageUrl = urlForImage(image).width(4096).url();
           class="max-w-full scrollbar-thin overflow-x-scroll pb-1 whitespace-nowrap"
           transition:name={`blog-tags-${result.slug.current}`}
         >
-          {
-            result.derefTag.map((tag) => (
-              <li class="inline">
-                <Badge
-                  as="a"
-                  href={`/search?type=post&tag=${encodeURIComponent(tag.slug.current)}`}
-                  variant="outline"
-                  animate="hover"
-                  class="rounded-full"
-                >
-                  {tag.title}
-                </Badge>
-              </li>
-            ))
-          }
+          {result.derefTag.map((tag) => (
+            <li class="inline">
+              <Badge
+                as="a"
+                href={`/search?type=post&tag=${encodeURIComponent(tag.slug.current)}`}
+                variant="outline"
+                animate="hover"
+                class="rounded-full"
+              >
+                {tag.title}
+              </Badge>
+            </li>
+          ))}
         </ul>
         <p transition:name={`blog-description-${result.slug.current}`}>
           {result.description}

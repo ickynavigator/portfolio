@@ -38,35 +38,31 @@ const { success, data } = schema.safeParse(result.result);
     data-tooltip-trigger
     class="text-accent-foreground bg-accent flex flex-col rounded border p-2 shadow"
   >
-    {
-      !success ? (
-        <>
-          <span class="text-destructive tracking-tight">Broken reference</span>
-        </>
-      ) : (
-        <>
-          <span class="text-muted-foreground text-xs">
-            <span class="capitalize">
-              <a href={data.base}>{data.type}</a>
-            </span>
-            at {data.updatedAt.format("ll")}
+    {!success ? (
+      <>
+        <span class="text-destructive tracking-tight">Broken reference</span>
+      </>
+    ) : (
+      <>
+        <span class="text-muted-foreground text-xs">
+          <span class="capitalize">
+            <a href={data.base}>{data.type}</a>
           </span>
+          at {data.updatedAt.format("ll")}
+        </span>
 
-          <span class="font-bold tracking-tight">{data.name}</span>
-        </>
-      )
-    }
+        <span class="font-bold tracking-tight">{data.name}</span>
+      </>
+    )}
   </div>
 
-  {
-    !success ? (
-      <span class="decoration-destructive cursor-not-allowed! underline decoration-wavy">
-        <slot />
-      </span>
-    ) : (
-      <a href={data.url} class="hover-link cursor-alias decoration-wavy">
-        <slot />
-      </a>
-    )
-  }
+  {!success ? (
+    <span class="decoration-destructive cursor-not-allowed! underline decoration-wavy">
+      <slot />
+    </span>
+  ) : (
+    <a href={data.url} class="hover-link cursor-alias decoration-wavy">
+      <slot />
+    </a>
+  )}
 </span>

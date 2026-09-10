@@ -39,81 +39,81 @@ const { result } = await loadQuery({ query: CAREERS_QUERY });
           href="/cv"
           class="hover-link inline-flex items-center gap-1"
           title={`CV Last Updated: ${dayjs(result.cvUpdatedAt).format("MMM DD, YYYY")}`}
-          ><IconFile class="relative-icon" />View CV</a
         >
+          <IconFile class="relative-icon" />
+          View CV
+        </a>
       </div>
 
       <div class="divide-y">
-        {
-          result.careers.map((career) => (
-            <div class="flex flex-col gap-4 py-4">
-              <div class="flex flex-col items-start justify-start gap-4 md:flex-row md:items-center">
-                <div class="w-5/100">
-                  <SanityImage
-                    node={career.company.logo}
-                    class="rounded-xs border shadow-xs transition duration-300 hover:shadow-md"
-                  />
-                </div>
-
-                <div class="flex flex-col gap-2">
-                  <h2 class="text-xl leading-none font-bold tracking-tight">
-                    {career.company.name}
-                  </h2>
-
-                  <h3 class="text-md leading-none font-light tracking-tight">
-                    {career.title}
-                  </h3>
-
-                  <h4 class="text-muted-foreground flex items-center gap-2 divide-x-2 text-sm leading-none font-medium tracking-tight *:pe-2">
-                    <span>
-                      {dayjs(career.date.start).format("MMM, YYYY")} -{" "}
-                      {career.date.end
-                        ? dayjs(career.date.end).format("MMM, YYYY")
-                        : "Present"}
-                    </span>
-
-                    <span>
-                      {career.type} - {career.location.type}
-                    </span>
-
-                    <span>{career.location.address}</span>
-                  </h4>
-                </div>
+        {result.careers.map((career) => (
+          <div class="flex flex-col gap-4 py-4">
+            <div class="flex flex-col items-start justify-start gap-4 md:flex-row md:items-center">
+              <div class="w-5/100">
+                <SanityImage
+                  node={career.company.logo}
+                  class="rounded-xs border shadow-xs transition duration-300 hover:shadow-md"
+                />
               </div>
 
-              <ul class="max-w-full scrollbar-thin overflow-x-auto whitespace-nowrap">
-                {career.derefTag.map((tag) => (
-                  <li>
-                    <Badge variant="outline" class="rounded-full">
-                      {tag.title}
-                    </Badge>
-                  </li>
-                ))}
-              </ul>
+              <div class="flex flex-col gap-2">
+                <h2 class="text-xl leading-none font-bold tracking-tight">
+                  {career.company.name}
+                </h2>
 
-              <div>
-                <PortableText data={career.description} class="max-w-none" />
+                <h3 class="text-md leading-none font-light tracking-tight">
+                  {career.title}
+                </h3>
+
+                <h4 class="text-muted-foreground flex items-center gap-2 divide-x-2 text-sm leading-none font-medium tracking-tight *:pe-2">
+                  <span>
+                    {dayjs(career.date.start).format("MMM, YYYY")} -{" "}
+                    {career.date.end
+                      ? dayjs(career.date.end).format("MMM, YYYY")
+                      : "Present"}
+                  </span>
+
+                  <span>
+                    {career.type} - {career.location.type}
+                  </span>
+
+                  <span>{career.location.address}</span>
+                </h4>
               </div>
-
-              <ul class="mt-2">
-                {career.visibleLinks.map((link) => (
-                  <li>
-                    <Badge
-                      as="a"
-                      href={link.url}
-                      variant="outline"
-                      animate="hover"
-                      class="gap-2"
-                    >
-                      <span class="text-xs">{link.display}</span>
-                      <IconArrowUpRight class="relative-icon inline" />
-                    </Badge>
-                  </li>
-                ))}
-              </ul>
             </div>
-          ))
-        }
+
+            <ul class="max-w-full scrollbar-thin overflow-x-auto whitespace-nowrap">
+              {career.derefTag.map((tag) => (
+                <li>
+                  <Badge variant="outline" class="rounded-full">
+                    {tag.title}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+
+            <div>
+              <PortableText data={career.description} class="max-w-none" />
+            </div>
+
+            <ul class="mt-2">
+              {career.visibleLinks.map((link) => (
+                <li>
+                  <Badge
+                    as="a"
+                    href={link.url}
+                    variant="outline"
+                    animate="hover"
+                    class="gap-2"
+                  >
+                    <span class="text-xs">{link.display}</span>
+                    <IconArrowUpRight class="relative-icon inline" />
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </Container>
   </NavLayout>

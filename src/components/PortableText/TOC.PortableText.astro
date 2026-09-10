@@ -41,15 +41,11 @@ if (headings.length === 0) {
 
 <toc-container class="group hidden md:inline" data-pin={true}>
   <div class="top-24 z-100 w-fit group-data-[pin='true']:sticky">
-    <details
-      class="w-fit rounded-md border shadow-xs backdrop-blur-md before:rounded-md"
-    >
+    <details class="w-fit rounded-md border shadow-xs backdrop-blur-md before:rounded-md">
       <summary class="flex items-center justify-between gap-6 px-4 py-2">
         <p class="inline-flex items-center gap-1 text-lg font-bold">
           <span>
-            <IconCaretRightFilled
-              class="relative-icon transition-transform in-[[open]]:rotate-90"
-            />
+            <IconCaretRightFilled class="relative-icon transition-transform in-[[open]]:rotate-90" />
           </span>
           Content
         </p>
@@ -65,23 +61,21 @@ if (headings.length === 0) {
 
       <div>
         <ul class="list-none px-4 py-2">
-          {
-            headings.map((heading) => (
-              <li
-                class="data-[level=1]:ms-2 data-[level=2]:ms-4 data-[level=3]:ms-6 data-[level=4]:ms-8 data-[level=5]:ms-10 data-[level=6]:ms-12"
-                data-level={heading.level}
+          {headings.map((heading) => (
+            <li
+              class="data-[level=1]:ms-2 data-[level=2]:ms-4 data-[level=3]:ms-6 data-[level=4]:ms-8 data-[level=5]:ms-10 data-[level=6]:ms-12"
+              data-level={heading.level}
+            >
+              <a
+                href={`#${heading.slug}`}
+                class="hover-link text-muted-foreground data-[active='true']:text-foreground"
+                data-slug={heading.slug}
+                data-active={false}
               >
-                <a
-                  href={`#${heading.slug}`}
-                  class="hover-link text-muted-foreground data-[active='true']:text-foreground"
-                  data-slug={heading.slug}
-                  data-active={false}
-                >
-                  {heading.text}
-                </a>
-              </li>
-            ))
-          }
+                {heading.text}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </details>

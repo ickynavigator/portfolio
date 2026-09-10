@@ -24,21 +24,15 @@ if (!result) {
     <Container innerPage>
       <div class="h-[90svh]">
         <div class="flex h-full flex-col justify-center gap-5">
-          <h1
-            class="text-center text-8xl leading-none font-light tracking-tight"
-          >
+          <h1 class="text-center text-8xl leading-none font-light tracking-tight">
             {result.name}
           </h1>
 
-          <h2
-            class="text-center text-6xl leading-none font-light tracking-tight"
-          >
+          <h2 class="text-center text-6xl leading-none font-light tracking-tight">
             {result.title}
           </h2>
 
-          <p class="text-muted-foreground text-center">
-            {result.tagline}
-          </p>
+          <p class="text-muted-foreground text-center">{result.tagline}</p>
 
           <div class="mt-8 flex justify-center">
             <a
@@ -54,9 +48,7 @@ if (!result) {
       </div>
 
       <div class="mb-32 pt-4" id="about">
-        <p class="text-3xl font-light">
-          {result.shortBio}
-        </p>
+        <p class="text-3xl font-light">{result.shortBio}</p>
 
         <Badge
           as="a"
@@ -76,39 +68,37 @@ if (!result) {
       </span>
 
       <ul class="mb-20 divide-y border-t border-b">
-        {
-          result.selectedProjects?.map((project) => (
-            <li class="flex flex-col items-start justify-between gap-4 px-3 py-6 md:flex-row md:items-center">
-              <a href={`/projects/${project.slug}`} class="min-w-fit flex-1">
-                <h3
-                  class="hover-link truncate text-lg leading-none tracking-tight"
-                  transition:name={`project-title-${project.slug}`}
-                >
-                  {project.title}
-                </h3>
-              </a>
-
-              <ul
-                class="max-w-full scrollbar-thin space-x-1 overflow-x-scroll pb-1 whitespace-nowrap"
-                transition:name={`project-tags-${project.slug}`}
+        {result.selectedProjects?.map((project) => (
+          <li class="flex flex-col items-start justify-between gap-4 px-3 py-6 md:flex-row md:items-center">
+            <a href={`/projects/${project.slug}`} class="min-w-fit flex-1">
+              <h3
+                class="hover-link truncate text-lg leading-none tracking-tight"
+                transition:name={`project-title-${project.slug}`}
               >
-                {project.tags.map((tag) => (
-                  <li class="inline">
-                    <Badge
-                      as="a"
-                      href={`/search?type=project&tag=${encodeURIComponent(tag.slug)}`}
-                      variant="outline"
-                      animate="hover"
-                      class="rounded-full"
-                    >
-                      {tag.name}
-                    </Badge>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))
-        }
+                {project.title}
+              </h3>
+            </a>
+
+            <ul
+              class="max-w-full scrollbar-thin space-x-1 overflow-x-scroll pb-1 whitespace-nowrap"
+              transition:name={`project-tags-${project.slug}`}
+            >
+              {project.tags.map((tag) => (
+                <li class="inline">
+                  <Badge
+                    as="a"
+                    href={`/search?type=project&tag=${encodeURIComponent(tag.slug)}`}
+                    variant="outline"
+                    animate="hover"
+                    class="rounded-full"
+                  >
+                    {tag.name}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
       </ul>
 
       <span class="mb-5 inline-flex items-center gap-2 text-2xl">
@@ -119,27 +109,25 @@ if (!result) {
       </span>
 
       <ul class="mb-20 divide-y border-t border-b">
-        {
-          result.selectedPosts.map((post) => (
-            <li class="p-3">
-              <a href={`/blog/${post.slug}`} class="group flex flex-col gap-3">
-                <h3
-                  class="hover-link group-hover:decoration-primary text-lg leading-none tracking-tight"
-                  transition:name={`blog-title-${post.slug}`}
-                >
-                  {post.title}
-                </h3>
+        {result.selectedPosts.map((post) => (
+          <li class="p-3">
+            <a href={`/blog/${post.slug}`} class="group flex flex-col gap-3">
+              <h3
+                class="hover-link group-hover:decoration-primary text-lg leading-none tracking-tight"
+                transition:name={`blog-title-${post.slug}`}
+              >
+                {post.title}
+              </h3>
 
-                <p
-                  class="text-muted-foreground line-clamp-1"
-                  transition:name={`blog-description-${post.slug}`}
-                >
-                  {post.description}
-                </p>
-              </a>
-            </li>
-          ))
-        }
+              <p
+                class="text-muted-foreground line-clamp-1"
+                transition:name={`blog-description-${post.slug}`}
+              >
+                {post.description}
+              </p>
+            </a>
+          </li>
+        ))}
       </ul>
     </Container>
   </NavLayout>

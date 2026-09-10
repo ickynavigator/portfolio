@@ -32,64 +32,59 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
     <Container innerPage>
       <div class="mb-4 flex flex-col gap-1">
         <h1 class="text-xl leading-none font-bold tracking-tight">Projects</h1>
-        <h2
-          class="text-muted-foreground text-2xl leading-none font-light tracking-tight"
-        >
+        <h2 class="text-muted-foreground text-2xl leading-none font-light tracking-tight">
           Building experiences, one line of code at a time.
         </h2>
-        <span
-          class="text-muted-foreground leading-none font-light tracking-tight"
-          >Click. Explore.</span
-        >
+        <span class="text-muted-foreground leading-none font-light tracking-tight">
+          Click. Explore.
+        </span>
       </div>
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {
-          result.data.map((project) => (
-            <div>
-              <a
-                href={`/projects/${project.slug.current}`}
-                class="block aspect-video overflow-hidden rounded-lg border shadow"
-              >
-                {project.image && (
-                  <SanityImage
-                    node={project.image}
-                    class="size-full object-cover object-center transition-transform hover:scale-125"
-                    transition:name={`project-image-${project.slug.current}`}
-                  />
-                )}
-              </a>
+        {result.data.map((project) => (
+          <div>
+            <a
+              href={`/projects/${project.slug.current}`}
+              class="block aspect-video overflow-hidden rounded-lg border shadow"
+            >
+              {project.image && (
+                <SanityImage
+                  node={project.image}
+                  class="size-full object-cover object-center transition-transform hover:scale-125"
+                  transition:name={`project-image-${project.slug.current}`}
+                />
+              )}
+            </a>
 
-              <div class="mt-4 flex items-end justify-between">
-                <div>
-                  <h2
-                    class="line-clamp-1"
-                    transition:name={`project-title-${project.slug.current}`}
-                  >
-                    {project.title}
-                  </h2>
+            <div class="mt-4 flex items-end justify-between">
+              <div>
+                <h2
+                  class="line-clamp-1"
+                  transition:name={`project-title-${project.slug.current}`}
+                >
+                  {project.title}
+                </h2>
 
-                  <div class="text-muted-foreground inline-flex gap-2 text-center">
-                    {project.role}
-                  </div>
-                </div>
-
-                <div>
-                  <Badge
-                    as="a"
-                    href={`/projects/${project.slug.current}`}
-                    variant="outline"
-                    animate="hover"
-                    class="mt-2 gap-2"
-                  >
-                    <span class="text-xs">More</span>
-                    <IconArrowUpRight class="relative-icon inline" />
-                  </Badge>
+                <div class="text-muted-foreground inline-flex gap-2 text-center">
+                  {project.role}
                 </div>
               </div>
+
+              <div>
+                <Badge
+                  as="a"
+                  href={`/projects/${project.slug.current}`}
+                  variant="outline"
+                  animate="hover"
+                  class="mt-2 gap-2"
+                >
+                  <span class="text-xs">More</span>
+                  <IconArrowUpRight class="relative-icon inline" />
+                </Badge>
+              </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </Container>
   </NavLayout>

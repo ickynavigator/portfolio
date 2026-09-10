@@ -41,20 +41,20 @@ const isTodayBirthday = _birthdate.result
 ---
 
 <Container class="bg-background relative">
-  <header
-    class="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 mb-8 border border-t-0 backdrop-blur-xs md:rounded-b-xl"
-  >
+  <header class="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 mb-8 border border-t-0 backdrop-blur-xs md:rounded-b-xl">
     {isTodayBirthday && <BirthdayAnnouncement />}
     <nav class="flex items-center justify-between p-6">
       <div>
         <a href="/" class="inline-flex gap-2 text-3xl font-bold">
           <Fragment set:html={headerIcon} />
-          Obi Fortune</a
-        >
+          Obi Fortune
+        </a>
       </div>
 
       <NavLinks>
-        {navlinks.map((link) => <ActiveLink {...link} />)}
+        {navlinks.map((link) => (
+          <ActiveLink {...link} />
+        ))}
 
         <ActiveLink
           href={links.search.href}
@@ -62,8 +62,8 @@ const isTodayBirthday = _birthdate.result
           class="hover-link-icon data-[active-page='true']:border-primary"
         >
           <IconSearch class="relative-icon" />
-          <span class="sr-only">{links.search.text}</span></ActiveLink
-        >
+          <span class="sr-only">{links.search.text}</span>
+        </ActiveLink>
       </NavLinks>
     </nav>
   </header>
@@ -74,9 +74,7 @@ const isTodayBirthday = _birthdate.result
   </main>
 
   <footer class="mt-8 mb-3 px-4 lg:px-0">
-    <div
-      class="bg-accent mb-10 flex flex-col items-center justify-center gap-7 rounded-xl border py-10 shadow-sm"
-    >
+    <div class="bg-accent mb-10 flex flex-col items-center justify-center gap-7 rounded-xl border py-10 shadow-sm">
       <Badge
         class="rounded-full text-xs font-medium uppercase"
         variant="secondary"
@@ -89,7 +87,9 @@ const isTodayBirthday = _birthdate.result
       </p>
 
       <div class="mt-6 flex gap-2">
-        {_socials.result.map((link) => <SocialButton link={link} />)}
+        {_socials.result.map((link) => (
+          <SocialButton link={link} />
+        ))}
       </div>
     </div>
 
@@ -99,16 +99,18 @@ const isTodayBirthday = _birthdate.result
 
         <span>
           Designed by
-          <a class="hover-link" href="https://x.com/knownastawakalt"
-            >Tawakalt Owolarafe</a
-          >;
+          <a class="hover-link" href="https://x.com/knownastawakalt">
+            Tawakalt Owolarafe
+          </a>
+          ;
         </span>
 
         <span>
           Developed by
-          <a class="hover-link" href="https://x.com/obifortunebleh"
-            >Obi Fortune</a
-          >;
+          <a class="hover-link" href="https://x.com/obifortunebleh">
+            Obi Fortune
+          </a>
+          ;
         </span>
       </div>
 
@@ -120,20 +122,18 @@ const isTodayBirthday = _birthdate.result
         <span>
           <ActiveLink {...links.rss} />;
         </span>
-        {
-          WORKERS_CI_COMMIT_SHA && (
-            <span>
-              Build SHA:
-              <a
-                target="_blank"
-                href={new URL(`commit/${WORKERS_CI_COMMIT_SHA}`, REPO_URL)}
-                class="hover-link"
-              >
-                {WORKERS_CI_COMMIT_SHA.substring(0, 7)}
-              </a>
-            </span>
-          )
-        }
+        {WORKERS_CI_COMMIT_SHA && (
+          <span>
+            Build SHA:
+            <a
+              target="_blank"
+              href={new URL(`commit/${WORKERS_CI_COMMIT_SHA}`, REPO_URL)}
+              class="hover-link"
+            >
+              {WORKERS_CI_COMMIT_SHA.substring(0, 7)}
+            </a>
+          </span>
+        )}
       </div>
     </div>
   </footer>

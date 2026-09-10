@@ -40,67 +40,65 @@ const { result } = await loadQuery({ query: PAGINATED_POSTS_QUERY });
       </div>
 
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {
-          result.data.map((post) => (
-            <div>
-              <a
-                href={`/blog/${post.slug.current}`}
-                class="block aspect-video overflow-hidden rounded-lg border shadow"
-              >
-                {post.image && (
-                  <SanityImage
-                    node={post.image}
-                    alt={post.image.alt}
-                    class="size-full object-cover object-center transition hover:drop-shadow-xl"
-                    transition:name={`blog-image-${post.slug.current}`}
-                  />
-                )}
-              </a>
+        {result.data.map((post) => (
+          <div>
+            <a
+              href={`/blog/${post.slug.current}`}
+              class="block aspect-video overflow-hidden rounded-lg border shadow"
+            >
+              {post.image && (
+                <SanityImage
+                  node={post.image}
+                  alt={post.image.alt}
+                  class="size-full object-cover object-center transition hover:drop-shadow-xl"
+                  transition:name={`blog-image-${post.slug.current}`}
+                />
+              )}
+            </a>
 
-              <div class="mt-4 flex items-end justify-between">
-                <div>
-                  <h2
-                    class="line-clamp-1"
-                    transition:name={`blog-title-${post.slug.current}`}
+            <div class="mt-4 flex items-end justify-between">
+              <div>
+                <h2
+                  class="line-clamp-1"
+                  transition:name={`blog-title-${post.slug.current}`}
+                >
+                  {post.title}
+                </h2>
+                <div class="inline-flex gap-2 text-center">
+                  <span
+                    class="inline-flex items-center gap-1"
+                    transition:name={`blog-post-time-${post.slug.current}`}
                   >
-                    {post.title}
-                  </h2>
-                  <div class="inline-flex gap-2 text-center">
+                    <IconCalendar class="relative-icon inline" />
+                    {dayjs(post.postedAt).format("L")}
+                  </span>
+                  &#xb7;
+                  <span class="inline-flex items-center gap-1">
+                    <IconStopwatch class="relative-icon inline" />
                     <span
-                      class="inline-flex items-center gap-1"
-                      transition:name={`blog-post-time-${post.slug.current}`}
+                      transition:name={`blog-read-time-${post.slug.current}`}
                     >
-                      <IconCalendar class="relative-icon inline" />
-                      {dayjs(post.postedAt).format("L")}
+                      {getReadingTime(post.wordCount)}
                     </span>
-                    &#xb7;
-                    <span class="inline-flex items-center gap-1">
-                      <IconStopwatch class="relative-icon inline" />
-                      <span
-                        transition:name={`blog-read-time-${post.slug.current}`}
-                      >
-                        {getReadingTime(post.wordCount)}
-                      </span>
-                    </span>
-                  </div>
-                </div>
-
-                <div>
-                  <Badge
-                    as="a"
-                    href={`/blog/${post.slug.current}`}
-                    variant="outline"
-                    animate="hover"
-                    class="mt-2 gap-2"
-                  >
-                    <span class="text-xs">More</span>
-                    <IconArrowUpRight class="relative-icon inline" />
-                  </Badge>
+                  </span>
                 </div>
               </div>
+
+              <div>
+                <Badge
+                  as="a"
+                  href={`/blog/${post.slug.current}`}
+                  variant="outline"
+                  animate="hover"
+                  class="mt-2 gap-2"
+                >
+                  <span class="text-xs">More</span>
+                  <IconArrowUpRight class="relative-icon inline" />
+                </Badge>
+              </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </Container>
   </NavLayout>

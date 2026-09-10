@@ -25,52 +25,50 @@ const filteredResult = result.filter(
 );
 ---
 
-{
-  filteredResult.length > 0 ? (
-    <ul class="mt-8 flex flex-col gap-4">
-      {filteredResult.map((item) => {
-        const slug = item.slug.current;
+{filteredResult.length > 0 ? (
+  <ul class="mt-8 flex flex-col gap-4">
+    {filteredResult.map((item) => {
+      const slug = item.slug.current;
 
-        let url;
+      let url;
 
-        switch (item._type) {
-          case "post":
-            url = `/blog/${slug}`;
-            break;
-          case "project":
-            url = `/projects/${slug}`;
-            break;
-          default:
-            url = "";
-        }
+      switch (item._type) {
+        case "post":
+          url = `/blog/${slug}`;
+          break;
+        case "project":
+          url = `/projects/${slug}`;
+          break;
+        default:
+          url = "";
+      }
 
-        return (
-          <a href={url}>
-            <li class="hover:bg-secondary flex flex-col gap-1 rounded-md border p-4 transition">
-              <p class="text-muted-foreground capitalize">{item._type}</p>
+      return (
+        <a href={url}>
+          <li class="hover:bg-secondary flex flex-col gap-1 rounded-md border p-4 transition">
+            <p class="text-muted-foreground capitalize">{item._type}</p>
 
-              <h2 class="text-lg leading-none tracking-tight">{item.title}</h2>
+            <h2 class="text-lg leading-none tracking-tight">{item.title}</h2>
 
-              {item.tags.length > 0 && (
-                <ul
-                  class="max-w-full scrollbar-thin overflow-x-scroll whitespace-nowrap"
-                  transition:name={`project-tags-${slug}`}
-                >
-                  {item.tags.map((tag) => (
-                    <li class="me-2 inline-block rounded-full border px-2 py-0.5 text-xs font-light">
-                      {tag.title}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          </a>
-        );
-      })}
-    </ul>
-  ) : (
-    <h3 class="py-8 text-center text-lg leading-none tracking-tight">
-      No search results found
-    </h3>
-  )
-}
+            {item.tags.length > 0 && (
+              <ul
+                class="max-w-full scrollbar-thin overflow-x-scroll whitespace-nowrap"
+                transition:name={`project-tags-${slug}`}
+              >
+                {item.tags.map((tag) => (
+                  <li class="me-2 inline-block rounded-full border px-2 py-0.5 text-xs font-light">
+                    {tag.title}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        </a>
+      );
+    })}
+  </ul>
+) : (
+  <h3 class="py-8 text-center text-lg leading-none tracking-tight">
+    No search results found
+  </h3>
+)}

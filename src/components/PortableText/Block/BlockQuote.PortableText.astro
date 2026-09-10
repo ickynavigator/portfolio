@@ -69,14 +69,14 @@ const bqClass = quoteVariants({ variant });
 ---
 
 <blockquote class={cn(bqClass)}>
-  {
-    variant === "default" ? null : (
-      <div class="flex items-center justify-between pe-4 not-italic">
-        <span class="title font-extrabold capitalize">{variant}</span>
+  {variant === "default" ? null : (
+    <div class="flex items-center justify-between pe-4 not-italic">
+      <span class="title font-extrabold capitalize">{variant}</span>
 
-        <VariantIcon class="relative-icon text-lg" />
-      </div>
-    )
-  }
-  <p><slot /></p>
+      <VariantIcon class="relative-icon text-lg" />
+    </div>
+  )}
+  <p>
+    <slot />
+  </p>
 </blockquote>

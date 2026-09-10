@@ -22,5 +22,8 @@ const { href, text, class: _class, ...rest } = Astro.props;
   href={href}
   class={cn("hover-link data-[active-page='true']:decoration-primary", _class)}
   data-active-page={isActiveUrl(href)}
-  {...rest}><slot />{text}</a
+  {...rest}
 >
+  <slot />
+  {text}
+</a>
