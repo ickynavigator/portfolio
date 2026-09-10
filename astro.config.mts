@@ -14,6 +14,7 @@ import {
 
 const env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
 
+console.log(process.env);
 // https://astro.build/config
 export default defineConfig({
   output: "static",
