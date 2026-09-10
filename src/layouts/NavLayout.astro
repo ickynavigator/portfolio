@@ -36,7 +36,8 @@ const isTodayBirthday = _birthdate.result
   ? isSameDayMonth(_birthdate.result)
   : false;
 
-console.log(process.env.WORKERS_CI_COMMIT_SHA);
+console.log(import.meta.env);
+console.log(import.meta.env.WORKERS_CI_COMMIT_SHA);
 ---
 
 <Container class="bg-background relative">
