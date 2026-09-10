@@ -35,6 +35,8 @@ const [_socials, _birthdate] = await Promise.all([
 const isTodayBirthday = _birthdate.result
   ? isSameDayMonth(_birthdate.result)
   : false;
+
+console.log(process.env.WORKERS_CI_COMMIT_SHA);
 ---
 
 <Container class="bg-background relative">
@@ -119,15 +121,17 @@ const isTodayBirthday = _birthdate.result
         <span>
           <ActiveLink {...links.rss} />;
         </span>
-        {env.WORKERS_CI_COMMIT_SHA && (
+        {process.env.WORKERS_CI_COMMIT_SHA && (
           <span>
             Build SHA:
             <a
               target="_blank"
-              href={new URL(`commit/${env.WORKERS_CI_COMMIT_SHA}`, REPO_URL)}
+              href={
+                new URL(`commit/${process.env.WORKERS_CI_COMMIT_SHA}`, REPO_URL)
+              }
               class="hover-link"
             >
-              {env.WORKERS_CI_COMMIT_SHA.substring(0, 7)}
+              {process.env.WORKERS_CI_COMMIT_SHA.substring(0, 7)}
             </a>
           </span>
         )}
