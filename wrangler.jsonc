@@ -40,7 +40,7 @@
 	},
 	"vars": {
 		"WEBSITE_URL": "https://obifortune.com",
-		"PUBLIC_SANITY_VISUAL_EDITING_ENABLED": "false",
+		"PUBLIC_SANITY_VISUAL_EDITING_ENABLED": false,
 		"PUBLIC_SANITY_API_PROJECT_ID": "gtsyvuts",
 		"PUBLIC_SANITY_API_DATASET": "production",
 		"PUBLIC_SANITY_API_VERSION": "2022-03-07",
@@ -48,13 +48,16 @@
 		"PUBLIC_POSTHOG_API_HOST": "https://phog.obifortune.com",
 		"PUBLIC_POSTHOG_UI_HOST": "https://us.posthog.com",
 		"PUBLIC_PARTY_URL": "https://party.portfolio.obifortune.com",
+		"LASTFM_USER": "obifortune"
 	},
 	"secrets": {
 		"required": [
 			"LASTFM_API_KEY",
 			"PSN_NPSSO",
 			"SANITY_REVALIDATE_SECRET",
+			"SANITY_API_READ_TOKEN",
 			"WAKATIME_API_KEY",
+			"WORKERS_CI_COMMIT_SHA"
 		]
 	}
 }

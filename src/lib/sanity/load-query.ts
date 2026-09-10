@@ -30,7 +30,7 @@ export async function loadQuery<G extends string>(
   }
 
   console.log(Object.entries(env));
-  if (env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true") {
+  if (env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED) {
     if (env.SANITY_API_READ_TOKEN == undefined) {
       throw new Error(
         "The `SANITY_API_READ_TOKEN` environment variable is required during Visual Editing.",
