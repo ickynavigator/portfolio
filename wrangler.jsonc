@@ -14,7 +14,15 @@
 		"directory": "./dist",
 	},
 	"observability": {
-		"enabled": true
+		"enabled": true,
+		"logs": {
+			"enabled": true,
+			"persist": true
+		},
+		"traces": {
+			"enabled": true,
+			"persist": true
+		}
 	},
 	"send_metrics": true,
 	"kv_namespaces": [
