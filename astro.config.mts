@@ -38,7 +38,9 @@ export default defineConfig({
       projectId: SANITY_PROJECT_ID,
       apiVersion: SANITY_API_VERSION,
       useCdn: false,
-      stega: {},
+      stega: {
+        studioUrl: "https://obifortune.sanity.studio",
+      },
     }),
     sitemap(),
   ],

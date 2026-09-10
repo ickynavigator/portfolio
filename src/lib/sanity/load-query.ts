@@ -39,7 +39,7 @@ export async function loadQuery<G extends string>(
     _options = {
       ..._options,
       filterResponse: false,
-      perspective: "previewDrafts",
+      perspective: "drafts",
       resultSourceMap: "withKeyArraySelector",
       stega: true,
       useCdn: false,

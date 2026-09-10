@@ -69,7 +69,7 @@ const commitSHA = import.meta.env.WORKERS_CI_COMMIT_SHA;
 
   <main>
     <slot />
-    <VisualEditing enabled={env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED} />
+    {env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED && <VisualEditing />}
   </main>
 
   <footer class="mt-8 mb-3 px-4 lg:px-0">
