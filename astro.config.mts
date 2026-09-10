@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
 import {
@@ -11,7 +11,6 @@ import {
   SANITY_API_VERSION,
   SANITY_PROJECT_ID,
 } from "./src/lib/constants";
-import { cloudflareWorkers } from "./src/lib/env/preset/cloudflare-workers";
 
 const env = loadEnv(`${process.env.NODE_ENV}`, process.cwd(), "");
 
@@ -43,72 +42,6 @@ export default defineConfig({
     }),
     sitemap(),
   ],
-
-  env: {
-    schema: {
-      WEBSITE_URL: envField.string({
-        access: "public",
-        context: "client",
-        default: "https://obifortune.com",
-      }),
-
-      PUBLIC_SANITY_VISUAL_EDITING_ENABLED: envField.boolean({
-        access: "public",
-        context: "client",
-        default: false,
-        optional: true,
-      }),
-      SANITY_API_READ_TOKEN: envField.string({
-        access: "secret",
-        context: "server",
-        optional: true,
-      }),
-
-      PUBLIC_POSTHOG_API_KEY: envField.string({
-        access: "public",
-        context: "client",
-        default: "phc_tsOUKsYrGpDKtq0LDG4uWzav1y8TwkHLRVadr8TIrv6",
-      }),
-      PUBLIC_POSTHOG_API_HOST: envField.string({
-        access: "public",
-        context: "client",
-        default: "https://us.i.posthog.com",
-      }),
-      PUBLIC_POSTHOG_UI_HOST: envField.string({
-        access: "public",
-        context: "client",
-        default: "https://us.posthog.com",
-      }),
-
-      WAKATIME_API_KEY: envField.string({
-        access: "secret",
-        context: "server",
-      }),
-
-      LASTFM_API_KEY: envField.string({
-        access: "secret",
-        context: "server",
-      }),
-      LASTFM_USER: envField.string({
-        access: "public",
-        context: "client",
-      }),
-
-      PUBLIC_PARTY_URL: envField.string({
-        access: "public",
-        context: "client",
-        default: "http://party.portfolio.obifortune.com",
-        url: true,
-      }),
-
-      PSN_NPSSO: envField.string({
-        access: "secret",
-        context: "server",
-      }),
-
-      ...cloudflareWorkers,
-    },
-  },
 
   vite: {
     plugins: [tailwindcss()],

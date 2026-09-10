@@ -1,10 +1,7 @@
 ---
 import { VisualEditing } from "@sanity/astro/visual-editing";
 import { IconSearch } from "@tabler/icons-astro";
-import {
-  PUBLIC_SANITY_VISUAL_EDITING_ENABLED,
-  WORKERS_CI_COMMIT_SHA,
-} from "astro:env/client";
+import { env } from "cloudflare:workers";
 
 import headerIcon from "~/assets/fox.svg?raw";
 import ActiveLink from "~/components/ActiveLink.astro";
@@ -70,7 +67,9 @@ const isTodayBirthday = _birthdate.result
 
   <main>
     <slot />
-    <VisualEditing enabled={PUBLIC_SANITY_VISUAL_EDITING_ENABLED} />
+    <VisualEditing
+      enabled={env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED === "true"}
+    />
   </main>
 
   <footer class="mt-8 mb-3 px-4 lg:px-0">
@@ -122,15 +121,15 @@ const isTodayBirthday = _birthdate.result
         <span>
           <ActiveLink {...links.rss} />;
         </span>
-        {WORKERS_CI_COMMIT_SHA && (
+        {env.WORKERS_CI_COMMIT_SHA && (
           <span>
             Build SHA:
             <a
               target="_blank"
-              href={new URL(`commit/${WORKERS_CI_COMMIT_SHA}`, REPO_URL)}
+              href={new URL(`commit/${env.WORKERS_CI_COMMIT_SHA}`, REPO_URL)}
               class="hover-link"
             >
-              {WORKERS_CI_COMMIT_SHA.substring(0, 7)}
+              {env.WORKERS_CI_COMMIT_SHA.substring(0, 7)}
             </a>
           </span>
         )}

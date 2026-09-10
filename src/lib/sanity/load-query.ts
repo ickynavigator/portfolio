@@ -4,8 +4,7 @@ import type {
   SanityQueries,
   UnfilteredResponseQueryOptions,
 } from "@sanity/client";
-import { PUBLIC_SANITY_VISUAL_EDITING_ENABLED } from "astro:env/client";
-import { SANITY_API_READ_TOKEN } from "astro:env/server";
+import { env } from "cloudflare:workers";
 import { sanityClient } from "sanity:client";
 
 /**
@@ -30,8 +29,8 @@ export async function loadQuery<G extends string>(
     _options = args.options;
   }
 
-  if (PUBLIC_SANITY_VISUAL_EDITING_ENABLED) {
-    if (SANITY_API_READ_TOKEN == undefined) {
+  if (env.PUBLIC_SANITY_VISUAL_EDITING_ENABLED == "true") {
+    if (env.SANITY_API_READ_TOKEN == undefined) {
       throw new Error(
         "The `SANITY_API_READ_TOKEN` environment variable is required during Visual Editing.",
       );
@@ -44,7 +43,7 @@ export async function loadQuery<G extends string>(
       resultSourceMap: "withKeyArraySelector",
       stega: true,
       useCdn: false,
-      token: SANITY_API_READ_TOKEN,
+      token: env.SANITY_API_READ_TOKEN,
     };
   }
 

@@ -1,5 +1,5 @@
 import { IconMessageCircle, IconSend, IconX } from "@tabler/icons-react";
-import { PUBLIC_PARTY_URL } from "astro:env/client";
+import { env } from "cloudflare:workers";
 import { usePartySocket } from "partysocket/react";
 import { useOptimistic, useRef, useState, useTransition } from "react";
 import { z } from "zod";
@@ -46,7 +46,7 @@ const usePartyMessages = () => {
   };
 
   const PS = usePartySocket({
-    host: PUBLIC_PARTY_URL,
+    host: env.PUBLIC_PARTY_URL,
     room: "my-room",
     onMessage(e) {
       const matcher = transport.match({
