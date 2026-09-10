@@ -36,8 +36,7 @@ const isTodayBirthday = _birthdate.result
   ? isSameDayMonth(_birthdate.result)
   : false;
 
-console.log(import.meta.env);
-console.log(import.meta.env.WORKERS_CI_COMMIT_SHA);
+const commitSHA = import.meta.env.WORKERS_CI_COMMIT_SHA;
 ---
 
 <Container class="bg-background relative">
@@ -122,17 +121,15 @@ console.log(import.meta.env.WORKERS_CI_COMMIT_SHA);
         <span>
           <ActiveLink {...links.rss} />;
         </span>
-        {process.env.WORKERS_CI_COMMIT_SHA && (
+        {commitSHA && (
           <span>
             Build SHA:
             <a
               target="_blank"
-              href={
-                new URL(`commit/${process.env.WORKERS_CI_COMMIT_SHA}`, REPO_URL)
-              }
+              href={new URL(`commit/${commitSHA}`, REPO_URL)}
               class="hover-link"
             >
-              {process.env.WORKERS_CI_COMMIT_SHA.substring(0, 7)}
+              {commitSHA.substring(0, 7)}
             </a>
           </span>
         )}
