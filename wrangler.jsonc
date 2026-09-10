@@ -14,15 +14,12 @@
 		"directory": "./dist",
 	},
 	"observability": {
-		"enabled": true,
 		"logs": {
 			"enabled": true,
-			"invocation_logs": true,
-			"persist": true
+			"invocation_logs": true
 		},
 		"traces": {
 			"enabled": true,
-			"persist": true
 		}
 	},
 	"send_metrics": true,
