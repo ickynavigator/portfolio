@@ -98,12 +98,7 @@
       "name": "node",
       "version": "26.8.1",
       "onFail": "download"
-    },
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.26.0",
-      "onFail": "download"
     }
   },
-  "packageManager": "pnpm@11.26.0"
+  "packageManager": "pnpm@12.5.1"
 }
