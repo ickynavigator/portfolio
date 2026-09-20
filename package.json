@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
-    "@astrojs/cloudflare": "https://pkg.pr.new/@astrojs/cloudflare@c5d88b7",
-    "@astrojs/react": "^6.0.5",
+    "@astrojs/cloudflare": "14.3.2",
+    "@astrojs/react": "^6.0.6",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@fontsource-variable/dm-sans": "^5.3.0",
@@ -43,7 +43,7 @@
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.2",
+    "astro": "^7.3.3",
     "astro-portabletext": "^1.0.0",
     "canvas-confetti": "^1.9.4",
     "class-variance-authority": "^0.7.1",
@@ -71,7 +71,7 @@
     "zod": "^4.6.1"
   },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.10.11",
+    "@astrojs/ts-plugin": "^1.10.12",
     "@eslint/js": "^10.0.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@types/canvas-confetti": "^1.9.0",
