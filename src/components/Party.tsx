@@ -146,10 +146,7 @@ export default function Party() {
         <IconMessageCircle className="size-7/10" />
       </Button>
 
-      <dialog
-        ref={dialogRef}
-        className="absolute inset-auto right-[anchor(right)] bottom-[anchor(top)] mb-3 rounded-xl [position-anchor:--party-dialog]"
-      >
+      <dialog ref={dialogRef} className="party-dialog mb-3 rounded-xl">
         <Card className="max-h-[60svh] w-sm max-w-[90svw]">
           <CardHeader>
             <div className="flex flex-row items-center justify-between">

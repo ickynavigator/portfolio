@@ -49,7 +49,18 @@ interface Props {
     <ClientRouter />
     <script is:inline>
       if (!("anchorName" in document.documentElement.style)) {
-        import("https://unpkg.com/@oddbird/css-anchor-positioning");
+        try {
+          import("https://unpkg.com/@oddbird/css-anchor-positioning@0.9.0").catch(
+            (error) => {
+              console.error("CSS anchor positioning polyfill failed", error);
+            },
+          );
+        } catch (error) {
+          console.error(
+            "CSS anchor positioning polyfill failed to load",
+            error,
+          );
+        }
       }
     </script>
   </head>
