@@ -47,8 +47,7 @@
 	"services": [
 		{
 			"binding": "PARTY_SERVER",
-			"service": "partyserver",
-			"entrypoint": "./workers/party/index.ts"
+			"service": "partyserver"
 		}
 	],
 	"vars": {
