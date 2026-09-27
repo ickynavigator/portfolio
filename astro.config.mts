@@ -27,22 +27,7 @@ export default defineConfig({
     imageService: "passthrough",
     auxiliaryWorkers: [
       {
-        config: {
-          name: "partyserver",
-          main: "./workers/party/index.ts",
-          compatibility_date: "2026-09-10",
-          observability: {
-            logs: { enabled: true, invocation_logs: true },
-            traces: { enabled: true },
-          },
-          send_metrics: true,
-          durable_objects: {
-            bindings: [{ name: "MyPartyServer", class_name: "MyPartyServer" }],
-          },
-          exports: {
-            MyPartyServer: { type: "durable-object", storage: "sqlite" },
-          },
-        },
+        configPath: "./workers/party/wrangler.jsonc",
       },
     ],
   }),

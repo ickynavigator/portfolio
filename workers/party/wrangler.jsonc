@@ -1,0 +1,30 @@
+{
+    "$schema": "../../node_modules/wrangler/config-schema.json",
+    "name": "partyserver",
+    "main": "./index.ts",
+    "compatibility_date": "2026-09-10",
+    "observability": {
+        "logs": {
+            "enabled": true,
+            "invocation_logs": true
+        },
+        "traces": {
+            "enabled": true
+        },
+    },
+    "send_metrics": true,
+    "durable_objects": {
+        "bindings": [
+            {
+                "name": "MyPartyServer",
+                "class_name": "MyPartyServer"
+            }
+        ],
+    },
+    "exports": {
+        "MyPartyServer": {
+            "type": "durable-object",
+            "storage": "sqlite"
+        },
+    },
+}
