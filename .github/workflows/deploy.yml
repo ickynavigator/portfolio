@@ -36,20 +36,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v7
 
-      - uses: pnpm/setup@v3
-        name: Install pnpm
-        with:
-          install: true
-          cache: true
-
-      - name: Build PartyServer
-        run: |
-          pnpm build
-
       - name: Deploy
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          workingDirectory: ./dist/partyserver
+          workingDirectory: ./workers/party
