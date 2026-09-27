@@ -36,6 +36,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v7
 
+      - uses: pnpm/setup@v3
+        name: Install pnpm
+        with:
+          install: true
+          cache: true
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v4
         with:
@@ -43,3 +49,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           workingDirectory: ./workers/party
+          packageManager: pnpm
