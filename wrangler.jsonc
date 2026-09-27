@@ -47,7 +47,8 @@
 	"services": [
 		{
 			"binding": "PARTY_SERVER",
-			"service": "partyserver"
+			"service": "partyserver",
+			"remote": true
 		}
 	],
 	"vars": {

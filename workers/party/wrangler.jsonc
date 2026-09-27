@@ -21,6 +21,12 @@
             }
         ],
     },
+    "routes": [
+        {
+            "custom_domain": true,
+            "pattern": "party.portfolio.obifortune.com",
+        }
+    ],
     "exports": {
         "MyPartyServer": {
             "type": "durable-object",
