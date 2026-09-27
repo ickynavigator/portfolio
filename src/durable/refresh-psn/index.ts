@@ -9,7 +9,7 @@ import {
 import {
   AuthorizationStore,
   type StoredAuthorization,
-} from "~/durable/refresh-psn.utils";
+} from "~/durable/refresh-psn/utils";
 
 export class PsnAuth extends DurableObject {
   REFRESH_BUFFER_MS = 60 * 1000;

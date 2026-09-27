@@ -1,7 +1,7 @@
 import { env } from "cloudflare:workers";
 import { getUserPlayedGames } from "psn-api";
 
-import { AuthorizationStore } from "~/durable/refresh-psn.utils";
+import { AuthorizationStore } from "~/durable/refresh-psn/utils";
 
 export async function getPSNStats() {
   const authorization = await new AuthorizationStore(env).getOrThrow();
