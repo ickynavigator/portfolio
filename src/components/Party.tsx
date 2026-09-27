@@ -1,5 +1,4 @@
 import { IconMessageCircle, IconSend, IconX } from "@tabler/icons-react";
-import { env } from "cloudflare:workers";
 import { cn } from "cn";
 import { usePartySocket } from "partysocket/react";
 import { useOptimistic, useRef, useState, useTransition } from "react";
@@ -17,7 +16,7 @@ import {
   MESSAGE_TYPES,
   transport,
   type TMESSAGE_TYPES,
-} from "~/t/party/transport.in-use";
+} from "~/w/party/transport.in-use";
 
 interface Message {
   type: TMESSAGE_TYPES;
@@ -46,7 +45,7 @@ const usePartyMessages = () => {
   };
 
   const PS = usePartySocket({
-    host: env.PUBLIC_PARTY_URL,
+    host: import.meta.env.PUBLIC_PARTY_URL,
     room: "my-room",
     onMessage(e) {
       const matcher = transport.match({
@@ -158,11 +157,11 @@ export default function Party() {
                 <p className="text-muted-foreground text-sm">
                   Powered by{" "}
                   <a
-                    href="https://www.partykit.io/"
+                    href="https://github.com/cloudflare/partykit/"
                     target="_blank"
                     className="hover-link font-normal"
                   >
-                    PartyKit
+                    PartyServer
                   </a>
                 </p>
               </div>

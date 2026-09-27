@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import Transport from "~/t/party/transport";
+import Transport from "~/w/party/transport";
 
 export const MESSAGE_TYPES = {
   message: "message",

@@ -25,7 +25,6 @@ export default defineConfig(
       ".astro/",
       "wrangler/",
       "dist/",
-      ".partykit/",
       ".sanity/",
       "./worker-configuration.d.ts",
       "./sanity.types.ts",

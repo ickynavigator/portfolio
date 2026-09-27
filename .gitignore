@@ -33,6 +33,3 @@ pnpm-debug.log*
 
 # eslint
 .eslintcache
-
-# Party Kit
-.partykit/

@@ -28,29 +28,3 @@ jobs:
           echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_DEPLOY_TOKEN }}
-
-  party:
-    name: PartyKit
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - uses: pnpm/setup@v3
-        name: Install pnpm
-        with:
-          install: true
-          cache: true
-
-      - name: Deploy PartyKit
-        id: deploy
-        run: |
-          DEPLOY_URL=$(pnpm dlx partykit deploy | grep -o 'https://[^ ]*' | tail -1)
-          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
-          echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          PARTYKIT_LOGIN: ${{ secrets.PARTYKIT_LOGIN }}
-          PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}

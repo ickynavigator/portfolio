@@ -3,7 +3,7 @@
 	"name": "portfolio",
 	"build": {},
 	"main": "./src/worker.ts",
-	"compatibility_date": "2026-03-10",
+	"compatibility_date": "2026-09-10",
 	"compatibility_flags": [
 		"nodejs_compat"
 	],

@@ -10,8 +10,8 @@
             "~/t/sanity": [
                 "./sanity.types.ts"
             ],
-            "~/t/party/*": [
-                "./party/*"
+            "~/w/*": [
+                "./workers/*"
             ]
         },
         "types": [
