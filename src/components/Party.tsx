@@ -45,7 +45,7 @@ const usePartyMessages = () => {
   };
 
   const PS = usePartySocket({
-    host: import.meta.env.PUBLIC_PARTY_URL,
+    host: import.meta.env.PARTY_SERVER,
     room: "my-room",
     onMessage(e) {
       const matcher = transport.match({
