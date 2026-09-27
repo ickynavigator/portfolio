@@ -1,5 +1,6 @@
 import { IconMessageCircle, IconSend, IconX } from "@tabler/icons-react";
 import { env } from "cloudflare:workers";
+import { cn } from "cn";
 import { usePartySocket } from "partysocket/react";
 import { useOptimistic, useRef, useState, useTransition } from "react";
 import { z } from "zod";
@@ -12,7 +13,6 @@ import {
   CardHeader,
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
-import { cn } from "~/lib/utils";
 import {
   MESSAGE_TYPES,
   transport,

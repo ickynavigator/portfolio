@@ -1,7 +1,6 @@
 import { IconChevronDown } from "@tabler/icons-react";
+import { cn } from "cn";
 import * as React from "react";
-
-import { cn } from "~/lib/utils";
 
 function NativeSelect({
   className,

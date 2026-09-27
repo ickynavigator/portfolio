@@ -7,9 +7,8 @@ import {
 } from "@tabler/icons-astro";
 import type { BlockProps } from "astro-portabletext/types";
 import { cva } from "class-variance-authority";
+import { cn } from "cn";
 import * as z from "zod";
-
-import { cn } from "~/lib/utils";
 
 const variantSchema = z
   .union([

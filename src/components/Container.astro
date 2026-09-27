@@ -1,7 +1,6 @@
 ---
 import type { HTMLTag, Polymorphic } from "astro/types";
-
-import { cn } from "~/lib/utils";
+import { cn } from "cn";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag; innerPage?: boolean }>;
 

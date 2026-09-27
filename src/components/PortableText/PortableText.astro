@@ -1,5 +1,6 @@
 ---
 import { PortableText as PortableTextInternal } from "astro-portabletext";
+import { cn } from "cn";
 
 import BlockQuote from "~/components/PortableText/Block/BlockQuote.PortableText.astro";
 import HardBreak from "~/components/PortableText/Block/HardBreak.PortableText.astro";
@@ -21,7 +22,6 @@ import Text from "~/components/PortableText/Text.PortableText.astro";
 import TOC from "~/components/PortableText/TOC.PortableText.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { SHOW_SIMPLE_CODE_QUERY } from "~/lib/sanity/queries";
-import { cn } from "~/lib/utils";
 import type { BlockContent } from "~/t/sanity";
 
 interface Props {
