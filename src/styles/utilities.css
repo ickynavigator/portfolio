@@ -39,6 +39,20 @@
     display: none;
   }
 }
+@utility party-dialog {
+  /* Fallback for browsers without CSS anchor positioning (native or polyfilled):
+     sit the dialog above the right edge of its trigger. */
+  position: absolute;
+  inset: auto;
+  right: 0;
+  bottom: 100%;
+
+  /* Anchor positioning wins when supported; the browser drops these
+     declarations as invalid when it is not, leaving the fallback above. */
+  position-anchor: --party-dialog;
+  right: anchor(right);
+  bottom: anchor(top);
+}
 @utility tooltip {
   @apply relative;
 
