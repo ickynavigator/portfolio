@@ -28,25 +28,3 @@ jobs:
           echo "url=$DEPLOY_URL" >> $GITHUB_OUTPUT
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_DEPLOY_TOKEN }}
-
-  party:
-    name: PartyServer
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v7
-
-      - uses: pnpm/setup@v3
-        name: Install pnpm
-        with:
-          install: true
-          cache: true
-
-      - name: Deploy
-        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0 # v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          workingDirectory: ./workers/party
-          packageManager: pnpm

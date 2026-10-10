@@ -25,11 +25,6 @@ export default defineConfig({
 
   adapter: cloudflare({
     imageService: "passthrough",
-    auxiliaryWorkers: [
-      {
-        configPath: "./workers/party/wrangler.jsonc",
-      },
-    ],
   }),
 
   build: {
