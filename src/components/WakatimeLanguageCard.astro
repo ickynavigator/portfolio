@@ -32,6 +32,7 @@ const stringifiedChartData = JSON.stringify(chartData);
     <custom-chart
       class="block w-full min-w-0"
       data-table={stringifiedChartData}
+      data-label={`Top languages over the last ${daysInRange} days`}
     ></custom-chart>
   </div>
 
@@ -68,15 +69,20 @@ const stringifiedChartData = JSON.stringify(chartData);
 
   class CustomChart extends ChartBase<z.infer<typeof dataSchema>[number]> {
     connectedCallback() {
+      const data = dataSchema.parse(this.dataset.table);
+
       this.mount({
         chartOptions: {
-          data: dataSchema.parse(this.dataset.table),
+          data,
           xAxis: "total_seconds",
           yAxis: "name",
           getValue: (datum) => datum.total_seconds,
           formatText: (datum) => datum.text,
         },
-        label: "Wakatime Languages",
+        label: this.dataset.label ?? "Wakatime Languages",
+        description: data
+          .map((datum) => `${datum.name}: ${datum.text}`)
+          .join(", "),
       });
     }
   }

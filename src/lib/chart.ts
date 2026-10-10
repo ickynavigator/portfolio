@@ -77,7 +77,11 @@ export class ChartBase<TDatum> extends ComponentBase {
     this.unmount();
   }
 
-  mount(options: { chartOptions: ChartOptions<TDatum>; label: string }) {
+  mount(options: {
+    chartOptions: ChartOptions<TDatum>;
+    label: string;
+    description: string;
+  }) {
     if (this.host) {
       this.unmount();
     }
@@ -85,6 +89,7 @@ export class ChartBase<TDatum> extends ComponentBase {
     const host = mountChart<TDatum>(this, {
       definition: makeChart(options.chartOptions),
       ariaLabel: options.label,
+      ariaDescription: options.description,
     });
 
     this.host = host;
