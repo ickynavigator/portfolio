@@ -29,7 +29,10 @@ const stringifiedChartData = JSON.stringify(chartData);
   </div>
 
   <div class="px-6">
-    <custom-chart data-table={stringifiedChartData}></custom-chart>
+    <custom-chart
+      class="block w-full min-w-0"
+      data-table={stringifiedChartData}
+    ></custom-chart>
   </div>
 
   <div class="flex-col gap-2 text-sm flex items-center px-6 [.border-t]:pt-6">
