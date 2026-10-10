@@ -56,9 +56,11 @@ const { result } = await loadQuery({ query: TAGS_QUERY });
             defaultOption={parsed.type}
             class="inline-flex capitalize"
           />
-          <Select name="tag" class="w-auto" value={parsed.tag}>
+          <Select name="tag" class="w-auto">
             {[{ slug: "all", name: "All" }, ...result].map((tag) => (
-              <SelectOption value={tag.slug}>{tag.name}</SelectOption>
+              <SelectOption value={tag.slug} selected={parsed.tag === tag.slug}>
+                {tag.name}
+              </SelectOption>
             ))}
           </Select>
 
