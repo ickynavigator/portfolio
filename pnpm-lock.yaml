@@ -190,6 +190,9 @@ importers:
       '@imikailoby/lastfm-ts':
         specifier: 2.0.3
         version: 2.0.3
+      '@oscarrc/crust':
+        specifier: ^0.2.1
+        version: 0.2.1(react@19.3.0)
       '@sanity/asset-utils':
         specifier: ^2.3.0
         version: 2.3.0
@@ -292,9 +295,6 @@ importers:
       sanity-plugin-webhooks-trigger:
         specifier: ^1.0.1
         version: 1.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sanity@6.18.0(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(@noble/hashes@2.2.0)(@rolldown/plugin-babel@0.2.4(@babel/core@7.29.7(supports-color@8.1.1))(@babel/runtime@7.29.7)(rolldown@1.2.13)(vite@8.3.4(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.1)))(@sanity/workflow-blueprint@0.36.0(@sanity/workflow-engine@0.36.0(@types/react@19.3.0)(supports-color@8.1.1)(typescript@6.0.3))(typescript@6.0.3))(@types/node@26.6.4)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(esbuild@0.28.2)(immer@11.1.15)(jiti@2.7.0)(oxc-transform-react@0.153.0)(prismjs@1.30.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(rolldown@1.2.13)(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(supports-color@8.1.1)(tsx@4.23.12)(typescript@6.0.3))(styled-components@6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0))
-      sonner:
-        specifier: ^2.0.8
-        version: 2.0.8(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       styled-components:
         specifier: ^6.5.3
         version: 6.5.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -2631,6 +2631,14 @@ packages:
   '@oclif/plugin-not-found@3.2.90':
     resolution: {integrity: sha512-fkt81o7n2ciXTWxx/rfgO2rbZehHMfs5evLJgSOYF8ziEx+mTOz8Ci/kPfytYOwTbMe57qIbGpPbQeYMjQGEKQ==}
     engines: {node: '>=18.0.0'}
+
+  '@oscarrc/crust@0.2.1':
+    resolution: {integrity: sha512-mc863oSLxGMs47RLEM/WLU5AXh2OEZegcQcH9REE4+nzE0bcoYE8FtmYuAmxgB2rIqeOJZGnWexjYhx6Q1FXsg==}
+    peerDependencies:
+      react: '>=18'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -7657,16 +7665,6 @@ packages:
     resolution: {integrity: sha512-hpd+HLON7HdZXqYchMM/+LaTTbdK0AU3NngIJ4KVyWbY9bfQqdL9cD+4yf6dUoU2Ap4VsU0JkQi6FxAI1B2mXQ==}
     engines: {node: '>= 18'}
 
-  sonner@2.0.8:
-    resolution: {integrity: sha512-UM/ByIoFra8yzV75n1o0Puu0bw5U/9UNnDacrJNspekBewIfsQ3D6ez1nvlWpt7aTsO6rujQtifBpycwIivqlg==}
-    peerDependencies:
-      '@types/react': ^18.0.0 || ^19.0.0
-      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
-      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-
   source-map-js@1.2.2:
     resolution: {integrity: sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==}
     engines: {node: '>=0.10.0'}
@@ -10994,6 +10992,10 @@ snapshots:
       fast-levenshtein: 3.0.0
     transitivePeerDependencies:
       - '@types/node'
+
+  '@oscarrc/crust@0.2.1(react@19.3.0)':
+    optionalDependencies:
+      react: 19.3.0
 
   '@oslojs/encoding@1.1.0': {}
 
@@ -16816,13 +16818,6 @@ snapshots:
   smol-toml@1.5.2: {}
 
   smol-toml@1.9.0: {}
-
-  sonner@2.0.8(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
-    dependencies:
-      react: 19.3.0
-      react-dom: 19.3.0(react@19.3.0)
-    optionalDependencies:
-      '@types/react': 19.3.0
 
   source-map-js@1.2.2: {}
 

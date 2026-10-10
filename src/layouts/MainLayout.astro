@@ -3,7 +3,7 @@ import { ClientRouter } from "astro:transitions";
 
 import Meta from "~/components/Meta.astro";
 import Posthog from "~/components/Posthog.astro";
-import { Toaster } from "~/components/ui/sonner";
+import Toaster from "~/components/Toaster.astro";
 import type { MetaInput } from "~/lib/meta";
 import getBase from "~/lib/meta.base";
 
@@ -58,17 +58,6 @@ interface Props {
     <div data-vaul-drawer-wrapper class="flex w-full flex-col items-center">
       <slot />
     </div>
-    <Toaster
-      client:load
-      toastOptions={{
-        classNames: {
-          error: "[&_svg]:text-destructive",
-          success: "[&_svg]:text-success",
-          warning: "[&_svg]:text-warning",
-          info: "[&_svg]:text-info",
-        },
-      }}
-      visibleToasts={4}
-    />
+    <Toaster />
   </body>
 </html>
