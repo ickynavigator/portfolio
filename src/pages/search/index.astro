@@ -5,7 +5,6 @@ import * as z from "zod";
 import Button from "~/components/Button.astro";
 import Container from "~/components/Container.astro";
 import Input from "~/components/Input.astro";
-import Loader from "~/components/Loader.astro";
 import SearchContent from "~/components/SearchContent.astro";
 import Select from "~/components/Select.astro";
 import SelectOption from "~/components/SelectOption.astro";
@@ -95,13 +94,10 @@ const { result } = await loadQuery({ query: TAGS_QUERY });
 
       {parsed.canSearch ? (
         <SearchContent
-          server:defer
           search={parsed.search}
           type={parsed.type}
           tag={parsed.tag}
-        >
-          <Loader wrapperClass="pb-0" class="size-10" slot="fallback" />
-        </SearchContent>
+        />
       ) : (
         <h3 class="py-8 text-center text-lg leading-none tracking-tight">
           Please add some search criteria
