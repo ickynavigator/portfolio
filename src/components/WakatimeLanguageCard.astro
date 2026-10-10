@@ -46,7 +46,6 @@ const stringifiedChartData = JSON.stringify(chartData);
   import z from "zod";
 
   import { ChartBase } from "~/lib/chart";
-  import dayjs from "~/lib/date";
   import { wakatimeLanguageSchema } from "~/lib/wakatime";
 
   const dataSchema = z.preprocess(
@@ -61,7 +60,8 @@ const stringifiedChartData = JSON.stringify(chartData);
     wakatimeLanguageSchema
       .pick({
         name: true,
-        hours: true,
+        total_seconds: true,
+        text: true,
       })
       .array(),
   );
@@ -71,11 +71,10 @@ const stringifiedChartData = JSON.stringify(chartData);
       this.mount({
         chartOptions: {
           data: dataSchema.parse(this.dataset.table),
-          xAxis: "hours",
+          xAxis: "total_seconds",
           yAxis: "name",
-          getValue: (datum) => datum.hours,
-          formatText: (datum) =>
-            dayjs.duration(datum.hours, "hours").humanize(),
+          getValue: (datum) => datum.total_seconds,
+          formatText: (datum) => datum.text,
         },
         label: "Wakatime Languages",
       });
