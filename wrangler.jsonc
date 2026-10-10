@@ -63,5 +63,6 @@
 			"SANITY_API_READ_TOKEN",
 			"WAKATIME_API_KEY"
 		]
-	}
+	},
+	"previews": {}
 }
