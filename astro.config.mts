@@ -52,6 +52,18 @@ export default defineConfig({
     },
     build: {
       chunkSizeWarningLimit: 1000,
+      rolldownOptions: {
+        onwarn(warning, defaultHandler) {
+          if (
+            warning.code === "MODULE_LEVEL_DIRECTIVE" &&
+            warning.message.includes("use no memo")
+          ) {
+            return;
+          }
+
+          defaultHandler(warning);
+        },
+      },
     },
   },
 });
