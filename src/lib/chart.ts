@@ -7,8 +7,8 @@ import {
   type ChartHost,
   type ChartValue,
 } from "@tanstack/charts";
+import { scaleBand } from "@tanstack/charts/scales/band";
 import { scaleLinear } from "@tanstack/charts/scales/linear";
-import { scalePoint } from "@tanstack/charts/scales/point";
 
 import { ComponentBase } from "~/lib/utils.client";
 
@@ -51,7 +51,7 @@ function makeChart<TDatum>(options: ChartOptions<TDatum>) {
           axis: false,
         },
         y: {
-          scale: scalePoint,
+          scale: () => scaleBand().paddingInner(0.15),
           axis: { line: false, ticks: { size: 0 } },
         },
       },
