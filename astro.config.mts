@@ -32,7 +32,7 @@ export default defineConfig({
   },
 
   integrations: [
-    react({ compiler: true }),
+    react({}),
     sanity({
       dataset: SANITY_API_DATASET,
       projectId: SANITY_PROJECT_ID,
