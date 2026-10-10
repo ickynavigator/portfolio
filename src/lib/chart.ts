@@ -72,10 +72,14 @@ function makeChart<TDatum>(options: ChartOptions<TDatum>) {
 
 export class ChartBase<TDatum> extends ComponentBase {
   host: ChartHost<TDatum, ChartValue, ChartValue> | null = null;
+
+  disconnectedCallback() {
+    this.unmount();
+  }
+
   mount(options: { chartOptions: ChartOptions<TDatum>; label: string }) {
     if (this.host) {
-      this.host.destroy();
-      this.host = null;
+      this.unmount();
     }
 
     const host = mountChart<TDatum>(this, {
@@ -86,5 +90,10 @@ export class ChartBase<TDatum> extends ComponentBase {
     this.host = host;
 
     return host;
+  }
+
+  unmount() {
+    this.host?.destroy();
+    this.host = null;
   }
 }
