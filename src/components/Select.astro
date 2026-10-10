@@ -3,7 +3,7 @@ import { IconChevronDown } from "@tabler/icons-astro";
 import type { HTMLAttributes } from "astro/types";
 import { cn } from "cn";
 
-interface Props extends HTMLAttributes<"select"> {
+interface Props extends Omit<HTMLAttributes<"select">, "size"> {
   size?: "sm" | "default";
 }
 
