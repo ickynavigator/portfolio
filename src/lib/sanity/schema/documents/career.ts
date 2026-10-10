@@ -1,5 +1,6 @@
-import dayjs from "dayjs";
 import { defineArrayMember, defineField, defineType } from "sanity";
+
+import dayjs from "~/lib/date";
 
 export default defineType({
   name: "career",
