@@ -1,3 +1,5 @@
+import z from "zod";
+
 interface WakatimeResponses {
   [Wakatime.ENDPOINTS.statsWithRange]: WakatimeTypes.WakaTimeStats;
 }
@@ -72,5 +74,21 @@ class Wakatime {
     });
   }
 }
+
+export type WakatimeLanguage =
+  WakatimeTypes.WakaTimeStats["data"]["languages"][number];
+
+export const wakatimeLanguageSchema = z.toZod<WakatimeLanguage>()(
+  z.object({
+    name: z.string(),
+    total_seconds: z.number(),
+    percent: z.number(),
+    digital: z.string(),
+    text: z.string(),
+    hours: z.number(),
+    minutes: z.number(),
+    seconds: z.number(),
+  }),
+);
 
 export default Wakatime;
