@@ -2,16 +2,14 @@
 import { IconSearch } from "@tabler/icons-astro";
 import * as z from "zod";
 
+import Button from "~/components/Button.astro";
 import Container from "~/components/Container.astro";
+import Input from "~/components/Input.astro";
 import Loader from "~/components/Loader.astro";
 import SearchContent from "~/components/SearchContent.astro";
+import Select from "~/components/Select.astro";
+import SelectOption from "~/components/SelectOption.astro";
 import Tabs from "~/components/Tabs.astro";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import {
-  NativeSelect,
-  NativeSelectOption,
-} from "~/components/ui/native-select";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
@@ -58,13 +56,11 @@ const { result } = await loadQuery({ query: TAGS_QUERY });
             defaultOption={parsed.type}
             class="inline-flex capitalize"
           />
-          <NativeSelect name="tag" className="w-auto" value={parsed.tag}>
+          <Select name="tag" class="w-auto" value={parsed.tag}>
             {[{ slug: "all", name: "All" }, ...result].map((tag) => (
-              <NativeSelectOption value={tag.slug}>
-                {tag.name}
-              </NativeSelectOption>
+              <SelectOption value={tag.slug}>{tag.name}</SelectOption>
             ))}
-          </NativeSelect>
+          </Select>
 
           <div class="flex w-full flex-row gap-2">
             <div class="relative flex-1">
@@ -74,10 +70,10 @@ const { result } = await loadQuery({ query: TAGS_QUERY });
               <Input
                 name="search"
                 placeholder="Enter your search query..."
-                className="ps-10"
-                defaultValue={parsed.search}
+                class="ps-10"
+                value={parsed.search}
                 required
-                minLength={1}
+                minlength={1}
               />
             </div>
 
