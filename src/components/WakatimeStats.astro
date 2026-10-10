@@ -1,9 +1,9 @@
 ---
 import { env } from "cloudflare:workers";
 
-import WakatimeLanguageCard from "~/components/WakatimeLanguageCard.astro";
 import dayjs from "~/lib/date";
 import Wakatime from "~/lib/wakatime";
+import WakatimeLanguageCard from "./WakatimeLanguageCard.astro";
 
 Astro.response.headers.set(
   "Cache-Control",

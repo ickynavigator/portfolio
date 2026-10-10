@@ -20,9 +20,15 @@ const { result } = await loadQuery({
   },
 });
 
-const filteredResult = result.filter(
-  (item) => item._type === "post" || item._type === "project",
-);
+const activeTag =
+  Astro.props.tag && Astro.props.tag !== "all" ? Astro.props.tag : undefined;
+
+const filteredResult = result
+  .filter((item) => item._type === "post" || item._type === "project")
+  .filter(
+    (item) =>
+      !activeTag || item.tags.some((tag) => tag.slug?.current === activeTag),
+  );
 ---
 
 {filteredResult.length > 0 ? (

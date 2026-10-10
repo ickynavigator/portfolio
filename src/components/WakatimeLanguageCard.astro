@@ -1,13 +1,4 @@
 ---
-import RadarChart from "~/components/RadarChart";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
 import dayjs from "~/lib/date";
 import type Wakatime from "~/lib/wakatime";
 
@@ -24,32 +15,77 @@ const daysInRange = Math.round(dayjs(end).diff(start, "day", true));
 
 const chartData = data.languages
   .filter((lang) => lang.name !== "Other")
-  .slice(0, 5);
+  .slice(0, 6);
+
+const stringifiedChartData = JSON.stringify(chartData);
 ---
 
-<Card className="w-full grow">
-  <CardHeader className="items-center pb-4">
-    <CardTitle>Top Languages</CardTitle>
-
-    <CardDescription>
+<div class="w-full grow bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm">
+  <div class="items-center pb-4 grid auto-rows-min grid-rows-[auto_auto] gap-2 px-6 [.border-b]:pb-6">
+    <span class="leading-none font-semibold">Top Languages</span>
+    <p class="text-muted-foreground text-sm">
       My most used languages for the last {daysInRange} days
-    </CardDescription>
-  </CardHeader>
+    </p>
+  </div>
 
-  <CardContent className="pb-0">
-    <RadarChart
-      client:load
-      data={chartData}
-      config={{
-        hours: { label: "Hours", color: "var(--chart-1)" },
-      }}
-      angleKey="name"
-    />
-  </CardContent>
+  <div class="px-6">
+    <custom-chart
+      class="block w-full min-w-0"
+      data-table={stringifiedChartData}
+      data-label={`Top languages over the last ${daysInRange} days`}
+    ></custom-chart>
+  </div>
 
-  <CardFooter className="flex-col gap-2 text-sm">
+  <div class="flex-col gap-2 text-sm flex items-center px-6 [.border-t]:pt-6">
     <div class="text-muted-foreground flex items-center gap-2 leading-none">
       <span>{start.format("ll")}</span> - <span>{end.format("ll")}</span>
     </div>
-  </CardFooter>
-</Card>
+  </div>
+</div>
+
+<script>
+  import z from "zod";
+
+  import { ChartBase } from "~/lib/chart";
+  import { wakatimeLanguageSchema } from "~/lib/wakatime";
+
+  const dataSchema = z.preprocess(
+    (arg) => {
+      if (typeof arg !== "string") return arg;
+      try {
+        return JSON.parse(arg);
+      } catch {
+        return arg;
+      }
+    },
+    wakatimeLanguageSchema
+      .pick({
+        name: true,
+        total_seconds: true,
+        text: true,
+      })
+      .array(),
+  );
+
+  class CustomChart extends ChartBase<z.infer<typeof dataSchema>[number]> {
+    connectedCallback() {
+      const data = dataSchema.parse(this.dataset.table);
+
+      this.mount({
+        chartOptions: {
+          data,
+          xAxis: "total_seconds",
+          yAxis: "name",
+          getValue: (datum) => datum.total_seconds,
+          formatText: (datum) => datum.text,
+        },
+        label: this.dataset.label ?? "Wakatime Languages",
+        description: data
+          .map((datum) => `${datum.name}: ${datum.text}`)
+          .join(", "),
+      });
+    }
+  }
+
+  customElements.define("custom-chart", CustomChart);
+</script>

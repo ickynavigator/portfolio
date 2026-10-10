@@ -25,11 +25,6 @@ export default defineConfig({
 
   adapter: cloudflare({
     imageService: "passthrough",
-    auxiliaryWorkers: [
-      {
-        configPath: "./workers/party/wrangler.jsonc",
-      },
-    ],
   }),
 
   build: {
@@ -37,7 +32,7 @@ export default defineConfig({
   },
 
   integrations: [
-    react({ compiler: true }),
+    react({}),
     sanity({
       dataset: SANITY_API_DATASET,
       projectId: SANITY_PROJECT_ID,
@@ -57,6 +52,18 @@ export default defineConfig({
     },
     build: {
       chunkSizeWarningLimit: 1000,
+      rolldownOptions: {
+        onwarn(warning, defaultHandler) {
+          if (
+            warning.code === "MODULE_LEVEL_DIRECTIVE" &&
+            warning.message.includes("use no memo")
+          ) {
+            return;
+          }
+
+          defaultHandler(warning);
+        },
+      },
     },
   },
 });

@@ -1,15 +1,15 @@
 ---
 import { IconCheck, IconClipboard } from "@tabler/icons-astro";
+import type { ComponentProps } from "astro/types";
 import { cn } from "cn";
-import type React from "react";
 
-import { Button } from "~/components/ui/button";
+import Button from "~/components/Button.astro";
 
-interface Props extends React.ComponentProps<typeof Button> {
+interface Props extends ComponentProps<typeof Button> {
   value: string;
 }
 
-const { value, className, ...props } = Astro.props;
+const { value, class: _class, ...props } = Astro.props;
 ---
 
 <copy-button data-value={value}>
@@ -17,7 +17,7 @@ const { value, className, ...props } = Astro.props;
     data-slot="copy-button"
     data-copied="false"
     size="icon"
-    className={cn("group", className)}
+    class={cn("group", _class)}
     {...props}
   >
     <span class="sr-only">Copy</span>
@@ -27,7 +27,7 @@ const { value, className, ...props } = Astro.props;
 </copy-button>
 
 <script>
-  import { toast } from "sonner";
+  import { toast } from "@oscarrc/crust/vanilla";
 
   import { ComponentBase } from "~/lib/utils.client";
 

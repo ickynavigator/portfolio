@@ -44,13 +44,6 @@
 			"storage": "sqlite"
 		}
 	},
-	"services": [
-		{
-			"binding": "PARTY_SERVER",
-			"service": "partyserver",
-			"remote": true
-		}
-	],
 	"vars": {
 		"WEBSITE_URL": "https://obifortune.com",
 		"PUBLIC_SANITY_VISUAL_EDITING_ENABLED": false,
@@ -60,7 +53,6 @@
 		"PUBLIC_POSTHOG_API_KEY": "phc_tsOUKsYrGpDKtq0LDG4uWzav1y8TwkHLRVadr8TIrv6",
 		"PUBLIC_POSTHOG_API_HOST": "https://p.obifortune.com",
 		"PUBLIC_POSTHOG_UI_HOST": "https://us.posthog.com",
-		"PUBLIC_PARTY_URL": "https://party.portfolio.obifortune.com",
 		"LASTFM_USER": "obifortune"
 	},
 	"secrets": {

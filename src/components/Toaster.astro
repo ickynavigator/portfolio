@@ -1,0 +1,26 @@
+---
+import "@oscarrc/crust/styles.css";
+---
+
+<style is:global>
+  .crust-region {
+    --crust-surface: var(--popover);
+    --crust-ink: var(--popover-foreground);
+    --crust-border: var(--border);
+
+    --crust-radius: var(--radius);
+
+    --crust-error: var(--destructive);
+    --crust-success: var(--success);
+    --crust-warning: var(--warning);
+    --crust-info: var(--info);
+  }
+</style>
+
+<script>
+  import { mountToaster } from "@oscarrc/crust/vanilla";
+
+  mountToaster({
+    maxVisible: 4,
+  });
+</script>
