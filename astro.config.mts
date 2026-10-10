@@ -26,6 +26,7 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: "passthrough",
   }),
+  session: false,
 
   build: {
     redirects: false,
