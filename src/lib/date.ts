@@ -17,6 +17,15 @@ export function getReadingTime(
   return dayjs.duration(readingTime, "minutes").humanize();
 }
 
+export function formatPlayDuration(isoDuration: string) {
+  const d = dayjs.duration(isoDuration);
+  return new Intl.DurationFormat(undefined, { style: "short" }).format({
+    hours: Math.floor(d.asHours()),
+    minutes: d.minutes(),
+    seconds: d.seconds(),
+  });
+}
+
 export function isSameDayMonth(dateString: string) {
   const bday = dayjs(dateString, "YYYY-MM-DD", true);
   const today = dayjs(undefined, "YYYY-MM-DD", true);

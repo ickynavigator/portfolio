@@ -1,4 +1,5 @@
 ---
+import { formatPlayDuration } from "~/lib/date";
 import { getPSNStats } from "~/lib/psn";
 
 const { recentlyPlayed } = await getPSNStats();
@@ -22,12 +23,7 @@ const { recentlyPlayed } = await getPSNStats();
       <div class="size-full p-4 transition not-group-hover:invisible group-hover:bg-black/70 group-hover:backdrop-blur-xs">
         {[
           ["Name", title.name],
-          [
-            "Playtime",
-            Temporal.Duration.from(title.playDuration).toLocaleString("en", {
-              style: "short",
-            }),
-          ],
+          ["Playtime", formatPlayDuration(title.playDuration)],
         ].map(([title, value]) => (
           <div class="text-sm font-semibold text-white">
             {title}: {value}
