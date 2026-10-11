@@ -1,4 +1,5 @@
 import cloudflare from "@astrojs/cloudflare";
+import { cacheCloudflare } from "@astrojs/cloudflare/cache";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
@@ -27,6 +28,10 @@ export default defineConfig({
     imageService: "passthrough",
   }),
   session: false,
+
+  cache: {
+    provider: cacheCloudflare(),
+  },
 
   build: {
     redirects: false,
