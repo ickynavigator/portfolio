@@ -1,6 +1,7 @@
 ---
 import Container from "~/components/Container.astro";
 import PortableText from "~/components/PortableText/PortableText.astro";
+import RecentlyPlayed from "~/components/RecentlyPlayed.astro";
 import PSNRecentlyPlayed from "~/components/stats/PSNRecentlyPlayed.astro";
 import WakatimeStats from "~/components/WakatimeStats.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
@@ -44,7 +45,7 @@ if (!result) {
       </div>
 
       <PSNRecentlyPlayed />
-      <!-- <RecentlyPlayed server:defer /> -->
+      <RecentlyPlayed />
     </Container>
   </NavLayout>
 </MainLayout>

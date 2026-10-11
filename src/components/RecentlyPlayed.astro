@@ -1,17 +1,38 @@
 ---
-import ListItem from "~/components/PortableText/List/ListItem.PortableText.astro";
-import UnorderedList from "~/components/PortableText/List/UnorderedList.PortableText.astro";
 import { getRecentlyPlayedTracks } from "~/lib/music";
 
 const { recenttracks } = await getRecentlyPlayedTracks();
 ---
 
-<UnorderedList>
-  {recenttracks.track.map((track) => (
-    <ListItem>
-      <span>
-        {track.name} - {track.artist["#text"]} - {track.album["#text"]}
-      </span>
-    </ListItem>
+<ul
+  class="marquee mt-4"
+  data-marquee-direction="horizontal"
+  data-marquee-control_hover-on-pause
+  style={{ "--count": Math.max(recenttracks.track.length, 1), "--slowdown": 5 }}
+>
+  {recenttracks.track.map((track, index) => (
+    <li
+      data-marquee-item
+      class="group relative aspect-square min-h-64 rounded-md bg-contain bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url(${track.image[track.image.length - 1]?.["#text"]})`,
+        "--index": index + 1,
+      }}
+    >
+      <a href={track.url} target="_blank" rel="noopener noreferrer">
+        <div class="size-full p-4 transition not-group-hover:invisible group-hover:bg-black/70 group-hover:backdrop-blur-xs">
+          {[
+            ["Name", track.name],
+            ["Artist", track.artist["#text"]],
+            ["Album", track.album["#text"]],
+          ].map(([title, value]) => (
+            <div class="text-sm font-semibold text-white">
+              {title}: {value}
+            </div>
+          ))}
+        </div>
+        <span class="sr-only">{track.name}</span>
+      </a>
+    </li>
   ))}
-</UnorderedList>
+</ul>
