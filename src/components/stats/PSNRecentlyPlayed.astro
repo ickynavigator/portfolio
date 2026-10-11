@@ -9,7 +9,7 @@ const { recentlyPlayed } = await getPSNStats();
   class="marquee mt-4"
   data-marquee-direction="horizontal"
   data-marquee-pause-on-hover
-  style={{ "--count": Math.max(recentlyPlayed.length, 1), "--slowdown": 5 }}
+  style={{ "--count": Math.max(recentlyPlayed.length, 1) }}
 >
   {recentlyPlayed.map((title, index) => (
     <li

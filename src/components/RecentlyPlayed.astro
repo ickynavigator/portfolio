@@ -8,7 +8,7 @@ const { recenttracks } = await getRecentlyPlayedTracks();
   class="marquee mt-4"
   data-marquee-direction="horizontal"
   data-marquee-pause-on-hover
-  style={{ "--count": Math.max(recenttracks.track.length, 1), "--slowdown": 5 }}
+  style={{ "--count": Math.max(recenttracks.track.length, 1) }}
 >
   {recenttracks.track.map((track, index) => (
     <li

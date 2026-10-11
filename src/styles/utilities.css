@@ -64,7 +64,7 @@
   }
 }
 @utility marquee {
-  --var-slowdown: max(calc(var(--slowdown) * 1s), 0.1s);
+  --var-slowdown: max(calc(var(--slowdown, 5) * 1s), 0.1s);
   --var-count: var(--count);
 
   --duration: calc(var(--var-count) * var(--var-slowdown));
