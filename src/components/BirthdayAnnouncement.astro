@@ -29,52 +29,50 @@
 </style>
 
 <script>
-  import confetti, { type Options } from "canvas-confetti";
+  import JSConfetti from "js-confetti";
 
   const randomInRange = (min: number, max: number) =>
     Math.random() * (max - min) + min;
 
+  const jsConfetti = new JSConfetti();
+
   const triggerConfetti = () => {
-    const scalar = 2;
-    const cake = confetti.shapeFromText({ text: "🎂", scalar });
     const duration = 10 * 1000;
     const animationEnd = Date.now() + duration;
-    const defaults: Options = {
-      startVelocity: 30,
-      spread: 360,
-      ticks: 60,
-      zIndex: 0,
-      shapes: [cake],
-      scalar,
-    };
 
-    const interval = setInterval(function () {
+    const interval = setInterval(() => {
       const timeLeft = animationEnd - Date.now();
 
-      if (timeLeft <= 0) clearInterval(interval);
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        return;
+      }
 
-      const particleCount = 50 * (timeLeft / duration);
-
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      const confettiNumber = Math.ceil(5 * (timeLeft / duration));
+      const { innerWidth, innerHeight } = window;
+      const position = (min: number, max: number) => ({
+        x: randomInRange(min, max) * innerWidth,
+        y: Math.random() * innerHeight * 0.5,
       });
 
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-        flat: true,
-      });
-
-      confetti({
-        ...defaults,
-        particleCount: 15,
-        origin: { x: randomInRange(0.4, 0.6), y: Math.random() - 0.2 },
-        scalar: scalar / 2,
-        shapes: ["circle", "square", "star"],
-      });
+      void Promise.all([
+        jsConfetti.addConfettiAtPosition({
+          emojis: ["🎂"],
+          emojiSize: 40,
+          confettiNumber,
+          confettiDispatchPosition: position(0.1, 0.3),
+        }),
+        jsConfetti.addConfettiAtPosition({
+          emojis: ["🎂"],
+          emojiSize: 40,
+          confettiNumber,
+          confettiDispatchPosition: position(0.7, 0.9),
+        }),
+        jsConfetti.addConfettiAtPosition({
+          confettiNumber: 15,
+          confettiDispatchPosition: position(0.4, 0.6),
+        }),
+      ]);
     }, 250);
   };
 
