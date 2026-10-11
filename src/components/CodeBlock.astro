@@ -16,6 +16,7 @@ import {
   IconFileTypeTsx,
   IconNumbers,
 } from "@tabler/icons-astro";
+import type { CodeLanguage } from "astro";
 import { Code as CustomCode } from "astro:components";
 import { cn } from "cn";
 
@@ -35,11 +36,10 @@ const {
   code,
   inline,
   title,
+  language: _language = "ts",
   class: _class,
   showLineNumbers = false,
 } = Astro.props;
-
-const language = "ts";
 
 const magicCodeIcon = (_language: string) => {
   switch (_language) {
@@ -61,6 +61,15 @@ const magicCodeIcon = (_language: string) => {
     }
   }
 };
+
+const validateLanguage = (lang: string): Extract<CodeLanguage, string> => {
+  if (!lang) {
+    return "ts";
+  }
+  return lang as Extract<CodeLanguage, string>;
+};
+
+const language = validateLanguage(_language);
 
 const CodeIcon = magicCodeIcon(language);
 ---
