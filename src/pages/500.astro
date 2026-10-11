@@ -1,7 +1,11 @@
 ---
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
-import { getPostHogInstance } from "~/lib/posthog/node";
+import { captureServerException } from "~/lib/analytics/server";
+
+// Rendered on demand so the real error reaches PostHog; a prerendered 500
+// page runs once at build time with no error and never reports anything.
+export const prerender = false;
 
 interface Props {
   error: unknown;
@@ -9,8 +13,7 @@ interface Props {
 
 const { error } = Astro.props;
 
-const _p = getPostHogInstance();
-_p.posthog.captureException(error);
+captureServerException(error);
 ---
 
 <MainLayout

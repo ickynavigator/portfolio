@@ -2,9 +2,7 @@
 ---
 
 <script>
-  import { getPostHogInstance } from "~/lib/posthog/web";
+  import { initClientAnalytics } from "~/lib/analytics/client";
 
-  if (!(window.location.hostname === "localhost")) {
-    getPostHogInstance();
-  }
+  initClientAnalytics();
 </script>
