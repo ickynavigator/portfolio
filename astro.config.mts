@@ -7,6 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
+import { ignoreUseNoMemo } from "./plugins/ignore-use-no-memo";
 import {
   SANITY_API_DATASET,
   SANITY_API_VERSION,
@@ -52,24 +53,12 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), ignoreUseNoMemo()],
     resolve: {
       tsconfigPaths: true,
     },
     build: {
       chunkSizeWarningLimit: 1000,
-      rolldownOptions: {
-        onwarn(warning, defaultHandler) {
-          if (
-            warning.code === "MODULE_LEVEL_DIRECTIVE" &&
-            warning.message.includes("use no memo")
-          ) {
-            return;
-          }
-
-          defaultHandler(warning);
-        },
-      },
     },
   },
 });
