@@ -6,6 +6,7 @@ import Container from "~/components/Container.astro";
 import SanityImage from "~/components/SanityImage.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
+import { contentUrl } from "~/lib/content-routes";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PAGINATED_PROJECTS_QUERY } from "~/lib/sanity/queries";
 
@@ -44,7 +45,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
         {result.data.map((project) => (
           <div>
             <a
-              href={`/projects/${project.slug.current}`}
+              href={contentUrl("project", project.slug.current)}
               class="block aspect-video overflow-hidden rounded-lg border shadow"
             >
               {project.image && (
@@ -73,7 +74,7 @@ const { result } = await loadQuery({ query: PAGINATED_PROJECTS_QUERY });
               <div>
                 <Badge
                   as="a"
-                  href={`/projects/${project.slug.current}`}
+                  href={contentUrl("project", project.slug.current)}
                   variant="outline"
                   animate="hover"
                   class="mt-2 gap-2"

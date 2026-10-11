@@ -120,7 +120,7 @@ export const RSS_FEED_QUERY = defineQuery(`
                     title,
                     "pubDate": postedAt,
                     description,
-                    "link": '/blog/' + slug.current,
+                    "slug": slug.current,
                     "categories": coalesce(tags[]->slug.current, []),
                 }, []),
     }

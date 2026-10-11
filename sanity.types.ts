@@ -821,7 +821,7 @@ export type USES_QUERY_RESULT = BlockContent | null;
 
 // Source: src/lib/sanity/queries.ts
 // Variable: RSS_FEED_QUERY
-// Query: {        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, ''),        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {                    title,                    "pubDate": postedAt,                    description,                    "link": '/blog/' + slug.current,                    "categories": coalesce(tags[]->slug.current, []),                }, []),    }
+// Query: {        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, ''),        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {                    title,                    "pubDate": postedAt,                    description,                    "slug": slug.current,                    "categories": coalesce(tags[]->slug.current, []),                }, []),    }
 export type RSS_FEED_QUERY_RESULT = {
   title: string | "";
   description: string | "";
@@ -829,7 +829,7 @@ export type RSS_FEED_QUERY_RESULT = {
     title: string;
     pubDate: string;
     description: string;
-    link: string;
+    slug: string;
     categories: Array<string> | Array<never>;
   }>;
 };
@@ -882,7 +882,7 @@ declare global {
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->\n': PROFILE_IMAGE_QUERY_RESULT;
     '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || tags[]->slug.current match $title ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERY_RESULT;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].uses\n': USES_QUERY_RESULT;
-    '\n    {\n        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, \'\'),\n        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),\n        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n                    title,\n                    "pubDate": postedAt,\n                    description,\n                    "link": \'/blog/\' + slug.current,\n                    "categories": coalesce(tags[]->slug.current, []),\n                }, []),\n    }\n': RSS_FEED_QUERY_RESULT;
+    '\n    {\n        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, \'\'),\n        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),\n        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n                    title,\n                    "pubDate": postedAt,\n                    description,\n                    "slug": slug.current,\n                    "categories": coalesce(tags[]->slug.current, []),\n                }, []),\n    }\n': RSS_FEED_QUERY_RESULT;
     '\n    coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])\n': SOCIAL_LINKS_QUERY_RESULT;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        bio,\n    }\n': ABOUT_QUERY_RESULT;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].birthday\n': BIRTHDAY_QUERY_RESULT;

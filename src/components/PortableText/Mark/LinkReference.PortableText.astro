@@ -2,6 +2,12 @@
 import type { MarkProps } from "astro-portabletext/types";
 import * as z from "zod";
 
+import {
+  contentListLabel,
+  contentListUrl,
+  contentUrl,
+  isRoutedContentType,
+} from "~/lib/content-routes";
 import dayjs from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { LINK_REFERENCE_QUERY } from "~/lib/sanity/queries";
@@ -15,10 +21,7 @@ const result = await loadQuery({
 
 const schema = z
   .object({
-    type: z.union([
-      z.literal("post").transform(() => "blog"),
-      z.literal("project").transform(() => "projects"),
-    ]),
+    type: z.string().refine(isRoutedContentType),
     name: z.string().min(1),
     updatedAt: z.iso.datetime().transform((date) => dayjs(date)),
     slug: z.string().min(1),
@@ -26,8 +29,9 @@ const schema = z
   })
   .transform((data) => ({
     ...data,
-    base: `/${data.type}`,
-    url: `/${data.type}/${data.slug}`,
+    label: contentListLabel(data.type),
+    base: contentListUrl(data.type),
+    url: contentUrl(data.type, data.slug),
   }));
 
 const { success, data } = schema.safeParse(result.result);
@@ -45,9 +49,7 @@ const { success, data } = schema.safeParse(result.result);
     ) : (
       <>
         <span class="text-muted-foreground text-xs">
-          <span class="capitalize">
-            <a href={data.base}>{data.type}</a>
-          </span>
+          <a href={data.base}>{data.label}</a>
           at {data.updatedAt.format("ll")}
         </span>
 

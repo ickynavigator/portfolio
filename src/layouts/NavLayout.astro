@@ -11,14 +11,15 @@ import Container from "~/components/Container.astro";
 import NavLinks from "~/components/NavLinks.astro";
 import SocialButton from "~/components/SocialButton.astro";
 import { REPO_URL } from "~/lib/constants";
+import { contentListUrl } from "~/lib/content-routes";
 import { isSameDayMonth } from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { BIRTHDAY_QUERY, SOCIAL_LINKS_QUERY } from "~/lib/sanity/queries";
 
 const links = {
   about: { href: "/about", text: "About" },
-  projects: { href: "/projects", text: "Projects" },
-  blog: { href: "/blog", text: "Blog" },
+  projects: { href: contentListUrl("project"), text: "Projects" },
+  blog: { href: contentListUrl("post"), text: "Blog" },
   career: { href: "/career", text: "Career" },
   search: { href: "/search", text: "Search" },
   uses: { href: "/uses", text: "/uses" },

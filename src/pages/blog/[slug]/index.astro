@@ -14,6 +14,7 @@ import SanityImage from "~/components/SanityImage.astro";
 import ScrollProgress from "~/components/ScrollProgress.astro";
 import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
+import { contentListUrl } from "~/lib/content-routes";
 import dayjs, { getReadingTime } from "~/lib/date";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { POST_SLUGS_QUERY } from "~/lib/sanity/queries";
@@ -75,7 +76,7 @@ const imageUrl = urlForImage(image).width(4096).url();
   <NavLayout>
     <ScrollProgress />
     <Container innerPage class="mb-4">
-      <a href="/blog" class="hover-link">
+      <a href={contentListUrl("post")} class="hover-link">
         <IconArrowLeft class="relative-icon inline" />
         Back to Blogs
       </a>

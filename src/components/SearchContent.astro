@@ -1,4 +1,5 @@
 ---
+import { contentUrl } from "~/lib/content-routes";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { SEARCH_QUERY } from "~/lib/sanity/queries";
 
@@ -35,19 +36,7 @@ const filteredResult = result
   <ul class="mt-8 flex flex-col gap-4">
     {filteredResult.map((item) => {
       const slug = item.slug.current;
-
-      let url;
-
-      switch (item._type) {
-        case "post":
-          url = `/blog/${slug}`;
-          break;
-        case "project":
-          url = `/projects/${slug}`;
-          break;
-        default:
-          url = "";
-      }
+      const url = contentUrl(item._type, slug);
 
       return (
         <a href={url}>

@@ -3,29 +3,31 @@ import {
   type PresentationPluginOptions,
 } from "sanity/presentation";
 
+import {
+  contentListLabel,
+  contentListUrl,
+  contentUrl,
+  type RoutedContentType,
+} from "~/lib/content-routes";
+
 type Locations = NonNullable<
   NonNullable<PresentationPluginOptions["resolve"]>["locations"]
 >;
 
+const routedLocations = (type: RoutedContentType) =>
+  defineLocations({
+    select: { title: "title", slug: "slug.current" },
+    resolve: (doc) => ({
+      locations: [
+        { title: doc?.title || "Untitled", href: contentUrl(type, doc?.slug) },
+        { title: contentListLabel(type), href: contentListUrl(type) },
+      ],
+    }),
+  });
+
 const resolver: Locations = {
-  post: defineLocations({
-    select: { title: "title", slug: "slug.current" },
-    resolve: (doc) => ({
-      locations: [
-        { title: doc?.title || "Untitled", href: `/blog/${doc?.slug}` },
-        { title: "Posts", href: "/blog" },
-      ],
-    }),
-  }),
-  project: defineLocations({
-    select: { title: "title", slug: "slug.current" },
-    resolve: (doc) => ({
-      locations: [
-        { title: doc?.title || "Untitled", href: `/project/${doc?.slug}` },
-        { title: "Projects", href: "/project" },
-      ],
-    }),
-  }),
+  post: routedLocations("post"),
+  project: routedLocations("project"),
   career: defineLocations({
     select: {},
     resolve: () => ({
