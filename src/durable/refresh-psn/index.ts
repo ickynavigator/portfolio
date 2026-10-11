@@ -5,80 +5,97 @@ import {
   exchangeRefreshTokenForAuthTokens,
   type AuthTokensResponse,
 } from "psn-api";
+import z from "zod";
 
-import {
-  AuthorizationStore,
-  type StoredAuthorization,
-} from "~/durable/refresh-psn/utils";
+const REFRESH_BUFFER_MS = 60 * 1000;
+const STORAGE_KEY = "authorization";
 
-export class PsnAuth extends DurableObject {
-  REFRESH_BUFFER_MS = 60 * 1000;
-  authStore: AuthorizationStore;
+export interface StoredAuthorization extends AuthTokensResponse {
+  expiresAt: number;
+}
 
-  constructor(ctx: DurableObjectState, env: Env) {
-    super(ctx, env);
+const StoredAuthorizationSchema = z.toZod<StoredAuthorization>()(
+  z.object({
+    accessToken: z.string(),
+    expiresIn: z.number(),
+    idToken: z.string(),
+    refreshToken: z.string(),
+    refreshTokenExpiresIn: z.number(),
+    scope: z.string(),
+    tokenType: z.string(),
+    expiresAt: z.number(),
+  }),
+);
 
-    this.authStore = new AuthorizationStore(env);
+export class PsnAuth extends DurableObject<Env> {
+  #renewing: Promise<StoredAuthorization> | undefined;
 
-    this.ctx.blockConcurrencyWhile(async () => {
-      const authorization = await this.authStore.get();
-
-      if (!authorization) {
-        await this.initialize();
-      }
-    });
-  }
-
-  private async updateAuthorization(authorization: AuthTokensResponse) {
-    const stored = await this.authStore.set(authorization);
-    await this.scheduleRefresh(stored);
-
-    return stored;
-  }
-
-  private async scheduleRefresh(storedAuthorization: StoredAuthorization) {
-    const refreshAt = storedAuthorization.expiresAt - this.REFRESH_BUFFER_MS;
-
-    await this.ctx.storage.setAlarm(Math.max(Date.now() + 1000, refreshAt));
-  }
-
-  private async initialize() {
-    const accessCode = await exchangeNpssoForAccessCode(this.env.PSN_NPSSO);
-    const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
-
-    return this.updateAuthorization(authorization);
-  }
-
-  private async refresh() {
-    console.log("Refreshing PSN authorization...");
-    const authorization = await this.authStore.get();
-
-    if (!authorization) {
-      return await this.initialize();
-    }
-
-    const updatedAuthorization = await exchangeRefreshTokenForAuthTokens(
-      authorization.refreshToken,
-    );
-
-    return this.updateAuthorization(updatedAuthorization);
+  async getAuthorization(): Promise<StoredAuthorization> {
+    return this.#ensureFresh();
   }
 
   override async alarm() {
-    const authorization = await this.authStore.get();
-
-    if (!authorization) {
-      await this.initialize();
-      return;
-    }
-
-    const refreshAt = authorization.expiresAt - this.REFRESH_BUFFER_MS;
-
-    if (Date.now() < refreshAt) {
-      await this.scheduleRefresh(authorization);
-      return;
-    }
-
-    await this.refresh();
+    await this.#ensureFresh();
   }
+
+  async #ensureFresh() {
+    const current = await this.#read();
+    const authorization =
+      current && Date.now() < refreshAt(current)
+        ? current
+        : await this.#renew(current);
+
+    await this.ctx.storage.setAlarm(
+      Math.max(Date.now() + 1000, refreshAt(authorization)),
+    );
+
+    return authorization;
+  }
+
+  #renew(current: StoredAuthorization | null) {
+    this.#renewing ??= this.#exchange(current)
+      .then((tokens) => this.#write(tokens))
+      .finally(() => {
+        this.#renewing = undefined;
+      });
+
+    return this.#renewing;
+  }
+
+  async #exchange(current: StoredAuthorization | null) {
+    if (current) {
+      try {
+        console.log("Refreshing PSN authorization...");
+        return await exchangeRefreshTokenForAuthTokens(current.refreshToken);
+      } catch (error) {
+        console.warn("PSN refresh failed, reinitializing from NPSSO", error);
+      }
+    }
+
+    console.log("Initializing PSN authorization from NPSSO...");
+    const accessCode = await exchangeNpssoForAccessCode(this.env.PSN_NPSSO);
+    return exchangeAccessCodeForAuthTokens(accessCode);
+  }
+
+  async #read() {
+    const value = await this.ctx.storage.get(STORAGE_KEY);
+    const parsed = StoredAuthorizationSchema.safeParse(value);
+
+    return parsed.success ? parsed.data : null;
+  }
+
+  async #write(tokens: AuthTokensResponse) {
+    const stored = StoredAuthorizationSchema.parse({
+      ...tokens,
+      expiresAt: Date.now() + tokens.expiresIn * 1000,
+    });
+
+    await this.ctx.storage.put(STORAGE_KEY, stored);
+
+    return stored;
+  }
+}
+
+function refreshAt(authorization: StoredAuthorization) {
+  return authorization.expiresAt - REFRESH_BUFFER_MS;
 }

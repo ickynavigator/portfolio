@@ -23,13 +23,6 @@
 		}
 	},
 	"send_metrics": true,
-	"kv_namespaces": [
-		{
-			"binding": "PSN_AUTH_KV",
-			"id": "3e346b096cd1447b8f55f06d41a468de",
-			"remote": true,
-		}
-	],
 	"durable_objects": {
 		"bindings": [
 			{
