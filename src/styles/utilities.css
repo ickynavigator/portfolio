@@ -77,9 +77,11 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  container-type: inline-size;
 
   & > [data-marquee-item] {
     --delay: calc(var(--index) * var(--var-slowdown) - var(--duration));
+    flex-shrink: 0;
     will-change: translate;
     animation: marquee-slide var(--duration) var(--delay) infinite linear;
     translate: var(--origin-x) var(--origin-y);
@@ -88,12 +90,16 @@
   &[data-marquee-direction="horizontal"] {
     flex-direction: row;
     & > [data-marquee-item] {
-      --origin-x: calc(((var(--var-count) - var(--index)) + 1) * 100%);
+      /* start past the end of the strip, and never closer than the container's right edge */
+      --origin-x: max(
+        calc(((var(--var-count) - var(--index)) + 1) * 100%),
+        calc(100cqw - (var(--index) - 1) * 100%)
+      );
       --destination-x: calc(var(--index) * -100%);
     }
   }
 
-  &[data-marquee-control_hover-on-pause] {
+  &[data-marquee-pause-on-hover] {
     &:hover > [data-marquee-item] {
       animation-play-state: paused;
     }

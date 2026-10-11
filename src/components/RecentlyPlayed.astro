@@ -7,13 +7,13 @@ const { recenttracks } = await getRecentlyPlayedTracks();
 <ul
   class="marquee mt-4"
   data-marquee-direction="horizontal"
-  data-marquee-control_hover-on-pause
+  data-marquee-pause-on-hover
   style={{ "--count": Math.max(recenttracks.track.length, 1), "--slowdown": 5 }}
 >
   {recenttracks.track.map((track, index) => (
     <li
       data-marquee-item
-      class="group relative aspect-square min-h-64 rounded-md bg-contain bg-center bg-no-repeat"
+      class="group relative aspect-square size-64 rounded-md bg-contain bg-center bg-no-repeat"
       style={{
         backgroundImage: `url(${track.image[track.image.length - 1]?.["#text"]})`,
         "--index": index + 1,
