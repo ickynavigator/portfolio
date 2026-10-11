@@ -8,7 +8,9 @@ import {
 import z from "zod";
 
 const REFRESH_BUFFER_MS = 60 * 1000;
+const RENEW_BACKOFF_MS = 5 * 60 * 1000;
 const STORAGE_KEY = "authorization";
+const RENEW_FAILED_AT_KEY = "renewFailedAt";
 
 export interface StoredAuthorization extends AuthTokensResponse {
   expiresAt: number;
@@ -52,9 +54,18 @@ export class PsnAuth extends DurableObject<Env> {
     return authorization;
   }
 
-  #renew(current: StoredAuthorization | null) {
+  async #renew(current: StoredAuthorization | null) {
+    const failedAt = await this.ctx.storage.get<number>(RENEW_FAILED_AT_KEY);
+    if (failedAt !== undefined && Date.now() < failedAt + RENEW_BACKOFF_MS) {
+      throw new Error("PSN authorization renewal recently failed, backing off");
+    }
+
     this.#renewing ??= this.#exchange(current)
       .then((tokens) => this.#write(tokens))
+      .catch(async (error: unknown) => {
+        await this.ctx.storage.put(RENEW_FAILED_AT_KEY, Date.now());
+        throw error;
+      })
       .finally(() => {
         this.#renewing = undefined;
       });
@@ -91,6 +102,7 @@ export class PsnAuth extends DurableObject<Env> {
     });
 
     await this.ctx.storage.put(STORAGE_KEY, stored);
+    await this.ctx.storage.delete(RENEW_FAILED_AT_KEY);
 
     return stored;
   }
