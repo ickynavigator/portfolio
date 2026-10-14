@@ -278,8 +278,8 @@ importers:
         specifier: ^1.438.7
         version: 1.438.7(@types/react@19.3.0)(react@19.3.0)
       posthog-node:
-        specifier: ^5.55.1
-        version: 5.55.1(rxjs@7.8.2)
+        specifier: ^5.55.2
+        version: 5.55.3(rxjs@7.8.2)
       psn-api:
         specifier: ^2.18.1
         version: 2.18.1
@@ -2782,8 +2782,14 @@ packages:
   '@posthog/core@1.57.4':
     resolution: {integrity: sha512-JM2r3ab7D8HvxquB06jesAM7EBLf3pXIwYIOj/wwq59cML0aicSoJRZdDREruhbIHzc7iFgSgAqTqJQZxxvq9w==}
 
+  '@posthog/core@1.58.1':
+    resolution: {integrity: sha512-z0ISzMUoF1izukfLIUSjGZBdO5H2BPdqN8MX27OKYGQ1sDj/r+WW9Nq7m5WsQY56NOxVsFtHClx9iHj6MYM3Tg==}
+
   '@posthog/types@1.415.2':
     resolution: {integrity: sha512-BIIHPyXcPZuNTImrR1qLqLKFw7j9o8co6LG/9OpLtpWJ3RT0y89Lx6VCtd37N9/dkr/qW7y0uPjJxAxjsALHtw==}
+
+  '@posthog/types@1.415.3':
+    resolution: {integrity: sha512-y90ARRBbyXcZDwuXXXvAnbjiuxQ+4FmUI4sasI19AHOPgdWPyd2Kpo0c0B2pKIR+fq+BcRokhF35eAdA54Mfbw==}
 
   '@prettier/parse-srcset@3.1.0':
     resolution: {integrity: sha512-FIRv2rZotO9NP/r66taYqD1zICpPiBbrECqjKV/xqNotqDxF7fLzzUeK+1RSRx9Tenk0DajR/GcRmTJ2qtHaKQ==}
@@ -7042,8 +7048,8 @@ packages:
       react:
         optional: true
 
-  posthog-node@5.55.1:
-    resolution: {integrity: sha512-YLnILmFn1zxGYBuCaBldqMjTq9OZBNNbHIr2F0am3iLfU+6ZTvuRmUbTmys//+LnCA6DfZNGgqTb4goFa93u+Q==}
+  posthog-node@5.55.3:
+    resolution: {integrity: sha512-UllcPxGClim6WM8l4cuJCccCN7zH/7z8t59APs0oIkQ+t/UrWPauDvuLnz3lWS2Adj1Vccl0Yq3dnIOI+JvCVg==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
       rxjs: ^7.0.0
@@ -11093,7 +11099,13 @@ snapshots:
     dependencies:
       '@posthog/types': 1.415.2
 
+  '@posthog/core@1.58.1':
+    dependencies:
+      '@posthog/types': 1.415.3
+
   '@posthog/types@1.415.2': {}
+
+  '@posthog/types@1.415.3': {}
 
   '@prettier/parse-srcset@3.1.0': {}
 
@@ -15944,9 +15956,9 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  posthog-node@5.55.1(rxjs@7.8.2):
+  posthog-node@5.55.3(rxjs@7.8.2):
     dependencies:
-      '@posthog/core': 1.57.4
+      '@posthog/core': 1.58.1
     optionalDependencies:
       rxjs: 7.8.2
 
