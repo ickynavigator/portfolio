@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "@fontsource-variable/dm-sans";
-@import "@fontsource-variable/hepta-slab";
 
 @import "./base.css";
 @import "./utilities.css";
@@ -62,15 +60,9 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  --font-sans:
-    "DM Sans Variable", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif:
-    "Hepta Slab Variable", ui-serif, Georgia, Cambria, "Times New Roman", Times,
-    serif;
-  --font-mono:
-    "Input Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-hepta-slab), ui-serif, serif;
+  --font-mono: var(--font-space-mono), ui-monospace, monospace;
 }
 
 @theme inline {

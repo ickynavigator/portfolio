@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import Font from "astro/components/Font.astro";
 
 import Meta from "~/components/Meta.astro";
 import Posthog from "~/components/Posthog.astro";
@@ -42,6 +43,10 @@ interface Props {
       href={new URL("rss.xml", Astro.site)}
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <Font preload cssVariable="--font-dm-sans" />
+    <Font preload cssVariable="--font-hepta-slab" />
+    <Font preload cssVariable="--font-space-mono" />
 
     <Meta meta={Astro.props.meta} getBase={getBase} />
     <Posthog />

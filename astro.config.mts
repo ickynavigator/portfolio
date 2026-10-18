@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import { loadEnv } from "vite";
 
 import { ignoreUseNoMemo } from "./plugins/ignore-use-no-memo";
@@ -37,6 +37,24 @@ export default defineConfig({
   build: {
     redirects: false,
   },
+
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "DM Sans",
+      cssVariable: "--font-dm-sans",
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Hepta Slab",
+      cssVariable: "--font-hepta-slab",
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Space Mono",
+      cssVariable: "--font-space-mono",
+    },
+  ],
 
   integrations: [
     react({}),
