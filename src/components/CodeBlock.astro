@@ -157,7 +157,7 @@ const CodeIcon = magicCodeIcon(language);
           }
 
           &::after {
-            @apply absolute start-1 content-(--diff-content);
+            @apply absolute inset-s-1 content-(--diff-content);
           }
         }
 
@@ -208,7 +208,7 @@ const CodeIcon = magicCodeIcon(language);
 
         .line {
           &::before {
-            @apply absolute -start-(--left-position) w-(--code-spacing) border-s-4 border-transparent bg-(--bg-color)/(--alpha-offset) pe-1.5 text-right text-sm blur-none content-[counter(step)];
+            @apply absolute -inset-s-(--left-position) w-(--code-spacing) border-s-4 border-transparent bg-(--bg-color)/(--alpha-offset) pe-1.5 text-right text-sm blur-none content-[counter(step)];
 
             counter-increment: step;
           }
