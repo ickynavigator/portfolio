@@ -55,7 +55,7 @@
     "groq": "^6.19.0",
     "js-confetti": "^0.13.1",
     "posthog-js": "^1.438.12",
-    "posthog-node": "^5.56.1",
+    "posthog-node": "^5.56.2",
     "psn-api": "^2.18.1",
     "radix-ui": "^1.8.1",
     "react": "^19.3.1",
