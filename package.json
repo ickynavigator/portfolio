@@ -19,9 +19,9 @@
     "typegen:sa": "sanity schema extract --force && sanity typegen generate"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.10",
-    "@astrojs/cloudflare": "14.4.0",
-    "@astrojs/react": "7.1.0",
+    "@astrojs/check": "0.9.12",
+    "@astrojs/cloudflare": "14.4.2",
+    "@astrojs/react": "7.1.1",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@imikailoby/lastfm-ts": "2.0.3",
@@ -45,7 +45,7 @@
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/charts": "^1.1.0",
-    "astro": "7.4.0",
+    "astro": "7.4.2",
     "astro-portabletext": "^1.0.1",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.0",
@@ -87,7 +87,7 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.71.2",
-    "wrangler": "^4.151.1"
+    "wrangler": "^4.151.3"
   },
   "packageManager": "pnpm@12.14.0"
 }
