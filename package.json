@@ -52,7 +52,7 @@
     "dayjs": "^1.11.23",
     "groq": "^6.20.0",
     "js-confetti": "^0.13.1",
-    "posthog-js": "^1.438.12",
+    "posthog-js": "^1.438.13",
     "posthog-node": "^5.56.2",
     "psn-api": "^2.18.1",
     "radix-ui": "^1.8.1",
