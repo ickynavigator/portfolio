@@ -227,11 +227,11 @@ importers:
         specifier: ^0.13.11
         version: 0.13.11(typescript@6.0.3)(valibot@1.4.2(typescript@6.0.3))(zod@4.6.7)
       '@tabler/icons-astro':
-        specifier: ^3.49.0
-        version: 3.49.0(astro@7.4.7(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.1))
+        specifier: ^3.50.0
+        version: 3.50.0(astro@7.4.7(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.1))
       '@tabler/icons-react':
-        specifier: 3.49.0
-        version: 3.49.0(react@19.3.1)
+        specifier: 3.50.0
+        version: 3.50.0(react@19.3.1)
       '@tailwindcss/forms':
         specifier: ^0.5.11
         version: 0.5.11(tailwindcss@4.3.5)
@@ -4242,18 +4242,18 @@ packages:
       zod:
         optional: true
 
-  '@tabler/icons-astro@3.49.0':
-    resolution: {integrity: sha512-eRVSiRjNyDQlfWQmtkNgSCOqmCNg486a2C9TM/3xFAO78ifg+WMJFP3rq0lu46gXFL3ZBPdSpPdA5xBA6z7D0A==}
+  '@tabler/icons-astro@3.50.0':
+    resolution: {integrity: sha512-x6iqEhbP6x0PEyPJCF120mSRX50o/m7RFjW+5aSrjEI9S3SsQNFk2mDQyENf5BMrs5412MTkGXv76tGU4t30Uw==}
     peerDependencies:
       astro: '>=4.0.0'
 
-  '@tabler/icons-react@3.49.0':
-    resolution: {integrity: sha512-Um59pm5RVNUaQjFUtG0r4oYJbZuBS3tGugAA2tgBg0WufMk34Eio3nsO30RUkLuL2giYPQUNdY9HvqltLLYyNA==}
+  '@tabler/icons-react@3.50.0':
+    resolution: {integrity: sha512-X9XhFbxAmSNimQ71VAd7opfd4z84x1pLrEbBT33VCIEsFs8zWVqdhh5r/Jyi/3iJjQ861kE5Wm9ixiJfS2nwBA==}
     peerDependencies:
       react: '>= 16'
 
-  '@tabler/icons@3.49.0':
-    resolution: {integrity: sha512-l+GnSkFETx0U26icxv1VUFnxxiTqXfCcVRiRAnyMwibupM2S2L/hSaZ9gmSgz01rkrsH/93NvLsxykqdanc6lw==}
+  '@tabler/icons@3.50.0':
+    resolution: {integrity: sha512-HflLxyrH1cqC7s7jzQGSjpsTAVIoaf7+/yHjbdM59rJQBMjliibp+LYhDPFxOMcwa1M8DNpOk6ENzQiWn9a1Dg==}
 
   '@tailwindcss/forms@0.5.11':
     resolution: {integrity: sha512-h9wegbZDPurxG22xZSoWtdzc41/OlNEUQERNqI/0fOwa2aVlWGu7C35E/x6LDyD3lgtztFSSjKZyuVM0hxhbgA==}
@@ -13217,17 +13217,17 @@ snapshots:
       valibot: 1.4.2(typescript@6.0.3)
       zod: 4.6.7
 
-  '@tabler/icons-astro@3.49.0(astro@7.4.7(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.1))':
+  '@tabler/icons-astro@3.50.0(astro@7.4.7(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.1))':
     dependencies:
-      '@tabler/icons': 3.49.0
+      '@tabler/icons': 3.50.0
       astro: 7.4.7(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.1)
 
-  '@tabler/icons-react@3.49.0(react@19.3.1)':
+  '@tabler/icons-react@3.50.0(react@19.3.1)':
     dependencies:
-      '@tabler/icons': 3.49.0
+      '@tabler/icons': 3.50.0
       react: 19.3.1
 
-  '@tabler/icons@3.49.0': {}
+  '@tabler/icons@3.50.0': {}
 
   '@tailwindcss/forms@0.5.11(tailwindcss@4.3.5)':
     dependencies:
