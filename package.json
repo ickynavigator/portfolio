@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.12",
-    "@astrojs/cloudflare": "14.4.2",
-    "@astrojs/react": "7.1.1",
+    "@astrojs/cloudflare": "14.4.6",
+    "@astrojs/react": "7.1.4",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@imikailoby/lastfm-ts": "2.0.3",
@@ -45,12 +45,12 @@
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/charts": "^1.1.0",
-    "astro": "7.4.2",
+    "astro": "7.4.7",
     "astro-portabletext": "^1.0.1",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.0",
     "dayjs": "^1.11.23",
-    "groq": "^6.20.0",
+    "groq": "^6.22.0",
     "js-confetti": "^0.13.1",
     "posthog-js": "^1.438.13",
     "posthog-node": "^5.56.2",
@@ -83,11 +83,11 @@
     "eslint-plugin-prettier": "^5.5.7",
     "eslint-plugin-unused-imports": "^4.4.1",
     "prettier": "^3.9.10",
-    "prettier-plugin-astro": "^1.1.1",
+    "prettier-plugin-astro": "^1.1.2",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.72.0",
-    "wrangler": "^4.151.3"
+    "wrangler": "^4.158.0"
   },
   "packageManager": "pnpm@12.14.0"
 }
