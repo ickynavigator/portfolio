@@ -7,7 +7,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import { loadEnv } from "vite";
 
-import { ignoreUseNoMemo } from "./plugins/ignore-use-no-memo";
 import {
   SANITY_API_DATASET,
   SANITY_API_VERSION,
@@ -71,7 +70,7 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss(), ignoreUseNoMemo()],
+    plugins: [tailwindcss()],
     resolve: {
       tsconfigPaths: true,
     },
