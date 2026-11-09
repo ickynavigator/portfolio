@@ -1,9 +1,6 @@
 allowBuilds:
-  '@tailwindcss/oxide': true
   core-js: true
   esbuild: true
-  protobufjs: true
-  sharp: true
   workerd: true
 
 permissions:
