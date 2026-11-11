@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.12",
-    "@astrojs/cloudflare": "14.4.6",
-    "@astrojs/react": "7.1.4",
+    "@astrojs/cloudflare": "14.4.7",
+    "@astrojs/react": "7.1.7",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@imikailoby/lastfm-ts": "2.0.3",
@@ -44,7 +44,7 @@
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.5",
     "@tanstack/charts": "^1.5.0",
-    "astro": "7.4.7",
+    "astro": "7.4.10",
     "astro-portabletext": "^1.0.1",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.5.2",
@@ -67,7 +67,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.10.12",
+    "@astrojs/ts-plugin": "1.11.0",
     "@eslint/js": "^10.0.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@shadcn/lint": "^0.2.5",
