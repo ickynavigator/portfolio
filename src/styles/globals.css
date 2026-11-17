@@ -74,4 +74,6 @@
 
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
+
+  --spacing-icon: 1em;
 }

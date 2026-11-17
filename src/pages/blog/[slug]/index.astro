@@ -77,7 +77,7 @@ const imageUrl = urlForImage(image).width(4096).url();
     <ScrollProgress />
     <Container innerPage class="mb-4">
       <a href={contentListUrl("post")} class="hover-link">
-        <IconArrowLeft class="relative-icon inline" />
+        <IconArrowLeft class="size-icon inline" />
         Back to Blogs
       </a>
     </Container>
@@ -109,7 +109,7 @@ const imageUrl = urlForImage(image).width(4096).url();
               title={`Posted on ${dayjs(result.postedAt).format("LLLL")}`}
               transition:name={`blog-post-time-${result.slug.current}`}
             >
-              <IconCalendar class="relative-icon inline" />
+              <IconCalendar class="size-icon inline" />
               <time datetime={result.postedAt}>
                 {dayjs(result.postedAt).format("LL")}
               </time>
@@ -120,7 +120,7 @@ const imageUrl = urlForImage(image).width(4096).url();
                 class="inline-flex items-center gap-1"
                 title={`Last updated on ${dayjs(result._updatedAt).format("LLLL")}`}
               >
-                <IconEdit class="relative-icon inline" />
+                <IconEdit class="size-icon inline" />
 
                 <time datetime={result._updatedAt}>
                   {dayjs(result._updatedAt).format("LL")}
@@ -130,7 +130,7 @@ const imageUrl = urlForImage(image).width(4096).url();
           </div>
 
           <span class="line-clamp-1 inline-flex items-center gap-1">
-            <IconStopwatch class="relative-icon inline" />
+            <IconStopwatch class="size-icon inline" />
             <span transition:name={`blog-read-time-${result.slug.current}`}>
               {getReadingTime(result.wordCount)}
             </span>{" "}

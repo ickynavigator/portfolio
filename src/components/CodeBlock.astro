@@ -81,7 +81,7 @@ const CodeIcon = magicCodeIcon(language);
 >
   <div class="bg-secondary flex items-center justify-between border-b px-2 py-2">
     <div class="inline-flex items-center gap-1 text-sm">
-      <CodeIcon class="relative-icon" />
+      <CodeIcon class="size-icon" />
       <span class="text-md">{title}</span>
     </div>
 
@@ -91,7 +91,7 @@ const CodeIcon = magicCodeIcon(language);
         name="show-numbers"
         class="hover:bg-accent size-6"
       >
-        <IconNumbers class="relative-icon" />
+        <IconNumbers class="size-icon" />
       </IconCheckbox>
 
       <CopyButton value={code} variant="default" size="icon-xs" />
