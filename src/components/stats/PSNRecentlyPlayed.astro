@@ -10,34 +10,32 @@ const stats = await getPSNStats().catch((error: unknown) => {
 const recentlyPlayed = stats?.recentlyPlayed ?? [];
 ---
 
-{recentlyPlayed.length > 0 && (
-  <ul
-    class="marquee mt-4"
-    data-marquee-direction="horizontal"
-    data-marquee-pause-on-hover
-    style={{ "--count": Math.max(recentlyPlayed.length, 1) }}
-  >
-    {recentlyPlayed.map((title, index) => (
-      <li
-        data-marquee-item
-        class="group relative aspect-square size-64 rounded-md bg-contain bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${title.imageUrl})`,
-          "--index": index + 1,
-        }}
-      >
-        <div class="size-full p-4 transition not-group-hover:invisible group-hover:bg-black/70 group-hover:backdrop-blur-xs">
-          {[
-            ["Name", title.name],
-            ["Playtime", formatPlayDuration(title.playDuration)],
-          ].map(([title, value]) => (
-            <div class="text-sm font-semibold text-white">
-              {title}: {value}
-            </div>
-          ))}
-        </div>
-        <span class="sr-only">{title.name}</span>
-      </li>
-    ))}
-  </ul>
-)}
+<ul
+  class="marquee mt-4"
+  data-marquee-direction="horizontal"
+  data-marquee-pause-on-hover
+  style={{ "--count": Math.max(recentlyPlayed.length, 1) }}
+>
+  {recentlyPlayed.map((title, index) => (
+    <li
+      data-marquee-item
+      class="group relative aspect-square size-64 rounded-md bg-contain bg-center bg-no-repeat"
+      style={{
+        backgroundImage: `url(${title.imageUrl})`,
+        "--index": index + 1,
+      }}
+    >
+      <div class="size-full p-4 transition not-group-hover:invisible group-hover:bg-black/70 group-hover:backdrop-blur-xs">
+        {[
+          ["Name", title.name],
+          ["Playtime", formatPlayDuration(title.playDuration)],
+        ].map(([title, value]) => (
+          <div class="text-sm font-semibold text-white">
+            {title}: {value}
+          </div>
+        ))}
+      </div>
+      <span class="sr-only">{title.name}</span>
+    </li>
+  ))}
+</ul>
