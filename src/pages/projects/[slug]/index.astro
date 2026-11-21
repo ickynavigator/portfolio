@@ -10,7 +10,6 @@ import MainLayout from "~/layouts/MainLayout.astro";
 import NavLayout from "~/layouts/NavLayout.astro";
 import { loadQuery } from "~/lib/sanity/load-query";
 import { PROJECT_SLUGS_QUERY } from "~/lib/sanity/queries";
-import { urlForImage } from "~/lib/sanity/urlForImage";
 
 export const getStaticPaths = (async () => {
   const { result } = await loadQuery({ query: PROJECT_SLUGS_QUERY });
@@ -28,11 +27,9 @@ export const getStaticPaths = (async () => {
 const { project: result } = Astro.props;
 const image = result?.images?.[0];
 
-if (!result || !image) {
+if (!result || !image || !result.imageUrl) {
   return Astro.redirect("/404");
 }
-
-const imageUrl = urlForImage(image).url();
 ---
 
 <MainLayout
@@ -42,7 +39,7 @@ const imageUrl = urlForImage(image).url();
 
     og: {
       title: result.title,
-      image: imageUrl,
+      image: result.imageUrl,
       type: "article",
       locale: "en_US",
       url: Astro.url,
@@ -58,7 +55,7 @@ const imageUrl = urlForImage(image).url();
       title: result.title,
       image_alt: result.title,
       card: "summary",
-      image: imageUrl,
+      image: result.imageUrl,
     },
   }}
 >

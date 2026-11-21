@@ -22,8 +22,15 @@ type ExtractValidSegments<
     : ExtractValidSegments<Rest, Prefix, Separator, R, Rest>
   : R[number];
 
-type GetParams<G extends string, _F = ExtractValidSegments<G, "$", " ">> =
-  Match<_F, never> extends true ? unknown : { params: Record<_F, unknown> };
+type StripFns<S extends string> =
+  S extends `${infer Before}fn ${string}(${string}) = ${string};${infer After}`
+    ? StripFns<`${Before}${After}`>
+    : S;
+
+type GetParams<
+  G extends string,
+  _F = ExtractValidSegments<StripFns<G>, "$", " ">,
+> = Match<_F, never> extends true ? unknown : { params: Record<_F, unknown> };
 
 type GetUrlParams<
   G extends string,

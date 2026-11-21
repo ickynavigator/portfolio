@@ -3,6 +3,12 @@ import { defineQuery } from "groq";
 import { CONFIGURATION_CONFIG_ID, PERSONAL_INFO_CONFIG_ID } from "../constants";
 
 // @sanity-typegen-ignore
+export const IMAGE_UTILITIES = defineQuery(`
+    fn image::asset($asset) = $asset->{url, metadata{lqip}};
+    fn image::field($image) = $image{crop, hotspot, alt, "asset": image::asset(asset)};
+`);
+
+// @sanity-typegen-ignore
 export const POSTS_QUERY = defineQuery(`
     *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {
         _id,
@@ -20,9 +26,10 @@ export const PAGINATED_POSTS_QUERY = defineQuery(`
     }
 `);
 
-export const POST_SLUGS_QUERY = defineQuery(`
+export const POST_SLUGS_QUERY = defineQuery(`${IMAGE_UTILITIES}
     *[_type == "post" && defined(slug.current) && hidden != true] {
         ...,
+        "imageUrl": image::field(images[0]).asset.url,
         "wordCount": length(pt::text(body)),
         "derefTag": coalesce(tags[]->, []),
     }
@@ -76,9 +83,10 @@ export const PAGINATED_PROJECTS_QUERY = defineQuery(`
     }
 `);
 
-export const PROJECT_SLUGS_QUERY = defineQuery(`
+export const PROJECT_SLUGS_QUERY = defineQuery(`${IMAGE_UTILITIES}
     *[_type == "project" && defined(slug.current) && hidden != true] {
         ...,
+        "imageUrl": image::field(images[0]).asset.url,
         "visibleLinks": links[@.hidden != true],
         "derefTag": coalesce(tags[]->, []),
     }
