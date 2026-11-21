@@ -1,5 +1,7 @@
 import { posthog } from "posthog-js";
 
+import packageJson from "../../../package.json";
+
 /**
  * Start client-side PostHog analytics.
  *
@@ -11,5 +13,10 @@ export function initClientAnalytics() {
   posthog.init(import.meta.env.PUBLIC_POSTHOG_API_KEY, {
     api_host: import.meta.env.PUBLIC_POSTHOG_API_HOST,
     ui_host: import.meta.env.PUBLIC_POSTHOG_UI_HOST,
+    logs: {
+      serviceName: packageJson.name,
+      environment: import.meta.env.MODE,
+      captureConsoleLogs: true,
+    },
   });
 }

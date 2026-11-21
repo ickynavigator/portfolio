@@ -1,6 +1,18 @@
 import { env, waitUntil } from "cloudflare:workers";
 import { PostHog } from "posthog-node";
 
+import packageJson from "../../../package.json";
+
+export function getPostHogClient() {
+  return new PostHog(env.PUBLIC_POSTHOG_API_KEY, {
+    host: env.PUBLIC_POSTHOG_API_HOST,
+    logs: {
+      serviceName: packageJson.name,
+      environment: import.meta.env.MODE,
+    },
+  });
+}
+
 /**
  * Report a server-side exception to PostHog.
  *
@@ -11,9 +23,7 @@ import { PostHog } from "posthog-node";
 export function captureServerException(error: unknown) {
   if (import.meta.env.DEV) return;
 
-  const posthog = new PostHog(env.PUBLIC_POSTHOG_API_KEY, {
-    host: env.PUBLIC_POSTHOG_API_HOST,
-  });
+  const posthog = getPostHogClient();
 
   waitUntil(
     posthog

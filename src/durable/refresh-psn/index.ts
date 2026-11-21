@@ -7,6 +7,8 @@ import {
 } from "psn-api";
 import z from "zod";
 
+import { getPostHogClient } from "~/lib/analytics/server";
+
 const REFRESH_BUFFER_MS = 60 * 1000;
 const STORAGE_KEY = "authorization";
 
@@ -26,6 +28,8 @@ const StoredAuthorizationSchema = z.toZod<StoredAuthorization>()(
     expiresAt: z.number(),
   }),
 );
+
+const posthog = getPostHogClient();
 
 export class PsnAuth extends DurableObject<Env> {
   #renewing: Promise<StoredAuthorization> | undefined;
@@ -66,13 +70,21 @@ export class PsnAuth extends DurableObject<Env> {
     if (current) {
       try {
         console.log("Refreshing PSN authorization...");
+        posthog.logger.info("Refreshing PSN authorization...");
+
         return await exchangeRefreshTokenForAuthTokens(current.refreshToken);
       } catch (error) {
         console.warn("PSN refresh failed, reinitializing from NPSSO", error);
+        posthog.logger.warn("PSN refresh failed, reinitializing from NPSSO", {
+          name: error instanceof Error ? error.name : "UnknownError",
+          message: error instanceof Error ? error.message : "No message",
+          stack: error instanceof Error ? error.stack : "No stack",
+        });
       }
     }
 
     console.log("Initializing PSN authorization from NPSSO...");
+    posthog.logger.info("Initializing PSN authorization from NPSSO...");
     const accessCode = await exchangeNpssoForAccessCode(this.env.PSN_NPSSO);
     return exchangeAccessCodeForAuthTokens(accessCode);
   }
