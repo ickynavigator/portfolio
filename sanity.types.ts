@@ -517,28 +517,8 @@ export type POST_SLUGS_QUERY_RESULT = Array<{
 
 // Source: src/lib/sanity/queries.ts
 // Variable: CV_REF_QUERY
-// Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->
-export type CV_REF_QUERY_RESULT = {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash: string;
-  extension: string;
-  mimeType: string;
-  size: number;
-  assetId: string;
-  uploadId?: string;
-  path: string;
-  url: string;
-  source?: SanityAssetSourceData;
-} | null;
+// Query: *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->url
+export type CV_REF_QUERY_RESULT = string | null;
 
 // Source: src/lib/sanity/queries.ts
 // Variable: HOME_PAGE_QUERY
@@ -876,7 +856,7 @@ declare global {
   interface SanityQueries {
     '\n    {\n        "data": \n    *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {\n        _id,\n        title,\n        slug,\n        postedAt, \n        "image": images[0],\n        "wordCount": length(pt::text(body))\n    }\n,\n    }\n': PAGINATED_POSTS_QUERY_RESULT;
     '\n    fn image::asset($asset) = $asset->{url, metadata{lqip}};\n    fn image::field($image) = $image{crop, hotspot, alt, "asset": image::asset(asset)};\n\n    *[_type == "post" && defined(slug.current) && hidden != true] {\n        ...,\n        "imageUrl": image::field(images[0]).asset.url,\n        "wordCount": length(pt::text(body)),\n        "derefTag": coalesce(tags[]->, []),\n    }\n': POST_SLUGS_QUERY_RESULT;
-    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->\n': CV_REF_QUERY_RESULT;
+    '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].CV.file.asset->url\n': CV_REF_QUERY_RESULT;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0] {\n        name,\n        title,\n        tagline,\n        shortBio,\n        "selectedPosts": coalesce(\n            selectedPosts[]-> {\n                title,\n                description,\n                "slug": slug.current\n            },\n        []),\n        "selectedProjects": coalesce(\n            selectedProjects[]-> {\n                "slug": slug.current,\n                title,\n                "tags": tags[]-> {\n                    "slug": slug.current,\n                    "name": title,\n                },\n            },\n        []),\n    }\n': HOME_PAGE_QUERY_RESULT;
     '\n    {\n        "data": \n    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {\n        _id,\n        _createdAt,\n        title,\n        slug,\n        role,\n        "image": images[0]\n    }\n,\n    }\n': PAGINATED_PROJECTS_QUERY_RESULT;
     '\n    fn image::asset($asset) = $asset->{url, metadata{lqip}};\n    fn image::field($image) = $image{crop, hotspot, alt, "asset": image::asset(asset)};\n\n    *[_type == "project" && defined(slug.current) && hidden != true] {\n        ...,\n        "imageUrl": image::field(images[0]).asset.url,\n        "visibleLinks": links[@.hidden != true],\n        "derefTag": coalesce(tags[]->, []),\n    }\n': PROJECT_SLUGS_QUERY_RESULT;

@@ -36,7 +36,7 @@ export const POST_SLUGS_QUERY = defineQuery(`${IMAGE_UTILITIES}
 `);
 
 export const CV_REF_QUERY = defineQuery(`
-    *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].CV.file.asset->
+    *[_type == "personalInfo" && _id == "${PERSONAL_INFO_CONFIG_ID}"] [0].CV.file.asset->url
 `);
 
 export const HOME_PAGE_QUERY = defineQuery(`

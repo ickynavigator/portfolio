@@ -1,33 +1,12 @@
 ---
-import { buildFileUrl } from "@sanity/asset-utils";
-import { sanityClient } from "sanity:client";
-
 import { loadQuery } from "~/lib/sanity/load-query";
 import { CV_REF_QUERY } from "~/lib/sanity/queries";
 
 const { result } = await loadQuery({ query: CV_REF_QUERY });
-const sanityConfig = sanityClient.config();
 
-if (
-  result == null ||
-  result.assetId == null ||
-  result.url == null ||
-  result.extension == null ||
-  sanityConfig.projectId == null ||
-  sanityConfig.dataset == null
-) {
+if (result == null) {
   return Astro.redirect("/404");
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore - astro complains about the `url` variable being unused - related: https://github.com/withastro/language-tools/issues/476
-const url = buildFileUrl({
-  ...result,
-  assetId: result.assetId,
-  extension: result.extension,
-  projectId: sanityConfig.projectId,
-  dataset: sanityConfig.dataset,
-});
-
-return Astro.redirect(url, 302);
+return Astro.redirect(result, 302);
 ---
