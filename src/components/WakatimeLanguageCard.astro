@@ -48,6 +48,7 @@ const stringifiedChartData = JSON.stringify(chartData);
           yAxis: "name",
           getValue: (datum) => datum.total_seconds,
           formatText: (datum) => datum.text,
+          getColor: (datum) => datum.color,
         },
         label: this.dataset.label ?? "Wakatime Languages",
         description: data

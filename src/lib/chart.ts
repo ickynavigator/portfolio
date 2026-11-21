@@ -18,6 +18,7 @@ interface ChartOptions<TDatum> {
   xAxis: Channel<TDatum, number | null | undefined>;
   yAxis: Channel<TDatum, ChartValue | null | undefined>;
   getValue: (datum: TDatum) => number | null | undefined;
+  getColor?: (datum: TDatum) => string;
   formatText: (datum: TDatum) => string;
 }
 function makeChart<TDatum>(options: ChartOptions<TDatum>) {
@@ -29,6 +30,7 @@ function makeChart<TDatum>(options: ChartOptions<TDatum>) {
           x: options.xAxis,
           y: options.yAxis,
           radius: 8,
+          fill: (datum) => options.getColor?.(datum) ?? "var(--chart-1)",
         }),
 
         text(options.data, {
