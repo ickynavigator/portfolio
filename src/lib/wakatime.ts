@@ -1,94 +1,70 @@
+import dayjs from "dayjs";
 import z from "zod";
 
-interface WakatimeResponses {
-  [Wakatime.ENDPOINTS.statsWithRange]: WakatimeTypes.WakaTimeStats;
+const WAKATIME_EMBEDS = {
+  DAYS_7:
+    "https://wakatime.com/share/@ickynavigator/49b2ad27-4df0-4289-8b51-8890106e47fc.json",
+  DAYS_365:
+    "https://wakatime.com/share/@ickynavigator/d8b00654-da22-4438-80d8-63bf9cfcbdcf.json",
+  ALL_TIME:
+    "https://wakatime.com/share/@ickynavigator/baeb9f60-e229-46e2-bced-518590dc3865.json",
+};
+
+export type WakatimeRange = keyof typeof WAKATIME_EMBEDS;
+
+interface WakatimeEmbedData {
+  data: z.infer<typeof wakatimeLanguageSchema>[];
 }
 
-class Wakatime {
-  static ENDPOINTS = {
-    statsWithRange: "/api/v1/users/:user/stats/:range",
-  } as const;
+interface WakatimeDataOptions {
+  range?: WakatimeRange;
+}
+export async function getWakatimeData(options: WakatimeDataOptions) {
+  const range = options.range ?? "DAYS_7";
+  const selected = WAKATIME_EMBEDS[range];
+  let start, end, rangeLabel: string;
 
-  #API_KEY: string;
-  #API_BASE = new URL("https://wakatime.com/");
-
-  constructor(API_KEY: string) {
-    this.#API_KEY = Buffer.from(API_KEY).toString("base64");
+  switch (range) {
+    case "DAYS_7": {
+      start = dayjs().subtract(7, "day");
+      end = dayjs();
+      rangeLabel = "last 7 days";
+      break;
+    }
+    case "DAYS_365": {
+      start = dayjs().subtract(365, "day");
+      end = dayjs();
+      rangeLabel = "last 365 days";
+      break;
+    }
+    case "ALL_TIME": {
+      start = dayjs(0);
+      end = dayjs();
+      rangeLabel = "all time";
+      break;
+    }
   }
 
-  async #fetch<
-    const U extends Items<typeof Wakatime.ENDPOINTS>,
-    T = WakatimeResponses[U],
-  >(opts: {
-    url: U;
-    params: GetUrlParams<U>;
-    urlParams?: Partial<Record<string, string | boolean | number>>;
-  }) {
-    const params = opts.params ?? {};
-    let _url: string = opts.url;
+  const res = await fetch(selected);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const json = await res.json<WakatimeEmbedData>();
 
-    for (const [key, value] of Object.entries<string | number>(params)) {
-      _url = _url.replace(`:${key}`, value.toString());
-    }
-
-    const constructedUrl = new URL(_url, this.#API_BASE);
-
-    if (opts.urlParams) {
-      for (const [key, value] of Object.entries(opts.urlParams)) {
-        if (value === undefined) continue;
-        constructedUrl.searchParams.set(key, value.toString());
-      }
-    }
-
-    const response = await fetch(constructedUrl, {
-      headers: {
-        Authorization: `Basic ${this.#API_KEY}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-
-    return response.json<T>();
-  }
-
-  async getStatsWithRange(opts?: {
-    user?: Creatable<"current">;
-    range?: WakatimeTypes.Range;
-    /** The keystroke timeout value used to calculate these stats. Defaults the the user's keystroke timeout value. */
-    timeout?: number;
-    /** The writes_only value used to calculate these stats. Defaults to the user's writes_only setting. */
-    writes_only?: boolean;
-  }) {
-    return this.#fetch({
-      url: Wakatime.ENDPOINTS.statsWithRange,
-      params: {
-        user: opts?.user ?? "current",
-        range: opts?.range ?? "last_7_days",
-      },
-      urlParams: {
-        timeout: opts?.timeout,
-        writes_only: opts?.writes_only,
-      },
-    });
-  }
+  return {
+    data: json.data,
+    start,
+    end,
+    rangeLabel,
+  };
 }
 
-export type WakatimeLanguage =
-  WakatimeTypes.WakaTimeStats["data"]["languages"][number];
-
-export const wakatimeLanguageSchema = z.toZod<WakatimeLanguage>()(
-  z.object({
-    name: z.string(),
-    total_seconds: z.number(),
-    percent: z.number(),
-    digital: z.string(),
-    text: z.string(),
-    hours: z.number(),
-    minutes: z.number(),
-    seconds: z.number(),
-  }),
-);
-
-export default Wakatime;
+export const wakatimeLanguageSchema = z.object({
+  name: z.string(),
+  percent: z.number(),
+  color: z.string(),
+  decimal: z.string(),
+  digital: z.string(),
+  hours: z.number(),
+  minutes: z.number(),
+  text: z.string(),
+  total_seconds: z.number(),
+});

@@ -9,6 +9,7 @@ import {
 } from "@tanstack/charts";
 import { scaleBand } from "@tanstack/charts/scales/band";
 import { scaleLinear } from "@tanstack/charts/scales/linear";
+import z from "zod";
 
 import { ComponentBase } from "~/lib/utils.client";
 
@@ -70,8 +71,30 @@ function makeChart<TDatum>(options: ChartOptions<TDatum>) {
   );
 }
 
-export class ChartBase<TDatum> extends ComponentBase {
+export class ChartBase<
+  TSchema extends z.ZodObject,
+  TDatum = z.infer<TSchema>,
+> extends ComponentBase {
   host: ChartHost<TDatum, ChartValue, ChartValue> | null = null;
+  schema: TSchema;
+
+  constructor({ schema }: { schema: TSchema }) {
+    super();
+    this.schema = schema;
+  }
+
+  getSchemaWithPreprocess() {
+    return z.preprocess((arg) => {
+      if (typeof arg !== "string") {
+        return arg;
+      }
+      try {
+        return JSON.parse(arg);
+      } catch {
+        return arg;
+      }
+    }, this.schema.array());
+  }
 
   disconnectedCallback() {
     this.unmount();
