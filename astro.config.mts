@@ -2,7 +2,7 @@ import cloudflare from "@astrojs/cloudflare";
 import { cacheCloudflare } from "@astrojs/cloudflare/cache";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import sanity from "@sanity/astro";
+import sanity, { sanityImageService } from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 import { loadEnv } from "vite";
@@ -27,6 +27,11 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: "passthrough",
   }),
+
+  image: {
+    service: sanityImageService(),
+  },
+
   session: false,
 
   cache: {
