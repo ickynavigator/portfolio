@@ -8,9 +8,8 @@ import {
 } from "@tabler/icons-astro";
 import { cn } from "cn";
 
-interface Props extends Omit<IconProps, "className"> {
+interface Props extends IconProps {
   variant?: "regular" | "incomplete" | "quarter" | "with-inner";
-  class?: string;
   wrapperClass?: string;
 }
 
@@ -44,7 +43,7 @@ switch (variant) {
   <Component
     role="status"
     aria-label="Loading"
-    className={cn("size-4 animate-spin", _class)}
+    class={cn("size-4 animate-spin", _class)}
     {...props}
   />
 </div>

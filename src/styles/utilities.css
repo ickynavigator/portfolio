@@ -4,41 +4,6 @@
 @utility hover-link-icon {
   @apply text-primary hover:border-primary border-b-2 border-[--alpha(var(--muted-foreground)/.5)] font-semibold transition;
 }
-@utility relative-icon {
-  @apply size-[1em];
-}
-@utility progress-border {
-  @property --count {
-    syntax: "<number>";
-    inherits: true;
-    initial-value: 0;
-  }
-
-  --count: 0;
-  --progress-width: -0.125em;
-  --border-color: var(--border);
-
-  @keyframes counter {
-    from {
-      --count: 0;
-    }
-    to {
-      --count: 100;
-    }
-  }
-
-  animation: counter auto linear;
-
-  @apply bg-background relative border;
-  &::before {
-    @apply absolute top-(--progress-width) right-(--progress-width) bottom-(--progress-width) left-(--progress-width) -z-50 block bg-transparent bg-[conic-gradient(var(--border-color),var(--border-color)_calc(1%*var(--count)),transparent_calc(1%*var(--count)))] content-[""];
-  }
-}
-@utility no-js {
-  @media (scripting: none) {
-    display: none;
-  }
-}
 @utility tooltip {
   @apply relative;
 
@@ -64,7 +29,7 @@
   }
 }
 @utility marquee {
-  --var-slowdown: max(calc(var(--slowdown) * 1s), 0.1s);
+  --var-slowdown: max(calc(var(--slowdown, 5) * 1s), 0.1s);
   --var-count: var(--count);
 
   --duration: calc(var(--var-count) * var(--var-slowdown));
@@ -77,9 +42,11 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  container-type: inline-size;
 
   & > [data-marquee-item] {
     --delay: calc(var(--index) * var(--var-slowdown) - var(--duration));
+    flex-shrink: 0;
     will-change: translate;
     animation: marquee-slide var(--duration) var(--delay) infinite linear;
     translate: var(--origin-x) var(--origin-y);
@@ -88,18 +55,21 @@
   &[data-marquee-direction="horizontal"] {
     flex-direction: row;
     & > [data-marquee-item] {
-      --origin-x: calc(((var(--var-count) - var(--index)) + 1) * 100%);
+      /* start past the end of the strip, and never closer than the container's right edge */
+      --origin-x: max(
+        calc(((var(--var-count) - var(--index)) + 1) * 100%),
+        calc(100cqw - (var(--index) - 1) * 100%)
+      );
       --destination-x: calc(var(--index) * -100%);
     }
   }
 
-  &[data-marquee-control_hover-on-pause] {
+  &[data-marquee-pause-on-hover] {
     &:hover > [data-marquee-item] {
       animation-play-state: paused;
     }
   }
 }
-
 @keyframes marquee-slide {
   100% {
     translate: var(--destination-x) var(--destination-y);

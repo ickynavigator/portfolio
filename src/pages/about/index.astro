@@ -40,12 +40,10 @@ if (!result) {
 
       <PortableText data={result.bio} class="max-w-none" />
 
-      <div class="no-js">
-        <WakatimeStats />
-      </div>
+      <WakatimeStats server:defer />
 
       <PSNRecentlyPlayed server:defer />
-      <RecentlyPlayed />
+      <RecentlyPlayed server:defer />
     </Container>
   </NavLayout>
 </MainLayout>

@@ -3,7 +3,7 @@ import { VisualEditing } from "@sanity/astro/visual-editing";
 import { IconSearch } from "@tabler/icons-astro";
 import { env } from "cloudflare:workers";
 
-import headerIcon from "~/assets/fox.svg?raw";
+import HeaderIcon from "~/assets/fox.svg";
 import ActiveLink from "~/components/ActiveLink.astro";
 import Badge from "~/components/Badge.astro";
 import BirthdayAnnouncement from "~/components/BirthdayAnnouncement.astro";
@@ -45,8 +45,8 @@ const commitSHA = import.meta.env.WORKERS_CI_COMMIT_SHA;
     {isTodayBirthday && <BirthdayAnnouncement />}
     <nav class="flex items-center justify-between p-6">
       <div>
-        <a href="/" class="inline-flex gap-2 text-3xl font-bold">
-          <Fragment set:html={headerIcon} />
+        <a href="/" class="inline-flex gap-2 text-3xl font-bold items-center">
+          <HeaderIcon class="size-icon" />
           Obi Fortune
         </a>
       </div>
@@ -61,7 +61,7 @@ const commitSHA = import.meta.env.WORKERS_CI_COMMIT_SHA;
           slot="search"
           class="hover-link-icon data-[active-page='true']:border-primary"
         >
-          <IconSearch class="relative-icon" />
+          <IconSearch class="size-icon" />
           <span class="sr-only">{links.search.text}</span>
         </ActiveLink>
       </NavLinks>

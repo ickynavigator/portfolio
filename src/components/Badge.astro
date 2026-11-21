@@ -41,10 +41,6 @@ const {
 } = Astro.props;
 ---
 
-<Tag
-  {...props}
-  data-slot="badge"
-  class={cn(badgeVariants({ variant, animate, class: _class }))}
->
+<Tag {...props} class={cn(badgeVariants({ variant, animate, class: _class }))}>
   <slot />
 </Tag>

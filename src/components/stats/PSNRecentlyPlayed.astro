@@ -1,5 +1,6 @@
 ---
 import { captureServerException } from "~/lib/analytics/server";
+import { formatPlayDuration } from "~/lib/date";
 import { getPSNStats } from "~/lib/psn";
 
 const stats = await getPSNStats().catch((error: unknown) => {
@@ -13,13 +14,13 @@ const recentlyPlayed = stats?.recentlyPlayed ?? [];
   <ul
     class="marquee mt-4"
     data-marquee-direction="horizontal"
-    data-marquee-control_hover-on-pause
-    style={{ "--count": Math.max(recentlyPlayed.length, 1), "--slowdown": 5 }}
+    data-marquee-pause-on-hover
+    style={{ "--count": Math.max(recentlyPlayed.length, 1) }}
   >
     {recentlyPlayed.map((title, index) => (
       <li
         data-marquee-item
-        class="group relative aspect-square min-h-64 rounded-md bg-contain bg-center bg-no-repeat"
+        class="group relative aspect-square size-64 rounded-md bg-contain bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${title.imageUrl})`,
           "--index": index + 1,
@@ -28,12 +29,7 @@ const recentlyPlayed = stats?.recentlyPlayed ?? [];
         <div class="size-full p-4 transition not-group-hover:invisible group-hover:bg-black/70 group-hover:backdrop-blur-xs">
           {[
             ["Name", title.name],
-            [
-              "Playtime",
-              Temporal.Duration.from(title.playDuration).toLocaleString("en", {
-                style: "short",
-              }),
-            ],
+            ["Playtime", formatPlayDuration(title.playDuration)],
           ].map(([title, value]) => (
             <div class="text-sm font-semibold text-white">
               {title}: {value}

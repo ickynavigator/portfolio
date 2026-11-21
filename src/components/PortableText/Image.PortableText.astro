@@ -1,10 +1,10 @@
 ---
 import SanityImage from "~/components/SanityImage.astro";
-import type { SanityImageAsset } from "~/t/sanity";
+import type { SanityImageValue } from "~/lib/sanity/types";
 
 interface Props {
   node: {
-    asset: SanityImageAsset;
+    asset: SanityImageValue;
     alt: string;
   };
 }

@@ -81,7 +81,7 @@ const CodeIcon = magicCodeIcon(language);
 >
   <div class="bg-secondary flex items-center justify-between border-b px-2 py-2">
     <div class="inline-flex items-center gap-1 text-sm">
-      <CodeIcon class="relative-icon" />
+      <CodeIcon class="size-icon" />
       <span class="text-md">{title}</span>
     </div>
 
@@ -91,7 +91,7 @@ const CodeIcon = magicCodeIcon(language);
         name="show-numbers"
         class="hover:bg-accent size-6"
       >
-        <IconNumbers class="relative-icon" />
+        <IconNumbers class="size-icon" />
       </IconCheckbox>
 
       <CopyButton value={code} variant="default" size="icon-xs" />
@@ -157,7 +157,7 @@ const CodeIcon = magicCodeIcon(language);
           }
 
           &::after {
-            @apply absolute start-1 content-(--diff-content);
+            @apply absolute inset-s-1 content-(--diff-content);
           }
         }
 
@@ -208,7 +208,7 @@ const CodeIcon = magicCodeIcon(language);
 
         .line {
           &::before {
-            @apply absolute -start-(--left-position) w-(--code-spacing) border-s-4 border-transparent bg-(--bg-color)/(--alpha-offset) pe-1.5 text-right text-sm blur-none content-[counter(step)];
+            @apply absolute -inset-s-(--left-position) w-(--code-spacing) border-s-4 border-transparent bg-(--bg-color)/(--alpha-offset) pe-1.5 text-right text-sm blur-none content-[counter(step)];
 
             counter-increment: step;
           }

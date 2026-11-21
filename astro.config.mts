@@ -2,9 +2,9 @@ import cloudflare from "@astrojs/cloudflare";
 import { cacheCloudflare } from "@astrojs/cloudflare/cache";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import sanity from "@sanity/astro";
+import sanity, { sanityImageService } from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import { loadEnv } from "vite";
 
 import {
@@ -27,6 +27,11 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: "passthrough",
   }),
+
+  image: {
+    service: sanityImageService(),
+  },
+
   session: false,
 
   cache: {
@@ -36,6 +41,24 @@ export default defineConfig({
   build: {
     redirects: false,
   },
+
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "DM Sans",
+      cssVariable: "--font-dm-sans",
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Hepta Slab",
+      cssVariable: "--font-hepta-slab",
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Space Mono",
+      cssVariable: "--font-space-mono",
+    },
+  ],
 
   integrations: [
     react({}),
@@ -58,18 +81,6 @@ export default defineConfig({
     },
     build: {
       chunkSizeWarningLimit: 1000,
-      rolldownOptions: {
-        onwarn(warning, defaultHandler) {
-          if (
-            warning.code === "MODULE_LEVEL_DIRECTIVE" &&
-            warning.message.includes("use no memo")
-          ) {
-            return;
-          }
-
-          defaultHandler(warning);
-        },
-      },
     },
   },
 });
