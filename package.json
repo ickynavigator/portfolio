@@ -29,7 +29,6 @@
     "@sanity/client": "^8.17.0",
     "@sanity/code-input": "^7.3.16",
     "@sanity/icons": "^5.4.0",
-    "@sanity/image-url": "^2.2.0",
     "@sanity/ui": "^4.4.12",
     "@sanity/vision": "^6.24.0",
     "@sanity/visual-editing": "^6.2.1",

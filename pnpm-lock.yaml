@@ -208,9 +208,6 @@ importers:
       '@sanity/icons':
         specifier: ^5.4.0
         version: 5.4.0(react@19.3.1)
-      '@sanity/image-url':
-        specifier: ^2.2.0
-        version: 2.2.0
       '@sanity/ui':
         specifier: ^4.4.12
         version: 4.4.12(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))
