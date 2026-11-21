@@ -27,7 +27,7 @@
     "@oscarrc/crust": "^0.2.1",
     "@sanity/asset-utils": "^2.3.0",
     "@sanity/astro": "^4.1.0",
-    "@sanity/client": "^8.16.0",
+    "@sanity/client": "^8.17.0",
     "@sanity/code-input": "^7.3.16",
     "@sanity/icons": "^5.4.0",
     "@sanity/image-url": "^2.2.0",
