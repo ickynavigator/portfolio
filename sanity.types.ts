@@ -718,7 +718,7 @@ export type PROFILE_IMAGE_QUERY_RESULT = {
 
 // Source: src/lib/sanity/queries.ts
 // Variable: SEARCH_QUERY
-// Query: *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || references(*[_type == "category" && slug.current match $title ]._id) ) && hidden != true] {        _type,        title,        slug,        "tags": coalesce(tags[]->, []),    }
+// Query: *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || references(*[_type == "category" && slug.current match $title]._id) ) && hidden != true] {        _type,        title,        slug,        "tags": coalesce(tags[]->, []),    }
 export type SEARCH_QUERY_RESULT = Array<
   | {
       _type: "career";
@@ -862,7 +862,7 @@ declare global {
     '\n    fn image::asset($asset) = $asset->{url, metadata{lqip}};\n    fn image::field($image) = $image{crop, hotspot, alt, "asset": image::asset(asset)};\n\n    *[_type == "project" && defined(slug.current) && hidden != true] {\n        ...,\n        "imageUrl": image::field(images[0]).asset.url,\n        "visibleLinks": links[@.hidden != true],\n        "derefTag": coalesce(tags[]->, []),\n    }\n': PROJECT_SLUGS_QUERY_RESULT;
     '\n    {\n        "careers":  *[_type == "career" && hidden != true] {\n            ...,\n            "visibleLinks": coalesce(links[@.hidden != true], []),\n            "derefTag": coalesce(tags[]->, []),\n        },\n        "cvUpdatedAt": *[_type == "personalInfo" && _id == "personalInfo"][0].CV.file.asset->_updatedAt\n    }\n': CAREERS_QUERY_RESULT;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].image.asset->\n': PROFILE_IMAGE_QUERY_RESULT;
-    '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || references(*[_type == "category" && slug.current match $title ]._id) ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERY_RESULT;
+    '\n    *[_type in $type && ( title match $title || body[].children[].text match $title || description match $title || references(*[_type == "category" && slug.current match $title]._id) ) && hidden != true] {\n        _type,\n        title,\n        slug,\n        "tags": coalesce(tags[]->, []),\n    }\n': SEARCH_QUERY_RESULT;
     '\n    *[_type == "personalInfo" && _id == "personalInfo"] [0].uses\n': USES_QUERY_RESULT;
     '\n    {\n        "title": coalesce(*[_type == "configuration" && _id == "configuration"] [0].name, \'\'),\n        "description": coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].shortBio, ""),\n        "items": coalesce(*[_type == "post" && defined(slug.current) && hidden != true] | order(postedAt desc) {\n                    title,\n                    "pubDate": postedAt,\n                    description,\n                    "slug": slug.current,\n                    "categories": coalesce(tags[]->slug.current, []),\n                }, []),\n    }\n': RSS_FEED_QUERY_RESULT;
     '\n    coalesce(*[_type == "personalInfo" && _id == "personalInfo"] [0].socialLinks, [])\n': SOCIAL_LINKS_QUERY_RESULT;

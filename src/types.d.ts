@@ -10,6 +10,23 @@ type GetSegments<
     ? R
     : [...R, S];
 
+/** A letter changes under case conversion; digits and punctuation do not. */
+type IsLetter<C extends string> =
+  Uppercase<C> extends Lowercase<C> ? false : true;
+
+type IsIdentChar<C extends string> =
+  IsLetter<C> extends true ? true : C extends `${number}` | "_" ? true : false;
+
+/** Keep the leading identifier characters, stopping at the first other one. */
+type TakeIdent<
+  S extends string,
+  R extends string = "",
+> = S extends `${infer C}${infer Rest}`
+  ? IsIdentChar<C> extends true
+    ? TakeIdent<Rest, `${R}${C}`>
+    : R
+  : R;
+
 type ExtractValidSegments<
   Segs,
   Prefix extends string,
@@ -18,7 +35,13 @@ type ExtractValidSegments<
   _Segs = GetSegments<Segs, Separator>,
 > = _Segs extends [infer Curr, ...infer Rest]
   ? Curr extends `${Prefix}${infer Val}`
-    ? ExtractValidSegments<Rest, Prefix, Separator, [...R, Val], Rest>
+    ? ExtractValidSegments<
+        Rest,
+        Prefix,
+        Separator,
+        [...R, TakeIdent<Val>],
+        Rest
+      >
     : ExtractValidSegments<Rest, Prefix, Separator, R, Rest>
   : R[number];
 
