@@ -2,6 +2,7 @@ import { BoltIcon } from "@sanity/icons/Bolt";
 import { Text } from "@sanity/ui";
 import {
   defineField,
+  defineType,
   type BlockAnnotationDefinition,
   type BlockDecoratorDefinition,
   type BlockStyleDefinition,
@@ -96,7 +97,7 @@ export const BlockQuoteSuccess = _BlockQuoteBase("success");
 export const BlockQuoteWarning = _BlockQuoteBase("warning");
 export const BlockQuoteDanger = _BlockQuoteBase("danger");
 
-export const BlockLink = {
+export const BlockLink = defineType({
   type: "object",
   name: "link",
   title: "Link",
@@ -116,7 +117,7 @@ export const BlockLink = {
         }),
     }),
   ],
-};
+});
 
 export const BlockReferenceLink = {
   type: "object",

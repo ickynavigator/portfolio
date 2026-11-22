@@ -1,6 +1,7 @@
 // @ts-check
 
 import eslintPluginJs from "@eslint/js";
+import eslintPluginSanity from "@sanity-labs/eslint-plugin";
 import { plugin as eslintPluginShadcn } from "@shadcn/lint";
 import eslintPluginAstro from "eslint-plugin-astro";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
@@ -97,6 +98,7 @@ export default defineConfig(
   eslintPluginTs.configs.recommended,
   eslintPluginTs.configs.stylistic,
   eslintPluginAstro.configs.recommended,
+  eslintPluginSanity.configs.recommended,
   eslintPluginAstro.configs["jsx-a11y-strict"],
   myEslintPluginUnusedImports.configs.recommended,
   myEslintPluginShadcn.configs.recommended,
@@ -105,6 +107,9 @@ export default defineConfig(
     name: `${HEADER}`,
     rules: {
       "@typescript-eslint/no-empty-object-type": "off",
+      "sanity/schema-missing-icon": "off",
+      "sanity/schema-array-missing-constraints": "warn",
+      "sanity/schema-unnecessary-reference": "warn",
     },
   },
 );

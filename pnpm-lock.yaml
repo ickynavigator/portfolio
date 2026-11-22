@@ -320,6 +320,9 @@ importers:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.7.1
         version: 4.7.1(prettier@3.10.1)(supports-color@8.1.1)
+      '@sanity-labs/eslint-plugin':
+        specifier: ^1.1.4
+        version: 1.1.4(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(react@19.3.1)(sanity@6.24.0(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(@noble/hashes@2.4.0)(@rolldown/plugin-babel@0.3.1(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(rolldown@1.3.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(@types/node@26.6.6)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(bare-buffer@3.7.3)(esbuild@0.28.2)(jiti@2.7.0)(prismjs@1.30.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rolldown@1.3.3)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@8.1.1)(typescript@6.0.3))(supports-color@8.1.1)(typescript@6.0.3)
       '@shadcn/lint':
         specifier: ^0.2.5
         version: 0.2.5(@typescript-eslint/parser@8.73.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))
@@ -3847,15 +3850,41 @@ packages:
     resolution: {integrity: sha512-8zFgOrkpHc66ttydLVYX2gipJUZW58JOs2Ovmpx/QpBuhp758PyFPOxb2CvFkSzm1lgXO/8uvrN6HXEHCdNTcA==}
     engines: {node: '>=20.19 <22 || >=22.12'}
 
+  '@sanity-labs/eslint-plugin@1.1.4':
+    resolution: {integrity: sha512-htVbKkOxRCEl223q47fq2sho6gr4MTgyVso5W6sfmHsToIdlo5s3MffjwE6hUf9+vSZMGxlK/TjIcXEBNYjUGA==}
+    engines: {node: '>=22.3.0'}
+    peerDependencies:
+      eslint: '>=8.0.0'
+
+  '@sanity-labs/groq-lint@1.3.2':
+    resolution: {integrity: sha512-kGuL/XwCyJrVXl7dwtX6DRdeyBj1swFRsbijoQl2CyPHi609TUvh/Ii9XIPolEUS3FNVgPFU2n/A9Uu24gkhHw==}
+    engines: {node: '>=22.3.0'}
+    hasBin: true
+
   '@sanity-labs/groq-wasm@1.2.4':
     resolution: {integrity: sha512-siiz3C8NKZy3z+maE88pGFbwLCs98mtoNP4tSaolRZ0s9offJLLOPLt4kBoMsqOLnaYUI9l54O6RJ8YcR0d7EA==}
     engines: {node: '>=22.3.0'}
+
+  '@sanity-labs/lint-core@1.0.4':
+    resolution: {integrity: sha512-TUB5PkBarF5LK+2i8drP3MMcvlIidKN3w0vTdfWKAjq9HQHZqWOTZpznaLJNYj1bau5+XlKLG2vZDceCZY6dIg==}
+    engines: {node: '>=22.3.0'}
+    peerDependencies:
+      vitest: '>=2.0.0'
+    peerDependenciesMeta:
+      vitest:
+        optional: true
 
   '@sanity-labs/oclif-plugin-skills-flag@0.2.1':
     resolution: {integrity: sha512-DCuefzB+ZcI7pc68up/T0TExeS98MAA2Rcy6vEwQLv86XCku3KHm7v2NNNLQ65PYqNVOil6kPIUefi/6pxQf+w==}
     engines: {node: '>=22'}
     peerDependencies:
       '@oclif/core': ^4.0.0
+
+  '@sanity-labs/schema-lint@1.0.5':
+    resolution: {integrity: sha512-ACNMEbNenRlVIJY3qH0WLJ92kq68VS5poLYibg3t32QQiHk2XnnwUtFHSf+K76aLp83i6MCgZS6NjSE3IqCYgA==}
+    engines: {node: '>=22.3.0'}
+    peerDependencies:
+      sanity: '>=3.67.0'
 
   '@sanity/access-ui@6.24.0':
     resolution: {integrity: sha512-CPxYVaaByeKTgqQ4iSifDxDae9lNg9t8EvZq0nyHDHAw9Hy52Nh0JEcIvV2+29ooYNOZButZNWGyRyhUyIzbGw==}
@@ -12118,11 +12147,49 @@ snapshots:
 
   '@sanity-labs/design-tokens@0.0.2-alpha.11': {}
 
+  '@sanity-labs/eslint-plugin@1.1.4(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(react@19.3.1)(sanity@6.24.0(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(@noble/hashes@2.4.0)(@rolldown/plugin-babel@0.3.1(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(rolldown@1.3.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(@types/node@26.6.6)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(bare-buffer@3.7.3)(esbuild@0.28.2)(jiti@2.7.0)(prismjs@1.30.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rolldown@1.3.3)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@8.1.1)(typescript@6.0.3))(supports-color@8.1.1)(typescript@6.0.3)':
+    dependencies:
+      '@sanity-labs/groq-lint': 1.3.2(react@19.3.1)(supports-color@8.1.1)(typescript@6.0.3)
+      '@sanity-labs/lint-core': 1.0.4
+      '@sanity-labs/schema-lint': 1.0.5(sanity@6.24.0(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(@noble/hashes@2.4.0)(@rolldown/plugin-babel@0.3.1(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(rolldown@1.3.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(@types/node@26.6.6)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(bare-buffer@3.7.3)(esbuild@0.28.2)(jiti@2.7.0)(prismjs@1.30.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rolldown@1.3.3)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@8.1.1)(typescript@6.0.3))
+      eslint: 10.15.0(jiti@2.7.0)(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - oxfmt
+      - react
+      - sanity
+      - supports-color
+      - typescript
+      - vitest
+
+  '@sanity-labs/groq-lint@1.3.2(react@19.3.1)(supports-color@8.1.1)(typescript@6.0.3)':
+    dependencies:
+      '@sanity-labs/groq-wasm': 1.2.4
+      '@sanity-labs/lint-core': 1.0.4
+      '@sanity/codegen': 8.3.4(react@19.3.1)(supports-color@8.1.1)(typescript@6.0.3)
+      groq-js: 2.0.3
+    transitivePeerDependencies:
+      - oxfmt
+      - react
+      - supports-color
+      - typescript
+      - vitest
+
   '@sanity-labs/groq-wasm@1.2.4': {}
+
+  '@sanity-labs/lint-core@1.0.4':
+    dependencies:
+      groq-js: 2.0.3
 
   '@sanity-labs/oclif-plugin-skills-flag@0.2.1(@oclif/core@4.14.0)':
     dependencies:
       '@oclif/core': 4.14.0
+
+  '@sanity-labs/schema-lint@1.0.5(sanity@6.24.0(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(@noble/hashes@2.4.0)(@rolldown/plugin-babel@0.3.1(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(rolldown@1.3.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(@types/node@26.6.6)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(bare-buffer@3.7.3)(esbuild@0.28.2)(jiti@2.7.0)(prismjs@1.30.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rolldown@1.3.3)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@8.1.1)(typescript@6.0.3))':
+    dependencies:
+      '@sanity-labs/lint-core': 1.0.4
+      sanity: 6.24.0(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(@noble/hashes@2.4.0)(@rolldown/plugin-babel@0.3.1(@babel/core@7.29.13(supports-color@8.1.1))(@babel/runtime@7.29.15)(rolldown@1.3.3)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(@types/node@26.6.6)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(bare-buffer@3.7.3)(esbuild@0.28.2)(jiti@2.7.0)(prismjs@1.30.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(rolldown@1.3.3)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@8.1.1)(typescript@6.0.3)
+    transitivePeerDependencies:
+      - vitest
 
   '@sanity/access-ui@6.24.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))':
     dependencies:
