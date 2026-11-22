@@ -1,7 +1,7 @@
 import { LastFm } from "@imikailoby/lastfm-ts";
 import { env } from "cloudflare:workers";
 
-export function createLastFMInstance() {
+function createLastFMInstance() {
   const lastFm = new LastFm(env.LASTFM_API_KEY);
 
   return {

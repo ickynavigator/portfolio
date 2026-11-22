@@ -38,6 +38,3 @@ export const getTagsFromBody = (
 
   return tags;
 };
-
-export const MAX_AGE = 120; // seconds
-export const SWR = 60; // seconds

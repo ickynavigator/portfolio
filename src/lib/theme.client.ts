@@ -17,12 +17,11 @@ export class ThemeSwitcher extends ComponentBase {
   $initialize() {
     const storedTheme = this.store.getTheme();
     let ignoreSystemTheme =
-      storedTheme != null &&
-      storedTheme !== ThemeSwitcherBase.themes.enum.SYSTEM;
+      storedTheme != null && storedTheme !== ThemeSwitcherBase.enum.SYSTEM;
 
     this.store.subscribe(() => {
       if (ignoreSystemTheme) return;
-      this.$updateTheme(ThemeSwitcherBase.themes.enum.SYSTEM);
+      this.$updateTheme(ThemeSwitcherBase.enum.SYSTEM);
     });
 
     this.querySelectorAll(
@@ -40,13 +39,13 @@ export class ThemeSwitcher extends ComponentBase {
         );
 
         switch (selectedTheme) {
-          case ThemeSwitcherBase.themes.enum.LIGHT:
-          case ThemeSwitcherBase.themes.enum.DARK: {
+          case ThemeSwitcherBase.enum.LIGHT:
+          case ThemeSwitcherBase.enum.DARK: {
             this.store.setTheme(selectedTheme);
             ignoreSystemTheme = true;
             break;
           }
-          case ThemeSwitcherBase.themes.enum.SYSTEM: {
+          case ThemeSwitcherBase.enum.SYSTEM: {
             this.store.removeTheme();
             ignoreSystemTheme = false;
             break;
@@ -69,23 +68,19 @@ export class ThemeSwitcher extends ComponentBase {
   $updateTheme(incomingTheme: Theme) {
     let _incomingTheme = incomingTheme ?? ThemeSwitcherBase.DEFAULT_THEME;
 
-    if (incomingTheme == ThemeSwitcherBase.themes.enum.SYSTEM) {
+    if (incomingTheme == ThemeSwitcherBase.enum.SYSTEM) {
       _incomingTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? ThemeSwitcherBase.themes.enum.DARK
-        : ThemeSwitcherBase.themes.enum.LIGHT;
+        ? ThemeSwitcherBase.enum.DARK
+        : ThemeSwitcherBase.enum.LIGHT;
     }
 
     switch (_incomingTheme) {
-      case ThemeSwitcherBase.themes.enum.LIGHT: {
-        document.documentElement.classList.remove(
-          ThemeSwitcherBase.themes.enum.DARK,
-        );
+      case ThemeSwitcherBase.enum.LIGHT: {
+        document.documentElement.classList.remove(ThemeSwitcherBase.enum.DARK);
         break;
       }
-      case ThemeSwitcherBase.themes.enum.DARK: {
-        document.documentElement.classList.add(
-          ThemeSwitcherBase.themes.enum.DARK,
-        );
+      case ThemeSwitcherBase.enum.DARK: {
+        document.documentElement.classList.add(ThemeSwitcherBase.enum.DARK);
         break;
       }
     }

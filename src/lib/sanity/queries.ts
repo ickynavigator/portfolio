@@ -3,26 +3,21 @@ import { defineQuery } from "groq";
 import { CONFIGURATION_CONFIG_ID, PERSONAL_INFO_CONFIG_ID } from "../constants";
 
 // @sanity-typegen-ignore
-export const IMAGE_UTILITIES = defineQuery(`
+const IMAGE_UTILITIES = defineQuery(`
     fn image::asset($asset) = $asset->{url, metadata{lqip}};
     fn image::field($image) = $image{crop, hotspot, alt, "asset": image::asset(asset)};
 `);
 
-// @sanity-typegen-ignore
-export const POSTS_QUERY = defineQuery(`
-    *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {
-        _id,
-        title,
-        slug,
-        postedAt, 
-        "image": images[0],
-        "wordCount": length(pt::text(body))
-    }
-`);
-
 export const PAGINATED_POSTS_QUERY = defineQuery(`
     {
-        "data": ${POSTS_QUERY},
+        "data": *[_type == "post" && defined(slug.current) && hidden != true && archived != true] | order(postedAt desc) {
+            _id,
+            title,
+            slug,
+            postedAt, 
+            "image": images[0],
+            "wordCount": length(pt::text(body))
+        }
     }
 `);
 
@@ -65,21 +60,16 @@ export const HOME_PAGE_QUERY = defineQuery(`
     }
 `);
 
-// @sanity-typegen-ignore
-export const PROJECTS_QUERY = defineQuery(`
-    *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {
-        _id,
-        _createdAt,
-        title,
-        slug,
-        role,
-        "image": images[0]
-    }
-`);
-
 export const PAGINATED_PROJECTS_QUERY = defineQuery(`
     {
-        "data": ${PROJECTS_QUERY},
+        "data": *[_type == "project" && defined(slug.current) && hidden != true && archived != true] | order(_createdAt desc) {
+            _id,
+            _createdAt,
+            title,
+            slug,
+            role,
+            "image": images[0]
+        }
     }
 `);
 

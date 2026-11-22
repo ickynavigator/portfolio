@@ -211,7 +211,6 @@ export const metaSchema = z
   })
   .partial();
 
-export type Meta = z.infer<typeof metaSchema>;
 export type MetaInput = z.input<typeof metaSchema>;
 
 export type MetaBase = (ctx: { appUrl: URL }) => MetaInput | Promise<MetaInput>;

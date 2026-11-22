@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "tags": [
+    "-lintignore"
+  ],
+  "ignore": [
+    "./sanity.types.ts",
+    // Temp ignore for drawer component
+    "./src/components/ui/drawer.tsx"
+  ]
+}

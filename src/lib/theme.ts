@@ -1,19 +1,18 @@
-import * as z from "zod";
-
-export type Theme = z.infer<typeof ThemeSwitcherBase.themes>;
+export type Theme =
+  (typeof ThemeSwitcherBase.enum)[keyof typeof ThemeSwitcherBase.enum];
 
 export class ThemeSwitcherBase {
   static DEFAULT_THEME = "dark";
-  static themes = z.enum({
-    DARK: "dark",
-    LIGHT: "light",
-    SYSTEM: "system",
-  });
+  static enum = { DARK: "dark", LIGHT: "light", SYSTEM: "system" } as const;
   static validateTheme(theme: unknown): Theme {
-    return ThemeSwitcherBase.themes
-      .default("system")
-      .catch("system")
-      .parse(theme);
+    switch (theme) {
+      case ThemeSwitcherBase.enum.DARK:
+      case ThemeSwitcherBase.enum.LIGHT:
+      case ThemeSwitcherBase.enum.SYSTEM:
+        return theme;
+      default:
+        return ThemeSwitcherBase.enum.SYSTEM;
+    }
   }
 }
 
@@ -27,8 +26,9 @@ export interface ThemeSwitcherStore {
 export class ThemeSwitcherStoreLocalStorage implements ThemeSwitcherStore {
   STORAGE_KEY = "theme";
   getTheme() {
-    const storedTheme = localStorage.getItem(this.STORAGE_KEY);
-    return ThemeSwitcherBase.validateTheme(storedTheme);
+    return ThemeSwitcherBase.validateTheme(
+      localStorage.getItem(this.STORAGE_KEY),
+    );
   }
   setTheme(theme: Theme) {
     localStorage.setItem(this.STORAGE_KEY, theme);
@@ -46,32 +46,12 @@ export class ThemeSwitcherStoreLocalStorage implements ThemeSwitcherStore {
   }
 }
 
-export class ThemeSwitcherEvent {
-  static EVENT_NAME = "themechange";
-  event: CustomEvent<{ theme: Theme }>;
+export class ThemeSwitcherEvent extends CustomEvent<{ theme: Theme }> {
+  static readonly EVENT_NAME = "themechange";
   constructor(theme: Theme) {
-    this.event = new CustomEvent("themechange", { detail: { theme } });
+    super(ThemeSwitcherEvent.EVENT_NAME, { detail: { theme } });
   }
   dispatch() {
-    document.dispatchEvent(this.event);
-  }
-}
-
-export class ThemeSwitcherSubscriber {
-  subscribe(onChange: () => void) {
-    document.addEventListener(ThemeSwitcherEvent.EVENT_NAME, onChange);
-    return () => {
-      document.removeEventListener(ThemeSwitcherEvent.EVENT_NAME, onChange);
-    };
-  }
-
-  getIsDark() {
-    return document.documentElement.classList.contains(
-      ThemeSwitcherBase.themes.enum.DARK,
-    );
-  }
-
-  getIsDark_server() {
-    return true;
+    document.dispatchEvent(this);
   }
 }
