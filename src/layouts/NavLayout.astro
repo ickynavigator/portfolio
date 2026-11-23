@@ -115,11 +115,10 @@ const commitSHA = import.meta.env.WORKERS_CI_COMMIT_SHA;
       <div class="inline-flex flex-col md:inline">
         <span>
           <ActiveLink {...links.uses} />;
-        </span>
-
+        </span>{" "}
         <span>
           <ActiveLink {...links.rss} />;
-        </span>
+        </span>{" "}
         {commitSHA && (
           <span>
             Build SHA:
