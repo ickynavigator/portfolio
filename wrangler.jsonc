@@ -55,6 +55,5 @@
 			"SANITY_REVALIDATE_SECRET",
 			"SANITY_API_READ_TOKEN"
 		]
-	},
-	"previews": {},
+	}
 }
