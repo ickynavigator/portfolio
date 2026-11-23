@@ -1,7 +1,6 @@
 ---
 import { IconMenu2 } from "@tabler/icons-astro";
 
-import MobileNavMenu from "~/components/MobileNavMenu";
 import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
 ---
 
@@ -13,9 +12,24 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
     <ThemeSwitcher id="md" />
   </div>
 
-  <div class="noscript:hidden md:hidden">
-    <MobileNavMenu client:load>
-      <div class="my-10 flex flex-col items-center gap-10">
+  <div class="md:hidden">
+    <button
+      popovertarget="navigation-menu"
+      aria-label="Open Navigation Menu"
+      title="Open menu"
+    >
+      <IconMenu2 />
+      <span class="sr-only">Toggle Menu</span>
+    </button>
+
+    <div popover id="navigation-menu" class="py-6">
+      <div>
+        <h1 class="text-center text-lg leading-none font-semibold tracking-tight">
+          Obi Fortune
+        </h1>
+      </div>
+
+      <div class="mt-16 flex flex-col items-center gap-10">
         <div class="flex flex-col items-center gap-4">
           <slot />
         </div>
@@ -25,69 +39,64 @@ import ThemeSwitcher from "~/components/ThemeSwitcher.astro";
           <ThemeSwitcher id="xs" />
         </div>
       </div>
-    </MobileNavMenu>
-  </div>
-
-  <noscript>
-    <div class="md:hidden">
-      <button
-        popovertarget="navigation-menu"
-        aria-label="Open Navigation Menu"
-        title="Open menu"
-      >
-        <IconMenu2 />
-        <span class="sr-only">Toggle Menu</span>
-      </button>
-
-      <div popover id="navigation-menu">
-        <div class="mt-10">
-          <div class="text-center">
-            <h1 class="text-center text-lg leading-none font-semibold tracking-tight">
-              Obi Fortune
-            </h1>
-          </div>
-
-          <div class="my-10 flex flex-col items-center gap-10">
-            <div class="flex flex-col items-center gap-4">
-              <slot />
-            </div>
-
-            <div class="flex flex-col items-center gap-4">
-              <slot name="search" />
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </noscript>
+  </div>
 </div>
 
 <style is:global>
   @reference "../styles/globals.css";
 
-  body,
-  [data-vaul-drawer-wrapper] {
-    @apply transition-transform duration-500 ease-in-out;
+  :root {
+    --drawer-animation-duration: 500ms;
+    --drawer-animation-timing: cubic-bezier(0.32, 0.72, 0, 1);
   }
 
   body:has(#navigation-menu:popover-open) {
-    background-color: var(--color-foreground);
-    @apply pointer-events-none overflow-hidden overscroll-contain;
+    @apply overflow-hidden overscroll-contain;
+  }
 
-    & [data-vaul-drawer-wrapper] {
-      @apply overflow-clip rounded-lg border;
-
-      transform-origin: center top;
-      transform: scale(0.9754716981132076)
-        translate3d(0, calc(env(safe-area-inset-top) + 14px), 0);
+  @keyframes drawer-in {
+    from {
+      translate: 0 calc(100%);
     }
   }
 
-  :popover-open {
-    @apply bg-background fixed inset-[unset] inset-x-0 bottom-0 z-50 h-96 w-full rounded-t-md border;
+  @keyframes drawer-backdrop-in {
+    from {
+      opacity: 0;
+    }
   }
 
-  ::backdrop {
-    @apply bg-black/80;
+  #navigation-menu {
+    @apply bg-background fixed inset-[unset] inset-x-2 bottom-2 z-50 h-auto max-h-[80vh] w-auto translate-y-[calc(100%+1rem)] overscroll-contain rounded-xl border;
+
+    &,
+    &::backdrop {
+      transition:
+        translate var(--drawer-animation-duration)
+          var(--drawer-animation-timing),
+        overlay var(--drawer-animation-duration) allow-discrete,
+        display var(--drawer-animation-duration) allow-discrete;
+    }
+
+    &:popover-open {
+      @apply translate-y-0;
+      animation-name: drawer-in;
+
+      &,
+      &::backdrop {
+        animation-timing-function: var(--drawer-animation-timing);
+        animation-duration: var(--drawer-animation-duration);
+      }
+
+      &::backdrop {
+        @apply opacity-100;
+        animation-name: drawer-backdrop-in;
+      }
+    }
+
+    &::backdrop {
+      @apply bg-black/50 opacity-0;
+    }
   }
 </style>

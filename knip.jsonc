@@ -4,8 +4,6 @@
     "-lintignore"
   ],
   "ignore": [
-    "./sanity.types.ts",
-    // Temp ignore for drawer component
-    "./src/components/ui/drawer.tsx"
+    "./sanity.types.ts"
   ]
 }

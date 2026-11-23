@@ -1,6 +1,6 @@
 ---
+import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
-import Font from "astro/components/Font.astro";
 
 import Meta from "~/components/Meta.astro";
 import Posthog from "~/components/Posthog.astro";
@@ -15,7 +15,10 @@ interface Props {
 }
 ---
 
-<html lang="en">
+<html
+  lang="en"
+  class="scrollbar-gutter-stable scrollbar-thin scrollbar-thumb-muted-foreground"
+>
   <head>
     <meta
       name="theme-color"
@@ -58,8 +61,8 @@ interface Props {
     </script>
   </head>
 
-  <body class="bg-background text-foreground scrollbar-thumb-muted-foreground scrollbar-thumb-rounded-full">
-    <div data-vaul-drawer-wrapper class="flex w-full flex-col items-center">
+  <body class="bg-background text-foreground">
+    <div class="flex w-full flex-col items-center">
       <slot />
     </div>
     <Toaster />
