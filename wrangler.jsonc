@@ -53,8 +53,7 @@
 			"LASTFM_API_KEY",
 			"PSN_NPSSO",
 			"SANITY_REVALIDATE_SECRET",
-			"SANITY_API_READ_TOKEN",
-			"WAKATIME_API_KEY"
+			"SANITY_API_READ_TOKEN"
 		]
 	},
 	"previews": {},

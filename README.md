@@ -16,7 +16,6 @@ Fill up the .dev.vars file with the variables in the .env.example
 | `PUBLIC_POSTHOG_API_KEY`               | API key for Posthog                                              |
 | `PUBLIC_POSTHOG_API_HOST`              | Host for Posthog events. Defaults to `https://us.i.posthog.com`  |
 | `PUBLIC_POSTHOG_UI_HOST`               | UI Host for Posthog events. Defaults to `https://us.posthog.com` |
-| `WAKATIME_API_KEY`                     | API key for the wakatime API                                     |
 | `LASTFM_API_KEY`                       | Last.fm API key                                                  |
 | `LASTFM_USER`                          | Last.fm username                                                 |
 | `PSN_NPSSO`                            | PSN NPSSO token                                                  |
