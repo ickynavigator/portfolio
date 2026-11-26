@@ -224,8 +224,8 @@ importers:
         specifier: ^4.6.0
         version: 4.6.0
       '@tabler/icons-astro':
-        specifier: ^3.52.0
-        version: 3.52.0(astro@7.4.13(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+        specifier: ^3.53.0
+        version: 3.53.0(astro@7.4.13(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
       '@tailwindcss/forms':
         specifier: ^0.5.11
         version: 0.5.11(tailwindcss@4.3.5)
@@ -3939,13 +3939,13 @@ packages:
   '@speed-highlight/core@1.2.24':
     resolution: {integrity: sha512-qeW2e1l78afw8VhRPfPQ1Gjj+KU5XFQ/OFV5ti6eTa9bruO7mJyZtA4vw0ofqmA3tKCkROE9xLk3VZoeRc98nw==}
 
-  '@tabler/icons-astro@3.52.0':
-    resolution: {integrity: sha512-sIqcH8JJpx8+Z+DSq26z2aB4xj69t94Ftqh3UdKOQw4zhshV2sWINIlJ37GHrGRtjnFO7kqEB3WXBmkpVY2h1g==}
+  '@tabler/icons-astro@3.53.0':
+    resolution: {integrity: sha512-ojWzKhDn8QTON77RlMiEAerfJdfF7LbCc38Ch40apBHDdfDta82dO6jfFkx3DepjsSE0hQfuod4oj6NBi9ITFw==}
     peerDependencies:
       astro: '>=4.0.0'
 
-  '@tabler/icons@3.52.0':
-    resolution: {integrity: sha512-dldKlJNfO/gZnGLcIY0X2EFFKIMGwL/rEvTqglvBgAPFiwj9pZOCN5V3Sf0Gyjq6foX4VQmLdOmsS4w5FdWKAw==}
+  '@tabler/icons@3.53.0':
+    resolution: {integrity: sha512-7V77PESErZob7+Ie4ibDs9tjRoMmZyjr3RpxRK3KLJejwggzxrkhVunbQ7xGYewjwdUyPc6dHpMvvft0prkkzQ==}
 
   '@tailwindcss/forms@0.5.11':
     resolution: {integrity: sha512-h9wegbZDPurxG22xZSoWtdzc41/OlNEUQERNqI/0fOwa2aVlWGu7C35E/x6LDyD3lgtztFSSjKZyuVM0hxhbgA==}
@@ -12177,12 +12177,12 @@ snapshots:
 
   '@speed-highlight/core@1.2.24': {}
 
-  '@tabler/icons-astro@3.52.0(astro@7.4.13(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))':
+  '@tabler/icons-astro@3.53.0(astro@7.4.13(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))':
     dependencies:
-      '@tabler/icons': 3.52.0
+      '@tabler/icons': 3.53.0
       astro: 7.4.13(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
 
-  '@tabler/icons@3.52.0': {}
+  '@tabler/icons@3.53.0': {}
 
   '@tailwindcss/forms@0.5.11(tailwindcss@4.3.5)':
     dependencies:
