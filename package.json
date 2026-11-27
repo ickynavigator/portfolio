@@ -31,7 +31,7 @@
     "@sanity/client": "^8.17.0",
     "@sanity/code-input": "^7.3.16",
     "@sanity/icons": "^5.4.0",
-    "@sanity/ui": "^4.4.12",
+    "@sanity/ui": "^4.4.13",
     "@sanity/vision": "^6.25.0",
     "@sanity/webhook": "^4.0.4",
     "@shikijs/colorized-brackets": "^4.6.0",
