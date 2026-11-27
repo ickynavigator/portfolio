@@ -270,11 +270,11 @@ importers:
         specifier: ^0.13.1
         version: 0.13.1
       posthog-js:
-        specifier: ^1.455.2
-        version: 1.455.2(@types/react@19.3.3)(react@19.3.1)
+        specifier: ^1.455.4
+        version: 1.455.4(@types/react@19.3.3)(react@19.3.1)
       posthog-node:
-        specifier: ^6.1.0
-        version: 6.1.0(rxjs@7.8.2)
+        specifier: ^6.2.0
+        version: 6.2.0(rxjs@7.8.2)
       psn-api:
         specifier: ^2.18.1
         version: 2.18.1
@@ -6602,8 +6602,8 @@ packages:
     resolution: {integrity: sha512-RVHEU9/Pp1Fnjr/MpAJsZoADukCKhfIi15OunEYiGktIkYLkPVvC1sioWolGDS7XByMTx9m/IGbro0Js13zhnQ==}
     engines: {node: ^10 || ^12 || >=14}
 
-  posthog-js@1.455.2:
-    resolution: {integrity: sha512-nsKTiEYYqG+ksVEg3h7cjqszY89l3S1TPTgemEzkRSWgExOpEBb0XAHu217S2/YslG78ieiOv1ZHE5KSOU88WA==}
+  posthog-js@1.455.4:
+    resolution: {integrity: sha512-CTuF1QH/Xa2hBjrfH7YABVE+vrB5u9WaFR1hicJ5bPJvRZZFSgyyNoQULGY+8cSVNqcDQIE6O31+b1Iwyd9++w==}
     peerDependencies:
       '@types/react': '>=16.8.0'
       react: '>=16.8.0'
@@ -6613,8 +6613,8 @@ packages:
       react:
         optional: true
 
-  posthog-node@6.1.0:
-    resolution: {integrity: sha512-rqvdFmFbzdoHviJ5nES68DYoKRhoHtB36m8+g4ehVcgnaKMj8iKh84FS2lKXkiTha5CKFhJGi1qLl8aivSdfEg==}
+  posthog-node@6.2.0:
+    resolution: {integrity: sha512-JCmtC5Uejbn47gNQqbyNx2YDueLMnsAQ/CIvUaHqghkmOSXGdy4OaQSSUv1Yx7hRZvKDmTKjGwAM+rdMLQ4qjw==}
     engines: {node: ^20.20.0 || >=22.22.0}
     peerDependencies:
       '@opentelemetry/api': ^1.2.0
@@ -14845,7 +14845,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.4
 
-  posthog-js@1.455.2(@types/react@19.3.3)(react@19.3.1):
+  posthog-js@1.455.4(@types/react@19.3.3)(react@19.3.1):
     dependencies:
       '@posthog/browser-common': 0.14.2
       '@posthog/core': 1.69.2
@@ -14863,7 +14863,7 @@ snapshots:
     transitivePeerDependencies:
       - preact-render-to-string
 
-  posthog-node@6.1.0(rxjs@7.8.2):
+  posthog-node@6.2.0(rxjs@7.8.2):
     dependencies:
       '@posthog/core': 1.69.2
     optionalDependencies:
