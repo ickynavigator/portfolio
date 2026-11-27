@@ -340,8 +340,8 @@ importers:
         specifier: ^10.1.8
         version: 10.1.8(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))
       eslint-plugin-astro:
-        specifier: ^3.2.1
-        version: 3.2.1(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint-plugin-jsx-a11y-x@0.2.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript-eslint@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))
+        specifier: ^3.2.2
+        version: 3.2.2(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint-plugin-jsx-a11y-x@0.2.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript-eslint@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))
       eslint-plugin-jsx-a11y-x:
         specifier: ^0.2.0
         version: 0.2.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))
@@ -5238,8 +5238,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-plugin-astro@3.2.1:
-    resolution: {integrity: sha512-IgU7LIkpEg0r6bQGwc3Ck5jHgkUk3rOrEfRhUxDtMx/M0GD3SG/turMtvwj989KRR12Wt1l89faZ5ynjvVL7hg==}
+  eslint-plugin-astro@3.2.2:
+    resolution: {integrity: sha512-ZsrlDNiYxUEz5YMM8z2YM/e44+0KOW4nxPkmeJPt4sIzyXhkEFLWcRSpU0oS9Rf7sl4wuf1pAC7CHNRb1lttCg==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
     peerDependencies:
       '@typescript-eslint/parser': '>=8.61.0'
@@ -7245,10 +7245,6 @@ packages:
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
-
-  synckit@0.11.13:
-    resolution: {integrity: sha512-eNRKgb3z66Yp3D2CixVujOUvXLFUTij/zVnV8KRyvFdQwpz7I5DS8UfRkTeLzb64u+dkzDSdelE24izu+zSSUg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
 
   synckit@0.12.3:
     resolution: {integrity: sha512-U+/AXT6LWsxnj2vz9HeUuPWBNgdWxjyIEjEPdbJARC9txmgPzo2VEdqnFo4hHaNyMPtycyVJrSaQYeQv/PoyyA==}
@@ -13466,7 +13462,7 @@ snapshots:
     dependencies:
       eslint: 10.15.0(jiti@2.7.0)(supports-color@8.1.1)
 
-  eslint-plugin-astro@3.2.1(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint-plugin-jsx-a11y-x@0.2.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript-eslint@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)):
+  eslint-plugin-astro@3.2.2(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint-plugin-jsx-a11y-x@0.2.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1)))(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript-eslint@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)):
     dependencies:
       '@eslint-community/eslint-utils': 4.10.1(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))
       '@jridgewell/sourcemap-codec': 1.6.0
@@ -13477,7 +13473,7 @@ snapshots:
       globals: 17.14.0
       postcss: 8.5.33
       postcss-selector-parser: 7.2.1
-      synckit: 0.11.13
+      synckit: 0.12.3
     optionalDependencies:
       '@typescript-eslint/parser': 8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
       eslint-plugin-jsx-a11y-x: 0.2.0(eslint@10.15.0(jiti@2.7.0)(supports-color@8.1.1))
@@ -15619,10 +15615,6 @@ snapshots:
       use-sync-external-store: 1.7.0(react@19.3.1)
 
   symbol-tree@3.2.4: {}
-
-  synckit@0.11.13:
-    dependencies:
-      '@pkgr/core': 0.3.6
 
   synckit@0.12.3:
     dependencies:
